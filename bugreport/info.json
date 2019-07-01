@@ -1,0 +1,8 @@
+{
+    "author" : ["Ianardo DiCaprio"],
+    "install_msg" : "Thank you for installing my cog!",
+    "name" : "BugReport",
+    "short" : "Simple bug report cog.",
+    "description" : "Simple bug report cog.",
+    "tags" : ["bug report", "bug", "reports"]
+}
