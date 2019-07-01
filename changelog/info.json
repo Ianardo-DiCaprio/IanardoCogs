@@ -1,0 +1,21 @@
+{
+    "author": [
+        "Ianardo DiCaprio",
+		"Parts taken from SinBad"
+    ],
+    "install_msg": "Thanks for installing changelog.",
+    "name": "ChangeLog",
+    "disabled": false,
+    "short": "Changelog",
+    "description": "Upload changelogs for people using your bot to view.",
+    "tags": [
+        "ChangeLog",
+        "Updates"
+    ],
+    "hidden": false,
+    "min_bot_version": "3.1.1",
+    "requirements": [
+        "python-dateutil",
+        "pytz"
+    ]
+}
