@@ -4,7 +4,7 @@ from redbot.core import commands
 
 class Random(commands.Cog):
     """
-    Simple reaction cog
+    Simple tandom cog
     """
 
     def __init__(self, bot):
@@ -13,15 +13,17 @@ class Random(commands.Cog):
     @commands.command()
     @commands.cooldown(rate=1, per=3, type=commands.BucketType.user)
     async def reaction(
-        self, ctx: commands.Context, msg_id: int, emoji, channel: discord.TextChannel = None
+        self, ctx: commands.Context, msg_id: int, emoji = None, channel: discord.TextChannel = None
     ):
         """React to a message.\n
-		Msg_id is the message ID you want to react to. \n
+	Msg_id is the message ID you want to react to. \n
         If a channel is not specified it will look for
         the message ID in the current channel.
         """
         if not channel:
             channel = ctx.channel
+        if not emoji:
+            emoji = ":white_check_mark:"
         try:
             msg = await channel.fetch_message(msg_id)
             await msg.add_reaction(emoji)
