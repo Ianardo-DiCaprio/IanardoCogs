@@ -1,8 +1,8 @@
 {
     "author" : ["Ianardo DiCaprio"],
     "install_msg" : "Thank you for installing my cog!",
-    "name" : "React",
-    "short" : "Simple react cog.",
-    "description" : "Simple react cog.",
-    "tags" : ["react", "reaction"]
+    "name" : "Random",
+    "short" : "Random commands.",
+    "description" : "A cog filled with simple random commands",
+    "tags" : ["random", "reaction"]
 }
