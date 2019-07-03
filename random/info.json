@@ -1,0 +1,8 @@
+{
+    "author" : ["Ianardo DiCaprio"],
+    "install_msg" : "Thank you for installing my cog!",
+    "name" : "React",
+    "short" : "Simple react cog.",
+    "description" : "Simple react cog.",
+    "tags" : ["react", "reaction"]
+}
