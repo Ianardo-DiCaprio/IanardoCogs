@@ -1,9 +1,8 @@
 import discord
-import typing
-from redbot.core import checks, commands
+from redbot.core import commands
 
 
-class React(commands.Cog):
+class Random(commands.Cog):
     """
     Simple reaction cog
     """
