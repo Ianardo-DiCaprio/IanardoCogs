@@ -21,7 +21,8 @@ class Random(commands.Cog):
         the message ID in the current channel.
         """
         str = channel
-        if str.startswith( ':' )
+        starts = str.startswith( ':' )
+        if starts:
             channel = emoji
             channel = None
         if not channel:
