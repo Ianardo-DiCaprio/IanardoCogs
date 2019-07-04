@@ -1,7 +1,6 @@
 import discord
 from redbot.core import commands
 
-
 class Random(commands.Cog):
     """
     Simple random cog
