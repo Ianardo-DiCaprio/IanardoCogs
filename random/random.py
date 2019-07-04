@@ -4,7 +4,7 @@ from redbot.core import commands
 
 class Random(commands.Cog):
     """
-    Simple tandom cog
+    Simple random cog
     """
 
     def __init__(self, bot):
