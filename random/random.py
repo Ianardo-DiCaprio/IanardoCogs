@@ -15,7 +15,7 @@ class Random(commands.Cog):
         self, ctx: commands.Context, msg_id: int, emoji = None, channel: discord.TextChannel = None
     ):
         """React to a message.\n
-	Msg_id is the message ID you want to react to. \n
+	Msg_id is the message ID you want to react to. 
         If a channel is not specified it will look for
         the message ID in the current channel.
         if an emoji in not specified it will react with
