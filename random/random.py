@@ -20,6 +20,9 @@ class Random(commands.Cog):
         If a channel is not specified it will look for
         the message ID in the current channel.
         """
+        if channel str.startswith(:)
+            channel = emoji
+            channel = ctx.channel
         if not channel:
             channel = ctx.channel
         if not emoji:
