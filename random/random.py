@@ -19,6 +19,9 @@ class Random(commands.Cog):
 	Msg_id is the message ID you want to react to. \n
         If a channel is not specified it will look for
         the message ID in the current channel.
+        if an emoji in not specified it will react with
+        a "✅". If you wish to specify a channel, you 
+        must also specify an emoji.
         """
         if not channel:
             channel = ctx.channel
