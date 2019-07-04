@@ -20,7 +20,7 @@ class Random(commands.Cog):
         If a channel is not specified it will look for
         the message ID in the current channel.
         """
-        if not channel::
+        if not channel:
             channel = ctx.channel
         if not emoji:
             emoji =  :white_check_mark: 
