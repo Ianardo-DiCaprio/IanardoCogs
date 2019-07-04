@@ -13,18 +13,13 @@ class Random(commands.Cog):
     @commands.command()
     @commands.cooldown(rate=1, per=3, type=commands.BucketType.user)
     async def reaction(
-        self, ctx: commands.Context, msg_id: int, channel: discord.TextChannel = None, *, emoji = None
+        self, ctx: commands.Context, msg_id: int, emoji = None, channel: discord.TextChannel = None
     ):
         """React to a message.\n
 	Msg_id is the message ID you want to react to. \n
         If a channel is not specified it will look for
         the message ID in the current channel.
         """
-        str = channel
-        starts = str.startswith( ':' )
-        if starts:
-            channel = emoji
-            channel = None
         if not channel:
             channel = ctx.channel
         if not emoji:
