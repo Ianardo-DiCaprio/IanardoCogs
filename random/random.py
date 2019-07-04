@@ -20,10 +20,10 @@ class Random(commands.Cog):
         If a channel is not specified it will look for
         the message ID in the current channel.
         """
-        if channel == None:
+        if not channel::
             channel = ctx.channel
-        if emoji ==None:
-            emoji = :white_check_mark:
+        if not emoji:
+            emoji = :CoC_VoteYes:
         try:
             msg = await channel.fetch_message(msg_id)
             await msg.add_reaction(emoji)
