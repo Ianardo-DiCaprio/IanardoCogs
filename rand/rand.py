@@ -1,5 +1,6 @@
 import discord
 from redbot.core import commands
+import sys
 
 class Rand(commands.Cog):
     """
@@ -29,6 +30,7 @@ class Rand(commands.Cog):
         try:
             msg = await channel.fetch_message(msg_id)
             await msg.add_reaction(emoji)
+            print(sys.path)
         except discord.HTTPException:
             await ctx.send(
                 "That message ID isn't in this channel, please specify the channel the message is in or use the correct message ID."
