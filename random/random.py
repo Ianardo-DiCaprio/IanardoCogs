@@ -23,7 +23,7 @@ class Random(commands.Cog):
         if not channel:
             channel = ctx.channel
         if not emoji:
-            emoji = ✅
+            emoji = "✅"
         try:
             msg = await channel.fetch_message(msg_id)
             await msg.add_reaction(emoji)
