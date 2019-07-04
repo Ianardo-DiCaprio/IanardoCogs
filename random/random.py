@@ -23,7 +23,8 @@ class Random(commands.Cog):
         if not channel::
             channel = ctx.channel
         if not emoji:
-            emoji = :CoC_VoteYes:
+            emoji =  :white_check_mark: 
+            emoji.id = emoji
         try:
             msg = await channel.fetch_message(msg_id)
             await msg.add_reaction(emoji)
