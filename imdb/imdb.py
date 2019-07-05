@@ -67,7 +67,7 @@ class IMDB(commands.Cog):
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
         data = r.json()
         try:
-            title data["Title"]
+            title = data["Title"]
             embed=discord.Embed(title=title, color=0x8c05d2)
             if data["Runtime"]:
                 embed.add_field(name="Average Run Time", value=data["Runtime"], inline=True)
