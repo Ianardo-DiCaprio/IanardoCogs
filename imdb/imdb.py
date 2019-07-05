@@ -108,7 +108,7 @@ class IMDB(commands.Cog):
             if data["totalSeasons"]:
                 embed.add_field(name="Seasons", value=data["totalSeasons"], inline=True)
             if data["Language"]:
-                embed.add_field(name="Seasons", value=data["Language"], inline=True)
+                embed.add_field(name="Language", value=data["Language"], inline=True)
             if data["Country"]:
                 embed.add_field(name="Country", value=data["Country"], inline=True)
             if data["Writer"]:
