@@ -14,7 +14,9 @@ class IMDB(commands.Cog):
     @commands.command()
     @checks.is_owner()
     async def imdbapi(self, ctx, api_key):
-        """Command to set the IMDB API key"""
+        """Command to set the IMDB API key
+        You can aqquire an API key from
+        http://www.omdbapi.com/apikey.aspx"""
         await self.conf.api_key.set(api_key)
         await ctx.send("The API key has been set.")
 		
@@ -37,8 +39,8 @@ class IMDB(commands.Cog):
         director = data["Director"]
         actors = data["Actors"]
         box_office = data["BoxOffice"]
-        embed=discord.Embed(title=title)
-        embed.set_image(url=poster)
+        embed=discord.Embed(title=title, color=0x8c05d2)
+        embed.set_thumbnail(url=poster)
         embed.add_field(name="Run Time", value=run_time, inline=True)
         embed.add_field(name="Release Date", value=release_date, inline=True)
         embed.add_field(name="IMDB Rating", value=imdb_rating, inline=True)
