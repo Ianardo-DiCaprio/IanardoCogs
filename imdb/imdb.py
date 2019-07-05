@@ -28,8 +28,8 @@ class IMDB(commands.Cog):
         search = search.replace(" ", "+")
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
         data = r.json()
-
-        if no_movie = data["Error"]:
+        no_movie = data["Error"]
+        if no_movie == "Movie not found!":
             await ctx.send("There is no movie with that name")
         else: 
             title = data["Title"]
