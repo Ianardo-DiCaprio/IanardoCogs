@@ -30,9 +30,9 @@ class IMDB(commands.Cog):
         data = r.json()
         try:
             no_movie = data["Error"]
-        except:
             await ctx.send("There is no movie with that name")
-            return
+        except:
+            pass
         title = data["Title"]
         poster = data["Poster"]
         run_time = data["Runtime"]
