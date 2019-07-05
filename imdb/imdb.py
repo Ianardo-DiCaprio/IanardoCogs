@@ -1,5 +1,5 @@
 import discord
-import requests
+import imdb = require('imdb');
 from redbot.core import commands, checks, Config
 
 class IMDB(commands.Cog):
@@ -23,8 +23,6 @@ class IMDB(commands.Cog):
         """Command to get information from IMDB"""
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        response = requests.get("https://movie-database-imdb-alternative.p.rapidapi.com/?page=1&r=json&s={search}",
-        headers={"X-RapidAPI-Host": "movie-database-imdb-alternative.p.rapidapi.com", "X-RapidAPI-Key": api_key, "Accept": "application/json"},
-	)
+        response = requests.get(("http://www.omdbapi.com/?apikey={api_key}&s={search}").format(api_key=api_key, search=search))
         await ctx.send(response)
 		
