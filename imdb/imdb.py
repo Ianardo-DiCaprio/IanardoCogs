@@ -1,5 +1,6 @@
 import discord
 import requests
+import json
 from redbot.core import commands, checks, Config
 
 class IMDB(commands.Cog):
@@ -24,5 +25,7 @@ class IMDB(commands.Cog):
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
         response = requests.get(("http://www.omdbapi.com/?apikey={api_key}&s={search}").format(api_key=api_key, search=search))
-        await ctx.send(response.['Title'])
+        json_data = json.loads(respose.content)
+        title = json_data['Title']
+        await ctx.send(title)
 		
