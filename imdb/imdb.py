@@ -1,4 +1,5 @@
 import discord
+import requests
 from redbot.core import commands, checks, Config
 
 class IMDB(commands.Cog):
