@@ -27,6 +27,6 @@ class IMDB(commands.Cog):
         params = {'Title':Title} 
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&s={search}", params=params).format(api_key=api_key, search=search))
         data = r.json()
-        title = data['results'][0]['Title']
+        title = data["Search"][0]["Title"]
         await ctx.send(title)
 		
