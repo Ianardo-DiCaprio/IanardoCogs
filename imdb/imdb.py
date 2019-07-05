@@ -28,7 +28,7 @@ class IMDB(commands.Cog):
         data = r.json()
         title = data["Title"]
         run_time = data["Runtime"]
-        release_date = data["Release"]
+        release_date = data["Released"]
         imdb_rating = data["imdbRating"]
         age_rating = data["Rated"]
         plot = data["Plot"]
