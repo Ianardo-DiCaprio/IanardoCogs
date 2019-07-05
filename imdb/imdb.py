@@ -30,7 +30,9 @@ class IMDB(commands.Cog):
         data = r.json()
         website = data["Website"] 
         if website == "N/A":
-            website = """https://cdn0.iconfinder.com/data/icons/interface-set-vol-2/50/No_data_No_info_Missing-512.png"""
+            website = ""
+        else: 
+           website = " url=" + website + ", "
         title = data["Title"]
         website = data["Website"]
         poster = data["Poster"]
@@ -43,7 +45,7 @@ class IMDB(commands.Cog):
         director = data["Director"]
         actors = data["Actors"]
         box_office = data["BoxOffice"]
-        embed=discord.Embed(title=title, url=website, color=0x8c05d2)
+        embed=discord.Embed"((title=title,{website}color=0x8c05d2).format(website=website))
         embed.set_thumbnail(url=poster)
         embed.add_field(name="Run Time", value=run_time, inline=True)
         embed.add_field(name="Release Date", value=release_date, inline=True)
