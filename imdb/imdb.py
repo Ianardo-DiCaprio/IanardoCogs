@@ -26,14 +26,14 @@ class IMDB(commands.Cog):
         search = search.replace(" ", "+")
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&s={search}").format(api_key=api_key, search=search))
         data = r.json()
-        title = data["Search"][0]["Title"]
-        age_rating = data["Search"][0]["Rated"]
-        release_date = data["Search"][0]["Released"]
-        genre = data["Search"][0]["Genre"]
-        director = data["Search"][0]["Director"]
-        actors = data["Search"][0]["Actors"]
-        plot = data["Search"][0]["Plot"]
-        imdb_rating = data["Search"][0]["imdbRating"]
+        title = data["Title"]
+        age_rating = data["Rated"]
+        release_date = data["Released"]
+        genre = data["Genre"]
+        director = data["Director"]
+        actors = data]["Actors"]
+        plot = data["Plot"]
+        imdb_rating = data["imdbRating"]
         embed=discord.Embed(title=title)
         embed.set_thumbnail(url="https://m.media-amazon.com/images/M/MV5BMTAwMjU5OTgxNjZeQTJeQWpwZ15BbWU4MDUxNDYxODEx._V1_SX300.jpg")
         embed.add_field(name="Age rating", value=age_rating, inline=False)
