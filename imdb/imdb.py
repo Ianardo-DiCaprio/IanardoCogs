@@ -22,7 +22,7 @@ class IMDB(commands.Cog):
 		
 		
     @commands.command()
-    async def imdb(self, ctx, *, search):
+    async def imdbmovie(self, ctx, *, search):
         """Command to get information from IMDB"""
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
@@ -54,3 +54,36 @@ class IMDB(commands.Cog):
             await ctx.send(embed=embed)
         except:
             await ctx.send("We couldn't find a movie with that name :worried:")
+
+    @commands.command()
+    async def imdbtv(self, ctx, *, search):
+        """Command to get information from IMDB"""
+        api_key = await self.conf.api_key()
+        search = search.replace(" ", "+")
+        r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
+        data = r.json()
+        try:
+            title = data["Title"]
+            poster = data["Poster"]
+            release_date = data["Released"]
+            imdb_rating = data["imdbRating"]
+            age_rating = data["Rated"]
+            plot = data["Plot"]
+            genre = data["Genre"]
+            director = data["Director"]
+            actors = data["Actors"]
+            seasons = data["totalSeasons"]
+            embed=discord.Embed(title=title, color=0x8c05d2)
+            embed.set_thumbnail(url=poster)
+            embed.add_field(name="Run Time", value=run_time, inline=True)
+            embed.add_field(name="Release Date", value=released, inline=True)
+            embed.add_field(name="IMDB Rating", value=imdb_rating, inline=True)
+            embed.add_field(name="Age Rating", value=age_rating, inline=True)
+            embed.add_field(name="Plot", value=plot, inline=True)
+            embed.add_field(name="Genre", value=genre, inline=True)
+            embed.add_field(name="Director", value=director, inline=True)
+            embed.add_field(name="Actors", value=actors, inline=True)
+            embed.add_field(name="Seasons", value=seasons, inline=True)
+            await ctx.send(embed=embed)
+        except:
+            await ctx.send("We couldn't find a TV show with that name :worried:")
