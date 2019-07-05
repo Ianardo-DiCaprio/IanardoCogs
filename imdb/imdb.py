@@ -1,5 +1,4 @@
 import discord
-import imdb = require('imdb');
 from redbot.core import commands, checks, Config
 
 class IMDB(commands.Cog):
