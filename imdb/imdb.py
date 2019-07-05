@@ -36,6 +36,8 @@ class IMDB(commands.Cog):
             embed=discord.Embed(title=title, color=0x8c05d2)
             if data["Poster"]:
                 embed.set_thumbnail(url=data['Poster'])
+            if data['imdbID']:
+                embed.url = "http://www.imdb.com/title/{}".format(data['imdbID'])
             if data["Runtime"]:
                 embed.add_field(name="Run Time", value=data["Runtime"], inline=True)
             if data["Released"]:
