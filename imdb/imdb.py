@@ -94,5 +94,6 @@ class IMDB(commands.Cog):
     async def socialb(self, ctx, *, search):
         """Command to get information from IMDB"""
         r = requests.get(("https://socialblade.com/youtube/user/{search}").format(search=search))
-        please = (r.length > 600) ? data.substring[0,600] + '...' : r;
+        c = r.contents
+        please = (c[:600] + '..') if len(c) > 600 else c
         await ctx.send(please)
