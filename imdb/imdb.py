@@ -33,7 +33,7 @@ class IMDB(commands.Cog):
             if no_movie == "Movie not found!":
                 await ctx.send("There is no movie with that name")
             else:
-         except:
+        except:
              pass 
             title = data["Title"]
             poster = data["Poster"]
