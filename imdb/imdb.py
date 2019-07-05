@@ -7,13 +7,8 @@ class IMDB(commands.Cog):
         self.bot = bot
         self.conf = Config.get_conf(self, identifier=6991142013)
 		
-        default_global = (
-            "api_key": None,
-	)
-		
-        self.config.register_global(**default_global)
-		
-		
+        self.conf.register_global(api_key=None)
+
     @commands.command()
     @checks.is_owner()
     async def imdbapi(self, ctx, api_key):
