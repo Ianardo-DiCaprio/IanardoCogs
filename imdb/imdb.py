@@ -24,8 +24,8 @@ class IMDB(commands.Cog):
         """Command to get information from IMDB"""
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        response = requests.get(("http://www.omdbapi.com/?apikey={api_key}&s={search}").format(api_key=api_key, search=search))
-        json_data = json.loads(response.text)
-        title = json_data['Title']
+        r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&s={search}").format(api_key=api_key, search=search))
+        data = r.json()
+        title = data['Title']
         await ctx.send(title)
 		
