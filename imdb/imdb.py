@@ -31,7 +31,7 @@ class IMDB(commands.Cog):
         release_date = data["Released"]
         genre = data["Genre"]
         director = data["Director"]
-        actors = data]["Actors"]
+        actors = data["Actors"]
         plot = data["Plot"]
         imdb_rating = data["imdbRating"]
         embed=discord.Embed(title=title)
