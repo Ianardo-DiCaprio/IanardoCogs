@@ -13,7 +13,7 @@ class IMDB(commands.Cog):
     @checks.is_owner()
     async def imdbapi(self, ctx, api_key):
         """Command to set the IMDB API key"""
-        await self.config.api_key.set(api_key)
+        await self.conf.api_key.set(api_key)
         await ctx.send("The API key has been set.")
 		
 		
