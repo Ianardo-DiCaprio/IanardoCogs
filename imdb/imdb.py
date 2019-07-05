@@ -29,7 +29,7 @@ class IMDB(commands.Cog):
         embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
+        r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full").format(api_key=api_key, search=search))
         data = r.json()
         try:
             title = data["Title"]
@@ -47,7 +47,7 @@ class IMDB(commands.Cog):
             if data["Rated"]:
                 embed.add_field(name="Age Rating", value=data["Rated"], inline=True)
             if data["Plot"]:
-                embed.add_field(name="Plot", value=data["Plot"], inline=True)
+                embed.add_field(name="Plot", value=data["Plot"], inline=False)
             if data["Genre"]:
                 embed.add_field(name="Genre", value=data["Genre"], inline=True)
             if data["Director"]:
@@ -63,9 +63,9 @@ class IMDB(commands.Cog):
             if data["Country"]:
                 embed.add_field(name="Country", value=data["Country"], inline=True)
             if data["Writer"]:
-                embed.add_field(name="Writers", value=data["Writer"], inline=True)
+                embed.add_field(name="Writers", value=data["Writer"], inline=False)
             if data["Awards"]:
-                embed.add_field(name="Awards", value=data["Awards"], inline=True)
+                embed.add_field(name="Awards", value=data["Awards"], inline=False)
             if data["Website"]:
                 embed.set_footer(text=data["Website"])
             embeds.append(embed)
@@ -80,7 +80,7 @@ class IMDB(commands.Cog):
         embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
+        r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full").format(api_key=api_key, search=search))
         data = r.json()
         try:
             title = data["Title"]
@@ -98,7 +98,7 @@ class IMDB(commands.Cog):
             if data["Rated"]:
                 embed.add_field(name="Age Rating", value=data["Rated"], inline=True)
             if data["Plot"]:
-                embed.add_field(name="Plot", value=data["Plot"], inline=True)
+                embed.add_field(name="Plot", value=data["Plot"], inline=False)
             if data["Genre"]:
                 embed.add_field(name="Genre", value=data["Genre"], inline=True)
             if data["Director"]:
@@ -112,9 +112,9 @@ class IMDB(commands.Cog):
             if data["Country"]:
                 embed.add_field(name="Country", value=data["Country"], inline=True)
             if data["Writer"]:
-                embed.add_field(name="Writers", value=data["Writer"], inline=True)
+                embed.add_field(name="Writers", value=data["Writer"], inline=False)
             if data["Awards"]:
-                embed.add_field(name="Awards", value=data["Awards"], inline=True)
+                embed.add_field(name="Awards", value=data["Awards"], inline=False)
             embeds.append(embed)
             await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
         except:
