@@ -68,6 +68,8 @@ class IMDB(commands.Cog):
                 embed.add_field(name="Awards", value=data["Awards"], inline=True)
             embeds.append(embed)
             await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
+        except:
+            await ctx.send("We couldn't find a TV show with that name :worried:")
 
     @commands.command()
     async def imdbtv(self, ctx, *, search):
