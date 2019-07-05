@@ -26,7 +26,7 @@ class IMDB(commands.Cog):
         search = search.replace(" ", "+")
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&s={search}").format(api_key=api_key, search=search))
         data = r.json()
-        title = data["Search"][0]["Title"]
+        title = data["Title"]
         embed=discord.Embed(title=title)
         embed.set_thumbnail(url="https://m.media-amazon.com/images/M/MV5BMTAwMjU5OTgxNjZeQTJeQWpwZ15BbWU4MDUxNDYxODEx._V1_SX300.jpg")
         await ctx.send(embed=embed)
