@@ -40,7 +40,7 @@ class IMDB(commands.Cog):
         director = data["Director"]
         actors = data["Actors"]
         box_office = data["BoxOffice"]
-        embed=discord.Embed(title=title, , url=website, color=0x8c05d2)
+        embed=discord.Embed(title=title, url=website, color=0x8c05d2)
         embed.set_thumbnail(url=poster)
         embed.add_field(name="Run Time", value=run_time, inline=True)
         embed.add_field(name="Release Date", value=release_date, inline=True)
