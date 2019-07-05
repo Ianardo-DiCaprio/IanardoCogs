@@ -30,7 +30,7 @@ class IMDB(commands.Cog):
         data = r.json()
         website = data["Website"] 
         if website == "N/A":
-            website = '"https://cdn0.iconfinder.com/data/icons/interface-set-vol-2/50/No_data_No_info_Missing-512.png"'
+            website = """https://cdn0.iconfinder.com/data/icons/interface-set-vol-2/50/No_data_No_info_Missing-512.png"""
         title = data["Title"]
         website = data["Website"]
         poster = data["Poster"]
