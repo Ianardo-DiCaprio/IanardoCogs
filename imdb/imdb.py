@@ -76,7 +76,7 @@ class IMDB(commands.Cog):
             embed=discord.Embed(title=title, color=0x8c05d2)
             embed.set_thumbnail(url=poster)
             embed.add_field(name="Run Time", value=run_time, inline=True)
-            embed.add_field(name="Release Date", value=released, inline=True)
+            embed.add_field(name="Release Date", value=release_date, inline=True)
             embed.add_field(name="IMDB Rating", value=imdb_rating, inline=True)
             embed.add_field(name="Age Rating", value=age_rating, inline=True)
             embed.add_field(name="Plot", value=plot, inline=True)
