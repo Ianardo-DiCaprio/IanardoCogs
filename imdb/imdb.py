@@ -30,7 +30,7 @@ class IMDB(commands.Cog):
         data = r.json()
         website = data["Website"]
         if website == "N/A":
-            website = ""
+            website = " "
         else:
             website = " url=" + website + ", "
         title = data["Title"]
