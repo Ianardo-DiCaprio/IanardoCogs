@@ -61,8 +61,8 @@ class IMDB(commands.Cog):
             embed.add_field(name="Language", value=data["Language"], inline=True)
         if data["Country"]:
             embed.add_field(name="Country", value=data["Country"], inline=True)
-        if data["Writers"]:
-            embed.add_field(name="Writers", value=data["Writers"], inline=True)
+        if data["Writer"]:
+            embed.add_field(name="Writers", value=data["Writer"], inline=True)
         if data["Awards"]:
             embed.add_field(name="Awards", value=data["Awards"], inline=True)
         embeds.append(embed)
