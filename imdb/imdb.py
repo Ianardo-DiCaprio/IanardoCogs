@@ -28,6 +28,11 @@ class IMDB(commands.Cog):
         search = search.replace(" ", "+")
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
         data = r.json()
+        try:
+            no_movie = data["Error"]
+        except:
+            await ctx.send("There is no movie with that name")
+            pass
         title = data["Title"]
         poster = data["Poster"]
         run_time = data["Runtime"]
