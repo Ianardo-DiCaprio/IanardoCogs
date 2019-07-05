@@ -53,4 +53,4 @@ class IMDB(commands.Cog):
             embed.add_field(name="Box Office", value=box_office, inline=True)
             await ctx.send(embed=embed)
         except:
-            await ctx.send("There is either no movie with that name, or too much data missing.")
+            await ctx.send("We couldn't find a movie with that name :worried:")
