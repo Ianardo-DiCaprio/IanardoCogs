@@ -88,7 +88,6 @@ class IMDB(commands.Cog):
             await ctx.send(embed=embed)
         except:
             await ctx.send("We couldn't find a TV show with that name :worried:")
-(data.length > 75) ? data.substring[0,75] + '..' : data;
 
     @commands.command()
     async def socialb(self, ctx, *, search):
