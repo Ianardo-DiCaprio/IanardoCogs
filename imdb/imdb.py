@@ -27,7 +27,7 @@ class IMDB(commands.Cog):
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
         data = r.json()
         title = data["Title"]
-        poster = data["poster"]
+        poster = data["Poster"]
         run_time = data["Runtime"]
         release_date = data["Released"]
         imdb_rating = data["imdbRating"]
