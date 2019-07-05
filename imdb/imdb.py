@@ -27,6 +27,7 @@ class IMDB(commands.Cog):
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
         data = r.json()
         title = data["Title"]
+        poster = data["poster"]
         run_time = data["Runtime"]
         release_date = data["Released"]
         imdb_rating = data["imdbRating"]
@@ -37,7 +38,7 @@ class IMDB(commands.Cog):
         actors = data["Actors"]
         box_office = data["BoxOffice"]
         embed=discord.Embed(title=title)
-        embed.set_thumbnail(url="https://m.media-amazon.com/images/M/MV5BMTAwMjU5OTgxNjZeQTJeQWpwZ15BbWU4MDUxNDYxODEx._V1_SX300.jpg")
+        embed.set_thumbnail(url=poster)
         embed.add_field(name="Run Time", value=run_time, inline=False)
         embed.add_field(name="Release Date", value=release_date, inline=False)
         embed.add_field(name="IMDB Rating", value=imdb_rating, inline=False)
