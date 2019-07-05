@@ -20,7 +20,7 @@ class IMDB(commands.Cog):
 		
 		
     @commands.command()
-    async def imdb(self, ctx, search):
+    async def imdb(self, ctx, *, search):
         """Command to get information from IMDB"""
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
