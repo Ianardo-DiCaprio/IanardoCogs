@@ -26,6 +26,7 @@ class IMDB(commands.Cog):
     async def imdbmovie(self, ctx, *, search):
         """Command to get information for Movies 
        from IMDB"""
+        embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
@@ -62,6 +63,7 @@ class IMDB(commands.Cog):
     async def imdbtv(self, ctx, *, search):
         """Command to get information for
         TV shows from IMDB"""
+        embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
