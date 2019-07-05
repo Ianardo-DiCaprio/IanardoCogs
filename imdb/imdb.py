@@ -62,26 +62,29 @@ class IMDB(commands.Cog):
         search = search.replace(" ", "+")
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
         data = r.json()
-        title = data["Title"]
-        run_time = data["Runtime"] 
-        poster = data["Poster"]
-        release_date = data["Released"]
-        imdb_rating = data["imdbRating"]
-        age_rating = data["Rated"]
-        plot = data["Plot"]
-        genre = data["Genre"]
-        director = data["Director"]
-        actors = data["Actors"]
-        seasons = data["totalSeasons"]
-        embed=discord.Embed(title=title, color=0x8c05d2)
-        embed.set_thumbnail(url=poster)
-        embed.add_field(name="Average Run Time", value=run_time, inline=True)
-        embed.add_field(name="Release Date", value=release_date, inline=True)
-        embed.add_field(name="IMDB Rating", value=imdb_rating, inline=True)
-        embed.add_field(name="Age Rating", value=age_rating, inline=True)
-        embed.add_field(name="Plot", value=plot, inline=True)
-        embed.add_field(name="Genre", value=genre, inline=True)
-        embed.add_field(name="Director", value=director, inline=True)
-        embed.add_field(name="Actors", value=actors, inline=True)
-        embed.add_field(name="Seasons", value=seasons, inline=True)
-        await ctx.send(embed=embed)
+        try:
+            title = data["Title"]
+            run_time = data["Runtime"] 
+            poster = data["Poster"]
+            release_date = data["Released"]
+            imdb_rating = data["imdbRating"]
+            age_rating = data["Rated"]
+            plot = data["Plot"]
+            genre = data["Genre"]
+            director = data["Director"]
+            actors = data["Actors"]
+            seasons = data["totalSeasons"]
+            embed=discord.Embed(title=title, color=0x8c05d2)
+            embed.set_thumbnail(url=poster)
+            embed.add_field(name="Average Run Time", value=run_time, inline=True)
+            embed.add_field(name="Release Date", value=release_date, inline=True)
+            embed.add_field(name="IMDB Rating", value=imdb_rating, inline=True)
+            embed.add_field(name="Age Rating", value=age_rating, inline=True)
+            embed.add_field(name="Plot", value=plot, inline=True)
+            embed.add_field(name="Genre", value=genre, inline=True)
+            embed.add_field(name="Director", value=director, inline=True)
+            embed.add_field(name="Actors", value=actors, inline=True)
+            embed.add_field(name="Seasons", value=seasons, inline=True)
+            await ctx.send(embed=embed)
+        except:
+            await ctx.send("We couldn't find a TV show with that name :worried:")
