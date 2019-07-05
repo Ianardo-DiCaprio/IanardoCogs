@@ -68,29 +68,33 @@ class IMDB(commands.Cog):
         search = search.replace(" ", "+")
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
         data = r.json()
-        title = data["Title"]
-        embed=discord.Embed(title=title, color=0x8c05d2)
-        if data["Runtime"]:
-            embed.add_field(name="Average Run Time", value=data["Runtime"], inline=True)
-        if data['imdbID']:
-            embed.url = "http://www.imdb.com/title/{}".format(data['imdbID'])
-        if data["Poster"]:
-            embed.set_thumbnail(url=data["Poster"])
-        if data["Released"]:
-            embed.add_field(name="Release Date", value=data["Released"], inline=True)
-        if data["imdbRating"]:
-            embed.add_field(name="IMDB Rating", value=data["imdbRating"], inline=True)
-        if data["Rated"]:
-            embed.add_field(name="Age Rating", value=data["Rated"], inline=True)
-        if data["Plot"]:
-            embed.add_field(name="Plot", value=data["Plot"], inline=True)
-        if data["Genre"]:
-            embed.add_field(name="Genre", value=data["Genre"], inline=True)
-        if data["Director"]:
-            embed.add_field(name="Director", value=data["Director"], inline=True)
-        if data["Actors"]:
-            embed.add_field(name="Actors", value=data["Actors"], inline=True)
-        if data["totalSeasons"]:
-            embed.add_field(name="Seasons", value=data["totalSeasons"], inline=True)
-        embeds.append(embed)
-        await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
+        try:
+            title = data["Title"]
+            embed=discord.Embed(title=title, color=0x8c05d2)
+            if data["Runtime"]:
+                embed.add_field(name="Average Run Time", value=data["Runtime"], inline=True)
+            if data['imdbID']:
+                embed.url = "http://www.imdb.com/title/{}".format(data['imdbID'])
+            if data["Poster"]:
+                embed.set_thumbnail(url=data["Poster"])
+            if data["Released"]:
+                embed.add_field(name="Release Date", value=data["Released"], inline=True)
+            if data["imdbRating"]:
+                embed.add_field(name="IMDB Rating", value=data["imdbRating"], inline=True)
+            if data["Rated"]:
+                embed.add_field(name="Age Rating", value=data["Rated"], inline=True)
+            if data["Plot"]:
+                embed.add_field(name="Plot", value=data["Plot"], inline=True)
+            if data["Genre"]:
+                embed.add_field(name="Genre", value=data["Genre"], inline=True)
+            if data["Director"]:
+                embed.add_field(name="Director", value=data["Director"], inline=True)
+            if data["Actors"]:
+                embed.add_field(name="Actors", value=data["Actors"], inline=True)
+            if data["totalSeasons"]:
+                embed.add_field(name="Seasons", value=data["totalSeasons"], inline=True)
+            embeds.append(embed)
+            await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
+        except:
+            await ctx.send("We couldn't find a movie with that name :worried:")
+
