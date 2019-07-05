@@ -29,12 +29,6 @@ class IMDB(commands.Cog):
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
         data = r.json()
         try:
-            no_movie = data["Error"]
-            if no_movie == "Movie not found!":
-                await ctx.send("There is no movie with that name")
-        except:
-             return 
-        try:
             title = data["Title"]
             poster = data["Poster"]
             run_time = data["Runtime"]
@@ -58,5 +52,5 @@ class IMDB(commands.Cog):
             embed.add_field(name="Actors", value=actors, inline=True)
             embed.add_field(name="Box Office", value=box_office, inline=True)
             await ctx.send(embed=embed)
-        except discord.HTTPException:
-            return
+        except:
+            await ctx.send("There is either no movie with that name, or too much data missing.)
