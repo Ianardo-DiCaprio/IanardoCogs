@@ -28,13 +28,7 @@ class IMDB(commands.Cog):
         search = search.replace(" ", "+")
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
         data = r.json()
-        website = data["Website"] 
-        if website == "N/A":
-            website = ""
-        else: 
-           website = " url=" + website + ", "
         title = data["Title"]
-        website = data["Website"]
         poster = data["Poster"]
         run_time = data["Runtime"]
         release_date = data["Released"]
@@ -45,7 +39,7 @@ class IMDB(commands.Cog):
         director = data["Director"]
         actors = data["Actors"]
         box_office = data["BoxOffice"]
-        embed=discord.Embed"(title=title,{website=website}color=0x8c05d2)
+        embed=discord.Embed("title=title, color=0x8c05d2)
         embed.set_thumbnail(url=poster)
         embed.add_field(name="Run Time", value=run_time, inline=True)
         embed.add_field(name="Release Date", value=release_date, inline=True)
