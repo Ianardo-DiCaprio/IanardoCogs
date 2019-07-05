@@ -58,5 +58,5 @@ class IMDB(commands.Cog):
             embed.add_field(name="Actors", value=actors, inline=True)
             embed.add_field(name="Box Office", value=box_office, inline=True)
             await ctx.send(embed=embed)
-        except HTTPException:
+        except discord.HTTPException:
             return
