@@ -27,6 +27,10 @@ class IMDB(commands.Cog):
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}").format(api_key=api_key, search=search))
+        if website = "N/A"
+            website = "https://cdn0.iconfinder.com/data/icons/interface-set-vol-2/50/No_data_No_info_Missing-512.png"
+        else: 
+            website = data["Website"] 
         data = r.json()
         title = data["Title"]
         website = data["Website"]
