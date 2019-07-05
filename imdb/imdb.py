@@ -52,7 +52,7 @@ class IMDB(commands.Cog):
             if data["Actors"]:
                 embed.add_field(name="Actors", value=data["Actors"], inline=True)
             if data["BoxOffice"]:
-                embed.add_field(name="Box Office", value=box_office, inline=True)
+                embed.add_field(name="Box Office", value=data["BoxOffice"], inline=True)
             embeds.append(embed)
             await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
         except:
@@ -85,7 +85,7 @@ class IMDB(commands.Cog):
         if data["Genre"]:
             embed.add_field(name="Genre", value=data["Genre"], inline=True)
         if data["Director"]:
-            embed.add_field(name="Director", value=director, inline=True)
+            embed.add_field(name="Director", value=data["Director"], inline=True)
         if data["Actors"]:
             embed.add_field(name="Actors", value=data["Actors"], inline=True)
         if data["totalSeasons"]:
