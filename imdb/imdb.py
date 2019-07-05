@@ -8,7 +8,7 @@ class IMDB(commands.Cog):
         self.conf = Config.get_conf(self, identifier=6991142013)
 		
         default_global = (
-            "api_key" = None,
+            api_key=None,
         )
 		
         self.config.register_global(**default_global)
