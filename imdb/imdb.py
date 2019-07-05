@@ -38,7 +38,7 @@ class IMDB(commands.Cog):
         actors = data["Actors"]
         box_office = data["BoxOffice"]
         embed=discord.Embed(title=title)
-        embed.set_thumbnail(url=poster)
+        embed.set_image(url=poster)
         embed.add_field(name="Run Time", value=run_time, inline=True)
         embed.add_field(name="Release Date", value=release_date, inline=True)
         embed.add_field(name="IMDB Rating", value=imdb_rating, inline=True)
