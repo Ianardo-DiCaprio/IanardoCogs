@@ -23,10 +23,8 @@ class IMDB(commands.Cog):
         """Command to get information from IMDB"""
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        response = requests.get(("https://movie-database-imdb-alternative.p.rapidapi.com/?page=1&r=json&s={search}",
+        response = requests.get(("https://movie-database-imdb-alternative.p.rapidapi.com/?page=1&r=json&s={search}").format(search=search))
         response.headers["X-RapidAPI-Host": "movie-database-imdb-alternative.p.rapidapi.com",
         "X-RapidAPI-Key": api_key]
-
-        ).format(search=search))
         await ctx.send(response)
 		
