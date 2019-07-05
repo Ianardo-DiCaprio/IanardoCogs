@@ -23,7 +23,7 @@ class IMDB(commands.Cog):
 		
 		
     @commands.command()
-    async def imdbmovie(self, ctx, *, search):
+    async def movie(self, ctx, *, search):
         """Command to get information for Movies 
        from IMDB"""
         embeds = []
@@ -74,7 +74,7 @@ class IMDB(commands.Cog):
             await ctx.send("We couldn't find a movie with that name :worried:")
 
     @commands.command()
-    async def imdbtv(self, ctx, *, search):
+    async def show(self, ctx, *, search):
         """Command to get information for
         TV shows from IMDB"""
         embeds = []
