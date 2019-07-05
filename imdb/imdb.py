@@ -27,5 +27,20 @@ class IMDB(commands.Cog):
         r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&s={search}").format(api_key=api_key, search=search))
         data = r.json()
         title = data["Search"][0]["Title"]
-        await ctx.send(title)
-		
+        age_rating = data["Search"][0]["Rated"]
+        release_date = data["Search"][0]["Released"]
+        genre = data["Search"][0]["Genre"]
+        director = data["Search"][0]["Director"]
+        actors = data["Search"][0]["Actors"]
+        plot = data["Search"][0]["Plot"]
+        imdb_rating = data["Search"][0]["imdbRating"]
+        embed=discord.Embed(title=title)
+        embed.set_thumbnail(url="https://m.media-amazon.com/images/M/MV5BMTAwMjU5OTgxNjZeQTJeQWpwZ15BbWU4MDUxNDYxODEx._V1_SX300.jpg")
+        embed.add_field(name=Age rating, value=age_rating, inline=False)
+        embed.add_field(name=Release Date, value=release_date, inline=False)
+        embed.add_field(name=Genre, value=genre, inline=False)
+        embed.add_field(name=Director, value=director, inline=False)
+        embed.add_field(name=Actors, value=actors, inline=False)
+        embed.add_field(name=Plot, value=plot, inline=False)
+        embed.add_field(name=IMDB Rating, value=imdb_rating, inline=False)
+        await ctx.send(embed=embed)
