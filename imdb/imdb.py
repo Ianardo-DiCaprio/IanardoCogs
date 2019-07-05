@@ -51,7 +51,7 @@ class IMDB(commands.Cog):
                 embed.add_field(name="Director", value=data["Director"], inline=True)
             if data["Actors"]:
                 embed.add_field(name="Actors", value=data["Actors"], inline=True)
-            if data["BoxOffice"]
+            if data["BoxOffice"]:
                 embed.add_field(name="Box Office", value=box_office, inline=True)
             embeds.append(embed)
             await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
