@@ -56,6 +56,18 @@ class IMDB(commands.Cog):
                 embed.add_field(name="Actors", value=data["Actors"], inline=True)
             if data["BoxOffice"]:
                 embed.add_field(name="Box Office", value=data["BoxOffice"], inline=True)
+            if data["Production"]:
+                embed.add_field(name="Production", value=data["Production"], inline=True)
+            if data["Language"]:
+                embed.add_field(name="Language", value=data["Language"]", inline=True)
+            if data["Country"]:
+                embed.add_field(name="Country", value=data["Country"]", inline=True)
+            if data["Writers"]:
+                embed.add_field(name="Writers", value=data["Writers"], inline=True)
+            if data["Awards"]:
+                embed.add_field(name="Awards", value=data["Awards"]", inline=True)
+            if data["Website"]:                
+                embed.set_footer(text=data["Website"])
             embeds.append(embed)
             await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
         except:
