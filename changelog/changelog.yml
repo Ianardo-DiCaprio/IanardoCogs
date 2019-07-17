@@ -1,0 +1,15 @@
+author:
+color: 7802332
+fields:
+  1:
+    name: "**<botname> Update 17/07/2019 **"
+    value:  |
+                **Example:**
+                This is an example change.
+                
+                This is another.
+                
+                **Example2:**
+                Some change here.
+thumbnail:
+  url: "<ThumbnailImageLink>"
