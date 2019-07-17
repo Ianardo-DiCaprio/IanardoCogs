@@ -69,7 +69,9 @@ class ChangeLog(commands.Cog):
     @checks.is_owner()
     async def upload(self, ctx):
         """
-        Upload new changelogs.
+        Upload new changelogs. \n
+        An example changelog can be found in the changelog repo
+        called changelog.yml.
         """
         try:
             with io.BytesIO() as fp:
