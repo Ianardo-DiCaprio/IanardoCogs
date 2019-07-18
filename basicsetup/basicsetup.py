@@ -1,5 +1,4 @@
 import asyncio
-import discord
 
 from redbot.core import commands, checks
 from redbot.core.utils.chat_formatting import box
@@ -29,8 +28,6 @@ class BasicSetup(BaseCog):
         predicate = MessagePredicate.yes_or_no(ctx, ctx.channel, ctx.author)
         predicate1 = MessagePredicate.greater(0, ctx, ctx.channel, ctx.author)
         predicate2 = MessagePredicate.length_less(200, ctx, ctx.channel, ctx.author)
-        predicate3 = MessagePredicate.length_less(200, ctx, ctx.channel, discord.Role)
-        
 
         q1 = "Would you like to setup Anti Mention Spam?"
         q2 = "Would you like the user to be banned when exceeding the max mentions?"
