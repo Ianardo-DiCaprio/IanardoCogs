@@ -1,0 +1,8 @@
+{
+    "author" : ["Ianardo DiCaprio"],
+    "install_msg" : "Thank you for installing my cog!",
+    "name" : "BasicSetup",
+    "short" : "Basic setup of commands..",
+    "description" : "A cog that helps to easily setup all the commands.",
+    "tags" : ["setup", "simple"]
+}
