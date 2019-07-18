@@ -1,0 +1,8 @@
+{
+    "author" : ["Ianardo DiCaprio"],
+    "install_msg" : "Thank you for installing my cog!",
+    "name" : "IMDB"
+    "short" : "Get info from IMDB"
+    "description" : "Get infomation about movies and TV series from IMDB"
+    "tags" : ["IMDB" "movies" "TV"]
+}
