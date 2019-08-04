@@ -1,7 +1,7 @@
 import discord
 import requests
 from redbot.core import commands, checks, Config
-from redbot.core.utils.chat_formatting import box, pagify
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 
 
 class IMDB(commands.Cog):
@@ -73,8 +73,8 @@ class IMDB(commands.Cog):
             if data["Website"]:
                 embed.set_footer(text=data["Website"])
             embeds.append(embed)
-            for page in pagify(embed):
-                await ctx.send(box(page, embed=embed))
+            pages = [box(p) for p in pagify(embed)]
+                await ctx.send(box(pages, embed=embed))
         except:
             await ctx.send("We couldn't find a movie with that name :worried:")
 
