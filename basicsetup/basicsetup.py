@@ -1,15 +1,13 @@
 import asyncio
-import discord
 
-from redbot.core import commands, checks
-from redbot.core.utils.chat_formatting import box
+from redbot.core import commands
 from redbot.core.utils.predicates import MessagePredicate
 from discord.ext.commands import TextChannelConverter
 
-BaseCog = getattr(commands, "Cog", object)
+BASECOG = getattr(commands, "Cog", object)
 
 
-class BasicSetup(BaseCog):
+class BasicSetup(BASECOG):
     """Basic setup commands"""
 
     def __init__(self, bot):
@@ -18,62 +16,68 @@ class BasicSetup(BaseCog):
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def setup(self, ctx):
-        """Use this for help with setting 
-        up basic commands when adding this 
+        """Use this for help with setting
+        up basic commands when adding this
         bot to a new server"""
 
         await ctx.send(
-            "**I will now ask you several questions which you need to answer. You have 60 seconds to answer each question before the next question is asked.**"
+            "**I will now ask you several questions which you need to answer. You"
+            "have 60 seconds to answer each question before the next question is asked.**"
         )
         await asyncio.sleep(1)
         await self.basic_setup(ctx)
 
     async def basic_setup(self, ctx):
+        """Docstring"""
         predicate = MessagePredicate.yes_or_no(ctx, ctx.channel, ctx.author)
         predicate1 = MessagePredicate.greater(0, ctx, ctx.channel, ctx.author)
         predicate2 = MessagePredicate.length_less(200, ctx, ctx.channel, ctx.author)
-        predicate3 = MessagePredicate.length_less(200, ctx, ctx.channel, discord.Role)
 
-        q1 = "Would you like to setup Anti Mention Spam?"
-        q2 = "Would you like the user to be banned when exceeding the max mentions?"
-        q3 = "Would you like to setup timed mention spam? (mentions from multiple messages in a set time)"
-        q4 = "Would you like to setup an automatic role when a user joins?"
-        q5 = "Would you like to setup bancheck, which checks new users against several databases to see if they have been banned?"
-        q6 = "Would you like to set up the bots bank settings?"
-        q7 = "Would you like to set up logs for things that happen in the server?"
-        q8 = "Would you like to change the name of the casino?"
-        q9 = "Would you like the bot to respond to messages when the bot is mentioned at the start of the message?"
-        q10 = "Would you like to setup the dungeon?"
-        q11 = "Would you like to setup the economy settings?"
-        q12 = "Would you like to setup filtered words?"
-        q13 = "Would you like to add a channel that shows the amount of users in the server?"
-        q14 = "Would you like to add a channel that recieves a message when a user leaves the server?"
-        q15 = "Would you like a channel for recieving lyrics when using the lyrics command?"
-        q16 = "Would you like to setup basic auto mod features?"
-        q17 = "Would you like to setup a mod log?"
-        q18 = "Would you like to setup reports?"
-        q19 = "Would you like to setup starboard?"
-        q20 = "Would you like to setup tickets?"
-        q21 = "Would you like to setup a welcome message for new users?"
-        q22 = "Would you like to setup the mod and admin role?"
-        q23 = "Would you like to setup reaction roles?"
+        question1 = "Would you like to setup Anti Mention Spam?"
+        question2 = "Would you like the user to be banned when exceeding the max mentions?"
+        question3 = ("Would you like to setup timed mention spam? "
+                     "(mentions from multiple messages in a set time)")
+        question4 = "Would you like to setup an automatic role when a user joins?"
+        question5 = ("Would you like to setup bancheck, which checks new users against "
+                     "several databases to see if they have been banned?")
+        question6 = "Would you like to set up the bots bank settings?"
+        question7 = "Would you like to set up logs for things that happen in the server?"
+        question8 = "Would you like to change the name of the casino?"
+        question9 = ("Would you like the bot to respond to messages when the bot "
+                     "is mentioned at the start of the message?")
+        question10 = "Would you like to setup the dungeon?"
+        question11 = "Would you like to setup the economy settings?"
+        question12 = "Would you like to setup filtered words?"
+        question13 = "Would you like to add a channel that shows the amount of users in the server?"
+        question14 = ("Would you like to add a channel that recieves a message when a "
+                      "user leaves the server?")
+        question15 = "Would you like a channel for recieving lyrics when using the lyrics command?"
+        question16 = "Would you like to setup basic auto mod features?"
+        question17 = "Would you like to setup a mod log?"
+        question18 = "Would you like to setup reports?"
+        question19 = "Would you like to setup starboard?"
+        question20 = "Would you like to setup tickets?"
+        question21 = "Would you like to setup a welcome message for new users?"
+        question22 = "Would you like to setup the mod and admin role?"
+        question23 = "Would you like to setup reaction roles?"
 
         try:
             cog = self.bot.get_cog("AntiMentionSpam")
             if cog:
-                if await self._get_response(ctx, q1, predicate) == "yes":
+                if await self._get_response(ctx, question1, predicate) == "yes":
                     number = await self._get_response(
                         ctx,
-                        "How many mentions from a single user in a single message should be acted upon?",
+                        "How many mentions from a single user in a single message "
+                        "should be acted upon?",
                         predicate1,
                     )
                     number = int(number)
                     await ctx.invoke(ctx.bot.get_command("antimentionspam max"), number)
                     await asyncio.sleep(1)
-                    await self._get_response(ctx, q2, predicate) == "yes"
+                    await self._get_response(ctx, question2, predicate) == "yes"
                     await ctx.invoke(ctx.bot.get_command("antimentionspam autobantoggle"))
                     await asyncio.sleep(1)
-                    await self._get_response(ctx, q3, predicate) == "yes"
+                    await self._get_response(ctx, question3, predicate) == "yes"
                     number = int(await self._get_response(ctx, "How many mentions?", predicate1))
                     await asyncio.sleep(0.5)
                     number1 = int(
@@ -88,7 +92,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Autorole")
             if cog:
-                if await self._get_response(ctx, q4, predicate) == "yes":
+                if await self._get_response(ctx, question4, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("autorole toggle"))
                     await asyncio.sleep(1)
                     rolemessage = await self._get_response(
@@ -102,7 +106,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("BanCheck")
             if cog:
-                if await self._get_response(ctx, q5, predicate) == "yes":
+                if await self._get_response(ctx, question5, predicate) == "yes":
                     channelmessage = await self._get_response(
                         ctx, "What channel would you like to be used as log?", predicate2
                     )
@@ -114,7 +118,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Bank")
             if cog:
-                if await self._get_response(ctx, q6, predicate) == "yes":
+                if await self._get_response(ctx, question6, predicate) == "yes":
                     name = await self._get_response(
                         ctx, "What would you like the bank to be called?", predicate2
                     )
@@ -130,7 +134,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Grenzpolizei")
             if cog:
-                if await self._get_response(ctx, q7, predicate) == "yes":
+                if await self._get_response(ctx, question7, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("gp autosetup"))
                     await asyncio.sleep(1)
         except asyncio.TimeoutError:
@@ -138,7 +142,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Casino")
             if cog:
-                if await self._get_response(ctx, q8, predicate) == "yes":
+                if await self._get_response(ctx, question8, predicate) == "yes":
                     name = await self._get_response(
                         ctx, "What would you like the casino to be called?", predicate2
                     )
@@ -149,7 +153,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("CleverBot")
             if cog:
-                if await self._get_response(ctx, q9, predicate) == "yes":
+                if await self._get_response(ctx, question9, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("cleverbotset toggle"))
                     await asyncio.sleep(1)
         except asyncio.TimeoutError:
@@ -157,7 +161,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Dungeon")
             if cog:
-                if await self._get_response(ctx, q10, predicate) == "yes":
+                if await self._get_response(ctx, question10, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("dungeon toggle"))
                     await asyncio.sleep(0.5)
                     await ctx.invoke(ctx.bot.get_command("dungeon autoban"))
@@ -182,7 +186,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Economy")
             if cog:
-                if await self._get_response(ctx, q11, predicate) == "yes":
+                if await self._get_response(ctx, question11, predicate) == "yes":
                     amount = await self._get_response(
                         ctx,
                         "How many credits should be given for using the payday command?",
@@ -210,7 +214,8 @@ class BasicSetup(BaseCog):
                         await asyncio.sleep(1)
                         register = await self._get_response(
                             ctx,
-                            "Would you like to change the amount of credits new accounts start with?",
+                            "Would you like to change the amount of credits new "
+                            "accounts start with?",
                             predicate,
                         )
                         if register == "yes":
@@ -229,10 +234,12 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Filter")
             if cog:
-                if await self._get_response(ctx, q12, predicate) == "yes":
+                if await self._get_response(ctx, question12, predicate) == "yes":
                     filt = await self._get_response(
                         ctx,
-                        "What words would you like to be added to the filter? (seperate each word with a space, if it is a sentence or phrase put it insidel "
+                        "What words would you like to be added to the filter? "
+                        "(seperate each word with a space, if it is a sentence "
+                        "or phrase put it insidel "
                         "quotes"
                         ")",
                         predicate2,
@@ -244,7 +251,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("InfoChannel")
             if cog:
-                if await self._get_response(ctx, q13, predicate) == "yes":
+                if await self._get_response(ctx, question13, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("infochannel"))
                     await asyncio.sleep(1)
         except asyncio.TimeoutError:
@@ -252,9 +259,10 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Leaver")
             if cog:
-                if await self._get_response(ctx, q14, predicate) == "yes":
+                if await self._get_response(ctx, question14, predicate) == "yes":
                     await ctx.send(
-                        "**Use `]leaverset channel` in the channel you wish to recieve the messages**"
+                        "**Use `]leaverset channel` in the channel you wish to "
+                        "recieve the messages**"
                     )
                     await asyncio.sleep(1)
         except asyncio.TimeoutError:
@@ -262,7 +270,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Lyrics")
             if cog:
-                if await self._get_response(ctx, q15, predicate) == "yes":
+                if await self._get_response(ctx, question15, predicate) == "yes":
                     await asyncio.sleep(1)
                     channelmessage = await self._get_response(
                         ctx, "What channel would you like the lyrics to go to?", predicate2
@@ -275,7 +283,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Mod")
             if cog:
-                if await self._get_response(ctx, q16, predicate) == "yes":
+                if await self._get_response(ctx, question16, predicate) == "yes":
                     repeats = await self._get_response(
                         ctx, "Would you like to automatically delete repeated messages?", predicate
                     )
@@ -304,7 +312,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("ModLog")
             if cog:
-                if await self._get_response(ctx, q17, predicate) == "yes":
+                if await self._get_response(ctx, question17, predicate) == "yes":
                     await asyncio.sleep(1)
                     channelmessage = await self._get_response(
                         ctx, "What channel would you like the logs to go to?", predicate2
@@ -317,7 +325,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Reports")
             if cog:
-                if await self._get_response(ctx, q18, predicate) == "yes":
+                if await self._get_response(ctx, question18, predicate) == "yes":
                     await asyncio.sleep(1)
                     channelmessage = await self._get_response(
                         ctx, "What channel would you like the reports to go to?", predicate2
@@ -332,7 +340,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Starboard")
             if cog:
-                if await self._get_response(ctx, q19, predicate) == "yes":
+                if await self._get_response(ctx, question19, predicate) == "yes":
                     await asyncio.sleep(1)
                     name = await self._get_response(
                         ctx, "What would you like the starboard to be called?", predicate2
@@ -351,7 +359,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Tickets")
             if cog:
-                if await self._get_response(ctx, q20, predicate) == "yes":
+                if await self._get_response(ctx, question20, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("ticket set setup"))
                     await asyncio.sleep(1)
         except asyncio.TimeoutError:
@@ -359,14 +367,15 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Welcome")
             if cog:
-                if await self._get_response(ctx, q21, predicate) == "yes":
+                if await self._get_response(ctx, question21, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("welcomeset leave toggle"))
                     await ctx.invoke(ctx.bot.get_command("welcomeset ban toggle"))
                     await ctx.invoke(ctx.bot.get_command("welcomeset unban toggle"))
                     await ctx.invoke(ctx.bot.get_command("welcomeset toggle"))
                     await ctx.send("Now do [p]welcomeset join msg add")
                     await ctx.send(
-                        "**After you have added the new message do the following command and then type the number of the old default message**\n"
+                        "**After you have added the new message do the following command and "
+                        "then type the number of the old default message**\n"
                         "`]welcomeset join msg del`"
                     )
                     await asyncio.sleep(1)
@@ -375,7 +384,7 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("Core")
             if cog:
-                if await self._get_response(ctx, q22, predicate) == "yes":
+                if await self._get_response(ctx, question22, predicate) == "yes":
                     await asyncio.sleep(1)
                     rolemessage = await self._get_response(
                         ctx, "What role would you like mods to have?", predicate2
@@ -393,10 +402,11 @@ class BasicSetup(BaseCog):
         try:
             cog = self.bot.get_cog("ReactRoles")
             if cog:
-                if await self._get_response(ctx, q23, predicate) == "yes":
+                if await self._get_response(ctx, question23, predicate) == "yes":
                     await ctx.send(
                         "Use `]reactroles add ` with the message ID, channel, emoji and role.\n"
-                        "**Hint: To get the message ID, turn on developer mode in Discord's appearance settings and then right click the message and click copy ID **"
+                        "**Hint: To get the message ID, turn on developer mode in Discord's "
+                        "appearance settings and then right click the message and click copy ID **"
                     )
         except asyncio.TimeoutError:
             return
