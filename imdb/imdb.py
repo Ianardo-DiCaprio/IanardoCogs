@@ -1,15 +1,16 @@
 import discord
 import requests
-import json
 from redbot.core import commands, checks, Config
-from redbot.core.utils.menus import menu, commands, DEFAULT_CONTROLS
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
+
 
 class IMDB(commands.Cog):
+    """"Simple Commands to get info from IMDB"""
 
     def __init__(self, bot):
         self.bot = bot
         self.conf = Config.get_conf(self, identifier=6991142013)
-		
+
         self.conf.register_global(api_key=None)
 
     @commands.command()
@@ -20,24 +21,27 @@ class IMDB(commands.Cog):
         http://www.omdbapi.com/apikey.aspx"""
         await self.conf.api_key.set(api_key)
         await ctx.send("The API key has been set.")
-		
-		
+
     @commands.command()
     async def movie(self, ctx, *, search):
-        """Command to get information for Movies 
+        """Command to get information for Movies
        from IMDB"""
         embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full").format(api_key=api_key, search=search))
-        data = r.json()
+        request = requests.get(
+            ("http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full").format(
+                api_key=api_key, search=search
+            )
+        )
+        data = request.json()
         try:
             title = data["Title"]
-            embed=discord.Embed(title=title, color=0x8c05d2)
+            embed = discord.Embed(title=title, color=0x8C05D2)
             if data["Poster"]:
-                embed.set_thumbnail(url=data['Poster'])
-            if data['imdbID']:
-                embed.url = "http://www.imdb.com/title/{}".format(data['imdbID'])
+                embed.set_thumbnail(url=data["Poster"])
+            if data["imdbID"]:
+                embed.url = "http://www.imdb.com/title/{}".format(data["imdbID"])
             if data["Runtime"]:
                 embed.add_field(name="Run Time", value=data["Runtime"], inline=True)
             if data["Released"]:
@@ -69,7 +73,9 @@ class IMDB(commands.Cog):
             if data["Website"]:
                 embed.set_footer(text=data["Website"])
             embeds.append(embed)
-            await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
+            await menu(
+                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20
+            )
         except:
             await ctx.send("We couldn't find a movie with that name :worried:")
 
@@ -80,15 +86,19 @@ class IMDB(commands.Cog):
         embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        r = requests.get(("http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full").format(api_key=api_key, search=search))
-        data = r.json()
+        request = requests.get(
+            ("http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full").format(
+                api_key=api_key, search=search
+            )
+        )
+        data = request.json()
         try:
             title = data["Title"]
-            embed=discord.Embed(title=title, color=0x8c05d2)
+            embed = discord.Embed(title=title, color=0x8C05D2)
             if data["Runtime"]:
                 embed.add_field(name="Average Run Time", value=data["Runtime"], inline=True)
-            if data['imdbID']:
-                embed.url = "http://www.imdb.com/title/{}".format(data['imdbID'])
+            if data["imdbID"]:
+                embed.url = "http://www.imdb.com/title/{}".format(data["imdbID"])
             if data["Poster"]:
                 embed.set_thumbnail(url=data["Poster"])
             if data["Released"]:
@@ -116,6 +126,8 @@ class IMDB(commands.Cog):
             if data["Awards"]:
                 embed.add_field(name="Awards", value=data["Awards"], inline=False)
             embeds.append(embed)
-            await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
+            await menu(
+                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20
+            )
         except:
             await ctx.send("We couldn't find a TV show with that name :worried:")
