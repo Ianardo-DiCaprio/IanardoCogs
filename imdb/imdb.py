@@ -1,5 +1,5 @@
 import discord
-import requests
+import aiohttp
 from redbot.core import commands, checks, Config
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 
@@ -29,7 +29,7 @@ class IMDB(commands.Cog):
         embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        request = requests.get(
+        request = aiohttp.get(
             ("http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full").format(
                 api_key=api_key, search=search
             )
@@ -86,7 +86,7 @@ class IMDB(commands.Cog):
         embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        request = requests.get(
+        request = aiohttp.get(
             ("http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full").format(
                 api_key=api_key, search=search
             )
