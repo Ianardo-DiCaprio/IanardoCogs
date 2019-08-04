@@ -1,7 +1,7 @@
-import discord
-import aiohttp
-from redbot.core import commands, checks, Config
-from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
+import discord # pylint: disable=import-error
+import aiohttp # pylint: disable=import-error
+from redbot.core import commands, checks, Config # pylint: disable=import-error
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS # pylint: disable=import-error
 
 
 class IMDB(commands.Cog):
@@ -79,7 +79,7 @@ class IMDB(commands.Cog):
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20
             )
-        except:
+        except KeyError:
             await ctx.send("We couldn't find a movie with that name :worried:")
 
     @commands.command()
@@ -130,5 +130,5 @@ class IMDB(commands.Cog):
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20
             )
-        except:
+        except KeyError:
             await ctx.send("We couldn't find a TV show with that name :worried:")
