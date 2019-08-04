@@ -86,12 +86,8 @@ class IMDB(commands.Cog):
         embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        request = requests.get(
-            ("http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full").format(
-                api_key=api_key, search=search
-            )
-        )
-        data = request.json()
+        async with self._session.get(f"http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full") as request:
+            data = await request.json()
         try:
             title = data["Title"]
             embed = discord.Embed(title=title, color=0x8C05D2)
