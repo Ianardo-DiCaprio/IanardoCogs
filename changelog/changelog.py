@@ -1,12 +1,12 @@
 import os
 
-import discord
-from redbot.core import Config
-from redbot.core import checks
-from redbot.core import commands
-from redbot.core.data_manager import cog_data_path
-from .announcer import Announcer
-from .yaml_parse import embed_from_userstr
+import discord # pylint: disable=import-error
+from redbot.core import Config # pylint: disable=import-error
+from redbot.core import checks # pylint: disable=import-error
+from redbot.core import commands # pylint: disable=import-error
+from redbot.core.data_manager import cog_data_path # pylint: disable=import-error
+from .announcer import Announcer # pylint: disable=import-error, relative-beyond-top-level
+from .yaml_parse import embed_from_userstr # pylint: disable=import-error, relative-beyond-top-level
 
 
 class ChangeLog(commands.Cog):
