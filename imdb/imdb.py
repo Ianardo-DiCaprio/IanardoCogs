@@ -33,7 +33,6 @@ class IMDB(commands.Cog):
             async with session.get("http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full").format(
                 api_key=api_key, search=search
             ) as request:
-        )
         data = request.json()
         try:
             title = data["Title"]
