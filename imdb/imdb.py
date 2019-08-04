@@ -30,7 +30,7 @@ class IMDB(commands.Cog):
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
         link = "http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full".format(api_key=api_key, search=search)
-        async with session.get(link) as request:
+        async with aiohttp.request(link) as request:
             data = request.json()
         try:
             title = data["Title"]
