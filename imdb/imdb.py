@@ -32,8 +32,8 @@ class IMDB(commands.Cog):
         link = "http://www.omdbapi.com/?apikey=" + api_key + "&t=" + search + "&plot=full"
         headers = {"accept": "application/json"}
         async with aiohttp.ClientSession() as session:
-            async with session.post(link, headers=headers) as request:
-                data = request.json()
+            async with session.post(f"http://www.omdbapi.com/?apikey={api_key}&s={search}&plot=full", headers=headers) as request:
+                data = await request.json()
         try:
             title = data["Title"]
             embed = discord.Embed(title=title, color=0x8C05D2)
