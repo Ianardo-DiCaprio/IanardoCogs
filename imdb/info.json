@@ -4,5 +4,5 @@
     "name" : "IMDB",
     "short" : "Get info from IMDB",
     "description" : "Get infomation about movies and TV series from IMDB",
-    "tags" : ["IMDB" "movies" "TV"],
+    "tags" : ["IMDB", "movies", "TV"]
 }
