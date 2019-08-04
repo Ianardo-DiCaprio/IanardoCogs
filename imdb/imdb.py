@@ -74,7 +74,7 @@ class IMDB(commands.Cog):
                 embed.set_footer(text=data["Website"])
             embeds.append(embed)
             pages = [box(p) for p in pagify(embed)]
-                await ctx.send(box(pages, embed=embed))
+            await ctx.send(box(pages, embed=embed))
         except:
             await ctx.send("We couldn't find a movie with that name :worried:")
 
