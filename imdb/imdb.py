@@ -1,8 +1,6 @@
 import discord
 import requests
 from redbot.core import commands, checks, Config
-from redbot.core.utils.chat_formatting import box, pagify
-
 
 class IMDB(commands.Cog):
     """"Simple Commands to get info from IMDB"""
@@ -26,7 +24,6 @@ class IMDB(commands.Cog):
     async def movie(self, ctx, *, search):
         """Command to get information for Movies
        from IMDB"""
-        embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
         request = requests.get(
@@ -73,8 +70,7 @@ class IMDB(commands.Cog):
             if data["Website"]:
                 embed.set_footer(text=data["Website"])
             embeds.append(embed)
-            pages = [box(p) for p in pagify(embed)]
-            await ctx.send(box(pages))
+            await ctx.send(embed=embed)
         except:
             await ctx.send("We couldn't find a movie with that name :worried:")
 
@@ -82,7 +78,6 @@ class IMDB(commands.Cog):
     async def show(self, ctx, *, search):
         """Command to get information for
         TV shows from IMDB"""
-        embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
         request = requests.get(
@@ -125,8 +120,6 @@ class IMDB(commands.Cog):
             if data["Awards"]:
                 embed.add_field(name="Awards", value=data["Awards"], inline=False)
             embeds.append(embed)
-            await menu(
-                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20
-            )
+            await ctx.send(embed=embed)
         except:
             await ctx.send("We couldn't find a TV show with that name :worried:")
