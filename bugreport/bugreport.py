@@ -1,13 +1,9 @@
+from typing import Any
+from datetime import datetime
 import asyncio
 import discord
 
-from typing import Any
-from discord.utils import get
-from datetime import datetime, timedelta
-
 from redbot.core import Config, checks, commands
-from redbot.core.utils.predicates import MessagePredicate
-
 from redbot.core.bot import Red
 
 Cog: Any = getattr(commands, "Cog", object)
@@ -23,13 +19,9 @@ class BugReport(Cog):
 
     def __init__(self, bot: Red):
         self.bot = bot
-        self.config = Config.get_conf(
-            self, 6991142013, force_registration=True
-        )
-        
-        default_global = {
-            "report_channel": None,
-        }
+        self.config = Config.get_conf(self, 6991142013, force_registration=True)
+
+        default_global = {"report_channel": None}
 
         self.config.register_global(**default_global)
 
@@ -41,17 +33,16 @@ class BugReport(Cog):
         bot = self.bot
         try:
             await author.send(
-                "You have a maximum of 2 minutes to answer each question, Please write a brief description of your bug."
+                "You have a maximum of 2 minutes to answer each question, "
+                "Please write a brief description of your bug."
             )
         except discord.Forbidden:
-            return await ctx.send(
-                "I can't seem to be able to DM you. Do you have DM's closed?"
-            )
+            return await ctx.send("I can't seem to be able to DM you. Do you have DM's closed?")
 
         await ctx.send("Okay, {0}, I've sent you a DM.".format(author.mention))
 
-        def check(m):
-            return m.author == author and m.channel == author.dm_channel
+        def check(member):
+            return member.author == author and member.channel == author.dm_channel
 
         try:
             description = await bot.wait_for("message", timeout=120, check=check)
@@ -63,7 +54,7 @@ class BugReport(Cog):
             repro = await bot.wait_for("message", timeout=120, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
-            
+
         await author.send("What command(s) does this bug happen on?")
         try:
             command = await bot.wait_for("message", timeout=120, check=check)
@@ -90,12 +81,8 @@ class BugReport(Cog):
 
         embed = discord.Embed(color=await ctx.embed_colour(), timestamp=datetime.now())
         embed.set_author(name="New Bug Report!", icon_url=author.avatar_url)
-        embed.set_footer(
-            text="{0}#{1} ({2})".format(author.name, author.discriminator, author.id)
-        )
-        embed.title = "User: {0}#{1} ({2})".format(
-            author.name, author.discriminator, author.id
-        )
+        embed.set_footer(text="{0}#{1} ({2})".format(author.name, author.discriminator, author.id))
+        embed.title = "User: {0}#{1} ({2})".format(author.name, author.discriminator, author.id)
         embed.add_field(name="Description:", value=description.content, inline=False)
         embed.add_field(name="Reproduction Steps:", value=repro.content, inline=False)
         embed.add_field(name="Command(s) with issue:", value=command.content, inline=False)
@@ -109,7 +96,7 @@ class BugReport(Cog):
                 botowner = bot.owner_id
                 bots = bot.get_user(botowner)
                 await bot.send_to_owners(bots.mention)
-            elif await self.config.report_channel() is "owner":
+            elif await self.config.report_channel() == "owner":
                 await bot.send_to_owners(embed=embed)
                 botowner = bot.owner_id
                 bots = bot.get_user(botowner)
@@ -120,15 +107,19 @@ class BugReport(Cog):
                 botowner = bot.owner_id
                 bots = bot.get_user(botowner)
                 await channel.send(bots.mention)
-                await author.send("Your bug report has been sent to the owner and you will recieve a message shortly. thank you!")
+                await author.send(
+                    "Your bug report has been sent to the owner and you will "
+                    "recieve a message shortly. thank you!"
+                )
         except discord.Forbidden:
             await author.send("That didn't work for some reason")
 
     @checks.is_owner()
     @commands.command()
-    async def bugsetup(self, ctx: commands.Context, channel: discord.TextChannel = None, owner = None):
+    async def bugsetup(
+            self, ctx: commands.Context, channel: discord.TextChannel = None, owner=None
+        ):
         """Set the channel bug reports get sent to."""
-        bot = self.bot
         if channel is None:
             owner == "owner"
             await self.config.report_channel.set(owner)
@@ -136,7 +127,9 @@ class BugReport(Cog):
         else:
             await self.config.report_channel.set(channel.id)
             await ctx.send(
-                ("The bug report channel has been set to {channel.mention}").format(channel=channel)
+                ("The bug report channel has been set to {channel.mention}").format(
+                    channel=channel
+                )
             )
 
     @checks.is_owner()
@@ -144,9 +137,7 @@ class BugReport(Cog):
     async def fixed(self, ctx: commands.Context, target: discord.Member):
         """Mark a report as fixed."""
         await ctx.send("Bug report fixed sent to {}.".format(target.mention))
-        await target.send(
-        "The bug you reported has been fixed, thank you for the report."
-        )
+        await target.send("The bug you reported has been fixed, thank you for the report.")
 
     @checks.is_owner()
     @commands.command()
@@ -154,5 +145,5 @@ class BugReport(Cog):
         """Do if a bug report isn't a bug"""
         await ctx.send("No bug sent to {}.".format(target.mention))
         await target.send(
-        "The bug you reported isn't a bug. Please use `]contact` if you still need help."
+            "The bug you reported isn't a bug. Please use `]contact` if you still need help."
         )
