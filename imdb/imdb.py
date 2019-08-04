@@ -1,7 +1,7 @@
 import discord
 import requests
 from redbot.core import commands, checks, Config
-from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
+from redbot.core.utils.chat_formatting import box, pagify
 
 
 class IMDB(commands.Cog):
