@@ -1,8 +1,8 @@
 import asyncio
 
-from redbot.core import commands
-from redbot.core.utils.predicates import MessagePredicate
-from discord.ext.commands import TextChannelConverter
+from redbot.core import commands # pylint: disable=import-error
+from redbot.core.utils.predicates import MessagePredicate # pylint: disable=import-error
+from discord.ext.commands import TextChannelConverter # pylint: disable=import-error
 
 BASECOG = getattr(commands, "Cog", object)
 
@@ -74,12 +74,15 @@ class BasicSetup(BASECOG):
                     number = int(number)
                     await ctx.invoke(ctx.bot.get_command("antimentionspam max"), number)
                     await asyncio.sleep(1)
-                    await self._get_response(ctx, question2, predicate) == "yes"
-                    await ctx.invoke(ctx.bot.get_command("antimentionspam autobantoggle"))
-                    await asyncio.sleep(1)
-                    await self._get_response(ctx, question3, predicate) == "yes"
-                    number = int(await self._get_response(ctx, "How many mentions?", predicate1))
-                    await asyncio.sleep(0.5)
+                    autoban = await self._get_response(ctx, question2, predicate) == "yes"
+                    if autoban == "yes":
+                        await ctx.invoke(ctx.bot.get_command("antimentionspam autobantoggle"))
+                        await asyncio.sleep(1)
+                    mentions = await self._get_response(ctx, question3, predicate) == "yes"
+                    if mentions == "yes":
+                        number = int(await self._get_response(ctx, "How many mentions?",
+                                                              predicate1))
+                        await asyncio.sleep(0.5)
                     number1 = int(
                         await self._get_response(ctx, "In how many seconds?", predicate1)
                     )
