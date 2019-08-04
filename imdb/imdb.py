@@ -15,6 +15,7 @@ class IMDB(commands.Cog):
         self._session = aiohttp.ClientSession()
 
     def cog_unload(self):
+        """Docstring"""
         self.bot.loop.create_task(self._session.close())
 
     @commands.command()
@@ -33,7 +34,9 @@ class IMDB(commands.Cog):
         embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        async with self._session.get(f"http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full") as request:
+        async with self._session.get(
+                f"http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full"
+        ) as request:
             data = await request.json()
         try:
             title = data["Title"]
@@ -86,7 +89,9 @@ class IMDB(commands.Cog):
         embeds = []
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
-        async with self._session.get(f"http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full") as request:
+        async with self._session.get(
+                f"http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full"
+        ) as request:
             data = await request.json()
         try:
             title = data["Title"]
