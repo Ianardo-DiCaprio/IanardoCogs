@@ -82,7 +82,7 @@ class GamerTag(commands.Cog):
             await ctx.send("Your Steam gamertag has been removed.")
 
     @commands.command(aliases=["psgt"])
-    async def psn(self, ctx, user: discord.Member = None):
+    async def psngamertag(self, ctx, user: discord.Member = None):
         """Command to get a users Playstation gamertag if no user is given it will get yours."""
         if user is None:
             user = ctx.author
