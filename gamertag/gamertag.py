@@ -46,7 +46,7 @@ class GamerTag(commands.Cog):
                 for user_id in users:
                     msg = ""
                     msg += f"<@{user_id}>'s gamertag is: {v}\n"
-                    embed = discord.Embed(title="Gamertags", description=msg, color=0x8C05D2)
+        embed = discord.Embed(title="Gamertags", description=msg, color=0x8C05D2)
         await ctx.send(embed=embed)
             
 		
