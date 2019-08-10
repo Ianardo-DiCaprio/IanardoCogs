@@ -25,7 +25,7 @@ class GamerTag(commands.Cog):
 		
 		
     @commands.command()
-    async def gt(self, ctx, user: discord.Member = None, gamertag):
+    async def gt(self, ctx, user: discord.Member = None):
         """Command to get a users gamertag if no user is given it will get yours."""
         try:
             if user is None:
