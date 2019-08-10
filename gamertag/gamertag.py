@@ -238,7 +238,7 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "steamgamertag" in k:
                     if v is not None:
-                        if len(v) == 0:
+                        if len(v) = 0:
                             msg = "No one has set their Steam gamertag"
                         else:
                             msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
