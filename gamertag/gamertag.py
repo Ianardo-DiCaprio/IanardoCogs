@@ -158,7 +158,7 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "playstationgamertag" in k:
                         msg += f"<@{user_id}>'s Playstation gamertag is: {v}\n"
-        embed = discord.Embed(title="Playstation gamertags", description=msg, color=0x8C05D2)
+        embed = discord.Embed(title="Playstation gamertags", description=msg, color=0x0000CC)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
 
@@ -173,7 +173,7 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "xboxgamertag" in k:
                         msg += f"<@{user_id}>'s Xbox gamertag is: {v}\n"
-        embed = discord.Embed(title="Xbox gamertags", description=msg, color=0x8C05D2)
+        embed = discord.Embed(title="Xbox gamertags", description=msg, color=0x00CC00)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
 
@@ -188,7 +188,7 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "epicgamesgamertag" in k:
                         msg += f"<@{user_id}>'s Epic Games gamertag is: {v}\n"
-        embed = discord.Embed(title="Epic Games gamertags", description=msg, color=0x8C05D2)
+        embed = discord.Embed(title="Epic Games gamertags", description=msg, color=0x404040)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
 
@@ -203,7 +203,7 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "battlenetgamertag" in k:
                         msg += f"<@{user_id}>'s Battle.net gamertag is: {v}\n"
-        embed = discord.Embed(title="Battle.net gamertags", description=msg, color=0x8C05D2)
+        embed = discord.Embed(title="Battle.net gamertags", description=msg, color=0x000099)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
 
@@ -218,7 +218,7 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "uplaygamertag" in k:
                         msg += f"<@{user_id}>'s Uplay gamertag is: {v}\n"
-        embed = discord.Embed(title="Uplay gamertags", description=msg, color=0x8C05D2)
+        embed = discord.Embed(title="Uplay gamertags", description=msg, color=0x0080FF)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
 
@@ -233,6 +233,6 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "steamgamertag" in k:
                         msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
-        embed = discord.Embed(title="Steam gamertags", description=msg, color=0x8C05D2)
+        embed = discord.Embed(title="Steam gamertags", description=msg, color=0x000000)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
