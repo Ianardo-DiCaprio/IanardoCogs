@@ -38,7 +38,7 @@ class GamerTag(commands.Cog):
     @commands.command()
     async def gtlist(self, ctx):
         """Command to get a users gamertag if no user is given it will get yours."""
-        attempt = await self.conf.get_all_user()
+        attempt = await self.conf.all_user()
         await ctx.send(f"{attempt}")
             
 		
