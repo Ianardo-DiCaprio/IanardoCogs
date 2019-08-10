@@ -1,8 +1,8 @@
 {
     "author" : ["Ianardo DiCaprio"],
     "install_msg" : "Thank you for installing my cog!",
-    "name" : "Gmertag"
-    "short" : "Set and get users set Gamertag"
-    "description" : "Set and get users set Gamertag individually or as a list"
+    "name" : "Gmertag",
+    "short" : "Set and get users set Gamertag",
+    "description" : "Set and get users set Gamertag individually or as a list",
     "tags" : ["Gamertag" "Xbox" "PS4"]
 }
