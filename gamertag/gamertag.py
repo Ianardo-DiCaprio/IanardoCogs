@@ -187,6 +187,7 @@ class GamerTag(commands.Cog):
             gamertagitems = gamertag.items()
             for k, v in gamertagitems:
                 if "epicgamesgamertag" in k:
+                    if v is not None:
                         msg += f"<@{user_id}>'s Epic Games gamertag is: {v}\n"
         embed = discord.Embed(title="Epic Games gamertags", description=msg, color=0x202020)
         embeds.append(embed)
