@@ -76,8 +76,8 @@ class GamerTag(commands.Cog):
             gamertagitems = gamertag.items()
             for tag in gamertagitems:
                 if "xboxgamertag" in tag:
-                    for k, v in tag:
-                        msg += f"<@{user_id}>'s Playstation gamertag is: {v}\n"
+                    for v in tag:
+                        msg += f"<@{user_id}>'s Xbox gamertag is: {v}\n"
         embed = discord.Embed(title="Gamertags", description=msg, color=0x8C05D2)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
