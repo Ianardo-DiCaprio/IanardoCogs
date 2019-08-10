@@ -22,7 +22,7 @@ class GamerTag(commands.Cog):
         self.conf.register_user(**default_user)
 
     @commands.command()
-    async def psset(self, ctx, gamertag=None):
+    async def psnset(self, ctx, gamertag=None):
         """Command to set your playstation gamertag"""
         if gamertag:
             await self.conf.user(ctx.author).playstationgamertag.set(gamertag)
@@ -82,7 +82,7 @@ class GamerTag(commands.Cog):
             await ctx.send("Your Steam gamertag has been removed.")
 
     @commands.command(aliases=["psgt"])
-    async def psgamertag(self, ctx, user: discord.Member = None):
+    async def psn(self, ctx, user: discord.Member = None):
         """Command to get a users Playstation gamertag if no user is given it will get yours."""
         if user is None:
             user = ctx.author
@@ -148,7 +148,7 @@ class GamerTag(commands.Cog):
             await ctx.send("This user hasn't set a Steam gamertag.")
 
     @commands.command()
-    async def pslist(self, ctx):
+    async def psnlist(self, ctx):
         """Command to get a list of users Playstation gamertags"""
         embeds = []
         msg = ""
