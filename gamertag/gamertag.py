@@ -1,6 +1,6 @@
 import discord
 from redbot.core import commands, checks, Config
-from ..utils.chat_formatting import box, pagify
+from redbot.core.utils.chat_formatting import box, pagify
 
 class GamerTag(commands.Cog):
 
