@@ -4,5 +4,5 @@
     "name" : "Gmertag",
     "short" : "Set and get users set Gamertag",
     "description" : "Set and get users set Gamertag individually or as a list",
-    "tags" : ["Gamertag" "Xbox" "PS4"],
+    "tags" : ["Gamertag", "Xbox", "PS4"]
 }
