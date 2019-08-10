@@ -40,6 +40,7 @@ class GamerTag(commands.Cog):
         """Command to get a users gamertag if no user is given it will get yours."""
         attempt = await self.conf.all_users()
         for k, v in attempt.items():
-            await ctx.send(f"<@{k}> gamertag is {v}")
+            for v in v.items():
+                await ctx.send(f"<@{k}> gamertag is {v}")
             
 		
