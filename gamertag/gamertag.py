@@ -36,7 +36,7 @@ class GamerTag(commands.Cog):
         """Command to get a users Playstation gamertag if no user is given it will get yours."""
         if user is None:
             user = ctx.author
-        psgamertag = await self.conf.user(user).playsationgamertag()
+        psgamertag = await self.conf.user(user).playstationgamertag()
         if psgamertag:
             await ctx.send(f"This user's Playstation gamertag is: {psgamertag}")
         else:
