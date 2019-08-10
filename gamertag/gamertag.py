@@ -74,9 +74,9 @@ class GamerTag(commands.Cog):
         users = await self.conf.all_users()
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
-            for k in gamertagitems:
+            for k, v in gamertagitems:
                 if "xboxgamertag" in k:
-                    for z, x in k:
+                    for z, x in v:
                         msg += f"<@{user_id}>'s Xbox gamertag is: {str(x)}\n"
         embed = discord.Embed(title="Gamertags", description=msg, color=0x8C05D2)
         embeds.append(embed)
