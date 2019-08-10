@@ -39,8 +39,7 @@ class GamerTag(commands.Cog):
     async def gtlist(self, ctx):
         """Command to get a users gamertag if no user is given it will get yours."""
         users = await self.conf.all_users()
-        gamertag = await self.conf.all_users.gamertag()
-        for k, v in users.items():
+        for k in users.items() for g in gamertag.keys():
             await ctx.send(f"<@{k}> gamertag is {gamertag}")
             
 		
