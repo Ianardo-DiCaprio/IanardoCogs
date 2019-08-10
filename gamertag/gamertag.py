@@ -7,11 +7,11 @@ class GamerTag(commands.Cog):
         self.bot = bot
         self.conf = Config.get_conf(self, identifier=699114201327)
 		
-                default_user = (
-                "Gamertag" = None,
-                )
+            default_user = (
+            "Gamertag" = None,
+            )
 		
-                self.config.register_user(**default_user)
+            self.config.register_user(**default_user)
 		
 		
     @commands.command()
