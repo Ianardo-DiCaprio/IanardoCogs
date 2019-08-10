@@ -1,6 +1,6 @@
 import discord
 from redbot.core import commands, checks, Config
-from redbot.core.utils.chat_formatting import box, pagify
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 
 class GamerTag(commands.Cog):
 
@@ -39,14 +39,15 @@ class GamerTag(commands.Cog):
     @commands.command()
     async def gtlist(self, ctx):
         """Command to get a users gamertag if no user is given it will get yours."""
-        pages = []
+        embeds = []
+        index = 0
         users = await self.conf.all_users()
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
             for k, v in gamertagitems:
                 msg = (f"<@{user_id}>'s gamertag is: {v}")
                 embed = discord.Embed(title="Gamertags", description=msg, color=0x8C05D2)
-                pages.append(embed)
-                await self.send_pages(ctx, pages, embed=True)
+                embeds.append(embed)
+                await menu(ctx, embeds, DEFAULT_CONTROLS, page=index)
             
 		
