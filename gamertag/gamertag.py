@@ -7,20 +7,19 @@ class GamerTag(commands.Cog):
         self.bot = bot
         self.conf = Config.get_conf(self, identifier=699114201327)
 		
-        default_member = {"gamertag": None}
+        default_user = {"gamertag": None}
 		
-        self.conf.register_member(**default_member)
+        self.config.register_user(**default_user)
 		
 		
     @commands.command()
     async def gtset(self, ctx, gamertag = None):
         """Command to set yout gamertag"""
-        member = ctx.member
         if gamertag:
-            await self.conf.member(member).gamertag.set(gamertag)
+            await self.conf.user(ctx.author).gamertag.set(gamertag)
             await ctx.send("Your gamertag has been set.")
         else:
-            await self.conf.member(member).gamertag.set(gamertag)
+            await self.conf.user(ctx.author).gamertag.set(gamertag)
             await ctx.send("Your gamertag has been removed.") 
 		
 		
@@ -30,7 +29,7 @@ class GamerTag(commands.Cog):
         try:
             if user is None:
                 user = ctx.author
-            gamertag = await self.conf.member(user).gamertag()
+            gamertag = await self.conf.user(user).gamertag()
             if gamertag:
                 await ctx.send(f"This users gamertag is: {gamertag}")
         except:
