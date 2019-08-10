@@ -81,7 +81,7 @@ class GamerTag(commands.Cog):
             await self.conf.user(ctx.author).steamgamertag.set(gamertag)
             await ctx.send("Your Steam gamertag has been removed.")
 
-    @commands.command(aliases=["psgt"])
+    @commands.command(aliases=["psn"])
     async def psngamertag(self, ctx, user: discord.Member = None):
         """Command to get a users Playstation gamertag if no user is given it will get yours."""
         if user is None:
@@ -92,7 +92,7 @@ class GamerTag(commands.Cog):
         else:
             await ctx.send("This user hasn't set a Playstation gamertag.")
 
-    @commands.command(aliases=["xbgt"])
+    @commands.command(aliases=["xbox"])
     async def xbgamertag(self, ctx, user: discord.Member = None):
         """Command to get a users Xbox gamertag if no user is given it will get yours."""
         if user is None:
@@ -103,7 +103,7 @@ class GamerTag(commands.Cog):
         else:
             await ctx.send("This user hasn't set a Xbox gamertag.")
 
-    @commands.command(aliases=["eggt"])
+    @commands.command(aliases=["epic"])
     async def eggamertag(self, ctx, user: discord.Member = None):
         """Command to get a users Epic Games gamertag if no user is given it will get yours."""
         if user is None:
@@ -114,7 +114,7 @@ class GamerTag(commands.Cog):
         else:
             await ctx.send("This user hasn't set an Epic Games gamertag.")
 
-    @commands.command(aliases=["bngt"])
+    @commands.command(aliases=["bnet"])
     async def bngamertag(self, ctx, user: discord.Member = None):
         """Command to get a users Battle.net gamertag if no user is given it will get yours."""
         if user is None:
@@ -125,7 +125,7 @@ class GamerTag(commands.Cog):
         else:
             await ctx.send("This user hasn't set a Battle.net gamertag.")
 
-    @commands.command(aliases=["upgt"])
+    @commands.command(aliases=["uplay"])
     async def upgamertag(self, ctx, user: discord.Member = None):
         """Command to get a users Uplay gamertag if no user is given it will get yours."""
         if user is None:
@@ -136,7 +136,7 @@ class GamerTag(commands.Cog):
         else:
             await ctx.send("This user hasn't set a Uplay gamertag.")
 
-    @commands.command(aliases=["steamgt"])
+    @commands.command(aliases=["steam"])
     async def steamgamertag(self, ctx, user: discord.Member = None):
         """Command to get a users Steam gamertag if no user is given it will get yours."""
         if user is None:
