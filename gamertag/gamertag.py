@@ -52,9 +52,20 @@ class GamerTag(commands.Cog):
         else:
             await ctx.send("This user hasn't set a Playstation gamertag.")
 
+    @commands.command(aliases=["xbgt"])
+    async def xbgamertag(self, ctx, user: discord.Member = None):
+        """Command to get a users Xbox gamertag if no user is given it will get yours."""
+        if user is None:
+            user = ctx.author
+        xbgamertag = await self.conf.user(user).xboxgamertag()
+        if xbgamertag:
+            await ctx.send(f"This user's Xbox gamertag is: {xbgamertag}")
+        else:
+            await ctx.send("This user hasn't set a Xbox gamertag.")
+
     @commands.command()
     async def pslist(self, ctx):
-        """Command to get a list of users Xbox gamertags"""
+        """Command to get a list of users Playstation gamertags"""
         embeds = []
         msg = ""
         users = await self.conf.all_users()
