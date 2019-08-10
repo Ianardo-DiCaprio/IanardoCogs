@@ -9,7 +9,7 @@ class GamerTag(commands.Cog):
 		
         default_member = {"gamertag": None}
 		
-        self.config.register_member(**default_member)
+        self.conf.register_member(**default_member)
 		
 		
     @commands.command()
@@ -17,10 +17,10 @@ class GamerTag(commands.Cog):
         """Command to set yout gamertag"""
         user = ctx.user
         if gamertag:
-            await self.config.user(user).gamertag.set(gamertag)
+            await self.conf.user(user).gamertag.set(gamertag)
             await ctx.send("Your gamertag has been set.")
         else:
-            await self.config.gamertag.set(gamertag)
+            await self.conf.gamertag.set(gamertag)
             await ctx.send("Your gamertag has been removed.") 
 		
 		
@@ -30,7 +30,7 @@ class GamerTag(commands.Cog):
         try:
             if user is None:
                 user = ctx.author
-            gamertag = await self.config.user(user).gamertag()
+            gamertag = await self.conf.user(user).gamertag()
             if gamertag:
                 await ctx.send(f"This users gamertag is: {gamertag}")
         except:
