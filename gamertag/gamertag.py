@@ -44,7 +44,7 @@ class GamerTag(commands.Cog):
             gamertagitems = gamertag.items()
             for k, v in gamertagitems:
                 msg = ""
-                msg += (f"<@{user_id}>'s gamertag is: {v}\n")
+                msg =+ (f"<@{user_id}>'s gamertag is: {v}\n")
                 full = msg
                 embed = discord.Embed(title="Gamertags", description=full, color=0x8C05D2)
                 await ctx.send(embed=embed)
