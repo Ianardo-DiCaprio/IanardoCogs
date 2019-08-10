@@ -18,10 +18,10 @@ class GamerTag(commands.Cog):
         user = ctx.user
         if gamertag:
             await self.config.user(user).gamertag.set(gamertag)
-		    await ctx.send("Your gamertag has been set.")
+            await ctx.send("Your gamertag has been set.")
         else:
             await self.config.gamertag.set(gamertag)
-		    await ctx.send("Your gamertag has been removed.") 
+            await ctx.send("Your gamertag has been removed.") 
 		
 		
     @commands.command()
