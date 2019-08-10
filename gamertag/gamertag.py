@@ -240,10 +240,10 @@ class GamerTag(commands.Cog):
             gamertagitems = gamertag.items()
             for k, v in gamertagitems:
                 if "steamgamertag" in k:
-                    for item in v:
-                        count += 1
-                        if v is not None:
-                            msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
+                    if v is not None:
+                        msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
+                        if msg = ""
+                            msg = "No users have set their Steam gamertag."
         embed = discord.Embed(title="Steam gamertags", description=msg, color=0x404040)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
