@@ -42,6 +42,6 @@ class GamerTag(commands.Cog):
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
             for k, v in gamertagitems:
-                await ctx.send(f"<@{user_id}> gamertag is {v}")
+                await ctx.send(f"<@{user_id}> gamertag is: {v}")
             
 		
