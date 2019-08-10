@@ -9,7 +9,7 @@ class GamerTag(commands.Cog):
 		
         default_user = {"gamertag": None}
 		
-        self.config.register_user(**default_user)
+        self.conf.register_user(**default_user)
 		
 		
     @commands.command()
