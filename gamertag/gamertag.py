@@ -239,6 +239,7 @@ class GamerTag(commands.Cog):
             gamertagitems = gamertag.items()
             for k, v in gamertagitems:
                 if "steamgamertag" in k:
+                    log.error(len(v))
                     if v is not None:
                         log.error(len(v))
                         msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
