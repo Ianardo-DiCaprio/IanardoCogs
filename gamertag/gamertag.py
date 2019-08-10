@@ -52,7 +52,7 @@ class GamerTag(commands.Cog):
             await ctx.send("Your Epic Games gamertag has been removed.")
 
     @commands.command()
-    async def bnicset(self, ctx, gamertag=None):
+    async def bnset(self, ctx, gamertag=None):
         """Command to set your Battle.net gamertag"""
         if gamertag:
             await self.conf.user(ctx.author).battlenetgamertag.set(gamertag)
@@ -60,6 +60,26 @@ class GamerTag(commands.Cog):
         else:
             await self.conf.user(ctx.author).battlenetgamertag.set(gamertag)
             await ctx.send("Your Battle.net gamertag has been removed.")
+
+    @commands.command()
+    async def uplayset(self, ctx, gamertag=None):
+        """Command to set your Uplay gamertag"""
+        if gamertag:
+            await self.conf.user(ctx.author).uplaygamertag.set(gamertag)
+            await ctx.send("Your Uplay gamertag has been set.")
+        else:
+            await self.conf.user(ctx.author).uplaygamertag.set(gamertag)
+            await ctx.send("Your Uplay gamertag has been removed.")
+
+    @commands.command()
+    async def steamset(self, ctx, gamertag=None):
+        """Command to set your Steam gamertag"""
+        if gamertag:
+            await self.conf.user(ctx.author).steamgamertag.set(gamertag)
+            await ctx.send("Your Steam gamertag has been set.")
+        else:
+            await self.conf.user(ctx.author).steamgamertag.set(gamertag)
+            await ctx.send("Your Steam gamertag has been removed.")
 
     @commands.command(aliases=["psgt"])
     async def psgamertag(self, ctx, user: discord.Member = None):
@@ -104,6 +124,28 @@ class GamerTag(commands.Cog):
             await ctx.send(f"This user's Battle.net gamertag is: {bngamertag}")
         else:
             await ctx.send("This user hasn't set a Battle.net gamertag.")
+
+    @commands.command(aliases=["upgt"])
+    async def upgamertag(self, ctx, user: discord.Member = None):
+        """Command to get a users Uplay gamertag if no user is given it will get yours."""
+        if user is None:
+            user = ctx.author
+        upgamertag = await self.conf.user(user).uplaygamertag()
+        if upgamertag:
+            await ctx.send(f"This user's Uplay gamertag is: {upgamertag}")
+        else:
+            await ctx.send("This user hasn't set a Uplay gamertag.")
+
+    @commands.command(aliases=["steamgt"])
+    async def steamgamertag(self, ctx, user: discord.Member = None):
+        """Command to get a users Steam gamertag if no user is given it will get yours."""
+        if user is None:
+            user = ctx.author
+        steamgamertag = await self.conf.user(user).steamgamertag()
+        if steamgamertag:
+            await ctx.send(f"This user's Steam gamertag is: {steamgamertag}")
+        else:
+            await ctx.send("This user hasn't set a Steam gamertag.")
 
     @commands.command()
     async def pslist(self, ctx):
@@ -162,5 +204,35 @@ class GamerTag(commands.Cog):
                 if "battlenetgamertag" in k:
                         msg += f"<@{user_id}>'s Battle.net gamertag is: {v}\n"
         embed = discord.Embed(title="Battle.net gamertags", description=msg, color=0x8C05D2)
+        embeds.append(embed)
+        await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
+
+    @commands.command()
+    async def uplist(self, ctx):
+        """Command to get a list of users Uplay gamertags"""
+        embeds = []
+        msg = ""
+        users = await self.conf.all_users()
+        for user_id, gamertag in users.items():
+            gamertagitems = gamertag.items()
+            for k, v in gamertagitems:
+                if "uplaygamertag" in k:
+                        msg += f"<@{user_id}>'s Uplay gamertag is: {v}\n"
+        embed = discord.Embed(title="Uplay gamertags", description=msg, color=0x8C05D2)
+        embeds.append(embed)
+        await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
+
+    @commands.command()
+    async def steamlist(self, ctx):
+        """Command to get a list of users Steam gamertags"""
+        embeds = []
+        msg = ""
+        users = await self.conf.all_users()
+        for user_id, gamertag in users.items():
+            gamertagitems = gamertag.items()
+            for k, v in gamertagitems:
+                if "steamgamertag" in k:
+                        msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
+        embed = discord.Embed(title="Steam gamertags", description=msg, color=0x8C05D2)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
