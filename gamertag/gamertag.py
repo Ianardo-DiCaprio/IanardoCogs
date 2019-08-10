@@ -31,6 +31,16 @@ class GamerTag(commands.Cog):
             await self.conf.user(ctx.author).playsationgamertag.set(gamertag)
             await ctx.send("Your playstation gamertag has been removed.")
 
+    @commands.command()
+    async def xbset(self, ctx, gamertag=None):
+        """Command to set your Xbox gamertag"""
+        if gamertag:
+            await self.conf.user(ctx.author).xboxgamertag.set(gamertag)
+            await ctx.send("Your Xbox gamertag has been set.")
+        else:
+            await self.conf.user(ctx.author).xboxgamertag.set(gamertag)
+            await ctx.send("Your Xbox gamertag has been removed.")
+
     @commands.command(aliases=["psgt"])
     async def psgamertag(self, ctx, user: discord.Member = None):
         """Command to get a users Playstation gamertag if no user is given it will get yours."""
@@ -43,7 +53,7 @@ class GamerTag(commands.Cog):
             await ctx.send("This user hasn't set a Playstation gamertag.")
 
     @commands.command()
-    async def psgtlist(self, ctx):
+    async def pslist(self, ctx):
         """Command to get a list of users Playstation gamertags"""
         embeds = []
         msg = ""
@@ -52,6 +62,20 @@ class GamerTag(commands.Cog):
             gamertagitems = playstationgamertag.items()
             for gamer, tag in gamertagitems:
                 msg += f"<@{user_id}>'s Playstation gamertag is: {tag}\n"
+        embed = discord.Embed(title="Gamertags", description=msg, color=0x8C05D2)
+        embeds.append(embed)
+        await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
+
+    @commands.command()
+    async def xblist(self, ctx):
+        """Command to get a list of users Xbox gamertags"""
+        embeds = []
+        msg = ""
+        users = await self.conf.all_users()
+        for user_id, xboxgamertag in users.items():
+            gamertagitems = xboxgamertag.items()
+            for gamer, tag in gamertagitems:
+                msg += f"<@{user_id}>'s Xbox gamertag is: {tag}\n"
         embed = discord.Embed(title="Gamertags", description=msg, color=0x8C05D2)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
