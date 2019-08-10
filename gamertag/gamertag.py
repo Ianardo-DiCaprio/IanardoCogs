@@ -1,9 +1,6 @@
 import discord
 from redbot.core import commands, Config
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
-import logging
-
-log = logging.getLogger("red.trusty-cogs.ReTrigger")
 
 class GamerTag(commands.Cog):
     """GamerTag cog"""
@@ -19,7 +16,7 @@ class GamerTag(commands.Cog):
             "battlenetgamertag": None,
             "uplaygamertag": None,
             "steamgamertag": None,
-            }
+        }
 
         self.conf.register_user(**default_user)
 
@@ -244,7 +241,6 @@ class GamerTag(commands.Cog):
         """Command to get a list of users Steam gamertags"""
         embeds = []
         msg = ""
-        count = 0
         users = await self.conf.all_users()
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
