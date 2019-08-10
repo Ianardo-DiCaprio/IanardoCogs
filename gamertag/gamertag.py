@@ -73,7 +73,7 @@ class GamerTag(commands.Cog):
         msg = ""
         users = await self.conf.all_users()
         for user_id in users.items():
-            for xboxgamertag in users.items.xboxgamertag()
+            for xboxgamertag in users.items.xboxgamertag():
                 gamertagitems = xboxgamertag.items()
                 for gamer, tag in gamertagitems:
                     msg += f"<@{user_id}>'s Xbox gamertag is: {tag}\n"
