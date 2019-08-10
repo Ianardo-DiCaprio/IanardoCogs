@@ -40,16 +40,14 @@ class GamerTag(commands.Cog):
     async def gtlist(self, ctx):
         """Command to get a users gamertag if no user is given it will get yours."""
         embeds = []
-        index = 0
         users = await self.conf.all_users()
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
             for k, v in gamertagitems:
-                for len in users.items():
-                    msg = ""
-                    msg += (f"<@{user_id}>'s gamertag is: {v}\n")
-                    embed = discord.Embed(title="Gamertags", description=msg, color=0x8C05D2)
-                    embeds.append(embed)
-                    await menu(ctx, embeds, DEFAULT_CONTROLS, page=index)
+                msg = ""
+                msg += (f"<@{user_id}>'s gamertag is: {v}\n")
+                embed = discord.Embed(title="Gamertags", description=msg, color=0x8C05D2)
+                embeds.append(embed)
+                await menu(ctx, embeds, DEFAULT_CONTROLS)
             
 		
