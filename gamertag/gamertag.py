@@ -33,5 +33,12 @@ class GamerTag(commands.Cog):
             await ctx.send(f"This user's gamertag is: {gamertag}")
         else:
             await ctx.send("This user hasn't set a gamertag.")
+
+
+    @commands.command()
+    async def gtlist(self, ctx):
+        """Command to get a users gamertag if no user is given it will get yours."""
+        attempt = await self.conf.get_all_user()
+            await ctx.send(f"list({attempt})")
             
 		
