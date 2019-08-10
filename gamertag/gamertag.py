@@ -1,5 +1,6 @@
 import discord
 from redbot.core import commands, checks, Config
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 
 class GamerTag(commands.Cog):
 
@@ -42,6 +43,11 @@ class GamerTag(commands.Cog):
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
             for k, v in gamertagitems:
-                await ctx.send(f"<@{user_id}>'s gamertag is: {v}")
+                msg = f"<@{user_id}>'s gamertag is: {v}"
+                embed = discord.Embed(title="Gamertags", description=msg color=0x8C05D2)
+                embeds.append(embed)
+                await menu(
+                    ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20
+                )
             
 		
