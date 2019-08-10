@@ -161,6 +161,8 @@ class GamerTag(commands.Cog):
                 if "playstationgamertag" in k:
                     if v is not None:
                         msg += f"<@{user_id}>'s Playstation gamertag is: {v}\n"
+        if msg == "":
+            msg = "No users have set their Playstation gamertag."
         embed = discord.Embed(title="Playstation gamertags", description=msg, color=0x0000CC)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
@@ -177,6 +179,8 @@ class GamerTag(commands.Cog):
                 if "xboxgamertag" in k:
                     if v is not None:
                         msg += f"<@{user_id}>'s Xbox gamertag is: {v}\n"
+        if msg == "":
+            msg = "No users have set their Xbox gamertag."
         embed = discord.Embed(title="Xbox gamertags", description=msg, color=0x00CC00)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
@@ -193,6 +197,8 @@ class GamerTag(commands.Cog):
                 if "epicgamesgamertag" in k:
                     if v is not None:
                         msg += f"<@{user_id}>'s Epic Games gamertag is: {v}\n"
+        if msg == "":
+            msg = "No users have set their Epic Games gamertag."
         embed = discord.Embed(title="Epic Games gamertags", description=msg, color=0x202020)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
@@ -209,6 +215,8 @@ class GamerTag(commands.Cog):
                 if "battlenetgamertag" in k:
                     if v is not None:
                         msg += f"<@{user_id}>'s Battle.net gamertag is: {v}\n"
+        if msg == "":
+            msg = "No users have set their Battle.net gamertag."
         embed = discord.Embed(title="Battle.net gamertags", description=msg, color=0x000099)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
@@ -225,6 +233,8 @@ class GamerTag(commands.Cog):
                 if "uplaygamertag" in k:
                     if v is not None:
                         msg += f"<@{user_id}>'s Uplay gamertag is: {v}\n"
+        if msg == "":
+            msg = "No users have set their Uplay gamertag."
         embed = discord.Embed(title="Uplay gamertags", description=msg, color=0x0080FF)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
@@ -243,7 +253,7 @@ class GamerTag(commands.Cog):
                     if v is not None:
                         msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
         if msg == "":
-            msg = "No users have set their Steam gamertag."
+            msg = "**No users have set their Steam gamertag.**"
         embed = discord.Embed(title="Steam gamertags", description=msg, color=0x404040)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
