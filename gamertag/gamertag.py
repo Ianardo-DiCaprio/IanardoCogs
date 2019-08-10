@@ -41,6 +41,6 @@ class GamerTag(commands.Cog):
         attempt = await self.conf.all_users()
         for user_id in attempt.items():
             for gamertag in attempt.items():
-                await ctx.send(f"{user.id} gamertag is {gamertag}")
+                await ctx.send(f"{user_id} gamertag is {gamertag}")
             
 		
