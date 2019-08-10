@@ -1,7 +1,9 @@
 import discord
 from redbot.core import commands, Config
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
+import logging
 
+log = logging.getLogger("red.trusty-cogs.ReTrigger")
 
 class GamerTag(commands.Cog):
     """GamerTag cog"""
@@ -238,7 +240,7 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "steamgamertag" in k:
                     if v is not None:
-                        print(len(v))
+                        log.error(len(v))
                         msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
         embed = discord.Embed(title="Steam gamertags", description=msg, color=0x404040)
         embeds.append(embed)
