@@ -234,15 +234,16 @@ class GamerTag(commands.Cog):
         """Command to get a list of users Steam gamertags"""
         embeds = []
         msg = ""
+        count = 0
         users = await self.conf.all_users()
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
             for k, v in gamertagitems:
                 if "steamgamertag" in k:
-                    log.error(len(v))
-                    if v is not None:
-                        log.error(len(v))
-                        msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
+                    for item in v:
+                        count += 1
+                        if v is not None:
+                            msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
         embed = discord.Embed(title="Steam gamertags", description=msg, color=0x404040)
         embeds.append(embed)
         await menu(ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20)
