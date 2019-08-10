@@ -30,7 +30,7 @@ class GamerTag(commands.Cog):
             user = ctx.author
         gamertag = await self.conf.user(user).gamertag()
         if gamertag:
-            await ctx.send(f"This users gamertag is: {gamertag}")
+            await ctx.send(f"This user's gamertag is: {gamertag}")
         else:
             await ctx.send("This user hasn't set a gamertag.")
             
