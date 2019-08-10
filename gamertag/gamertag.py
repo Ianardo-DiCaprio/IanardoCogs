@@ -28,7 +28,7 @@ class GamerTag(commands.Cog):
             await self.conf.user(ctx.author).playstationgamertag.set(gamertag)
             await ctx.send("Your playstation gamertag has been set.")
         else:
-            await self.conf.user(ctx.author).playsationgamertag.set(gamertag)
+            await self.conf.user(ctx.author).playstationgamertag.set(gamertag)
             await ctx.send("Your playstation gamertag has been removed.")
 
     @commands.command()
