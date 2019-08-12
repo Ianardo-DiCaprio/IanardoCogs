@@ -1,18 +1,16 @@
 import os
 
-import discord # pylint: disable=import-error
-from redbot.core import Config # pylint: disable=import-error
-from redbot.core import checks # pylint: disable=import-error
-from redbot.core import commands # pylint: disable=import-error
-from redbot.core.data_manager import cog_data_path # pylint: disable=import-error
-from .announcer import Announcer # pylint: disable=import-error, relative-beyond-top-level
-from .yaml_parse import embed_from_userstr # pylint: disable=import-error, relative-beyond-top-level
+import discord
+from redbot.core import Config
+from redbot.core import checks
+from redbot.core import commands
+from redbot.core.data_manager import cog_data_path
+from .announcer import Announcer
+from .yaml_parse import embed_from_userstr
 
 
 class ChangeLog(commands.Cog):
-    """
-    ChangeLogs
-    """
+    """ChangeLogs"""
 
     __version__ = "1.0.0"
 
@@ -26,7 +24,6 @@ class ChangeLog(commands.Cog):
         self.config.register_guild(**default_guild)
 
     def cog_unload(self):
-        """Cog Unload Docstring"""
         try:
             self.__current_announcer.cancel()
         except AttributeError:
@@ -34,7 +31,6 @@ class ChangeLog(commands.Cog):
 
     @staticmethod
     async def complain(ctx: commands.Context, message: str, **kwargs):
-        """"Docstring"""
         await ctx.send(message.format(**kwargs))
 
     def is_announcing(self) -> bool:
