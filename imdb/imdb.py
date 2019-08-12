@@ -1,7 +1,7 @@
-import discord # pylint: disable=import-error
-import aiohttp # pylint: disable=import-error
-from redbot.core import commands, checks, Config # pylint: disable=import-error
-from redbot.core.utils.menus import menu, DEFAULT_CONTROLS # pylint: disable=import-error
+import discord
+import aiohttp
+from redbot.core import commands, checks, Config
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
 
 
 class IMDB(commands.Cog):
@@ -15,7 +15,6 @@ class IMDB(commands.Cog):
         self._session = aiohttp.ClientSession()
 
     def cog_unload(self):
-        """Docstring"""
         self.bot.loop.create_task(self._session.close())
 
     @commands.command()
