@@ -1,8 +1,8 @@
 import asyncio
 
-from redbot.core import commands # pylint: disable=import-error
-from redbot.core.utils.predicates import MessagePredicate # pylint: disable=import-error
-from discord.ext.commands import TextChannelConverter # pylint: disable=import-error
+from redbot.core import commands
+from redbot.core.utils.predicates import MessagePredicate
+from discord.ext.commands import TextChannelConverter
 
 BASECOG = getattr(commands, "Cog", object)
 
@@ -28,7 +28,6 @@ class BasicSetup(BASECOG):
         await self.basic_setup(ctx)
 
     async def basic_setup(self, ctx):
-        """Docstring"""
         predicate = MessagePredicate.yes_or_no(ctx, ctx.channel, ctx.author)
         predicate1 = MessagePredicate.greater(0, ctx, ctx.channel, ctx.author)
         predicate2 = MessagePredicate.length_less(200, ctx, ctx.channel, ctx.author)
