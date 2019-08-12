@@ -1,10 +1,10 @@
 from typing import Any
 from datetime import datetime
 import asyncio
-import discord # pylint: disable=import-error
+import discord
 
-from redbot.core import Config, checks, commands # pylint: disable=import-error
-from redbot.core.bot import Red # pylint: disable=import-error
+from redbot.core import Config, checks, commands
+from redbot.core.bot import Red
 
 Cog: Any = getattr(commands, "Cog", object)
 
@@ -121,7 +121,7 @@ class BugReport(Cog):
         ):
         """Set the channel bug reports get sent to."""
         if channel is None:
-            owner == "owner" # pylint: disable=pointless-statement
+            owner == "owner"
             await self.config.report_channel.set(owner)
             await ctx.send("Bug reports will now be sent to the owners DM's")
         else:
