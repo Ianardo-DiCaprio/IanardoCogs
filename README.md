@@ -14,9 +14,8 @@ To install the cogs, follow the given steps:
 **Step 2** - Adding the cog.
 > To add the cog, type this into the chat:
 > 
-> ``[p]cog install IanardoCogs [cog_name]``
-> 
-> If it has any library dependencies, type ``pip3 install [library_name]`` in a command window..
+> ``[p]cog install IanardoCogs <cog_name>``
+
 
 | Name | Status | Description (Click to see full status)
 | --- | --- | --- |
