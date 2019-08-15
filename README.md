@@ -1,6 +1,23 @@
 # IanardoCogs
 Various cogs for RedBot.
 
+# Installation
+To install the cogs, follow the given steps:
+
+**Step 1** - Adding the repo.
+> To add the repo, type this into the chat:
+> 
+> ``[p]repo add IanardoCogs https://github.com/Ianardo-DiCaprio/IanardoCogs``
+> 
+> Then type,"I agree".
+
+**Step 2** - Adding the cog.
+> To add the cog, type this into the chat:
+> 
+> ``[p]cog install IanardoCogs [cog_name]``
+> 
+> If it has any library dependencies, type ``pip3 install [library_name]`` in a command window..
+
 | Name | Status | Description (Click to see full status)
 | --- | --- | --- |
 | BasicSetup | **Beta** | <details><summary>A cog that sends questions, which you reply to and it sets up commands for you.</summary>Helps to set uo servers</details> |
