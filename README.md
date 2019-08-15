@@ -3,9 +3,9 @@ Various cogs for RedBot.
 
 | Name | Status | Description (Click to see full status)
 | --- | --- | --- |
-| BasicSetup | **Beta** | <details><summary>Send daily announcements to all servers at a specified times</summary>Commissioned release, so suggestions will not be accepted</details> |
-| BugReport | **Beta** | <details><summary>Guess the audio using the core trivia cog</summary>Replaces the core Trivia cog. Needs help adding audio trivia lists, please submit a PR to contribute</details> |
-| ChangeLog | **Beta** | <details><summary>Create custom commands that also assign roles</summary>May have some bugs, please create an issue if you find any</details> |
-| Gamertag | **Beta** | <details><summary>Chat-bot trained to talk like your guild</summary>Missing some key features, but currently functional</details> |
-| IMDB | **Beta** | <details><summary>Error check code in python syntax posted to discord</summary>Works, but probably needs more turning to work for cogs</details> |
-| Rand| **Alpha** | <details><summary>Error check code in python syntax posted to discord</summary>Works, but probably needs more turning to work for cogs</details> |
+| BasicSetup | **Beta** | <details><summary>Sends questions, which you reply to and it sets up commands for you.</summary>Helps to set uo servers</details> |
+| BugReport | **Beta** | <details><summary>Simple bug reporting cog</summary>Has the ability to send bug reports, mark them as fixed or not a bug. (For bot owners)</details> |
+| ChangeLog | **Beta** | <details><summary>Cog that lets you upload changelogs with a .yaml file, where users cna then get those changelogs.</summary>Also has the abilty to automatically post changelogs to set channels when a changelog gets uploaded.</details> |
+| Gamertag | **Beta** | <details><summary>A cog that lets you set your gamertag/nickname for several platforms.</summary>Users can then get those gamertags per user or a list.</details> |
+| IMDB | **Beta** | <details><summary>A cog that lets you get infomation about movies or TV shows.</summary> Shows a lot of information about the movies and TV shows you search.</details> |
+| Rand | **Alpha** | <details><summary>A basic cog that lets you make the bot react to a message with a selectable emoji.</summary>Will be adding more random stuff at a later date.</details> |
