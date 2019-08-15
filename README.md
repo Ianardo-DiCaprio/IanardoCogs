@@ -8,4 +8,4 @@ Various cogs for RedBot.
 | ChangeLog | **Beta** | <details><summary>A cog that lets you upload changelogs with a .yaml file, where users can then get those changelogs.</summary>Also has the abilty to automatically post changelogs to set channels when a changelog gets uploaded.</details> |
 | Gamertag | **Beta** | <details><summary>A cog that lets you set your gamertag/nickname for several platforms.</summary>Users can then get those gamertags per user or a list.</details> |
 | IMDB | **Beta** | <details><summary>A cog that lets you get infomation about movies or TV shows.</summary> Shows a lot of information about the movies and TV shows you search.</details> |
-| Rand | **Alpha** | <details><summary>A basic cog that lets you make the bot react to a message with a selectable emoji.</summary>Will be adding more random stuff at a later date.</details> |
+| Rand | **Alpha** | <details><summary>A cog that lets you make the bot react to a message with a selectable emoji.</summary>Will be adding more random stuff at a later date.</details> |
