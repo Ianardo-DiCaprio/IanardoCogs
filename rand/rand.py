@@ -36,11 +36,14 @@ class Rand(commands.Cog):
 
     @commands.command(name="s")
     @checks.is_owner()
-    async def _say(self, ctx, *, text: str = ""):
+    async def say(self, ctx, *, text: str = ""):
         """Make the bot say something and delete the command
         that was used to make the bot say something."""
         if text != "":
-            msg = await ctx.send(text)
-            await ctx.message.delete()
+            try:
+                msg = await ctx.send(text)
+                await ctx.message.delete()
+            except:
+                print("Can't be used in DMs")
         else:
             await ctx.send("Please include some text for me to say")
