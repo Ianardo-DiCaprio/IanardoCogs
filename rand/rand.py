@@ -33,3 +33,12 @@ class Rand(commands.Cog):
             await ctx.send(
                 "That message ID isn't in this channel, please specify the channel the message is in or use the correct message ID."
             )
+
+    @commands.command(name="s")
+    @checks.is_owner()
+    async def _say(self, ctx, *, text: str = ""):
+    if text != "":
+        msg = await ctx.send(text)
+        await ctx.message.delete()
+    else:
+        await ctx.send("Please include some text for me to say")
