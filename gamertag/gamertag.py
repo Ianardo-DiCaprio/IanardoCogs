@@ -162,7 +162,7 @@ class GamerTag(commands.Cog):
         if msg == "":
             msg = "**No users have set their Playstation gamertag.**"
         embed = discord.Embed(title="Playstation gamertags", color=0x0000CC)
-        for msg in pagify(msg)
+        for msg in pagify(msg):
             embed.description = msg
             embeds.append(embed)
         await menu(ctx, embeds, controls=DEFAULT_CONTROLS)
@@ -182,7 +182,7 @@ class GamerTag(commands.Cog):
         if msg == "":
             msg = "**No users have set their Xbox gamertag.**"
         embed = discord.Embed(title="Xbox gamertags", color=0x00CC00)
-        for msg in pagify(msg)
+        for msg in pagify(msg):
             embed.description = msg
             embeds.append(embed)
         await menu(ctx, embeds, controls=DEFAULT_CONTROLS)
@@ -202,7 +202,7 @@ class GamerTag(commands.Cog):
         if msg == "":
             msg = "**No users have set their Epic Games gamertag.**"
         embed = discord.Embed(title="Epic Games gamertags", color=0x202020)
-        for msg in pagify(msg)
+        for msg in pagify(msg):
             embed.description = msg
             embeds.append(embed)
         await menu(ctx, embeds, controls=DEFAULT_CONTROLS)
@@ -222,7 +222,7 @@ class GamerTag(commands.Cog):
         if msg == "":
             msg = "**No users have set their Battle.net gamertag.**"
         embed = discord.Embed(title="Battle.net gamertags", color=0x000099)
-        for msg in pagify(msg)
+        for msg in pagify(msg):
             embed.description = msg
             embeds.append(embed)
         await menu(ctx, embeds, controls=DEFAULT_CONTROLS)
@@ -242,7 +242,7 @@ class GamerTag(commands.Cog):
         if msg == "":
             msg = "**No users have set their Uplay gamertag.**"
         embed = discord.Embed(title="Uplay gamertags", color=0x0080FF)
-        for msg in pagify(msg)
+        for msg in pagify(msg):
             embed.description = msg
             embeds.append(embed)
         await menu(ctx, embeds, controls=DEFAULT_CONTROLS)
@@ -262,7 +262,7 @@ class GamerTag(commands.Cog):
         if msg == "":
             msg = "**No users have set their Steam gamertag.**"
         embed = discord.Embed(title="Steam gamertags", color=0x404040)
-        for msg in pagify(msg)
+        for msg in pagify(msg):
             embed.description = msg
             embeds.append(embed)
         await menu(ctx, embeds, controls=DEFAULT_CONTROLS)
