@@ -184,7 +184,7 @@ class GamerTag(commands.Cog):
         for msg in pagify(msg):
             embed = discord.Embed(title="Xbox gamertags", color=0x00CC00)
             embed.description = msg
-        embeds.append(embed)
+            embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
 
     @commands.command()
@@ -204,7 +204,7 @@ class GamerTag(commands.Cog):
         for msg in pagify(msg):
             embed = discord.Embed(title="Epic Games gamertags", color=0x202020)
             embed.description = msg
-        embeds.append(embed)
+            embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
 
     @commands.command()
@@ -224,7 +224,7 @@ class GamerTag(commands.Cog):
         for msg in pagify(msg):
             embed = discord.Embed(title="Battle.net gamertags", color=0x000099)
             embed.description = msg
-        embeds.append(embed)
+            embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
 
     @commands.command()
@@ -244,7 +244,7 @@ class GamerTag(commands.Cog):
         for msg in pagify(msg):
             embed = discord.Embed(title="Uplay gamertags", color=0x0080FF)
             embed.description = msg
-        embeds.append(embed)
+            embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
 
     @commands.command()
@@ -264,5 +264,5 @@ class GamerTag(commands.Cog):
         for msg in pagify(msg):
             embed = discord.Embed(title="Steam gamertags", color=0x404040)
             embed.description = msg
-        embeds.append(embed)
+            embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
