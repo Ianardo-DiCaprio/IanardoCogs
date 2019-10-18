@@ -165,7 +165,7 @@ class GamerTag(commands.Cog):
             embed = discord.Embed(title="Playstation gamertags", color=0x0000CC)
             embed.description = msg
         embeds.append(embed)
-        await ctx.send(embeds)
+        await menu(ctx, embeds)
 
     @commands.command()
     async def xblist(self, ctx):
