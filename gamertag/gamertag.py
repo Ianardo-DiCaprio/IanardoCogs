@@ -161,8 +161,8 @@ class GamerTag(commands.Cog):
                         msg += f"<@{user_id}>'s Playstation gamertag is: {v}\n"
         if msg == "":
             msg = "**No users have set their Playstation gamertag.**"
-        embed = discord.Embed(title="Playstation gamertags", color=0x0000CC)
         for msg in pagify(msg):
+            embed = discord.Embed(title="Playstation gamertags", color=0x0000CC)
             embed.description = msg
         embeds.append(embed)
         await ctx.send(embeds)
