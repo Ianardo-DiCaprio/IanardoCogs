@@ -165,7 +165,7 @@ class GamerTag(commands.Cog):
         for msg in pagify(msg):
             embed.description = msg
         embeds.append(embed)
-        await menu(ctx, embeds, DEFAULT_CONTROLS, page=0)
+        await ctx.send(embeds)
 
     @commands.command()
     async def xblist(self, ctx):
