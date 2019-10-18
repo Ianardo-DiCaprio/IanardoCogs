@@ -164,7 +164,7 @@ class GamerTag(commands.Cog):
         for msg in pagify(msg):
             embed = discord.Embed(title="Playstation gamertags", color=0x0000CC)
             embed.description = msg
-        embeds.append(embed)
+            embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
 
     @commands.command()
