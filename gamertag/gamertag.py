@@ -162,9 +162,10 @@ class GamerTag(commands.Cog):
         if msg == "":
             msg = "**No users have set their Playstation gamertag.**"
         embed = discord.Embed(title="Playstation gamertags", color=0x0000CC)
-        embed.description = msg
+        for msg in pagify(msg):
+            embed.description = msg
         embeds.append(embed)
-        await menu(ctx, embeds, DEFAULT_CONTROLS)
+        await menu(ctx, embeds, DEFAULT_CONTROLS, page=0)
 
     @commands.command()
     async def xblist(self, ctx):
