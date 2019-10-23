@@ -158,7 +158,8 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "playstationgamertag" in k:
                     if v is not None:
-                        msg += f"<@{user_id}>'s Playstation gamertag is: {v}\n"
+                        if user_id in [x.id for x in guild.members]:
+                            msg += f"<@{user_id}>'s Playstation gamertag is: {v}\n"
         if msg == "":
             msg = "**No users have set their Playstation gamertag.**"
         for msg in pagify(msg):
@@ -178,7 +179,8 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "xboxgamertag" in k:
                     if v is not None:
-                        msg += f"<@{user_id}>'s Xbox gamertag is: {v}\n"
+                        if user_id in [x.id for x in guild.members]:
+                            msg += f"<@{user_id}>'s Xbox gamertag is: {v}\n"
         if msg == "":
             msg = "**No users have set their Xbox gamertag.**"
         for msg in pagify(msg):
@@ -198,7 +200,8 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "epicgamesgamertag" in k:
                     if v is not None:
-                        msg += f"<@{user_id}>'s Epic Games gamertag is: {v}\n"
+                        if user_id in [x.id for x in guild.members]:
+                            msg += f"<@{user_id}>'s Epic Games gamertag is: {v}\n"
         if msg == "":
             msg = "**No users have set their Epic Games gamertag.**"
         for msg in pagify(msg):
@@ -218,7 +221,8 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "battlenetgamertag" in k:
                     if v is not None:
-                        msg += f"<@{user_id}>'s Battle.net gamertag is: {v}\n"
+                        if user_id in [x.id for x in guild.members]:
+                            msg += f"<@{user_id}>'s Battle.net gamertag is: {v}\n"
         if msg == "":
             msg = "**No users have set their Battle.net gamertag.**"
         for msg in pagify(msg):
@@ -238,7 +242,8 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "uplaygamertag" in k:
                     if v is not None:
-                        msg += f"<@{user_id}>'s Uplay gamertag is: {v}\n"
+                        if user_id in [x.id for x in guild.members]:
+                            msg += f"<@{user_id}>'s Uplay gamertag is: {v}\n"
         if msg == "":
             msg = "**No users have set their Uplay gamertag.**"
         for msg in pagify(msg):
@@ -258,7 +263,8 @@ class GamerTag(commands.Cog):
             for k, v in gamertagitems:
                 if "steamgamertag" in k:
                     if v is not None:
-                        msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
+                        if user_id in [x.id for x in guild.members]:
+                            msg += f"<@{user_id}>'s Steam gamertag is: {v}\n"
         if msg == "":
             msg = "**No users have set their Steam gamertag.**"
         for msg in pagify(msg):
