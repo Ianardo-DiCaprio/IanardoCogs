@@ -152,6 +152,7 @@ class GamerTag(commands.Cog):
         """Command to get a list of users Playstation gamertags"""
         embeds = []
         msg = ""
+        guild = ctx.guild
         users = await self.conf.all_users()
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
@@ -173,6 +174,7 @@ class GamerTag(commands.Cog):
         """Command to get a list of users Xbox gamertags"""
         embeds = []
         msg = ""
+        guild = ctx.guild
         users = await self.conf.all_users()
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
@@ -194,6 +196,7 @@ class GamerTag(commands.Cog):
         """Command to get a list of users Epic Games gamertags"""
         embeds = []
         msg = ""
+        guild = ctx.guild
         users = await self.conf.all_users()
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
@@ -215,6 +218,7 @@ class GamerTag(commands.Cog):
         """Command to get a list of users Battle.net gamertags"""
         embeds = []
         msg = ""
+        guild = ctx.guild
         users = await self.conf.all_users()
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
@@ -236,6 +240,7 @@ class GamerTag(commands.Cog):
         """Command to get a list of users Uplay gamertags"""
         embeds = []
         msg = ""
+        guild = ctx.guild
         users = await self.conf.all_users()
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
@@ -257,6 +262,7 @@ class GamerTag(commands.Cog):
         """Command to get a list of users Steam gamertags"""
         embeds = []
         msg = ""
+        guild = ctx.guild
         users = await self.conf.all_users()
         for user_id, gamertag in users.items():
             gamertagitems = gamertag.items()
