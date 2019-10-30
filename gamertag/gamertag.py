@@ -83,7 +83,7 @@ class GamerTag(commands.Cog):
             await ctx.send("Your Steam gamertag has been removed.")
 
     @commands.command()
-    async def nintendoset(self, ctx, gamertag=None):
+    async def ndset(self, ctx, gamertag=None):
         """Command to set your Nintendo gamertag"""
         if gamertag:
             await self.conf.user(ctx.author).nintendogamertag.set(gamertag)
@@ -159,7 +159,7 @@ class GamerTag(commands.Cog):
             await ctx.send("This user hasn't set a Steam gamertag.")
 
     @commands.command(aliases=["nintendo"])
-    async def nintendogamertag(self, ctx, user: discord.Member = None):
+    async def ndgamertag(self, ctx, user: discord.Member = None):
         """Command to get a users Nintendo gamertag if no user is given it will get yours."""
         if user is None:
             user = ctx.author
@@ -302,7 +302,7 @@ class GamerTag(commands.Cog):
         await menu(ctx, embeds, DEFAULT_CONTROLS)
 
     @commands.command()
-    async def nintendolist(self, ctx):
+    async def ndlist(self, ctx):
         """Command to get a list of users Nintendo gamertags"""
         embeds = []
         msg = ""
