@@ -17,6 +17,7 @@ class GamerTag(commands.Cog):
             "battlenetgamertag": None,
             "uplaygamertag": None,
             "steamgamertag": None,
+            "nintendogamertag": None,
         }
 
         self.conf.register_user(**default_user)
@@ -81,6 +82,16 @@ class GamerTag(commands.Cog):
             await self.conf.user(ctx.author).steamgamertag.set(gamertag)
             await ctx.send("Your Steam gamertag has been removed.")
 
+    @commands.command()
+    async def nintendoset(self, ctx, gamertag=None):
+        """Command to set your Nintendo gamertag"""
+        if gamertag:
+            await self.conf.user(ctx.author).nintendogamertag.set(gamertag)
+            await ctx.send("Your Nintendo gamertag has been set.")
+        else:
+            await self.conf.user(ctx.author).nintendogamertag.set(gamertag)
+            await ctx.send("Your Nintendo gamertag has been removed.")
+
     @commands.command(aliases=["psn"])
     async def psngamertag(self, ctx, user: discord.Member = None):
         """Command to get a users Playstation gamertag if no user is given it will get yours."""
@@ -141,11 +152,22 @@ class GamerTag(commands.Cog):
         """Command to get a users Steam gamertag if no user is given it will get yours."""
         if user is None:
             user = ctx.author
-        steamgamertag = await self.conf.user(user).steamgamertag()
+        steamgamertag = await self.conf.user(user).nintendogamertag()
         if steamgamertag:
             await ctx.send(f"This user's Steam gamertag is: {steamgamertag}")
         else:
             await ctx.send("This user hasn't set a Steam gamertag.")
+
+    @commands.command(aliases=["nintendo"])
+    async def nintendogamertag(self, ctx, user: discord.Member = None):
+        """Command to get a users Nintendo gamertag if no user is given it will get yours."""
+        if user is None:
+            user = ctx.author
+        nintendogamertag = await self.conf.user(user).nintendogamertag()
+        if nintendogamertag:
+            await ctx.send(f"This user's Nintendo gamertag is: {nintendogamertag}")
+        else:
+            await ctx.send("This user hasn't set a Nintendo gamertag.")
 
     @commands.command()
     async def psnlist(self, ctx):
@@ -275,6 +297,28 @@ class GamerTag(commands.Cog):
             msg = "**No users have set their Steam gamertag.**"
         for msg in pagify(msg):
             embed = discord.Embed(title="Steam gamertags", color=0x404040)
+            embed.description = msg
+            embeds.append(embed)
+        await menu(ctx, embeds, DEFAULT_CONTROLS)
+
+    @commands.command()
+    async def nintendolist(self, ctx):
+        """Command to get a list of users Nintendo gamertags"""
+        embeds = []
+        msg = ""
+        guild = ctx.guild
+        users = await self.conf.all_users()
+        for user_id, gamertag in users.items():
+            gamertagitems = gamertag.items()
+            for k, v in gamertagitems:
+                if "nintendogamertag" in k:
+                    if v is not None:
+                        if user_id in [x.id for x in guild.members]:
+                            msg += f"<@{user_id}>'s Nintendo gamertag is: {v}\n"
+        if msg == "":
+            msg = "**No users have set their Nintendo gamertag.**"
+        for msg in pagify(msg):
+            embed = discord.Embed(title="Nintendo gamertags", color=0x404040)
             embed.description = msg
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
