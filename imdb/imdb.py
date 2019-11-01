@@ -40,7 +40,7 @@ class IMDB(commands.Cog):
         try:
             title = data["Title"]
             embed = discord.Embed(title=title, color=0x8C05D2)
-            if data["Poster"] /= "N/A":
+            if data["Poster"] != "N/A":
                 embed.set_thumbnail(url=data["Poster"])
             if data["imdbID"]:
                 embed.url = "http://www.imdb.com/title/{}".format(data["imdbID"])
