@@ -2,6 +2,7 @@ import discord
 import aiohttp
 from redbot.core import commands, checks, Config
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
+from redbot.core.utils.chat_formatting import pagify
 
 
 class IMDB(commands.Cog):
@@ -34,7 +35,7 @@ class IMDB(commands.Cog):
         api_key = await self.conf.api_key()
         search = search.replace(" ", "+")
         async with self._session.get(
-                f"http://www.omdbapi.com/?apikey={api_key}&t={search}&plot=full"
+                f"http://www.omdbapi.com/?apikey={api_key}&t={search}"
         ) as request:
             data = await request.json()
         try:
