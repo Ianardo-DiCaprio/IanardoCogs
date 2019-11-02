@@ -1,9 +1,7 @@
 import os
-
 import discord
-from redbot.core import Config
-from redbot.core import checks
-from redbot.core import commands
+
+from redbot.core import Config, checks, commands
 from redbot.core.data_manager import cog_data_path
 from .announcer import Announcer
 from .yaml_parse import embed_from_userstr
@@ -12,7 +10,7 @@ from .yaml_parse import embed_from_userstr
 class ChangeLog(commands.Cog):
     """ChangeLogs"""
 
-    __version__ = "1.0.0"
+    __version__ = "1.0.1"
 
     def __init__(self, bot):
         self.bot = bot
@@ -122,13 +120,13 @@ class ChangeLog(commands.Cog):
     @_autolog.command(name="cancel")
     @checks.is_owner()
     async def autolog_cancel(self, ctx):
-        """Cancel a running changelog anniouncement."""
+        """Cancel a running changelog announcement."""
         try:
             self.__current_announcer.cancel()
         except AttributeError:
             pass
 
-        await ctx.send("The current changelog embed has been canceled.")
+        await ctx.send("The current changelog has been canceled.")
 
     @_autolog.command(name="channel")
     @commands.guild_only()
