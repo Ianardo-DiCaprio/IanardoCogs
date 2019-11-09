@@ -53,6 +53,7 @@ class Rand(commands.Cog):
     @commands.guild_only()
     async def reacted(self, ctx, msg_id):
         """See who reacted to a message"""
+        channel = ctx.channel
         msg = await channel.fetch_message(msg_id)
         new_msg = ""
         for reaction in msg.reactions:
