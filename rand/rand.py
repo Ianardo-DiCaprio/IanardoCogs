@@ -49,6 +49,7 @@ class Rand(commands.Cog):
         else:
             await ctx.send("Please include some text for me to say")
 
+    @commands.command()
     @commands.guild_only()
     async def reacted(self, ctx, msg_id):
         """See who reacted to a message"""
