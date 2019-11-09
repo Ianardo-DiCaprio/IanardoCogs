@@ -60,4 +60,4 @@ class Rand(commands.Cog):
             async for user in reaction.users():
                 new_msg += "```{}#{} {}\n```".format(user.name, user.discriminator, reaction.emoji)
                 embed = discord.Embed(title="Reactions", description=new_msg, color=0x404040)
-                await ctx.send(embed)
+                await ctx.send(embed=embed)
