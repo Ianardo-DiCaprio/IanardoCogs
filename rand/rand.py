@@ -1,4 +1,5 @@
 import discord
+import asyncio
 from redbot.core import commands, checks
 
 class Rand(commands.Cog):
@@ -47,3 +48,13 @@ class Rand(commands.Cog):
                 print("Can't be used in DMs")
         else:
             await ctx.send("Please include some text for me to say")
+
+    @commands.guild_only()
+    async def reacted(self, ctx, msg_id):
+        """See who reacted to a message"""
+        msg = await channel.fetch_message(msg_id)
+        new_msg = ""
+        for reaction in msg.reactions:
+            async for user in reaction.users():
+                new_msg += "{}#{} {}\n".format(user.name, user.discriminator, reaction.emoji)
+        await ctx.send(new_msg)
