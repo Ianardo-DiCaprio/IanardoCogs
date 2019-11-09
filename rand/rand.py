@@ -58,5 +58,5 @@ class Rand(commands.Cog):
         new_msg = ""
         for reaction in msg.reactions:
             async for user in reaction.users():
-                new_msg += "{}#{} {}\n".format(user.name, user.discriminator, reaction.emoji)
+                new_msg += "```{}#{} {}\n```".format(user.name, user.discriminator, reaction.emoji)
         await ctx.send(new_msg)
