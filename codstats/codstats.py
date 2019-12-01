@@ -26,7 +26,10 @@ class CODSTATS(commands.Cog):
                 f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
         ) as request:
             data = await request.json()
-        embed = discord.Embed(title="COD STATS", color=0x8C05D2)
+        username = data["username"]
+        level = data["level"]
+        usernamelvl = username + level
+        embed = discord.Embed(title=usernamelvl, color=0x8C05D2)
         if data["kills"] != "N/A":
             embed.add_field(name="Kills", value=data["kills"], inline=True)
         if data["kdRatio"] != "N/A":
