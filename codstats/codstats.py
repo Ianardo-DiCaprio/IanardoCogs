@@ -23,7 +23,7 @@ class CODSTATS(commands.Cog):
         platform = platform.replace("pc", "battle")
         username = username.replace("#", "%23")
         async with self._session.get(
-                f"https://my.callofduty.com/api/papiclient/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
+                f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
         ) as request:
             data = await request.json()
         try:
