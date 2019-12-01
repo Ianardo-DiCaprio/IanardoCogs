@@ -59,8 +59,8 @@ class CODSTATS(commands.Cog):
         platform = platform.replace("xbox", "xbl")
         async with self._session.get(
                 f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
-        ) as request:
-            data = await request.json()
+            ) as request:
+                data = await request.json()
         
         try:
             username = data["data"]["username"]
