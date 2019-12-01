@@ -45,7 +45,7 @@ class CODSTATS(commands.Cog):
             await ctx.send("Your username has been removed.")
 
     @commands.command()
-    async def codstats(self, ctx, platform: Optional[str] = pc, *, username):
+    async def codstats(self, ctx, platform: Optional[str] = "pc", *, username):
         """Command to get your COD: MW stats
         For platform use pc, xbox, psn"""
         embeds = []
