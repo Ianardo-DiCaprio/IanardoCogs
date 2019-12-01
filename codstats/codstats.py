@@ -18,9 +18,11 @@ class CODSTATS(commands.Cog):
 
     @commands.command()
     async def codstats(self, ctx, platform, *, username):
-        """Command to get your COD: MW stats"""
+        """Command to get your COD: MW stats
+        For platform use pc, xbox, psn"""
         embeds = []
         platform = platform.replace("pc", "battle")
+        platform = platform.replace("xbox", "xbl")
         username = username.replace(" ", "%20")
         username = username.replace("#", "%23")
         async with self._session.get(
