@@ -56,8 +56,8 @@ class CODSTATS(commands.Cog):
                 embed.add_field(name="Score Per Minute", value=scorepm, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"] != "N/A":
                 embed.add_field(name="Total Play Time (in minutes)", value=data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"], inline=True)
-            if data["data"]["scorestreakData"]["nuke"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Nukes", value=data["data"]["scorestreakData"]["nuke"]["properties"]["uses"], inline=True)
+            if data["data"]["scorestreakData"]["lethalScorestreakData"]["nuke"]["properties"]["uses"] != "N/A":
+                embed.add_field(name="Nukes", value=data["data"]["scorestreakData"]["lethalScorestreakData"]["nuke"]["properties"]["uses"], inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20
