@@ -65,7 +65,7 @@ class CODSTATS(commands.Cog):
                     data = await request.json()
         except:
             await ctx.send("That platform doesn't exist, please use pc, xbox or psn.")
-                return
+            return
         
         try:
             username = data["data"]["username"]
