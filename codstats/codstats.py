@@ -26,7 +26,6 @@ class CODSTATS(commands.Cog):
                 f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
         ) as request:
             data = await request.json()
-        username = data["username"]
         level = data["level"]
         usernamelvl = username + level
         embed = discord.Embed(title=usernamelvl, color=0x8C05D2)
