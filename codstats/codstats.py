@@ -1,5 +1,8 @@
 import discord
 import aiohttp
+from redbot.core import commands, checks, Config
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
+from redbot.core.utils.chat_formatting import pagify
 
 class CODSTATS(commands.Cog):
     """"Simple Commands to get stats for COD"""
@@ -25,8 +28,8 @@ class CODSTATS(commands.Cog):
             data = await request.json()
         try:
             username = data["username"]
-			level = data["level"]
-			usernamelvl = username + level
+            level = data["level"]
+            usernamelvl = username + level
             embed = discord.Embed(title=usernamelvl, color=0x8C05D2)
             if data["kills"] != "N/A":
                 embed.add_field(name="Kills", value=data["kills"], inline=True)
