@@ -17,10 +17,11 @@ class CODSTATS(commands.Cog):
         self.bot.loop.create_task(self._session.close())
 
     @commands.command()
-    async def codstats(self, ctx, platform, username):
+    async def codstats(self, ctx, platform, *, username):
         """Command to get your COD: MW stats"""
         embeds = []
         platform = platform.replace("pc", "battle")
+        username = username.replace(" ", "%20")
         username = username.replace("#", "%23")
         async with self._session.get(
                 f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
