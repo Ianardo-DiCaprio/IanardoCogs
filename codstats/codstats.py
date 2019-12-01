@@ -37,7 +37,8 @@ class CODSTATS(commands.Cog):
         if data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"] != "N/A":
             embed.add_field(name="Highest Killstreak", value=data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"], inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["accuracy"] != "N/A":
-            embed.add_field(name="Average Accuracy", value=data["data"]["lifetime"]["all"]["properties"]["accuracy"], inline=True)
+            accuracy = round(int(data["data"]["lifetime"]["all"]["properties"]["accuracy"]))
+            embed.add_field(name="Average Accuracy", value=accuracy, inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["wins"] != "N/A":
             embed.add_field(name="Total Wins", value=data["data"]["lifetime"]["all"]["properties"]["wins"], inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["winLossRatio"] != "N/A":
