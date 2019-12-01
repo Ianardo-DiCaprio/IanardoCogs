@@ -33,7 +33,8 @@ class CODSTATS(commands.Cog):
         if data["data"]["lifetime"]["all"]["properties"]["kills"] != "N/A":
             embed.add_field(name="Kills", value=data["data"]["lifetime"]["all"]["properties"]["kills"], inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["kdRatio"] != "N/A":
-            embed.add_field(name="K/D Ratio", value=data["data"]["lifetime"]["all"]["properties"]["kdRatio"], inline=True)
+            killd = round(data["data"]["lifetime"]["all"]["properties"]["kdRatio"], 3)
+            embed.add_field(name="K/D Ratio", value=killd, inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"] != "N/A":
             embed.add_field(name="Highest Killstreak", value=data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"], inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["accuracy"] != "N/A":
@@ -42,13 +43,15 @@ class CODSTATS(commands.Cog):
         if data["data"]["lifetime"]["all"]["properties"]["wins"] != "N/A":
             embed.add_field(name="Total Wins", value=data["data"]["lifetime"]["all"]["properties"]["wins"], inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["winLossRatio"] != "N/A":
-            embed.add_field(name="Win/Loss Ratio", value=data["data"]["lifetime"]["all"]["properties"]["winLossRatio"], inline=True)
+            winloss = round(data["data"]["lifetime"]["all"]["properties"]["winLossRatio"], 3)
+            embed.add_field(name="Win/Loss Ratio", value=winloss, inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"] != "N/A":
             embed.add_field(name="Current Win Streak", value=data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"], inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["gamesPlayed"] != "N/A":
             embed.add_field(name="Games Played", value=data["data"]["lifetime"]["all"]["properties"]["gamesPlayed"], inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["scorePerMinute"] != "N/A":
-            embed.add_field(name="Score Per Minute", value=data["data"]["lifetime"]["all"]["properties"]["scorePerMinute"], inline=True)
+            scorepm = round(data["data"]["lifetime"]["all"]["properties"]["scorePerMinute"], 3)
+            embed.add_field(name="Score Per Minute", value=scorepm, inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"] != "N/A":
             embed.add_field(name="Total Play Time (in minutes)", value=data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"], inline=True)
         embeds.append(embed)
