@@ -58,7 +58,7 @@ class CODSTATS(commands.Cog):
         username = username.replace(" ", "%20")
         username = username.replace("#", "%23")
         try:
-            if platform == "pc" or "xbl" or "psn"
+            if platform == "pc" or "xbl" or "psn":
             async with self._session.get(
                     f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
             ) as request:
