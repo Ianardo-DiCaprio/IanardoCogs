@@ -17,7 +17,7 @@ class CODSTATS(commands.Cog):
         self.bot.loop.create_task(self._session.close())
 
     @commands.command()
-    async def codstats(self, ctx, platform = None, *, username):
+    async def codstats(self, ctx, platform = "pc", *, username):
         """Command to get your COD: MW stats
         For platform use pc, xbox, psn"""
         embeds = []
@@ -25,8 +25,6 @@ class CODSTATS(commands.Cog):
         platform = platform.replace("xbox", "xbl")
         username = username.replace(" ", "%20")
         username = username.replace("#", "%23")
-        if not platform:
-            platform = "pc"
         async with self._session.get(
                 f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
         ) as request:
