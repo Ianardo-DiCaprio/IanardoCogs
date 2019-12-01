@@ -39,28 +39,35 @@ class CODSTATS(commands.Cog):
                 killd = round(data["data"]["lifetime"]["all"]["properties"]["kdRatio"], 3)
                 embed.add_field(name="K/D Ratio", value=killd, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"] != "N/A":
-                embed.add_field(name="Highest Killstreak", value=data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"], inline=True)
+                recordKillStreak = round(data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"])
+                embed.add_field(name="Highest Killstreak", value=recordKillStreak, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["accuracy"] != "N/A":
                 accuracy = round(data["data"]["lifetime"]["all"]["properties"]["accuracy"], 3)
                 embed.add_field(name="Average Accuracy", value=accuracy, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["wins"] != "N/A":
-                embed.add_field(name="Total Wins", value=data["data"]["lifetime"]["all"]["properties"]["wins"], inline=True)
+                wins = round(data["data"]["lifetime"]["all"]["properties"]["wins"])
+                embed.add_field(name="Total Wins", value=wins, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["winLossRatio"] != "N/A":
                 winloss = round(data["data"]["lifetime"]["all"]["properties"]["winLossRatio"], 3)
                 embed.add_field(name="Win/Loss Ratio", value=winloss, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"] != "N/A":
-                embed.add_field(name="Current Win Streak", value=data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"], inline=True)
+                currentWinStreak = round(data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"])
+                embed.add_field(name="Current Win Streak", value=currentWinStreak, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["gamesPlayed"] != "N/A":
-                embed.add_field(name="Games Played", value=data["data"]["lifetime"]["all"]["properties"]["gamesPlayed"], inline=True)
+                gamesPlayed = round(data["data"]["lifetime"]["all"]["properties"]["gamesPlayed"])
+                embed.add_field(name="Games Played", value=gamesPlayed, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["scorePerMinute"] != "N/A":
                 scorepm = round(data["data"]["lifetime"]["all"]["properties"]["scorePerMinute"], 3)
                 embed.add_field(name="Score Per Minute", value=scorepm, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"] != "N/A":
-                embed.add_field(name="Total Play Time (in minutes)", value=data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"], inline=True)
+                timePlayedTotal = round(data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"])
+                embed.add_field(name="Total Play Time (in minutes)", value=timePlayedTotal, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["nuke"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Nukes", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["nuke"]["properties"]["uses"], inline=True)
+                nuke = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["nuke"]["properties"]["uses"])
+                embed.add_field(name="Nukes", value=nuke, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["juggernaut"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Juggernaut", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["juggernaut"]["properties"]["uses"], inline=True)
+                juggernaut = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["juggernaut"]["properties"]["uses"])
+                embed.add_field(name="Juggernaut", value=juggernaut, inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20
