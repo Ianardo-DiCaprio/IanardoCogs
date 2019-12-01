@@ -36,19 +36,19 @@ class CODSTATS(commands.Cog):
                 kills = round(data["data"]["lifetime"]["all"]["properties"]["kills"])
                 embed.add_field(name="Kills", value=kills, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["kdRatio"] != "N/A":
-                killd = round(data["data"]["lifetime"]["all"]["properties"]["kdRatio"], 3)
+                killd = round(data["data"]["lifetime"]["all"]["properties"]["kdRatio"], 2)
                 embed.add_field(name="K/D Ratio", value=killd, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"] != "N/A":
                 recordKillStreak = round(data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"])
                 embed.add_field(name="Highest Killstreak", value=recordKillStreak, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["accuracy"] != "N/A":
-                accuracy = round(data["data"]["lifetime"]["all"]["properties"]["accuracy"], 3)
+                accuracy = round(data["data"]["lifetime"]["all"]["properties"]["accuracy"], 2)
                 embed.add_field(name="Average Accuracy", value=accuracy, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["wins"] != "N/A":
                 wins = round(data["data"]["lifetime"]["all"]["properties"]["wins"])
                 embed.add_field(name="Total Wins", value=wins, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["winLossRatio"] != "N/A":
-                winloss = round(data["data"]["lifetime"]["all"]["properties"]["winLossRatio"], 3)
+                winloss = round(data["data"]["lifetime"]["all"]["properties"]["winLossRatio"], 2)
                 embed.add_field(name="Win/Loss Ratio", value=winloss, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"] != "N/A":
                 currentWinStreak = round(data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"])
@@ -57,7 +57,7 @@ class CODSTATS(commands.Cog):
                 gamesPlayed = round(data["data"]["lifetime"]["all"]["properties"]["gamesPlayed"])
                 embed.add_field(name="Games Played", value=gamesPlayed, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["scorePerMinute"] != "N/A":
-                scorepm = round(data["data"]["lifetime"]["all"]["properties"]["scorePerMinute"], 3)
+                scorepm = round(data["data"]["lifetime"]["all"]["properties"]["scorePerMinute"], 2)
                 embed.add_field(name="Score Per Minute", value=scorepm, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"] != "N/A":
                 timePlayedTotal = round(data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"])
