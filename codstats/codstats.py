@@ -28,7 +28,7 @@ class CODSTATS(commands.Cog):
             data = await request.json()
         try:
             username = data["data"]["username"]
-            level = data["data"]["level"]
+            level = round(data["data"]["level"])
             userlvl = f"{username} - Level: {level}"
             embed = discord.Embed(title=userlvl, color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
