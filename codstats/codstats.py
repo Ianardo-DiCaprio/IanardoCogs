@@ -57,13 +57,14 @@ class CODSTATS(commands.Cog):
         platform = platform.replace("xbox", "xbl")
         username = username.replace(" ", "%20")
         username = username.replace("#", "%23")
-        if platform == "pc" or "xbl" or "psn":
+        if platform != "pc" or "xbl" or "psn":
+            await ctx.send("That platform doesn't exist, please use pc, xbox or psn.")
+            return
+        else:   
             async with self._session.get(
                     f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
             ) as request:
                 data = await request.json()
-        else:
-            await ctx.send("That platform doesn't exist, please use pc, xbox or psn.")
         
         try:
             username = data["data"]["username"]
