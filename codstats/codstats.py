@@ -28,8 +28,7 @@ class CODSTATS(commands.Cog):
             data = await request.json()
         username = data["data"]["username"]
         level = data["data"]["level"]
-        usernamelvl = username + level
-        embed = discord.Embed(title=usernamelvl, color=0x8C05D2)
+        embed = discord.Embed(title=username, color=0x8C05D2)
         if data["data"]["lifetime"]["all"]["kills"] != "N/A":
             embed.add_field(name="Kills", value=data["data"]["lifetime"]["all"]["kills"], inline=True)
         if data["data"]["lifetime"]["all"]["kdRatio"] != "N/A":
