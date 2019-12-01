@@ -53,6 +53,8 @@ class CODSTATS(commands.Cog):
             user = ctx.author
             platform = await self.conf.user(user).platform()
             username = await self.conf.user(user).username()
+        username = username.replace(" ", "%20")
+        username = username.replace("#", "%23")
         platform = platform.replace("pc", "battle")
         platform = platform.replace("xbox", "xbl")
         async with self._session.get(
