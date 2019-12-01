@@ -50,6 +50,7 @@ class CODSTATS(commands.Cog):
         For platform use pc, xbox, psn"""
         embeds = []
         if platform + username == "":
+            user = ctx.author
             platform = await self.conf.user(user).platform()
             username = await self.conf.user(user).username()
         platform = platform.replace("pc", "battle")
