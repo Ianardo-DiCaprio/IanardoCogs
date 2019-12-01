@@ -26,30 +26,30 @@ class CODSTATS(commands.Cog):
                 f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
         ) as request:
             data = await request.json()
-        username = data["username"]
-        level = data["level"]
+        username = data["data"]["username"]
+        level = data["data"]["level"]
         usernamelvl = username + level
         embed = discord.Embed(title=usernamelvl, color=0x8C05D2)
-        if data["kills"] != "N/A":
-            embed.add_field(name="Kills", value=data["kills"], inline=True)
-        if data["kdRatio"] != "N/A":
-            embed.add_field(name="K/D Ratio", value=data["kdRatio"], inline=True)
-        if data["recordKillStreak"] != "N/A":
-            embed.add_field(name="Highest Killstreak", value=data["recordKillStreak"], inline=True)
-        if data["accuracy"] != "N/A":
-            embed.add_field(name="Average Accuracy", value=data["accuracy"], inline=True)
-        if data["wins"] != "N/A":
-            embed.add_field(name="Total Wins", value=data["wins"], inline=True)
-        if data["winLossRatio"] != "N/A":
-            embed.add_field(name="Win/Loss Ratio", value=data["winLossRatio"], inline=True)
-        if data["currentWinStreak"] != "N/A":
-            embed.add_field(name="Current Win Streak", value=data["currentWinStreak"], inline=True)
-        if data["gamesPlayed"] != "N/A":
-            embed.add_field(name="Games Played", value=data["gamesPlayed"], inline=True)
-        if data["scorePerMinute"] != "N/A":
-            embed.add_field(name="Score Per Minute", value=data["scorePerMinute"], inline=True)
-        if data["timePlayedTotal"] != "N/A":
-            embed.add_field(name="Total Play Time (in minutes)", value=data["timePlayedTotal"], inline=True)
+        if data["data"]["lifetime"]["all"]["kills"] != "N/A":
+            embed.add_field(name="Kills", value=data["data"]["lifetime"]["all"]["kills"], inline=True)
+        if data["data"]["lifetime"]["all"]["kdRatio"] != "N/A":
+            embed.add_field(name="K/D Ratio", value=data["data"]["lifetime"]["all"]["kdRatio"], inline=True)
+        if data["data"]["lifetime"]["all"]["recordKillStreak"] != "N/A":
+            embed.add_field(name="Highest Killstreak", value=data["data"]["lifetime"]["all"]["recordKillStreak"], inline=True)
+        if data["data"]["lifetime"]["all"]["accuracy"] != "N/A":
+            embed.add_field(name="Average Accuracy", value=data["data"]["lifetime"]["all"]["accuracy"], inline=True)
+        if data["data"]["lifetime"]["all"]["wins"] != "N/A":
+            embed.add_field(name="Total Wins", value=data["data"]["lifetime"]["all"]["wins"], inline=True)
+        if data["data"]["lifetime"]["all"]["winLossRatio"] != "N/A":
+            embed.add_field(name="Win/Loss Ratio", value=data["data"]["lifetime"]["all"]["winLossRatio"], inline=True)
+        if data["data"]["lifetime"]["all"]["currentWinStreak"] != "N/A":
+            embed.add_field(name="Current Win Streak", value=data["data"]["lifetime"]["all"]["currentWinStreak"], inline=True)
+        if data["data"]["lifetime"]["all"]["gamesPlayed"] != "N/A":
+            embed.add_field(name="Games Played", value=data["data"]["lifetime"]["all"]["gamesPlayed"], inline=True)
+        if data["data"]["lifetime"]["all"]["scorePerMinute"] != "N/A":
+            embed.add_field(name="Score Per Minute", value=data["data"]["lifetime"]["all"]["scorePerMinute"], inline=True)
+        if data["data"]["lifetime"]["all"]["timePlayedTotal"] != "N/A":
+            embed.add_field(name="Total Play Time (in minutes)", value=data["data"]["lifetime"]["all"]["timePlayedTotal"], inline=True)
         embeds.append(embed)
         await menu(
             ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20
