@@ -49,7 +49,7 @@ class CODSTATS(commands.Cog):
         """Command to get your COD: MW stats
         For platform use pc, xbox, psn"""
         embeds = []
-        if platform + username = "":
+        if platform + username == "":
             platform = await self.conf.user(user).platform()
             username = await self.conf.user(user).username()
         platform = platform.replace("pc", "battle")
