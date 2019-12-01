@@ -30,6 +30,7 @@ class CODSTATS(commands.Cog):
         level = data["data"]["level"]
         userlvl = f"{username} - Level: {level}"
         embed = discord.Embed(title=userlvl, color=0x8C05D2)
+        embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
         if data["data"]["lifetime"]["all"]["properties"]["kills"] != "N/A":
             embed.add_field(name="Kills", value=data["data"]["lifetime"]["all"]["properties"]["kills"], inline=True)
         if data["data"]["lifetime"]["all"]["properties"]["kdRatio"] != "N/A":
