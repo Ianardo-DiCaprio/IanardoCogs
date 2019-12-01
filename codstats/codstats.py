@@ -57,13 +57,10 @@ class CODSTATS(commands.Cog):
         platform = platform.replace("xbox", "xbl")
         username = username.replace(" ", "%20")
         username = username.replace("#", "%23")
-        if platform != "battle" or "xbl" or "psn":
-            await ctx.send("That platform doesn't exist, please use pc, xbox or psn.")
-        else:   
-            async with self._session.get(
-                    f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
-            ) as request:
-                data = await request.json()
+        async with self._session.get(
+                f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
+        ) as request:
+            data = await request.json()
         
         try:
             username = data["data"]["username"]
@@ -112,4 +109,4 @@ class CODSTATS(commands.Cog):
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=20
             )
         except:
-            await ctx.send("We couldn't find that profile on that platform")
+            await ctx.send("Either the platform or username is incorrect, please make sure to use pc, psn or xbox for the platform and make sure you spelt your name correctly.")
