@@ -17,7 +17,7 @@ class CODSTATS(commands.Cog):
         self.bot.loop.create_task(self._session.close())
 
     @commands.command()
-    async def codstats(self, ctx, platform: str = "pc", *, username):
+    async def codstats(self, ctx, platform, *, username):
         """Command to get your COD: MW stats
         For platform use pc, xbox, psn"""
         embeds = []
