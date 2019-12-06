@@ -1,4 +1,5 @@
 import discord
+from redbot.core import commands
 
 Cog = getattr(commands, "Cog", object)
 listener = getattr(Cog, "listener", lambda: lambda x: x)
