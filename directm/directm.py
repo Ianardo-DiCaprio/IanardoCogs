@@ -11,5 +11,5 @@ class DirectM(commands.Cog):
     async def on_message_without_command(self, ctx):
         if ctx.guild is None:
             channel = ctx.channel
-            return await channel.send("Test.")
+            await channel.send("Test.")
 			
