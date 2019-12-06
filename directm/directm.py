@@ -17,5 +17,5 @@ class DirectM(commands.Cog):
         if message.author.bot:
             return
         if await self.allow_in_dm(ctx):
-            return await ctx.send("This is a test.")
+            await ctx.send("This is a test.")
 			
