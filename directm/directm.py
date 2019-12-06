@@ -13,6 +13,6 @@ class DirectM(commands.Cog):
             return True
 
     @commands.Cog.listener()
-    async def on_message_without_command(self, ctx, message):
+    async def on_message_without_command(self, ctx):
         await ctx.send("This is a test.")
 			
