@@ -15,5 +15,6 @@ class DirectM(commands.Cog):
     @commands.Cog.listener()
     async def on_message_without_command(self, ctx):
         if await self.allow_in_dm(ctx):
-            return await ctx.send("This command is not available in DM's on this bot.")
+            channel = ctx.channel
+            return await channel.send("This command is not available in DM's on this bot.")
 			
