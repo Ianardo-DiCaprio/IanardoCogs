@@ -4,6 +4,9 @@ from redbot.core import commands
 
 class DirectM(Cog):
 
+    def __init__(self, bot):
+        self.bot = bot
+
     async def allow_in_dm(self, ctx):
         """Checks if the bank is global and allows the command in dm"""
         if ctx.guild is None:
