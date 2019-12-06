@@ -1,5 +1,6 @@
 import discord
 
+Cog = getattr(commands, "Cog", object)
 listener = getattr(Cog, "listener", lambda: lambda x: x)
 
 class DirectM(Cog):
