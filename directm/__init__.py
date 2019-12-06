@@ -1,5 +1,6 @@
 from .directm import DirectM
 
 
-def setup(bot):
-    bot.add_cog(DirectM(bot))
+async def setup(bot):
+    cog = DirectM(bot)
+    bot.add_cog(cog)
