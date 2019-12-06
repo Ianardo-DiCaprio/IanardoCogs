@@ -14,6 +14,5 @@ class DirectM(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_without_command(self, ctx, message):
-        if await self.allow_in_dm(ctx):
-            await ctx.send("This is a test.")
+        await ctx.send("This is a test.")
 			
