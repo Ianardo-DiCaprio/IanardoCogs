@@ -15,6 +15,6 @@ class DirectM(commands.Cog):
             channel = ctx.channel
             await channel.send("**How to get support**\n"
                 "Follow these steps! \n"
-                "Type `[ticket new` In the channel that is created ask your question"
-                "and a mod will be there to help you shortly :slight_smile:")
+                "Type `[ticket new` in <#649131220994752523> and then ask your question"
+                "in the channel is creates and a mod will be there to help you shortly :slight_smile:")
 			
