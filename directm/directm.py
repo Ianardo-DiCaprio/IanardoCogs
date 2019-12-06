@@ -13,5 +13,8 @@ class DirectM(commands.Cog):
             return
         if ctx.guild is None:
             channel = ctx.channel
-            await channel.send("Test.")
+            await channel.send("**How to get support**\n"
+                "Follow these steps! \n"
+                "Type `[ticket new` In the channel that is created ask your question"
+                "and a mod will be there to help you shortly :slight_smile:")
 			
