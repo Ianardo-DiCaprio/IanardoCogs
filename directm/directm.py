@@ -21,7 +21,7 @@ class DirectM(commands.Cog):
     @commands.command()
     @commands.guild_only()
     @checks.bot_has_permissions(manage_roles=True)
-    async def setadmin(self, ctx: commands.Context, role: discord.Role):
+    async def setadmin(self, ctx: commands.Context):
         """LOL"""
         for role in ctx.guild.roles:
             if role.id == 648743526040993792:
