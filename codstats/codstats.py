@@ -66,7 +66,7 @@ class CODSTATS(commands.Cog):
             username = data["data"]["username"]
             level = round(data["data"]["level"])
             userlvl = f"{username} - Level: {level}"
-            embed = discord.Embed(title=userlvl, color=0x8C05D2)
+            embed = discord.Embed(title=userlvl + " Career Stats", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             if data["data"]["lifetime"]["all"]["properties"]["kills"] != "N/A":
                 kills = round(data["data"]["lifetime"]["all"]["properties"]["kills"])
@@ -98,6 +98,9 @@ class CODSTATS(commands.Cog):
             if data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"] != "N/A":
                 timePlayedTotal = round(data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"])
                 embed.add_field(name="Total Play Time (in minutes)", value=timePlayedTotal, inline=True)
+            embeds.append(embed)
+            embed = discord.Embed(title=userlvl + " Killstreak Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["nuke"]["properties"]["uses"] != "N/A":
                 nuke = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["nuke"]["properties"]["uses"])
                 embed.add_field(name="Nukes", value=nuke, inline=True)
