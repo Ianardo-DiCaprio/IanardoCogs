@@ -71,17 +71,23 @@ class CODSTATS(commands.Cog):
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             embed.set_footer(text="React to change pages for more stats!")
             if data["data"]["lifetime"]["all"]["properties"]["totalShots"] != "N/A":
-                embed.add_field(name="Total Shots", value=data["data"]["lifetime"]["all"]["properties"]["totalShots"], inline=True)
+                totalshots = round(data["data"]["lifetime"]["all"]["properties"]["totalShots"])
+                embed.add_field(name="Total Shots", value=totalshots, inline=True)
             if data["data"]["prestige"] != "N/A":
-                embed.add_field(name="Prestige", value=data["data"]["prestige"], inline=True)
+                prestige = round(data["data"]["prestige"])
+                embed.add_field(name="Prestige", value=prestige, inline=True)
             if data["data"]["totalXp"] != "N/A":
-                embed.add_field(name="Total XP", value=data["data"]["totalXp"], inline=True)
+                totalxp = round(data["data"]["totalXp"])
+                embed.add_field(name="Total XP", value=totalxp, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"] != "N/A":
-                embed.add_field(name="Total Playtime", value=data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"], inline=True)
+                timeplayedtotal = round(data["data"]["lifetime"]["all"]["properties"]["timePlayedTotal"])
+                embed.add_field(name="Total Playtime", value=timeplayedtotal, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["hits"] != "N/A":
-                embed.add_field(name="Total Hits", value=data["data"]["lifetime"]["all"]["properties"]["hits"], inline=True)
+                hits = round(data["data"]["lifetime"]["all"]["properties"]["hits"])
+                embed.add_field(name="Total Hits", value=hits, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["score"] != "N/A":
-                embed.add_field(name="Total Score", value=data["data"]["lifetime"]["all"]["properties"]["score"], inline=True)
+                score = round(data["data"]["lifetime"]["all"]["properties"]["score"])
+                embed.add_field(name="Total Score", value=score, inline=True)
             embeds.append(embed)
             #Game Stats
             embed = discord.Embed(title=userlvl + " - Game Stats", color=0x8C05D2)
