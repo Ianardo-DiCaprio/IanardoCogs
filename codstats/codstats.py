@@ -140,49 +140,69 @@ class CODSTATS(commands.Cog):
                 embed.add_field(name="Highest None Killsteak Kills", value=reckills, inline=True)
             embeds.append(embed)
             #killstreak Stats
-            embed = discord.Embed(title=userlvl + " - Killstreak Stats", color=0x8C05D2)
+            embed = discord.Embed(title=userlvl + " - Killstreak Uses", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             embed.set_footer(text="React to change pages for more stats!")
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["precision_airstrike"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Precision Airstrike", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["precision_airstrike"]["properties"]["uses"], inline=True)
+                precair = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["precision_airstrike"]["properties"]["uses"])
+                embed.add_field(name="Precision Airstrike", value=precair, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["cruise_predator"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Cruise Predator", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["cruise_predator"]["properties"]["uses"], inline=True)
+                crupred = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["cruise_predator"]["properties"]["uses"])
+                embed.add_field(name="Cruise Predator", value=crupred, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["manual_turret"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Manual Turret", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["manual_turret"]["properties"]["uses"], inline=True)
+                mantur = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["manual_turret"]["properties"]["uses"])
+                embed.add_field(name="Manual Turret", value=mantur, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["white_phosphorus"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="White Phosphorus", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["white_phosphorus"]["properties"]["uses"], inline=True)
+                whipho = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["white_phosphorus"]["properties"]["uses"])
+                embed.add_field(name="White Phosphorus", value=whipho, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["hover_jet"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Hover Jet", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["hover_jet"]["properties"]["uses"], inline=True)
+                hovjet = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["hover_jet"]["properties"]["uses"])
+                embed.add_field(name="Hover Jet", value=hovjet, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["chopper_gunner"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Chopper Gunner", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["chopper_gunner"]["properties"]["uses"], inline=True)
+                chopgun = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["chopper_gunner"]["properties"]["uses"])
+                embed.add_field(name="Chopper Gunner", value=chopgun, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["gunship"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Gunship", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["gunship"]["properties"]["uses"], inline=True)
+                gunship = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["gunship"]["properties"]["uses"])
+                embed.add_field(name="Gunship", value=gunship, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["sentry_gun"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Sentry Gun", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["sentry_gun"]["properties"]["uses"], inline=True)
+                sengun = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["sentry_gun"]["properties"]["uses"])
+                embed.add_field(name="Sentry Gun", value=sengun, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["toma_strike"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Toma Strike", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["toma_strike"]["properties"]["uses"], inline=True)
+                tomstri = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["toma_strike"]["properties"]["uses"])
+                embed.add_field(name="Toma Strike", value=tomstri, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["nuke"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Nuke", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["nuke"]["properties"]["uses"], inline=True)
+                nuke = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["nuke"]["properties"]["uses"])
+                embed.add_field(name="Nuke", value=nuke, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["juggernaut"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Juggernaut", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["juggernaut"]["properties"]["uses"], inline=True)
+                jugger = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["juggernaut"]["properties"]["uses"])
+                embed.add_field(name="Juggernaut", value=jugger, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["pac_sentry"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Pac Sentry", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["pac_sentry"]["properties"]["uses"], inline=True)
+                pacsen = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["pac_sentry"]["properties"]["uses"])
+                embed.add_field(name="Pac Sentry", value=pacsen, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["chopper_support"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Chopper Support", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["chopper_support"]["properties"]["uses"], inline=True)
+                chopsup = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["chopper_support"]["properties"]["uses"])
+                embed.add_field(name="Chopper Support", value=chopsup, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["bradley"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Bradley", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["bradley"]["properties"]["uses"], inline=True)
+                bradley = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["bradley"]["properties"]["uses"])
+                embed.add_field(name="Bradley", value=bradley, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["airdrop"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Air Drop", value=data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["airdrop"]["properties"]["uses"], inline=True)
+                airdro = round(data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["airdrop"]["properties"]["uses"])
+                embed.add_field(name="Air Drop", value=airdro, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["radar_drone_overwatch"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Radar Drone Overwatch", value=data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["radar_drone_overwatch"]["properties"]["uses"], inline=True)
+                radrov = round(data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["radar_drone_overwatch"]["properties"]["uses"])
+                embed.add_field(name="Radar Drone Overwatch", value=radrov, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["scrambler_drone_guard"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Scrambler Drone Guard", value=data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["scrambler_drone_guard"]["properties"]["uses"], inline=True)
+                scdrgu = round(data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["scrambler_drone_guard"]["properties"]["uses"])
+                embed.add_field(name="Scrambler Drone Guard", value=scdrgu, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["uav"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="UAV", value=data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["uav"]["properties"]["uses"], inline=True)
+                uav = round(data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["uav"]["properties"]["uses"])
+                embed.add_field(name="UAV", value=uav, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["airdrop_multiple"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Airdrop Multiple", value=data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["airdrop_multiple"]["properties"]["uses"], inline=True)
+                airmult = round(data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["airdrop_multiple"]["properties"]["uses"])
+                embed.add_field(name="Airdrop Multiple", value=airmult, inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["directional_uav"]["properties"]["uses"] != "N/A":
-                embed.add_field(name="Directional UAV", value=data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["directional_uav"]["properties"]["uses"], inline=True)
+                diruav = round(data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["directional_uav"]["properties"]["uses"])
+                embed.add_field(name="Directional UAV", value=diruav, inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
