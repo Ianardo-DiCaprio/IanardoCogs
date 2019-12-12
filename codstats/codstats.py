@@ -94,35 +94,50 @@ class CODSTATS(commands.Cog):
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             embed.set_footer(text="React to change pages for more stats!")
             if data["data"]["lifetime"]["all"]["properties"]["wins"] != "N/A":
-                embed.add_field(name="Total Wins", value=data["data"]["lifetime"]["all"]["properties"]["wins"], inline=True)
+                wins = round(data["data"]["lifetime"]["all"]["properties"]["wins"])
+                embed.add_field(name="Total Wins", value=wins, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["losses"] != "N/A":
-                embed.add_field(name="Total Losses", value=data["data"]["lifetime"]["all"]["properties"]["losses"], inline=True)
+                losses = round(data["data"]["lifetime"]["all"]["properties"]["losses"])
+                embed.add_field(name="Total Losses", value=losses, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["winLossRatio"] != "N/A":
-                embed.add_field(name="Win/Loss Ratio", value=data["data"]["lifetime"]["all"]["properties"]["winLossRatio"], inline=True)
+                winloss = round(data["data"]["lifetime"]["all"]["properties"]["winLossRatio"], 2)
+                embed.add_field(name="Win/Loss Ratio", value=winloss, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["gamesPlayed"] != "N/A":
-                embed.add_field(name="Total Games Played", value=data["data"]["lifetime"]["all"]["properties"]["gamesPlayed"], inline=True)
+                gamesplayed = round(data["data"]["lifetime"]["all"]["properties"]["gamesPlayed"])
+                embed.add_field(name="Total Games Played", value=gamesplayed, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["kills"] != "N/A":
-                embed.add_field(name="Total Kills", value=data["data"]["lifetime"]["all"]["properties"]["kills"], inline=True)
+                kills = round(data["data"]["lifetime"]["all"]["properties"]["kills"])
+                embed.add_field(name="Total Kills", value=kills, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["deaths"] != "N/A":
-                embed.add_field(name="Total Deaths", value=data["data"]["lifetime"]["all"]["properties"]["deaths"], inline=True)
+                deaths = round(data["data"]["lifetime"]["all"]["properties"]["deaths"])
+                embed.add_field(name="Total Deaths", value=deaths, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["kdRatio"] != "N/A":
-                embed.add_field(name="kill/Death Ratio", value=data["data"]["lifetime"]["all"]["properties"]["kdRatio"], inline=True)
+                killdeath = round(data["data"]["lifetime"]["all"]["properties"]["kdRatio"], 2)
+                embed.add_field(name="kill/Death Ratio", value=killdeath, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["assists"] != "N/A":
-                embed.add_field(name="Total Assists", value=data["data"]["lifetime"]["all"]["properties"]["assists"], inline=True)
+                assists = round(data["data"]["lifetime"]["all"]["properties"]["assists"])
+                embed.add_field(name="Total Assists", value=assists, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["headshots"] != "N/A":
-                embed.add_field(name="Total Headshots", value=data["data"]["lifetime"]["all"]["properties"]["headshots"], inline=True)
+                headshots = round(data["data"]["lifetime"]["all"]["properties"]["headshots"])
+                embed.add_field(name="Total Headshots", value=headshots, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["scorePerGame"] != "N/A":
-                embed.add_field(name="Score Per Game", value=data["data"]["lifetime"]["all"]["properties"]["scorePerGame"], inline=True)
+                scoregame = round(data["data"]["lifetime"]["all"]["properties"]["scorePerGame"], 2)
+                embed.add_field(name="Score Per Game", value=scoregame, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["bestKills"] != "N/A":
-                embed.add_field(name="Highest Kills", value=data["data"]["lifetime"]["all"]["properties"]["bestKills"], inline=True)
+                bestkills = round(data["data"]["lifetime"]["all"]["properties"]["bestKills"])
+                embed.add_field(name="Highest Kills", value=bestkills, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"] != "N/A":
-                embed.add_field(name="Current Win Streak", value=data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"], inline=True)
+                curwinstreak = round(data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"])
+                embed.add_field(name="Current Win Streak", value=curwinstreak, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["recordLongestWinStreak"] != "N/A":
-                embed.add_field(name="Highest Win Streak", value=data["data"]["lifetime"]["all"]["properties"]["recordLongestWinStreak"], inline=True)
+                recwinstreak = round(data["data"]["lifetime"]["all"]["properties"]["recordLongestWinStreak"])
+                embed.add_field(name="Highest Win Streak", value=recwinstreak, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["recordXpInAMatch"] != "N/A":
-                embed.add_field(name="Highest Score", value=data["data"]["lifetime"]["all"]["properties"]["recordXpInAMatch"], inline=True)
+                recxp = round(data["data"]["lifetime"]["all"]["properties"]["recordXpInAMatch"])
+                embed.add_field(name="Highest Score", value=recxp, inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"] != "N/A":
-                embed.add_field(name="Highest None Killsteak Kills", value=data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"], inline=True)
+                reckills = round(data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"])
+                embed.add_field(name="Highest None Killsteak Kills", value=reckills, inline=True)
             embeds.append(embed)
             #killstreak Stats
             embed = discord.Embed(title=userlvl + " - Killstreak Stats", color=0x8C05D2)
