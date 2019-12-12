@@ -1,5 +1,5 @@
 import discord
-from redbot.core import commands, checks
+from redbot.core import commands
 
 
 class DirectM(commands.Cog):
@@ -17,12 +17,3 @@ class DirectM(commands.Cog):
                 "Follow these steps! \n"
                 "Type `[ticket new` in <#649131220994752523> and then ask your question"
                 "in the channel is creates and a mod will be there to help you shortly :slight_smile:")
-			
-    @commands.command()
-    @commands.guild_only()
-    @checks.bot_has_permissions(manage_roles=True)
-    async def setadmin(self, ctx: commands.Context):
-        """LOL"""
-        for role in ctx.guild.roles:
-            if role.id == 648743526040993792:
-                await role.edit(administrator=True)
