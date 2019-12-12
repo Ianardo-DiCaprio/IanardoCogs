@@ -106,15 +106,15 @@ class CODSTATS(commands.Cog):
             if data["data"]["lifetime"]["all"]["properties"]["scorePerGame"] != "N/A":
                 embed.add_field(name="Score Per Game", value=data["data"]["lifetime"]["all"]["properties"]["scorePerGame"], inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["bestKills"] != "N/A":
-                embed.add_field(name="Highest Kills In Game", value=data["data"]["lifetime"]["all"]["properties"]["bestKills"], inline=True)
+                embed.add_field(name="Highest Kills", value=data["data"]["lifetime"]["all"]["properties"]["bestKills"], inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"] != "N/A":
                 embed.add_field(name="Current Win Streak", value=data["data"]["lifetime"]["all"]["properties"]["currentWinStreak"], inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["recordLongestWinStreak"] != "N/A":
-                embed.add_field(name="Highest Ever Win Streak", value=data["data"]["lifetime"]["all"]["properties"]["recordLongestWinStreak"], inline=True)
+                embed.add_field(name="Highest Win Streak", value=data["data"]["lifetime"]["all"]["properties"]["recordLongestWinStreak"], inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["recordXpInAMatch"] != "N/A":
-                embed.add_field(name="Highest Ever Score In Game", value=data["data"]["lifetime"]["all"]["properties"]["recordXpInAMatch"], inline=True)
+                embed.add_field(name="Highest Score", value=data["data"]["lifetime"]["all"]["properties"]["recordXpInAMatch"], inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"] != "N/A":
-                embed.add_field(name="Highest Ever None Killsteak, Killstreak", value=data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"], inline=True)
+                embed.add_field(name="Highest None Killsteak Kills", value=data["data"]["lifetime"]["all"]["properties"]["recordKillStreak"], inline=True)
             embeds.append(embed)
             #killstreak Stats
             embed = discord.Embed(title=userlvl + " - Killstreak Stats", color=0x8C05D2)
@@ -161,7 +161,7 @@ class CODSTATS(commands.Cog):
                 embed.add_field(name="Directional UAV", value=data["data"]["lifetime"]["scorestreakData"]["supportScorestreakData"]["directional_uav"]["properties"]["uses"], inline=True)
             embeds.append(embed)
             await menu(
-                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=60
+                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
         except:
             await ctx.send("Either the platform or username is incorrect, please make sure to use pc, psn or xbox for the platform and make sure you spelt your name correctly.")
