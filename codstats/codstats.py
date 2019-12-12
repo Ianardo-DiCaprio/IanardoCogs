@@ -69,6 +69,7 @@ class CODSTATS(commands.Cog):
             #Career Stats
             embed = discord.Embed(title=userlvl + " - Career Stats", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
             if data["data"]["lifetime"]["all"]["properties"]["totalShots"] != "N/A":
                 embed.add_field(name="Total Shots", value=data["data"]["lifetime"]["all"]["properties"]["totalShots"], inline=True)
             if data["data"]["prestige"] != "N/A":
@@ -85,6 +86,7 @@ class CODSTATS(commands.Cog):
             #Game Stats
             embed = discord.Embed(title=userlvl + " - Game Stats", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
             if data["data"]["lifetime"]["all"]["properties"]["wins"] != "N/A":
                 embed.add_field(name="Total Wins", value=data["data"]["lifetime"]["all"]["properties"]["wins"], inline=True)
             if data["data"]["lifetime"]["all"]["properties"]["losses"] != "N/A":
@@ -119,6 +121,7 @@ class CODSTATS(commands.Cog):
             #killstreak Stats
             embed = discord.Embed(title=userlvl + " - Killstreak Stats", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["precision_airstrike"]["properties"]["uses"] != "N/A":
                 embed.add_field(name="Precision Airstrike", value=data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["precision_airstrike"]["properties"]["uses"], inline=True)
             if data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["cruise_predator"]["properties"]["uses"] != "N/A":
