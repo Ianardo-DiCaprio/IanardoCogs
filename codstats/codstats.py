@@ -209,8 +209,8 @@ class CODSTATS(commands.Cog):
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             embed.set_footer(text="React to change pages for more stats!")
             if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mike4"]["properties"]["kills"] != "N/A":
-                m4a1 = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mike4"]["properties"]["kills"])
-                embed.add_field(name="M4A1 kills", value=m4a1, inline=True)
+                m4a1 = "Kills = " + round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mike4"]["properties"]["kills"]) + "Headshots = " + round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mike4"]["properties"]["headShots"])
+                embed.add_field(name="M4A1 Stats", value=m4a1, inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
