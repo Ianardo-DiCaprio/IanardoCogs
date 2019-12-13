@@ -204,14 +204,30 @@ class CODSTATS(commands.Cog):
                 nuke = round(data["data"]["lifetime"]["scorestreakData"]["lethalScorestreakData"]["nuke"]["properties"]["uses"])
                 embed.add_field(name="Nuke", value=nuke, inline=True)
             embeds.append(embed)
-            #Weapon Stats
-            embed = discord.Embed(title=userlvl + " - Weapon stats", color=0x8C05D2)
+            #Assault Rifle Stats
+            embed = discord.Embed(title=userlvl + " - Assault Rifle Stats", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_kilo433"]["properties"]["kills"] != "N/A":
+                kilo = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_kilo433"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_kilo433"]["properties"]["headShots"])
+                embed.add_field(name="Kilo 141 Stats", value=f"Kills = {kilo} \n Headshots = {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mike4"]["properties"]["kills"] != "N/A":
                 m4a1 = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mike4"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mike4"]["properties"]["headShots"])
                 embed.add_field(name="M4A1 Stats", value=f"Kills = {m4a1} \n Headshots = {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_falpha"]["properties"]["kills"] != "N/A":
+                FR = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_falpha"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_falpha"]["properties"]["headShots"])
+                embed.add_field(name="FR 5.56 Stats", value=f"Kills = {FR} \n Headshots = {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_asierra12"]["properties"]["kills"] != "N/A":
+                oden = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_asierra12"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_asierra12"]["properties"]["headShots"])
+                embed.add_field(name="Oden Stats", value=f"Kills = {oden} \n Headshots = {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_akilo47"]["properties"]["kills"] != "N/A":
+                ak = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_akilo47"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_akilo47"]["properties"]["headShots"])
+                embed.add_field(name="AK-47 Stats", value=f"Kills = {ak} \n Headshots = {headshots}", inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
