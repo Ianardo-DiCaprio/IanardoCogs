@@ -484,6 +484,31 @@ class CODSTATS(commands.Cog):
                 tdmtime = round(data["data"]["lifetime"]["mode"]["hc_hq"]["properties"]["timePlayed"])
                 embed.add_field(name="**Hardcore Headquarters Stats**", value=f"**Kills:** {hqkills} \n **Deaths:** {hqdeaths} \n **Kill/Death Ratio:** {hqkd} \n **Captures:** {hqcap} \n **Defends:** {hqdef} \n **Score:** {hqscore} \n **Score Per Minute:** {hqspm} \n **Time Played:** {hqtime}", inline=True)
             embeds.append(embed)
+            #Kill Confirmed Stats
+            embed = discord.Embed(title=userlvl + " - Kill Confirmed Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["mode"]["conf"]["properties"]["kills"] != "N/A":
+                kckills = round(data["data"]["lifetime"]["mode"]["conf"]["properties"]["kills"])
+                kcdeaths = round(data["data"]["lifetime"]["mode"]["conf"]["properties"]["deaths"])
+                kccon = round(data["data"]["lifetime"]["mode"]["conf"]["properties"]["confirms"])
+                kcden = round(data["data"]["lifetime"]["mode"]["conf"]["properties"]["denies"])
+                kckd = round(data["data"]["lifetime"]["mode"]["conf"]["properties"]["kdRatio"], 2)
+                kcscore = round(data["data"]["lifetime"]["mode"]["conf"]["properties"]["score"])
+                kcspm = round(data["data"]["lifetime"]["mode"]["conf"]["properties"]["scorePerMinute"], 2)
+                kctime = round(data["data"]["lifetime"]["mode"]["conf"]["properties"]["timePlayed"])
+                embed.add_field(name="**Kill Confirmed Stats**", value=f"**Kills:** {kckills} \n **Deaths:** {kcdeaths} \n **Kill/Death Ratio:** {kckd} \n **Confirms:** {kccon} \n **Denies:** {kcden} \n **Score:** {kcscore} \n **Score Per Minute:** {kcspm} \n **Time Played:** {kctime}", inline=True)
+            if data["data"]["lifetime"]["mode"]["hc_conf"]["properties"]["kills"] != "N/A":
+                kckills = round(data["data"]["lifetime"]["mode"]["hc_conf"]["properties"]["kills"])
+                kcdeaths = round(data["data"]["lifetime"]["mode"]["hc_conf"]["properties"]["deaths"])
+                kccon = round(data["data"]["lifetime"]["mode"]["hc_conf"]["properties"]["confirms"])
+                kcden = round(data["data"]["lifetime"]["mode"]["hc_conf"]["properties"]["denies"])
+                kckd = round(data["data"]["lifetime"]["mode"]["hc_conf"]["properties"]["kdRatio"], 2)
+                kcscore = round(data["data"]["lifetime"]["mode"]["hc_conf"]["properties"]["score"])
+                kcspm = round(data["data"]["lifetime"]["mode"]["hc_conf"]["properties"]["scorePerMinute"], 2)
+                kctime = round(data["data"]["lifetime"]["mode"]["hc_conf"]["properties"]["timePlayed"])
+                embed.add_field(name="**Hardcore Kill Confirmed Stats**", value=f"**Kills:** {kckills} \n **Deaths:** {kcdeaths} \n **Kill/Death Ratio:** {kckd} \n **Confirms:** {kccon} \n **Denies:** {kcden} \n **Score:** {kcscore} \n **Score Per Minute:** {kcspm} \n **Time Played:** {kctime}", inline=True)
+            embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
