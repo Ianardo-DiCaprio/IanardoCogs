@@ -261,6 +261,10 @@ class CODSTATS(commands.Cog):
                 pkm = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["headShots"])
                 embed.add_field(name="PKM Stats", value=f"**Kills:** {pkm} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_dblmg"]["properties"]["kills"] != "N/A":
+                holger = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_dblmg"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_dblmg"]["properties"]["headShots"])
+                embed.add_field(name="Holger-26 Stats", value=f"**Kills:** {holger} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             #Launcher Stats
             embed = discord.Embed(title=userlvl + " - Launcher Stats", color=0x8C05D2)
