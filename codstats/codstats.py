@@ -402,7 +402,9 @@ class CODSTATS(commands.Cog):
             embed.set_footer(text="React to change pages for more stats!")
             if data["data"]["lifetime"]["mode"]["dom"]["properties"]["kills"] != "N/A":
                 domkills = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["kills"])
-                embed.add_field(name="**Dom Stats**", value=f"**Kills:** {domkills}", inline=True)
+                domdeaths = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["deaths"])
+                domassists = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["assists"])
+                embed.add_field(name="**Dom Stats**", value=f"**Kills:** {domkills} \n **Deaths:** {domdeaths} \n **Assists:** {domassists}", inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
