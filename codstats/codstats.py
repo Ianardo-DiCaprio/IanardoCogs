@@ -211,26 +211,92 @@ class CODSTATS(commands.Cog):
             if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_kilo433"]["properties"]["kills"] != "N/A":
                 kilo = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_kilo433"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_kilo433"]["properties"]["headShots"])
-                embed.add_field(name="Kilo 141 Stats", value=f"Kills = {kilo} \n Headshots = {headshots}", inline=True)
+                embed.add_field(name="Kilo 141 Stats", value=f"**Kills:** {kilo} \n **Headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mike4"]["properties"]["kills"] != "N/A":
                 m4a1 = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mike4"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mike4"]["properties"]["headShots"])
-                embed.add_field(name="M4A1 Stats", value=f"Kills = {m4a1} \n Headshots = {headshots}", inline=True)
+                embed.add_field(name="M4A1 Stats", value=f"**Kills:** {m4a1} \n **Headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_falpha"]["properties"]["kills"] != "N/A":
                 FR = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_falpha"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_falpha"]["properties"]["headShots"])
-                embed.add_field(name="FR 5.56 Stats", value=f"Kills = {FR} \n Headshots = {headshots}", inline=True)
+                embed.add_field(name="FR 5.56 Stats", value=f"**Kills:** {FR} \n **Headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_asierra12"]["properties"]["kills"] != "N/A":
                 oden = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_asierra12"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_asierra12"]["properties"]["headShots"])
-                embed.add_field(name="Oden Stats", value=f"Kills = {oden} \n Headshots = {headshots}", inline=True)
+                embed.add_field(name="Oden Stats", value=f"**Kills:** {oden} \n **Headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_akilo47"]["properties"]["kills"] != "N/A":
                 ak = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_akilo47"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_akilo47"]["properties"]["headShots"])
-                embed.add_field(name="AK-47 Stats", value=f"Kills = {ak} \n Headshots = {headshots}", inline=True)
+                embed.add_field(name="AK-47 Stats", value=f"**Kills:** {ak} \n **Headshots:** {headshots}", inline=True)
+            embeds.append(embed)
+            #LMG Stats
+            embed = discord.Embed(title=userlvl + " - LMG Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["kills"] != "N/A":
+                m91 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["headShots"])
+                embed.add_field(name="M91 Stats", value=f"**Kills:** {m91} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["kills"] != "N/A":
+                sa87 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["headShots"])
+                embed.add_field(name="SA87 Stats", value=f"**Kills:** {sa87} \n **Headshots:** {headshots}", inline=True)
+            embeds.append(embed)
+            #Launcher Stats
+            embed = discord.Embed(title=userlvl + " - Launcher Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_gromeo"]["properties"]["kills"] != "N/A":
+                pila = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_gromeo"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_gromeo"]["properties"]["headShots"])
+                embed.add_field(name="Pila Stats", value=f"**Kills:** {pila} \n **Headshots:** {headshots}", inline=True)
+            embeds.append(embed)
+            #Pistol Stats
+            embed = discord.Embed(title=userlvl + " - Pistol Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_decho"]["properties"]["kills"] != "N/A":
+                gs = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_decho"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_decho"]["properties"]["headShots"])
+                embed.add_field(name=".50 GS Stats", value=f"**Kills:** {gs} \n **Headshots:** {headshots}", inline=True)
+            embeds.append(embed)
+            #Shotgun Stats
+            embed = discord.Embed(title=userlvl + " - Shotgun Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_charlie725"]["properties"]["kills"] != "N/A":
+                farmer = round(data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_charlie725"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_charlie725"]["properties"]["headShots"])
+                embed.add_field(name="725 Stats", value=f"**Kills:** {farmer} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_romeo870"]["properties"]["kills"] != "N/A":
+                model = round(data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_romeo870"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_romeo870"]["properties"]["headShots"])
+                embed.add_field(name="Model 680 Stats", value=f"**Kills:** {model} \n **Headshots:** {headshots}", inline=True)
+            embeds.append(embed)
+            #SMG Stats
+            embed = discord.Embed(title=userlvl + " - SMG Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa7"]["properties"]["kills"] != "N/A":
+                mp7 = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa7"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa7"]["properties"]["headShots"])
+                embed.add_field(name="MP7 Stats", value=f"**Kills:** {mp7} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_augolf"]["properties"]["kills"] != "N/A":
+                aug = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_augolf"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_augolf"]["properties"]["headShots"])
+                embed.add_field(name="AUG Stats", value=f"**Kills:** {aug} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_papa90"]["properties"]["kills"] != "N/A":
+                p90 = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_papa90"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_papa90"]["properties"]["headShots"])
+                embed.add_field(name="P90 Stats", value=f"**Kills:** {p90} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa5"]["properties"]["kills"] != "N/A":
+                mp5 = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa5"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa5"]["properties"]["headShots"])
+                embed.add_field(name="MP5 Stats", value=f"**Kills:** {mp5} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
         except:
             await ctx.send("Either the platform or username is incorrect, please make sure to use pc, psn or xbox for the platform and make sure you spelt your name correctly.")
+                                                                                                    
