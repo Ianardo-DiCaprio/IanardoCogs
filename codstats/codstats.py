@@ -403,8 +403,14 @@ class CODSTATS(commands.Cog):
             if data["data"]["lifetime"]["mode"]["dom"]["properties"]["kills"] != "N/A":
                 domkills = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["kills"])
                 domdeaths = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["deaths"])
+                domkd = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["kdRatio"])
                 domscore = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["score"])
-                embed.add_field(name="**Dom Stats**", value=f"**Kills:** {domkills} \n **Deaths:** {domdeaths} \n **Score:** {domscore}", inline=True)
+                domcapture = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["captures"])
+                domdef = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["defends"])
+                domscore = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["score"])
+                domspm = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["scorePerMinute"])
+                domtime = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["timePlayed"])
+                embed.add_field(name="**Dom Stats**", value=f"**Kills:** {domkills} \n **Deaths:** {domdeaths} \n **Kill/Death Ratio:** {domkd} \n **Captures:** {domcapture} \n **Defends:** {domdef} \n **Score:** {domscore} \n **Score Per Minute:** {domspm} \n **Time Played:** {domtime}", inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
