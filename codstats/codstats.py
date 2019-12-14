@@ -241,6 +241,14 @@ class CODSTATS(commands.Cog):
                 sa87 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["headShots"])
                 embed.add_field(name="SA87 Stats", value=f"**Kills:** {sa87} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["kills"] != "N/A":
+                mg34 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["headShots"])
+                embed.add_field(name="MG34 Stats", value=f"**Kills:** {mg34} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["kills"] != "N/A":
+                pkm = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["headShots"])
+                embed.add_field(name="PKM Stats", value=f"**Kills:** {pkm} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             #Launcher Stats
             embed = discord.Embed(title=userlvl + " - Launcher Stats", color=0x8C05D2)
@@ -249,7 +257,19 @@ class CODSTATS(commands.Cog):
             if data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_gromeo"]["properties"]["kills"] != "N/A":
                 pila = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_gromeo"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_gromeo"]["properties"]["headShots"])
-                embed.add_field(name="Pila Stats", value=f"**Kills:** {pila} \n **Headshots:** {headshots}", inline=True)
+                embed.add_field(name="PILA Stats", value=f"**Kills:** {pila} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_rpapa7"]["properties"]["kills"] != "N/A":
+                rpg = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_rpapa7"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_rpapa7"]["properties"]["headShots"])
+                embed.add_field(name="RPG-7 Stats", value=f"**Kills:** {rpg} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_juliet"]["properties"]["kills"] != "N/A":
+                jokr = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_juliet"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_juliet"]["properties"]["headShots"])
+                embed.add_field(name="JOKR Stats", value=f"**Kills:** {jokr} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_juliet"]["properties"]["kills"] != "N/A":
+                jokr = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_juliet"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_juliet"]["properties"]["headShots"])
+                embed.add_field(name="JOKR Stats", value=f"**Kills:** {jokr} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             #Pistol Stats
             embed = discord.Embed(title=userlvl + " - Pistol Stats", color=0x8C05D2)
@@ -293,6 +313,40 @@ class CODSTATS(commands.Cog):
                 mp5 = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa5"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa5"]["properties"]["headShots"])
                 embed.add_field(name="MP5 Stats", value=f"**Kills:** {mp5} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_beta"]["properties"]["kills"] != "N/A":
+                bizon = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_beta"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_beta"]["properties"]["headShots"])
+                embed.add_field(name="PP19 Bizon Stats", value=f"**Kills:** {bizon} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_uzulu"]["properties"]["kills"] != "N/A":
+                uzi = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_uzulu"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_uzulu"]["properties"]["headShots"])
+                embed.add_field(name="Uzi Stats", value=f"**Kills:** {uzi} \n **Headshots:** {headshots}", inline=True)
+            embeds.append(embed)
+            #SMG Stats
+            embed = discord.Embed(title=userlvl + " - Sniper Rifle Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_hdromeo"]["properties"]["kills"] != "N/A":
+                hdr = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_hdromeo"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_hdromeo"]["properties"]["headShots"])
+                embed.add_field(name="HDR Stats", value=f"**Kills:** {hdr} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["kills"] != "N/A":
+                ax = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["headShots"])
+                embed.add_field(name="AX-50 Stats", value=f"**Kills:** {ax} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["kills"] != "N/A":
+                drag = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["headShots"])
+                embed.add_field(name="Dragunov Stats", value=f"**Kills:** {drag} \n **Headshots:** {headshots}", inline=True)
+            embeds.append(embed)
+            #Marksman Rifle Stats
+            embed = discord.Embed(title=userlvl + " - Marksman Rifle Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_kilo98"]["properties"]["kills"] != "N/A":
+                kar = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_kilo98"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_kilo98"]["properties"]["headShots"])
+                embed.add_field(name="Kar98K Stats", value=f"**Kills:** {kar} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
