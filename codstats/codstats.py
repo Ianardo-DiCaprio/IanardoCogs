@@ -296,9 +296,9 @@ class CODSTATS(commands.Cog):
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_cpapa"]["properties"]["headShots"])
                 embed.add_field(name=".357 Stats", value=f"**Kills:** {revol} \n **Headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_mike1911"]["properties"]["kills"] != "N/A":
-                1911 = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_mike1911"]["properties"]["kills"])
+                m1911 = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_mike1911"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_mike1911"]["properties"]["headShots"])
-                embed.add_field(name="1911 Stats", value=f"**Kills:** {1911} \n **Headshots:** {headshots}", inline=True)
+                embed.add_field(name="1911 Stats", value=f"**Kills:** {m1911} \n **Headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_golf21"]["properties"]["kills"] != "N/A":
                 x16 = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_golf21"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_golf21"]["properties"]["headShots"])
