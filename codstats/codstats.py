@@ -228,6 +228,18 @@ class CODSTATS(commands.Cog):
                 ak = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_akilo47"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_akilo47"]["properties"]["headShots"])
                 embed.add_field(name="AK-47 Stats", value=f"**Kills:** {ak} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_scharlie"]["properties"]["kills"] != "N/A":
+                scar = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_scharlie"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_scharlie"]["properties"]["headShots"])
+                embed.add_field(name="FN Scar 17 Stats", value=f"**Kills:** {scar} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_falima"]["properties"]["kills"] != "N/A":
+                fal = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_falima"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_falima"]["properties"]["headShots"])
+                embed.add_field(name="FAL Stats", value=f"**Kills:** {fal} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mcharlie"]["properties"]["kills"] != "N/A":
+                m13 = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mcharlie"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_assault_rifle"]["iw8_ar_mcharlie"]["properties"]["headShots"])
+                embed.add_field(name="M13 Stats", value=f"**Kills:** {m13} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             #LMG Stats
             embed = discord.Embed(title=userlvl + " - LMG Stats", color=0x8C05D2)
@@ -322,7 +334,7 @@ class CODSTATS(commands.Cog):
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_uzulu"]["properties"]["headShots"])
                 embed.add_field(name="Uzi Stats", value=f"**Kills:** {uzi} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
-            #SMG Stats
+            #Sniper Rifle Stats
             embed = discord.Embed(title=userlvl + " - Sniper Rifle Stats", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             embed.set_footer(text="React to change pages for more stats!")
@@ -334,7 +346,7 @@ class CODSTATS(commands.Cog):
                 ax = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["headShots"])
                 embed.add_field(name="AX-50 Stats", value=f"**Kills:** {ax} \n **Headshots:** {headshots}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["kills"] != "N/A":
+            if data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_delta"]["properties"]["kills"] != "N/A":
                 drag = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["headShots"])
                 embed.add_field(name="Dragunov Stats", value=f"**Kills:** {drag} \n **Headshots:** {headshots}", inline=True)
