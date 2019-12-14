@@ -436,6 +436,29 @@ class CODSTATS(commands.Cog):
                 domtime = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["timePlayed"])
                 embed.add_field(name="**Hardcore Domination Stats**", value=f"**Kills:** {domkills} \n **Deaths:** {domdeaths} \n **Kill/Death Ratio:** {domkd} \n **Captures:** {domcapture} \n **Defends:** {domdef} \n **Score:** {domscore} \n **Score Per Minute:** {domspm} \n **Time Played:** {domtime}", inline=True)
             embeds.append(embed)
+            #TeamDeathMatch Stats
+            embed = discord.Embed(title=userlvl + " - Team Deathmatch Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["mode"]["war"]["properties"]["kills"] != "N/A":
+                tdmkills = round(data["data"]["lifetime"]["mode"]["war"]["properties"]["kills"])
+                tdmdeaths = round(data["data"]["lifetime"]["mode"]["war"]["properties"]["deaths"])
+                tdmassists = round(data["data"]["lifetime"]["mode"]["war"]["properties"]["assists"])
+                tdmkd = round(data["data"]["lifetime"]["mode"]["war"]["properties"]["kdRatio"], 2)
+                tdmscore = round(data["data"]["lifetime"]["mode"]["war"]["properties"]["score"])
+                tdmspm = round(data["data"]["lifetime"]["mode"]["war"]["properties"]["scorePerMinute"], 2)
+                tdmtime = round(data["data"]["lifetime"]["mode"]["war"]["properties"]["timePlayed"])
+                embed.add_field(name="**Team Deathmatch Stats**", value=f"**Kills:** {tdmkills} \n **Deaths:** {tdmdeaths} \n **Assists:** {tdmassists} \n **Kill/Death Ratio:** {tdmkd} \n **Score:** {tdmscore} \n **Score Per Minute:** {tdmspm} \n **Time Played:** {tdmtime}", inline=True)
+            if data["data"]["lifetime"]["mode"]["hc_war"]["properties"]["kills"] != "N/A":
+                tdmkills = round(data["data"]["lifetime"]["mode"]["hc_war"]["properties"]["kills"])
+                tdmdeaths = round(data["data"]["lifetime"]["mode"]["hc_war"]["properties"]["deaths"])
+                tdmassists = round(data["data"]["lifetime"]["mode"]["hc_war"]["properties"]["assists"])
+                tdmkd = round(data["data"]["lifetime"]["mode"]["hc_war"]["properties"]["kdRatio"], 2)
+                tdmscore = round(data["data"]["lifetime"]["mode"]["hc_war"]["properties"]["score"])
+                tdmspm = round(data["data"]["lifetime"]["mode"]["hc_war"]["properties"]["scorePerMinute"], 2)
+                tdmtime = round(data["data"]["lifetime"]["mode"]["hc_war"]["properties"]["timePlayed"])
+                embed.add_field(name="**Hardcore Team Deathmatch Stats**", value=f"**Kills:** {tdmkills} \n **Deaths:** {tdmdeaths} \n **Assists:** {tdmassists} \n **Kill/Death Ratio:** {tdmkd} \n **Score:** {tdmscore} \n **Score Per Minute:** {tdmspm} \n **Time Played:** {tdmtime}", inline=True)
+            embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
