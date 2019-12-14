@@ -394,7 +394,8 @@ class CODSTATS(commands.Cog):
             if data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["kills"] != "N/A":
                 ebr = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["headShots"])
-                embed.add_field(name="**EBR-14 Stats**", value=f"**Kills:** {ebr} \n **Headshots:** {headshots}", inline=True)
+                domkills = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["kills"])
+                embed.add_field(name="**EBR-14 Stats**", value=f"**Kills:** {ebr} \n **Headshots:** {headshots} \n {domkills}", inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
