@@ -400,11 +400,6 @@ class CODSTATS(commands.Cog):
             embed = discord.Embed(title=userlvl + " - Melee Stats", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             embed.set_footer(text="React to change pages for more stats!")
-            if data["data"]["lifetime"]["itemData"]["weapon_other"]["iw8_me_riotshield"]["properties"]["hits"] != "N/A":
-                riothit = round(data["data"]["lifetime"]["itemData"]["weapon_other"]["iw8_me_riotshield"]["properties"]["hits"])
-                riotkill = round(data["data"]["lifetime"]["itemData"]["weapon_other"]["iw8_me_riotshield"]["properties"]["kills"])
-                riotob = round(data["data"]["accoladeData"]["properties"]["riotShieldDamageAbsorbed"])
-                embed.add_field(name="**Riotshieled Stats**", value=f"**Hits:** {riothit} \n **Kills:** {riotkill} \n **Damage Obsorbed:** {riotob}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_melee"]["iw8_knife"]["properties"]["hits"] != "N/A":
                 knifekill = round(data["data"]["lifetime"]["itemData"]["weapon_melee"]["iw8_knife"]["properties"]["hits"])
                 embed.add_field(name="**Combat Knife Stats**", value=f"**Kills:** {knifekill}", inline=True)
