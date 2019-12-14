@@ -403,7 +403,7 @@ class CODSTATS(commands.Cog):
             if data["data"]["lifetime"]["mode"]["dom"]["properties"]["kills"] != "N/A":
                 domkills = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["kills"])
                 domdeaths = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["deaths"])
-                domkd = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["kdRatio"])
+                domkd = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["kdRatio"], 2)
                 domscore = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["score"])
                 domcapture = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["captures"])
                 domdef = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["defends"])
@@ -414,7 +414,7 @@ class CODSTATS(commands.Cog):
             if data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["kills"] != "N/A":
                 domkills = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["kills"])
                 domdeaths = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["deaths"])
-                domkd = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["kdRatio"])
+                domkd = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["kdRatio"], 2)
                 domscore = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["score"])
                 domcapture = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["captures"])
                 domdef = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["defends"])
