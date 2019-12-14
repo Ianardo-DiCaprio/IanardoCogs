@@ -278,10 +278,10 @@ class CODSTATS(commands.Cog):
                 jokr = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_juliet"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_juliet"]["properties"]["headShots"])
                 embed.add_field(name="JOKR Stats", value=f"**Kills:** {jokr} \n **Headshots:** {headshots}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_juliet"]["properties"]["kills"] != "N/A":
-                jokr = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_juliet"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_juliet"]["properties"]["headShots"])
-                embed.add_field(name="JOKR Stats", value=f"**Kills:** {jokr} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_kgolf"]["properties"]["kills"] != "N/A":
+                strella = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_kgolf"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_launcher"]["iw8_la_kgolf"]["properties"]["headShots"])
+                embed.add_field(name="Strella-P Stats", value=f"**Kills:** {strella} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             #Pistol Stats
             embed = discord.Embed(title=userlvl + " - Pistol Stats", color=0x8C05D2)
@@ -291,6 +291,22 @@ class CODSTATS(commands.Cog):
                 gs = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_decho"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_decho"]["properties"]["headShots"])
                 embed.add_field(name=".50 GS Stats", value=f"**Kills:** {gs} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_cpapa"]["properties"]["kills"] != "N/A":
+                revol = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_cpapa"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_cpapa"]["properties"]["headShots"])
+                embed.add_field(name=".357 Stats", value=f"**Kills:** {revol} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_mike1911"]["properties"]["kills"] != "N/A":
+                1911 = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_mike1911"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_mike1911"]["properties"]["headShots"])
+                embed.add_field(name="1911 Stats", value=f"**Kills:** {1911} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_golf21"]["properties"]["kills"] != "N/A":
+                x16 = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_golf21"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_golf21"]["properties"]["headShots"])
+                embed.add_field(name="X16 Stats", value=f"**Kills:** {x16} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_papa320"]["properties"]["kills"] != "N/A":
+                m19 = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_papa320"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_pistol"]["iw8_pi_papa320"]["properties"]["headShots"])
+                embed.add_field(name="M19 Stats", value=f"**Kills:** {m19} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             #Shotgun Stats
             embed = discord.Embed(title=userlvl + " - Shotgun Stats", color=0x8C05D2)
@@ -304,6 +320,14 @@ class CODSTATS(commands.Cog):
                 model = round(data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_romeo870"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_romeo870"]["properties"]["headShots"])
                 embed.add_field(name="Model 680 Stats", value=f"**Kills:** {model} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_oscar12"]["properties"]["kills"] != "N/A":
+                origin = round(data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_oscar12"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_oscar12"]["properties"]["headShots"])
+                embed.add_field(name="Origin 12 Shotgun Stats", value=f"**Kills:** {origin} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_dpapa12"]["properties"]["kills"] != "N/A":
+                r9 = round(data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_dpapa12"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_shotgun"]["iw8_sh_dpapa12"]["properties"]["headShots"])
+                embed.add_field(name="R9-0 Shotgun Stats", value=f"**Kills:** {r9} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             #SMG Stats
             embed = discord.Embed(title=userlvl + " - SMG Stats", color=0x8C05D2)
@@ -359,6 +383,14 @@ class CODSTATS(commands.Cog):
                 kar = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_kilo98"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_kilo98"]["properties"]["headShots"])
                 embed.add_field(name="Kar98K Stats", value=f"**Kills:** {kar} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["kills"] != "N/A":
+                carbine = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["headShots"])
+                embed.add_field(name="MK2 Carbine Stats", value=f"**Kills:** {carbine} \n **Headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["kills"] != "N/A":
+                ebr = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["headShots"])
+                embed.add_field(name="EBR-14 Stats", value=f"**Kills:** {ebr} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
