@@ -459,6 +459,31 @@ class CODSTATS(commands.Cog):
                 tdmtime = round(data["data"]["lifetime"]["mode"]["hc_war"]["properties"]["timePlayed"])
                 embed.add_field(name="**Hardcore Team Deathmatch Stats**", value=f"**Kills:** {tdmkills} \n **Deaths:** {tdmdeaths} \n **Assists:** {tdmassists} \n **Kill/Death Ratio:** {tdmkd} \n **Score:** {tdmscore} \n **Score Per Minute:** {tdmspm} \n **Time Played:** {tdmtime}", inline=True)
             embeds.append(embed)
+            #Headquarters Stats
+            embed = discord.Embed(title=userlvl + " - Headquarters Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["mode"]["hq"]["properties"]["kills"] != "N/A":
+                hqkills = round(data["data"]["lifetime"]["mode"]["hq"]["properties"]["kills"])
+                hqdeaths = round(data["data"]["lifetime"]["mode"]["hq"]["properties"]["deaths"])
+                hqcap = round(data["data"]["lifetime"]["mode"]["hq"]["properties"]["captures"])
+                hqdef = round(data["data"]["lifetime"]["mode"]["hq"]["properties"]["defends"])
+                hqkd = round(data["data"]["lifetime"]["mode"]["hq"]["properties"]["kdRatio"], 2)
+                hqscore = round(data["data"]["lifetime"]["mode"]["hq"]["properties"]["score"])
+                hqspm = round(data["data"]["lifetime"]["mode"]["hq"]["properties"]["scorePerMinute"], 2)
+                hqtime = round(data["data"]["lifetime"]["mode"]["hq"]["properties"]["timePlayed"])
+                embed.add_field(name="**Headquarters Stats**", value=f"**Kills:** {hqkills} \n **Deaths:** {hqdeaths} \n **Kill/Death Ratio:** {hqkd} \n **Captures:** {hqcap} \n **Defends:** {hqdef} \n **Score:** {hqscore} \n **Score Per Minute:** {hqspm} \n **Time Played:** {hqtime}", inline=True)
+            if data["data"]["lifetime"]["mode"]["hc_hq"]["properties"]["kills"] != "N/A":
+                hqkills = round(data["data"]["lifetime"]["mode"]["hc_hq"]["properties"]["kills"])
+                hqdeaths = round(data["data"]["lifetime"]["mode"]["hc_hq"]["properties"]["deaths"])
+                hqcap = round(data["data"]["lifetime"]["mode"]["hc_hq"]["properties"]["captures"])
+                hqdef = round(data["data"]["lifetime"]["mode"]["hc_hq"]["properties"]["defends"])
+                tdmkd = round(data["data"]["lifetime"]["mode"]["hc_hq"]["properties"]["kdRatio"], 2)
+                tdmscore = round(data["data"]["lifetime"]["mode"]["hc_hq"]["properties"]["score"])
+                tdmspm = round(data["data"]["lifetime"]["mode"]["hc_hq"]["properties"]["scorePerMinute"], 2)
+                tdmtime = round(data["data"]["lifetime"]["mode"]["hc_hq"]["properties"]["timePlayed"])
+                embed.add_field(name="**Hardcore Headquarters Stats**", value=f"**Kills:** {hqkills} \n **Deaths:** {hqdeaths} \n **Kill/Death Ratio:** {hqkd} \n **Captures:** {hqcap} \n **Defends:** {hqdef} \n **Score:** {hqscore} \n **Score Per Minute:** {hqspm} \n **Time Played:** {hqtime}", inline=True)
+            embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
