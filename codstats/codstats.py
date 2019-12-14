@@ -396,8 +396,8 @@ class CODSTATS(commands.Cog):
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["headShots"])
                 embed.add_field(name="**EBR-14 Stats**", value=f"**Kills:** {ebr} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
-            #DOM Stats
-            embed = discord.Embed(title=userlvl + " - Marksman Rifle Stats", color=0x8C05D2)
+            #Domination Stats
+            embed = discord.Embed(title=userlvl + " - Domination Stats", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             embed.set_footer(text="React to change pages for more stats!")
             if data["data"]["lifetime"]["mode"]["dom"]["properties"]["kills"] != "N/A":
@@ -410,7 +410,18 @@ class CODSTATS(commands.Cog):
                 domscore = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["score"])
                 domspm = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["scorePerMinute"])
                 domtime = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["timePlayed"])
-                embed.add_field(name="**Dom Stats**", value=f"**Kills:** {domkills} \n **Deaths:** {domdeaths} \n **Kill/Death Ratio:** {domkd} \n **Captures:** {domcapture} \n **Defends:** {domdef} \n **Score:** {domscore} \n **Score Per Minute:** {domspm} \n **Time Played:** {domtime}", inline=True)
+                embed.add_field(name="**Domination Stats**", value=f"**Kills:** {domkills} \n **Deaths:** {domdeaths} \n **Kill/Death Ratio:** {domkd} \n **Captures:** {domcapture} \n **Defends:** {domdef} \n **Score:** {domscore} \n **Score Per Minute:** {domspm} \n **Time Played:** {domtime}", inline=True)
+            if data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["kills"] != "N/A":
+                domkills = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["kills"])
+                domdeaths = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["deaths"])
+                domkd = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["kdRatio"])
+                domscore = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["score"])
+                domcapture = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["captures"])
+                domdef = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["defends"])
+                domscore = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["score"])
+                domspm = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["scorePerMinute"])
+                domtime = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["timePlayed"])
+                embed.add_field(name="**Hardcore Domination Stats**", value=f"**Kills:** {domkills} \n **Deaths:** {domdeaths} \n **Kill/Death Ratio:** {domkd} \n **Captures:** {domcapture} \n **Defends:** {domdef} \n **Score:** {domscore} \n **Score Per Minute:** {domspm} \n **Time Played:** {domtime}", inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
