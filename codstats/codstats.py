@@ -248,23 +248,23 @@ class CODSTATS(commands.Cog):
             if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["kills"] != "N/A":
                 m91 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["headShots"])
-                embed.add_field(name="M91 Stats", value=f"**Kills:** {m91} \n **Headshots:** {headshots}", inline=True)
+                embed.add_field(name="**M91 Stats**", value=f"**Kills:** {m91} \n **Headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["kills"] != "N/A":
                 sa87 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["headShots"])
-                embed.add_field(name="SA87 Stats", value=f"**Kills:** {sa87} \n **Headshots:** {headshots}", inline=True)
+                embed.add_field(name="**SA87 Stats**", value=f"**Kills:** {sa87} \n **Headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["kills"] != "N/A":
                 mg34 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["headShots"])
-                embed.add_field(name="MG34 Stats", value=f"**Kills:** {mg34} \n **Headshots:** {headshots}", inline=True)
+                embed.add_field(name="**MG34 Stats**", value=f"**Kills:** {mg34} \n **Headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["kills"] != "N/A":
                 pkm = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["headShots"])
-                embed.add_field(name="PKM Stats", value=f"**Kills:** {pkm} \n **Headshots:** {headshots}", inline=True)
+                embed.add_field(name="**PKM Stats**", value=f"**Kills:** {pkm} \n **Headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_dblmg"]["properties"]["kills"] != "N/A":
                 holger = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_dblmg"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_dblmg"]["properties"]["headShots"])
-                embed.add_field(name="Holger-26 Stats", value=f"**Kills:** {holger} \n **Headshots:** {headshots}", inline=True)
+                embed.add_field(name="**Holger-26 Stats**", value=f"**Kills:** {holger} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             #Launcher Stats
             embed = discord.Embed(title=userlvl + " - Launcher Stats", color=0x8C05D2)
