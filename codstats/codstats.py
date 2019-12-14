@@ -375,8 +375,8 @@ class CODSTATS(commands.Cog):
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["headShots"])
                 embed.add_field(name="**AX-50 Stats**", value=f"**Kills:** {ax} \n **Headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_delta"]["properties"]["kills"] != "N/A":
-                drag = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["headShots"])
+                drag = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_delta"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_delta"]["properties"]["headShots"])
                 embed.add_field(name="**Dragunov Stats**", value=f"**Kills:** {drag} \n **Headshots:** {headshots}", inline=True)
             embeds.append(embed)
             #Marksman Rifle Stats
