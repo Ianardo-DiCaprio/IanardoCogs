@@ -403,7 +403,8 @@ class CODSTATS(commands.Cog):
             if data["data"]["lifetime"]["mode"]["dom"]["properties"]["kills"] != "N/A":
                 domkills = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["kills"])
                 domdeaths = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["deaths"])
-                embed.add_field(name="**Dom Stats**", value=f"**Kills:** {domkills} \n **Deaths:** {domdeaths}", inline=True)
+                domscore = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["score"])
+                embed.add_field(name="**Dom Stats**", value=f"**Kills:** {domkills} \n **Deaths:** {domdeaths} \n **Score:** {domscore}", inline=True)
             embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
