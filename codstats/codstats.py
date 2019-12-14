@@ -407,17 +407,8 @@ class CODSTATS(commands.Cog):
                 domscore = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["score"])
                 domskd = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["kdRatio"], 2)
                 domsspm = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["scorePerMinute"], 2)
-                domtime = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["assists"])
+                domtime = round(data["data"]["lifetime"]["mode"]["dom"]["properties"]["timePlayed"])
                 embed.add_field(name="**Domination Stats**", value=f"**Kills:** {domkills} \n **Deaths:** {domdeath} \n **Assists:** {domsassist} \n **Score:** {domscore} \n **Kill/Death Ratio:** {domkd} \n **Score Per Minute:** {domspm} \n **Time Played:** {domtime}", inline=True)
-            if data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["kills"] != "N/A":
-                domkills = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["kills"])
-                domdeath = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["deaths"])
-                domdassist = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["assists"])
-                domscore = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["score"])
-                domskd = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["kdRatio"], 2)
-                domsspm = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["scorePerMinute"], 2)
-                domtime = round(data["data"]["lifetime"]["mode"]["hc_dom"]["properties"]["assists"])
-                embed.add_field(name="**Hardcore Domination Stats**", value=f"**Kills:** {domkills} \n **Deaths:** {domdeath} \n **Assists:** {domsassist} \n **Score:** {domscore} \n **Kill/Death Ratio:** {domkd} \n **Score Per Minute:** {domspm} \n **Time Played:** {domtime}", inline=True)
                 embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
