@@ -534,6 +534,31 @@ class CODSTATS(commands.Cog):
                 sdtime = round(data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["timePlayed"])
                 embed.add_field(name="**Hardcore Search and Destroy Stats**", value=f"**Kills:** {sdkills} \n **Deaths:** {sddeaths} \n **Kill/Death Ratio:** {sdkd} \n **Plants:** {sdplant} \n **Defuses:** {sddef} \n **Score:** {sdscore} \n **Score Per Minute:** {sdspm} \n **Time Played:** {sdtime}", inline=True)
             embeds.append(embed)
+            #Cyber Attack Stats
+            embed = discord.Embed(title=userlvl + " - Cyber Attack Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["mode"]["cyber"]["properties"]["kills"] != "N/A":
+                cykills = round(data["data"]["lifetime"]["mode"]["cyber"]["properties"]["kills"])
+                cydeaths = round(data["data"]["lifetime"]["mode"]["cyber"]["properties"]["deaths"])
+                cyplant = round(data["data"]["lifetime"]["mode"]["cyber"]["properties"]["plants"])
+                cyrev = round(data["data"]["lifetime"]["mode"]["cyber"]["properties"]["revives"])
+                cykd = round(data["data"]["lifetime"]["mode"]["cyber"]["properties"]["kdRatio"], 2)
+                cyscore = round(data["data"]["lifetime"]["mode"]["cyber"]["properties"]["score"])
+                cyspm = round(data["data"]["lifetime"]["mode"]["cyber"]["properties"]["scorePerMinute"], 2)
+                cytime = round(data["data"]["lifetime"]["mode"]["cyber"]["properties"]["timePlayed"])
+                embed.add_field(name="**Cyber Attack Stats**", value=f"**Kills:** {cykills} \n **Deaths:** {cydeaths} \n **Kill/Death Ratio:** {cykd} \n **Plants:** {cyplant} \n **Revives:** {cyrev} \n **Score:** {cyscore} \n **Score Per Minute:** {cyspm} \n **Time Played:** {cytime}", inline=True)
+            if data["data"]["lifetime"]["mode"]["hc_cyber"]["properties"]["kills"] != "N/A":
+                cykills = round(data["data"]["lifetime"]["mode"]["hc_cyber"]["properties"]["kills"])
+                cydeaths = round(data["data"]["lifetime"]["mode"]["hc_cyber"]["properties"]["deaths"])
+                cyplant = round(data["data"]["lifetime"]["mode"]["hc_cyber"]["properties"]["plants"])
+                cyrev = round(data["data"]["lifetime"]["mode"]["hc_cyber"]["properties"]["revives"])
+                cykd = round(data["data"]["lifetime"]["mode"]["hc_cyber"]["properties"]["kdRatio"], 2)
+                cyscore = round(data["data"]["lifetime"]["mode"]["hc_cyber"]["properties"]["score"])
+                cyspm = round(data["data"]["lifetime"]["mode"]["hc_cyber"]["properties"]["scorePerMinute"], 2)
+                cytime = round(data["data"]["lifetime"]["mode"]["hc_cyber"]["properties"]["timePlayed"])
+                embed.add_field(name="**Hardcore Cyber Attack Stats**", value=f"**Kills:** {cykills} \n **Deaths:** {cydeaths} \n **Kill/Death Ratio:** {cykd} \n **Plants:** {cyplant} \n **Defuses:** {cyrev} \n **Score:** {cyscore} \n **Score Per Minute:** {cyspm} \n **Time Played:** {cytime}", inline=True)
+            embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
