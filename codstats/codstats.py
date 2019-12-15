@@ -405,8 +405,8 @@ class CODSTATS(commands.Cog):
                 riotkill = round(data["data"]["lifetime"]["itemData"]["weapon_other"]["iw8_me_riotshield"]["properties"]["kills"])
                 riotob = round(data["data"]["lifetime"]["accoladeData"]["properties"]["riotShieldDamageAbsorbed"])
                 embed.add_field(name="**Riotshield Stats**", value=f"**Hits:** {riothit} \n **Kills:** {riotkill} \n **Damage Obsorbed:** {riotob}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_melee"]["iw8_knife"]["properties"]["hits"] != "N/A":
-                knifekill = round(data["data"]["lifetime"]["itemData"]["weapon_melee"]["iw8_knife"]["properties"]["hits"])
+            if data["data"]["lifetime"]["itemData"]["weapon_melee"]["iw8_knife"]["properties"]["kills"] != "N/A":
+                knifekill = round(data["data"]["lifetime"]["itemData"]["weapon_melee"]["iw8_knife"]["properties"]["kills"])
                 embed.add_field(name="**Combat Knife Stats**", value=f"**Kills:** {knifekill}", inline=True)
             embeds.append(embed)
             #Grenade Stats
@@ -1308,8 +1308,8 @@ class CODSTATS(commands.Cog):
                 riotkill = round(data["data"]["lifetime"]["itemData"]["weapon_other"]["iw8_me_riotshield"]["properties"]["kills"])
                 riotob = round(data["data"]["lifetime"]["accoladeData"]["properties"]["riotShieldDamageAbsorbed"])
                 embed.add_field(name="**Riotshield Stats**", value=f"**Hits:** {riothit} \n **Kills:** {riotkill} \n **Damage Obsorbed:** {riotob}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_melee"]["iw8_knife"]["properties"]["hits"] != "N/A":
-                knifekill = round(data["data"]["lifetime"]["itemData"]["weapon_melee"]["iw8_knife"]["properties"]["hits"])
+            if data["data"]["lifetime"]["itemData"]["weapon_melee"]["iw8_knife"]["properties"]["kills"] != "N/A":
+                knifekill = round(data["data"]["lifetime"]["itemData"]["weapon_melee"]["iw8_knife"]["properties"]["kills"])
                 embed.add_field(name="**Combat Knife Stats**", value=f"**Kills:** {knifekill}", inline=True)
             embeds.append(embed)
             await menu(
