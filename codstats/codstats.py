@@ -533,6 +533,7 @@ class CODSTATS(commands.Cog):
                 sdspm = round(data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["scorePerMinute"], 2)
                 sdtime = round(data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["timePlayed"])
                 embed.add_field(name="**Hardcore Search and Destroy Stats**", value=f"**Kills:** {sdkills} \n **Deaths:** {sddeaths} \n **Kill/Death Ratio:** {sdkd} \n **Plants:** {sdplant} \n **Defuses:** {sddef} \n **Score:** {sdscore} \n **Score Per Minute:** {sdspm} \n **Time Played:** {sdtime}", inline=True)
+            embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
