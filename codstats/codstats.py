@@ -559,6 +559,21 @@ class CODSTATS(commands.Cog):
                 cytime = round(data["data"]["lifetime"]["mode"]["hc_cyber"]["properties"]["timePlayed"])
                 embed.add_field(name="**Hardcore Cyber Attack Stats**", value=f"**Kills:** {cykills} \n **Deaths:** {cydeaths} \n **Kill/Death Ratio:** {cykd} \n **Plants:** {cyplant} \n **Defuses:** {cyrev} \n **Score:** {cyscore} \n **Score Per Minute:** {cyspm} \n **Time Played:** {cytime}", inline=True)
             embeds.append(embed)
+            #HardPoint Stats
+            embed = discord.Embed(title=userlvl + " - HardPoint Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["mode"]["koth"]["properties"]["kills"] != "N/A":
+                hpkills = round(data["data"]["lifetime"]["mode"]["koth"]["properties"]["kills"])
+                hpdeaths = round(data["data"]["lifetime"]["mode"]["koth"]["properties"]["deaths"])
+                hpobjtime = round(data["data"]["lifetime"]["mode"]["koth"]["properties"]["objTime"])
+                hpdef = round(data["data"]["lifetime"]["mode"]["koth"]["properties"]["defends"])
+                hpkd = round(data["data"]["lifetime"]["mode"]["koth"]["properties"]["kdRatio"], 2)
+                hpscore = round(data["data"]["lifetime"]["mode"]["koth"]["properties"]["score"])
+                hpspm = round(data["data"]["lifetime"]["mode"]["koth"]["properties"]["scorePerMinute"], 2)
+                hptime = round(data["data"]["lifetime"]["mode"]["koth"]["properties"]["timePlayed"])
+                embed.add_field(name="**HardPoint Stats**", value=f"**Kills:** {hpkills} \n **Deaths:** {hpdeaths} \n **Kill/Death Ratio:** {hpkd} \n **Objective Time:** {hpobjtime} \n **Defends:** {hpdef} \n **Score:** {hpscore} \n **Score Per Minute:** {hpspm} \n **Time Played:** {hptime}", inline=True)
+            embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
