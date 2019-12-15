@@ -409,6 +409,35 @@ class CODSTATS(commands.Cog):
                 knifekill = round(data["data"]["lifetime"]["itemData"]["weapon_melee"]["iw8_knife"]["properties"]["hits"])
                 embed.add_field(name="**Combat Knife Stats**", value=f"**Kills:** {knifekill}", inline=True)
             embeds.append(embed)
+            #Grenade Stats
+            embed = discord.Embed(title=userlvl + " - Grenade Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["lethals"]["equip_frag"]["properties"]["kills"] != "N/A":
+                frag = round(data["data"]["lifetime"]["itemData"]["lethals"]["equip_frag"]["properties"]["kills"])
+                embed.add_field(name="**Frag Grenade Stats**", value=f"**Kills:** {frag}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["lethals"]["equip_thermite"]["properties"]["kills"] != "N/A":
+                thermite = round(data["data"]["lifetime"]["itemData"]["lethals"]["equip_thermite"]["properties"]["kills"])
+                embed.add_field(name="**Thermite Grenade Stats**", value=f"**Kills:** {thermite}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["lethals"]["equip_semtex"]["properties"]["kills"] != "N/A":
+                semtex = round(data["data"]["lifetime"]["itemData"]["lethals"]["equip_semtex"]["properties"]["kills"])
+                embed.add_field(name="**Semtex Grenade Stats**", value=f"**Kills:** {semtex}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["lethals"]["equip_claymore"]["properties"]["kills"] != "N/A":
+                claymore = round(data["data"]["lifetime"]["itemData"]["lethals"]["equip_claymore"]["properties"]["kills"])
+                embed.add_field(name="**Claymore Stats**", value=f"**Kills:** {claymore}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["lethals"]["equip_c4"]["properties"]["kills"] != "N/A":
+                c4 = round(data["data"]["lifetime"]["itemData"]["lethals"]["equip_c4"]["properties"]["kills"])
+                embed.add_field(name="**C4 Stats**", value=f"**Kills:** {c4}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["lethals"]["equip_at_mine"]["properties"]["kills"] != "N/A":
+                atmine = round(data["data"]["lifetime"]["itemData"]["lethals"]["equip_at_mine"]["properties"]["kills"])
+                embed.add_field(name="**Anti-Tank Mine Stats**", value=f"**Kills:** {atmine}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["lethals"]["equip_throwing_knife"]["properties"]["kills"] != "N/A":
+                throw = round(data["data"]["lifetime"]["itemData"]["lethals"]["equip_throwing_knife"]["properties"]["kills"])
+                embed.add_field(name="**Throwing Knife Stats**", value=f"**Kills:** {throw}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["lethals"]["equip_molotov"]["properties"]["kills"] != "N/A":
+                molotov = round(data["data"]["lifetime"]["itemData"]["lethals"]["equip_molotov"]["properties"]["kills"])
+                embed.add_field(name="**Molotov Stats**", value=f"**Kills:** {molotov}", inline=True)
+            embeds.append(embed)
             #Domination Stats
             embed = discord.Embed(title=userlvl + " - Domination Stats", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
