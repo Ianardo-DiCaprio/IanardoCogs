@@ -509,6 +509,30 @@ class CODSTATS(commands.Cog):
                 kctime = round(data["data"]["lifetime"]["mode"]["hc_conf"]["properties"]["timePlayed"])
                 embed.add_field(name="**Hardcore Kill Confirmed Stats**", value=f"**Kills:** {kckills} \n **Deaths:** {kcdeaths} \n **Kill/Death Ratio:** {kckd} \n **Confirms:** {kccon} \n **Denies:** {kcden} \n **Score:** {kcscore} \n **Score Per Minute:** {kcspm} \n **Time Played:** {kctime}", inline=True)
             embeds.append(embed)
+            #Search and Destroy Stats
+            embed = discord.Embed(title=userlvl + " - Search and Destroy Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["mode"]["sd"]["properties"]["kills"] != "N/A":
+                sdkills = round(data["data"]["lifetime"]["mode"]["sd"]["properties"]["kills"])
+                sddeaths = round(data["data"]["lifetime"]["mode"]["sd"]["properties"]["deaths"])
+                sdplant = round(data["data"]["lifetime"]["mode"]["sd"]["properties"]["plants"])
+                sddef = round(data["data"]["lifetime"]["mode"]["sd"]["properties"]["defuses"])
+                sdkd = round(data["data"]["lifetime"]["mode"]["sd"]["properties"]["kdRatio"], 2)
+                sdscore = round(data["data"]["lifetime"]["mode"]["sd"]["properties"]["score"])
+                sdspm = round(data["data"]["lifetime"]["mode"]["sd"]["properties"]["scorePerMinute"], 2)
+                sdtime = round(data["data"]["lifetime"]["mode"]["sd"]["properties"]["timePlayed"])
+                embed.add_field(name="**Search and Destroy Stats**", value=f"**Kills:** {sdkills} \n **Deaths:** {sddeaths} \n **Kill/Death Ratio:** {sdkd} \n **Plants:** {sdplant} \n **Defuses:** {sddef} \n **Score:** {sdscore} \n **Score Per Minute:** {sdspm} \n **Time Played:** {sdtime}", inline=True)
+            if data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["kills"] != "N/A":
+                sdkills = round(data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["kills"])
+                sddeaths = round(data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["deaths"])
+                sdplant = round(data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["plants"])
+                sddef = round(data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["defuses"])
+                sdkd = round(data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["kdRatio"], 2)
+                sdscore = round(data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["score"])
+                sdspm = round(data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["scorePerMinute"], 2)
+                sdtime = round(data["data"]["lifetime"]["mode"]["hc_sd"]["properties"]["timePlayed"])
+                embed.add_field(name="**Hardcore Search and Destroy Stats**", value=f"**Kills:** {sdkills} \n **Deaths:** {sddeaths} \n **Kill/Death Ratio:** {sdkd} \n **Plants:** {sdplant} \n **Defuses:** {sddef} \n **Score:** {sdscore} \n **Score Per Minute:** {sdspm} \n **Time Played:** {sdtime}", inline=True)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
