@@ -637,7 +637,7 @@ class CODSTATS(commands.Cog):
                     embed.add_field(name="**Time Played**", value=f"**{time}**", inline=True)
                 embeds.append(embed)
             except:
-                return
+                pass
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
