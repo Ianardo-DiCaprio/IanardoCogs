@@ -603,6 +603,11 @@ class CODSTATS(commands.Cog):
                 hptime = round(data["data"]["lifetime"]["mode"]["koth"]["properties"]["timePlayed"])
                 embed.add_field(name="**HardPoint Stats**", value=f"**Kills:** {hpkills} \n **Deaths:** {hpdeaths} \n **Kill/Death Ratio:** {hpkd} \n **Objective Time:** {hpobjtime} \n **Defends:** {hpdef} \n **Score:** {hpscore} \n **Score Per Minute:** {hpspm} \n **Time Played:** {hptime}", inline=True)
             embeds.append(embed)
+            await menu(
+                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
+            )
+        except:
+            await ctx.send("Either the platform or username is incorrect, please make sure to use pc, psn or xbox for the platform and make sure you spelt your name correctly.")
                                    
     @commands.command()
     async def codcareer(self, ctx, platform: Optional[str] = "", *, username: Optional[str] = ""):
