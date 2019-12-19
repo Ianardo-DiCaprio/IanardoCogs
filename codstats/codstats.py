@@ -635,9 +635,9 @@ class CODSTATS(commands.Cog):
                     embed.add_field(name="**Headshots**", value=f"**{headshots}**", inline=True)
                     time = round(data["data"]["weekly"]["all"]["properties"]["timePlayed"])
                     embed.add_field(name="**Time Played**", value=f"**{time}**", inline=True)
-                embeds.append(embed)
             except:
-                pass
+                embed.add_field(name="**No data**", value=f"There is no data for weekly stats for this user.", inline=True)
+            embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
