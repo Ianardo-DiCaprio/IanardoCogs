@@ -204,7 +204,7 @@ class LookingFG(Cog):
         embed.add_field(name="Rank:", value=rank, inline=True)
         embed.add_field(name="Server:", value=region, inline=True)
         embed.add_field(name="Platform:", value=platform, inline=True)
-        embed.add_field(name="Looking for amount:", value=player, inline=True)
+        embed.add_field(name="Looking for:", value=player, inline=True)
         await message.delete()
 
         try:
@@ -216,7 +216,7 @@ class LookingFG(Cog):
                 await author.send(
                     "Your LFG request has been made!"
                 )
-                await asyncio.sleep(10)
+                await asyncio.sleep(1800)
                 await please.delete()
         except discord.Forbidden:
             await author.send("That didn't work for some reason")
