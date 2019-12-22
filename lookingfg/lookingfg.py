@@ -28,6 +28,7 @@ class LookingFG(Cog):
         self.config.register_global(**default_global)
 
     @commands.command()
+    @commands.guild_only()
     @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def lfg(self, ctx: commands.Context):
         """Make an LFG request."""
@@ -83,7 +84,7 @@ class LookingFG(Cog):
             return await ctx.send("You took too long. Try again.")
 
         embed = discord.Embed(color=await ctx.embed_colour(), timestamp=datetime.now())
-        embed.set_author(name="Looking For Group", icon_url=author.avatar_url)
+        embed.set_author(name=f"{ctx.author.name} is looking for a Rocket League group", icon_url=author.avatar_url)
         embed.set_footer(text="{0}#{1} ({2})".format(author.name, author.discriminator, author.id))
         embed.add_field(name="GameMode:", value=gamemode, inline=True)
         embed.add_field(name="Rank:", value=rank.content, inline=True)
@@ -105,6 +106,7 @@ class LookingFG(Cog):
             await author.send("That didn't work for some reason")
 
     @checks.is_owner()
+    @commands.guild_only()
     @commands.command()
     async def lfgsetup(
             self, ctx: commands.Context, channel: discord.TextChannel = None
