@@ -54,7 +54,6 @@ class LookingFG(Cog):
             reacts = {v: k for k, v in emoji.items()}
             react = reacts[r.emoji]
             if react == "prev":
-                await self._clear_react(game, emoji)
                 gamemode = "1's"
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
