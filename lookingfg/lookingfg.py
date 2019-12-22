@@ -34,9 +34,12 @@ class LookingFG(Cog):
         """Make an LFG request."""
         author = ctx.author
         bot = self.bot
-        gamemode1 = bot.get_emoji(658424310431612948)
-        expected = (gamemode1, "⏹", "⏯", "⏭")
-        emoji = {"ones": gamemode1, "stop": "⏹", "pause": "⏯", "next": "⏭"}
+        gamemode1 = bot.get_emoji(658426489636651051)
+        gamemode2 = bot.get_emoji(658426504186691598)
+        gamemode3 = bot.get_emoji(658426519437443093)
+        gamemodeo = bot.get_emoji(658426530715926528)
+        expected = (gamemode1, gamemode2, gamemode3, gamemodeo)
+        emoji = {"ones": gamemode1, "twos": gamemode2, "threes": gamemode3, "other": gamemodeo}
         try:
             game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
@@ -57,6 +60,12 @@ class LookingFG(Cog):
             react = reacts[r.emoji]
             if react == "ones":
                 gamemode = "1's"
+            elif react == "twos":
+                gamemode = "2's"
+            elif react == "threes":
+                gamemode = "3's"
+            elif react == "other":
+                gamemode = "Other"
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
