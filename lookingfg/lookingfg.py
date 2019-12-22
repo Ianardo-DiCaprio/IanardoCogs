@@ -38,13 +38,13 @@ class LookingFG(Cog):
         gamemode2 = bot.get_emoji(658426504186691598)
         gamemode3 = bot.get_emoji(658426519437443093)
         gamemodeo = bot.get_emoji(658426530715926528)
-        rank1 = bot.get_emoji(658426489636651051)
-        rank2 = bot.get_emoji(658426504186691598)
-        rank3 = bot.get_emoji(658426519437443093)
-        rank4 = bot.get_emoji(658426530715926528)
-        rank5 = bot.get_emoji(658426530715926528)
-        rank6 = bot.get_emoji(658426530715926528)
-        rank7 = bot.get_emoji(658426530715926528)
+        rank1 = bot.get_emoji(658431823935832064)
+        rank2 = bot.get_emoji(658431824342548510)
+        rank3 = bot.get_emoji(658431823746957313)
+        rank4 = bot.get_emoji(658431824279896064)
+        rank5 = bot.get_emoji(658431824065986562)
+        rank6 = bot.get_emoji(658431823931506710)
+        rank7 = bot.get_emoji(658431823608545294)
         region1 = bot.get_emoji(658426530715926528)
         region2 = bot.get_emoji(658426530715926528)
         region3 = bot.get_emoji(658426530715926528)
@@ -68,6 +68,8 @@ class LookingFG(Cog):
         lookingfor7 = bot.get_emoji(658426530715926528)
         gamemodes = (gamemode1, gamemode2, gamemode3, gamemodeo)
         gamemodeemoji = {"ones": gamemode1, "twos": gamemode2, "threes": gamemode3, "other": gamemodeo}
+        ranks = (rank1, rank2, rank3, rank4, rank5, rank6, rank7)
+        rankemoji = {"bronze": rank1, "silver": rank2, "gold": rank3, "platinum": rank4, "diamond": rank5, "champion": rank6, "grandchampion": rank7}
         try:
             game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
@@ -97,9 +99,26 @@ class LookingFG(Cog):
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
-        await author.send("What rank are you in this gamemode? e.g: Champion")
+        rank = await author.send("What rank are you in this gamemode? e.g: Champion")
         try:
-            rank = await bot.wait_for("message", timeout=120, check=check)
+            task = start_adding_reactions(game, gamemodes[:4], ctx.bot.loop)
+            (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(ranks, rank, ctx.author))
+            reacts = {v: k for k, v in rankemoji.items()}
+            react = reacts[r.emoji]
+            if react == "bronze":
+                rank = "Bronze"
+            elif react == "silver":
+                rank = "Silver"
+            elif react == "gold":
+                rank = "Gold"
+            elif react == "platinum":
+                rank = "Platinum"
+            elif react == "diamond":
+                rank = "Diamond"
+            elif react == "champion":
+                rank = "Champion"
+            elif react == "grandchampion":
+                rank = "Grand Champion"
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
