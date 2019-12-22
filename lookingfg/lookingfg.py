@@ -74,8 +74,8 @@ class LookingFG(Cog):
         regionemoji = {"usw": region1, "use": region2, "sam": region3, "saf": region4, "oce": region5, "me": region6, "jpn": region7, "eu": region8, "asm": region9, "asc": region10}
         platforms = (platform1, platform2, platform3, platform4)
         platformemoji = {"pc": platform1, "xbox": platform2, "ps": platform3, "switch": platform4}
-        players = ("1️⃣", "1️⃣")
-        playermemoji = {"1": "1️⃣", "2": "1️⃣"}
+        players = ("1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣")
+        playermemoji = {"1": "1️⃣", "2": "2️⃣", "3": "3️⃣", "4": "4️⃣", "5": "5️⃣", "6": "6️⃣", "7": "7️⃣"}
         try:
             game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
@@ -176,14 +176,24 @@ class LookingFG(Cog):
 
         player = await author.send("How many people are you looking for?")
         try:
-            task = start_adding_reactions(player, players[:2], ctx.bot.loop)
+            task = start_adding_reactions(player, players[:7], ctx.bot.loop)
             (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(players, player, ctx.author))
             reacts = {v: k for k, v in playeremoji.items()}
             react = reacts[r.emoji]
             if react == "1":
-                rank = "1"
+                player = "1"
             elif react == "2":
-                rank = "2"
+                player = "2"
+            elif react == "3":
+                player = "3"
+            elif react == "4":
+                player = "4"
+            elif react == "5":
+                player = "5"
+            elif react == "6":
+                player = "6"
+            elif react == "7":
+                player = "7"
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
@@ -194,7 +204,7 @@ class LookingFG(Cog):
         embed.add_field(name="Rank:", value=rank, inline=True)
         embed.add_field(name="Server:", value=region, inline=True)
         embed.add_field(name="Platform:", value=platform, inline=True)
-        embed.add_field(name="Looking for amount:", value=amount.content, inline=True)
+        embed.add_field(name="Looking for amount:", value=player, inline=True)
         await message.delete()
 
         try:
