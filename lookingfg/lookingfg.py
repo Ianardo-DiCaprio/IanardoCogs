@@ -144,7 +144,7 @@ class LookingFG(Cog):
         embed.set_author(name=f"{ctx.author.name} is looking for a Rocket League group", icon_url=author.avatar_url)
         embed.set_footer(text="{0}#{1} ({2})".format(author.name, author.discriminator, author.id))
         embed.add_field(name="GameMode:", value=gamemode, inline=True)
-        embed.add_field(name="Rank:", value=rank.content, inline=True)
+        embed.add_field(name="Rank:", value=rank, inline=True)
         embed.add_field(name="Server/s:", value=server.content, inline=True)
         embed.add_field(name="Platform:", value=platform.content, inline=True)
         embed.add_field(name="Looking for amount:", value=amount.content, inline=True)
