@@ -26,7 +26,7 @@ class LookingFG(Cog):
         self.config.register_global(**default_global)
 
     @commands.command()
-    @commands.cooldown(rate=1, per=300, type=commands.BucketType.user)
+    @commands.cooldown(rate=1, per=5, type=commands.BucketType.user)
     async def lfg(self, ctx: commands.Context):
         """Make an LFG request."""
         author = ctx.author
