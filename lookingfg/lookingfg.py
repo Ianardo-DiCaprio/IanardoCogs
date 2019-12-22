@@ -34,8 +34,8 @@ class LookingFG(Cog):
         """Make an LFG request."""
         author = ctx.author
         bot = self.bot
-        expected = ("<:RegionUSW:658410828743311392>", "⏹", "⏯", "⏭")
-        emoji = {"ones": "<:RegionUSW:658410828743311392>", "stop": "⏹", "pause": "⏯", "next": "⏭"}
+        expected = ("⏮", "⏹", "⏯", "⏭")
+        emoji = {"ones": "⏮", "stop": "⏹", "pause": "⏯", "next": "⏭"}
         try:
             game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
