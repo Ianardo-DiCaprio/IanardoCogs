@@ -35,7 +35,7 @@ class LookingFG(Cog):
         expected = ("⏮", "⏹", "⏯", "⏭")
         emoji = {"prev": "⏮", "stop": "⏹", "pause": "⏯", "next": "⏭"}
         try:
-            await author.send(
+            game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
                 "Please specify what gamemode you are playing. eg: 3's"
             )
@@ -48,11 +48,11 @@ class LookingFG(Cog):
             return member.author == author and member.channel == author.dm_channel
 
         try:
-            gamemode = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(expected, message, ctx.author))
+            gamemode = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(expected, game, ctx.author))
             reacts = {v: k for k, v in emoji.items()}
             react = reacts[r.emoji]
             if react == "prev":
-                await self._clear_react(message, emoji)
+                await self._clear_react(game, emoji)
                 gamemode = "1's"
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
