@@ -6,6 +6,7 @@ import discord
 from redbot.core import Config, checks, commands
 from redbot.core.bot import Red
 from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
+from redbot.core.utils.menus import start_adding_reactions
 
 Cog: Any = getattr(commands, "Cog", object)
 
