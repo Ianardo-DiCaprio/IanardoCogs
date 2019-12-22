@@ -90,7 +90,7 @@ class LookingFG(Cog):
         embed.add_field(name="Server/s:", value=server.content, inline=True)
         embed.add_field(name="Platform:", value=platform.content, inline=True)
         embed.add_field(name="Looking for amount:", value=amount.content, inline=True)
-        await delete.message
+        await message.delete()
 
         try:
             if await self.config.lfg_channel() is None:
