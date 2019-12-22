@@ -49,25 +49,25 @@ class LookingFG(Cog):
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
-        await author.send("What rank are you in this gamemode? e.g: Champion")
+        await author.send("**What rank are you in this gamemode? e.g: Champion**")
         try:
             rank = await bot.wait_for("message", timeout=120, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
-        await author.send("What servers are you playing on? e.g: EU, USE")
+        await author.send("**What servers are you playing on? e.g: EU, USE**")
         try:
             server = await bot.wait_for("message", timeout=120, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
-        await author.send("What platform are you using? e.g: PC")
+        await author.send("**What platform are you using? e.g: PC**")
         try:
             platform = await bot.wait_for("message", timeout=120, check=check)
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
-        await author.send("How many people are you looking for?")
+        await author.send("**How many people are you looking for?**")
         try:
             amount = await bot.wait_for("message", timeout=120, check=check)
         except asyncio.TimeoutError:
@@ -90,7 +90,7 @@ class LookingFG(Cog):
                 channel = self.bot.get_channel(await self.config.lfg_channel())
                 await channel.send(embed=embed)
                 await author.send(
-                    "Your LFG request has been made!"
+                    "**Your LFG request has been made!**"
                 )
         except discord.Forbidden:
             await author.send("That didn't work for some reason")
