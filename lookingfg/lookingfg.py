@@ -212,12 +212,12 @@ class LookingFG(Cog):
                 await author.send("It apprears that this hasn't been set up correctly on this server")
             else:
                 channel = self.bot.get_channel(await self.config.lfg_channel())
-                await channel.send(embed=embed)
+                please = await channel.send(embed=embed)
                 await author.send(
                     "Your LFG request has been made!"
                 )
                 await asyncio.sleep(10)
-                await embed.delete()
+                await please.delete()
         except discord.Forbidden:
             await author.send("That didn't work for some reason")
 
