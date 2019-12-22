@@ -55,10 +55,10 @@ class LookingFG(Cog):
         region8 = bot.get_emoji(658435948589088787)
         region9 = bot.get_emoji(658435948610191366)
         region10 = bot.get_emoji(658435948983353377)
-        platform1 = bot.get_emoji(658426530715926528)
-        platform2 = bot.get_emoji(658426530715926528)
-        platform3 = bot.get_emoji(658426530715926528)
-        platform4 = bot.get_emoji(658426530715926528)
+        platform1 = bot.get_emoji(658438656826015775)
+        platform2 = bot.get_emoji(658438656570294314)
+        platform3 = bot.get_emoji(658438656872415262)
+        platform4 = bot.get_emoji(658438656863895562)
         lookingfor1 = bot.get_emoji(658426530715926528)
         lookingfor2 = bot.get_emoji(658426530715926528)
         lookingfor3 = bot.get_emoji(658426530715926528)
@@ -72,6 +72,8 @@ class LookingFG(Cog):
         rankemoji = {"bronze": rank1, "silver": rank2, "gold": rank3, "platinum": rank4, "diamond": rank5, "champion": rank6, "grandchampion": rank7}
         regions = (region1, region2, region3, region4, region5, region6, region7, region8, region9, region10)
         regionemoji = {"usw": region1, "use": region2, "sam": region3, "saf": region4, "oce": region5, "me": region6, "jpn": region7, "eu": region8, "asm": region9, "asc": region10}
+        platforms = (platform1, platform2, platform3, platform4)
+        platformemoji = {"pc": platform1, "xbox": platform2, "ps": platform3, "switch": platform4}
         try:
             game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
@@ -131,31 +133,42 @@ class LookingFG(Cog):
             reacts = {v: k for k, v in regionemoji.items()}
             react = reacts[r.emoji]
             if react == "usw":
-                rank = "US-West"
+                region = "US-West"
             elif react == "use":
-                rank = "US-East"
+                region = "US-East"
             elif react == "sam":
-                rank = "South America"
+                region = "South America"
             elif react == "saf":
-                rank = "South African"
+                region = "South African"
             elif react == "oce":
-                rank = "Oceana"
+                region = "Oceana"
             elif react == "me":
-                rank = "Middle East"
+                region = "Middle East"
             elif react == "jpn":
-                rank = "Japan"
+                region = "Japan"
             elif react == "eu":
-                rank = "Europe"
+                region = "Europe"
             elif react == "asm":
-                rank = "Asia Mainlane"
+                region = "Asia Mainlane"
             elif react == "asc":
-                rank = "Asia East"
+                region = "Asia East"
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
-        await author.send("What platform are you using? e.g: PC")
+        platform = await author.send("What platform are you using?")
         try:
-            platform = await bot.wait_for("message", timeout=120, check=check)
+            task = start_adding_reactions(platform, platforms[:4], ctx.bot.loop)
+            (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(platforms, platform, ctx.author))
+            reacts = {v: k for k, v in platformemoji.items()}
+            react = reacts[r.emoji]
+            if react == "pc":
+                platform = "PC"
+            elif react == "xbox":
+                platform = "Xbox"
+            elif react == "ps":
+                platform = "PlayStation"
+            elif react == "switch":
+                platform = "Nintendo Switch"
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
@@ -170,8 +183,8 @@ class LookingFG(Cog):
         embed.set_footer(text="{0}#{1} ({2})".format(author.name, author.discriminator, author.id))
         embed.add_field(name="GameMode:", value=gamemode, inline=True)
         embed.add_field(name="Rank:", value=rank, inline=True)
-        embed.add_field(name="Server/s:", value=server.content, inline=True)
-        embed.add_field(name="Platform:", value=platform.content, inline=True)
+        embed.add_field(name="Server:", value=region, inline=True)
+        embed.add_field(name="Platform:", value=platform, inline=True)
         embed.add_field(name="Looking for amount:", value=amount.content, inline=True)
         await message.delete()
 
