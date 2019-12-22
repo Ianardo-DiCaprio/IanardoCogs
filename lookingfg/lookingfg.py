@@ -74,8 +74,8 @@ class LookingFG(Cog):
         regionemoji = {"usw": region1, "use": region2, "sam": region3, "saf": region4, "oce": region5, "me": region6, "jpn": region7, "eu": region8, "asm": region9, "asc": region10}
         platforms = (platform1, platform2, platform3, platform4)
         platformemoji = {"pc": platform1, "xbox": platform2, "ps": platform3, "switch": platform4}
-        players = ("1⃣")
-        playermemoji = {"1": "1⃣"}
+        players = (":one:")
+        playermemoji = {"1": ":one:"}
         try:
             game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
