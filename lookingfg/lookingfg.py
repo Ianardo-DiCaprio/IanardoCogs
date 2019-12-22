@@ -34,8 +34,8 @@ class LookingFG(Cog):
         """Make an LFG request."""
         author = ctx.author
         bot = self.bot
-        expected = ("⏮", "⏹", "⏯", "⏭")
-        emoji = {"prev": "⏮", "stop": "⏹", "pause": "⏯", "next": "⏭"}
+        expected = (":rlrank2Bronze:", "⏹", "⏯", "⏭")
+        emoji = {"ones": ":rlrank2Bronze:", "stop": "⏹", "pause": "⏯", "next": "⏭"}
         try:
             game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
@@ -54,7 +54,7 @@ class LookingFG(Cog):
             (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(expected, game, ctx.author))
             reacts = {v: k for k, v in emoji.items()}
             react = reacts[r.emoji]
-            if react == "prev":
+            if react == "ones":
                 gamemode = "1's"
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
