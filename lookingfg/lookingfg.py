@@ -34,12 +34,12 @@ class LookingFG(Cog):
         try:
             await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
-                "Please specify what gamemode you are playing. eg: 3's"
+                "**Please specify what gamemode you are playing. eg: 3's**"
             )
         except discord.Forbidden:
-            return await ctx.send("I can't seem to be able to DM you. Do you have DM's closed?")
+            return await ctx.send("**I can't seem to be able to DM you. Do you have DM's closed?**")
 
-        await ctx.send("Okay, {0}, I've sent you a DM.".format(author.mention))
+        message = await ctx.send("**Okay, {0}, I've sent you a DM.**".format(author.mention))
 
         def check(member):
             return member.author == author and member.channel == author.dm_channel
@@ -81,6 +81,7 @@ class LookingFG(Cog):
         embed.add_field(name="Server/s:", value=server.content, inline=False)
         embed.add_field(name="Platform:", value=platform.content, inline=False)
         embed.add_field(name="Looking for amount:", value=amount.content, inline=False)
+        await message.delete()
 
         try:
             if await self.config.lfg_channel() is None:
