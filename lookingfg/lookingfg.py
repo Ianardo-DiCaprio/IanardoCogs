@@ -74,7 +74,7 @@ class LookingFG(Cog):
             return await ctx.send("You took too long. Try again.")
 
         embed = discord.Embed(color=await ctx.embed_colour(), timestamp=datetime.now())
-        embed.set_author(name="Looking For Group", icon_url=author.avatar_url)
+        embed.set_author(name="{ctx.author.nickname} is Looking For Rocket League group!", icon_url=author.avatar_url)
         embed.set_footer(text="{0}#{1} ({2})".format(author.name, author.discriminator, author.id))
         embed.add_field(name="GameMode:", value=gamemode.content, inline=False)
         embed.add_field(name="Rank:", value=rank.content, inline=False)
