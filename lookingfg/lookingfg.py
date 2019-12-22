@@ -36,7 +36,7 @@ class LookingFG(Cog):
         bot = self.bot
         gamemode1 = bot.get_emoji(573299653613977601)
         expected = (gamemode1, "⏹", "⏯", "⏭")
-        emoji = {"ones": gamemode1, "stop": "⏹", "pause": "⏯", "next": "⏭"}
+        emoji = {"ones": f"{gamemode1}", "stop": "⏹", "pause": "⏯", "next": "⏭"}
         try:
             game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
