@@ -5,6 +5,7 @@ import discord
 
 from redbot.core import Config, checks, commands
 from redbot.core.bot import Red
+from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
 
 Cog: Any = getattr(commands, "Cog", object)
 
