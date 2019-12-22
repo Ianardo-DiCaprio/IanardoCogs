@@ -59,13 +59,6 @@ class LookingFG(Cog):
         platform2 = bot.get_emoji(658438656570294314)
         platform3 = bot.get_emoji(658438656872415262)
         platform4 = bot.get_emoji(658438656863895562)
-        lookingfor1 = bot.get_emoji(658426530715926528)
-        lookingfor2 = bot.get_emoji(658426530715926528)
-        lookingfor3 = bot.get_emoji(658426530715926528)
-        lookingfor4 = bot.get_emoji(658426530715926528)
-        lookingfor5 = bot.get_emoji(658426530715926528)
-        lookingfor6 = bot.get_emoji(658426530715926528)
-        lookingfor7 = bot.get_emoji(658426530715926528)
         gamemodes = (gamemode1, gamemode2, gamemode3, gamemodeo)
         gamemodeemoji = {"ones": gamemode1, "twos": gamemode2, "threes": gamemode3, "other": gamemodeo}
         ranks = (rank1, rank2, rank3, rank4, rank5, rank6, rank7)
