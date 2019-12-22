@@ -101,7 +101,7 @@ class LookingFG(Cog):
 
         rank = await author.send("What rank are you in this gamemode? e.g: Champion")
         try:
-            task = start_adding_reactions(game, gamemodes[:4], ctx.bot.loop)
+            task = start_adding_reactions(rank, ranks[:7], ctx.bot.loop)
             (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(ranks, rank, ctx.author))
             reacts = {v: k for k, v in rankemoji.items()}
             react = reacts[r.emoji]
