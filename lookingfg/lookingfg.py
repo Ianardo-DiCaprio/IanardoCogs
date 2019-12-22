@@ -38,8 +38,36 @@ class LookingFG(Cog):
         gamemode2 = bot.get_emoji(658426504186691598)
         gamemode3 = bot.get_emoji(658426519437443093)
         gamemodeo = bot.get_emoji(658426530715926528)
-        expected = (gamemode1, gamemode2, gamemode3, gamemodeo)
-        emoji = {"ones": gamemode1, "twos": gamemode2, "threes": gamemode3, "other": gamemodeo}
+        rank1 = bot.get_emoji(658426489636651051)
+        rank2 = bot.get_emoji(658426504186691598)
+        rank3 = bot.get_emoji(658426519437443093)
+        rank4 = bot.get_emoji(658426530715926528)
+        rank5 = bot.get_emoji(658426530715926528)
+        rank6 = bot.get_emoji(658426530715926528)
+        rank7 = bot.get_emoji(658426530715926528)
+        region1 = bot.get_emoji(658426530715926528)
+        region2 = bot.get_emoji(658426530715926528)
+        region3 = bot.get_emoji(658426530715926528)
+        region4 = bot.get_emoji(658426530715926528)
+        region5 = bot.get_emoji(658426530715926528)
+        region6 = bot.get_emoji(658426530715926528)
+        region7 = bot.get_emoji(658426530715926528)
+        region8 = bot.get_emoji(658426530715926528)
+        region9 = bot.get_emoji(658426530715926528)
+        region10 = bot.get_emoji(658426530715926528)
+        platform1 = bot.get_emoji(658426530715926528)
+        platform2 = bot.get_emoji(658426530715926528)
+        platform3 = bot.get_emoji(658426530715926528)
+        platform4 = bot.get_emoji(658426530715926528)
+        lookingfor1 = bot.get_emoji(658426530715926528)
+        lookingfor2 = bot.get_emoji(658426530715926528)
+        lookingfor3 = bot.get_emoji(658426530715926528)
+        lookingfor4 = bot.get_emoji(658426530715926528)
+        lookingfor5 = bot.get_emoji(658426530715926528)
+        lookingfor6 = bot.get_emoji(658426530715926528)
+        lookingfor7 = bot.get_emoji(658426530715926528)
+        gamemodes = (gamemode1, gamemode2, gamemode3, gamemodeo)
+        gamemodeemoji = {"ones": gamemode1, "twos": gamemode2, "threes": gamemode3, "other": gamemodeo}
         try:
             game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
@@ -54,9 +82,9 @@ class LookingFG(Cog):
             return member.author == author and member.channel == author.dm_channel
 
         try:
-            task = start_adding_reactions(game, expected[:4], ctx.bot.loop)
-            (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(expected, game, ctx.author))
-            reacts = {v: k for k, v in emoji.items()}
+            task = start_adding_reactions(game, gamemodes[:4], ctx.bot.loop)
+            (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(gamemodes, game, ctx.author))
+            reacts = {v: k for k, v in gamemodeemoji.items()}
             react = reacts[r.emoji]
             if react == "ones":
                 gamemode = "1's"
