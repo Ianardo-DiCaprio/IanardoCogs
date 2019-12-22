@@ -43,7 +43,7 @@ class LookingFG(Cog):
         except discord.Forbidden:
             return await ctx.send("I can't seem to be able to DM you. Do you have DM's closed?")
 
-        messsage = await ctx.send("Okay, {0}, I've sent you a DM.".format(author.mention))
+        message = await ctx.send("Okay, {0}, I've sent you a DM.".format(author.mention))
 
         def check(member):
             return member.author == author and member.channel == author.dm_channel
