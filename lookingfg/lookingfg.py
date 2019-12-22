@@ -75,7 +75,7 @@ class LookingFG(Cog):
         platforms = (platform1, platform2, platform3, platform4)
         platformemoji = {"pc": platform1, "xbox": platform2, "ps": platform3, "switch": platform4}
         players = ("1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣")
-        playermemoji = {"1": "1️⃣", "2": "2️⃣", "3": "3️⃣", "4": "4️⃣", "5": "5️⃣", "6": "6️⃣", "7": "7️⃣"}
+        playeremoji = {"1": "1️⃣", "2": "2️⃣", "3": "3️⃣", "4": "4️⃣", "5": "5️⃣", "6": "6️⃣", "7": "7️⃣"}
         try:
             game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
