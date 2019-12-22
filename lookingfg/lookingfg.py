@@ -34,7 +34,7 @@ class LookingFG(Cog):
         """Make an LFG request."""
         author = ctx.author
         bot = self.bot
-        gamemode1 = ctx.bot.get_emoji("658410828743311392")
+        gamemode1 = bot.emojis.get("658410828743311392")
         expected = (gamemode1, "⏹", "⏯", "⏭")
         emoji = {"ones": gamemode1, "stop": "⏹", "pause": "⏯", "next": "⏭"}
         try:
