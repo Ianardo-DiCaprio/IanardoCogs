@@ -71,17 +71,13 @@ class LookingFG(Cog):
         playeremoji = {"1": "1️⃣", "2": "2️⃣", "3": "3️⃣", "4": "4️⃣", "5": "5️⃣", "6": "6️⃣", "7": "7️⃣"}
         try:
             game = await author.send(
-                "You have a maximum of 2 minutes to answer each question, "
-                "Please specify what gamemode you are playing."
+                "**You have a maximum of 2 minutes to answer each question, **"
+                "**Please specify what gamemode you are playing.**"
             )
         except discord.Forbidden:
             return await ctx.send("I can't seem to be able to DM you. Do you have DM's closed?")
 
         message = await ctx.send("Okay, {0}, I've sent you a DM.".format(author.mention))
-
-        def check(member):
-            return member.author == author and member.channel == author.dm_channel
-
         try:
             task = start_adding_reactions(game, gamemodes[:4], ctx.bot.loop)
             (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(gamemodes, game, ctx.author))
@@ -96,9 +92,9 @@ class LookingFG(Cog):
             elif react == "other":
                 gamemode = "Other"
         except asyncio.TimeoutError:
-            return await ctx.send("You took too long. Try again.")
+            return await author.send("You took too long. Try again.")
 
-        rank = await author.send("What rank are you in this gamemode?")
+        rank = await author.send("**What rank are you in this gamemode?**")
         try:
             task = start_adding_reactions(rank, ranks[:7], ctx.bot.loop)
             (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(ranks, rank, ctx.author))
@@ -119,9 +115,9 @@ class LookingFG(Cog):
             elif react == "grandchampion":
                 rank = "Grand Champion"
         except asyncio.TimeoutError:
-            return await ctx.send("You took too long. Try again.")
+            return await author.send("You took too long. Try again.")
 
-        region = await author.send("What servers are you playing on?")
+        region = await author.send("**What servers are you playing on?**")
         try:
             task = start_adding_reactions(region, regions[:10], ctx.bot.loop)
             (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(regions, region, ctx.author))
@@ -148,9 +144,9 @@ class LookingFG(Cog):
             elif react == "asc":
                 region = "Asia East"
         except asyncio.TimeoutError:
-            return await ctx.send("You took too long. Try again.")
+            return await author.send("You took too long. Try again.")
 
-        platform = await author.send("What platform are you using?")
+        platform = await author.send("**What platform are you using?**")
         try:
             task = start_adding_reactions(platform, platforms[:4], ctx.bot.loop)
             (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(platforms, platform, ctx.author))
@@ -165,9 +161,9 @@ class LookingFG(Cog):
             elif react == "switch":
                 platform = "Nintendo Switch"
         except asyncio.TimeoutError:
-            return await ctx.send("You took too long. Try again.")
+            return await author.send("You took too long. Try again.")
 
-        player = await author.send("How many people are you looking for?")
+        player = await author.send("**How many people are you looking for?**")
         try:
             task = start_adding_reactions(player, players[:7], ctx.bot.loop)
             (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(players, player, ctx.author))
@@ -188,7 +184,7 @@ class LookingFG(Cog):
             elif react == "7":
                 player = "7"
         except asyncio.TimeoutError:
-            return await ctx.send("You took too long. Try again.")
+            return await author.send("You took too long. Try again.")
 
         embed = discord.Embed(color=await ctx.embed_colour(), timestamp=datetime.now())
         embed.set_author(name=f"{ctx.author.name} is looking for a Rocket League group", icon_url=author.avatar_url)
@@ -207,7 +203,7 @@ class LookingFG(Cog):
                 channel = self.bot.get_channel(await self.config.lfg_channel())
                 please = await channel.send(embed=embed)
                 await author.send(
-                    "Your LFG request has been made!"
+                    "**Your LFG request has been made!**"
                 )
                 await asyncio.sleep(1800)
                 await please.delete()
