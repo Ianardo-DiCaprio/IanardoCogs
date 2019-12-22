@@ -45,16 +45,16 @@ class LookingFG(Cog):
         rank5 = bot.get_emoji(658431824065986562)
         rank6 = bot.get_emoji(658431823931506710)
         rank7 = bot.get_emoji(658431823608545294)
-        region1 = bot.get_emoji(658426530715926528)
-        region2 = bot.get_emoji(658426530715926528)
-        region3 = bot.get_emoji(658426530715926528)
-        region4 = bot.get_emoji(658426530715926528)
-        region5 = bot.get_emoji(658426530715926528)
-        region6 = bot.get_emoji(658426530715926528)
-        region7 = bot.get_emoji(658426530715926528)
-        region8 = bot.get_emoji(658426530715926528)
-        region9 = bot.get_emoji(658426530715926528)
-        region10 = bot.get_emoji(658426530715926528)
+        region1 = bot.get_emoji(658435948513722399)
+        region2 = bot.get_emoji(658435948572442635)
+        region3 = bot.get_emoji(658435948425641994)
+        region4 = bot.get_emoji(658435948492750869)
+        region5 = bot.get_emoji(658435948236767236)
+        region6 = bot.get_emoji(658435948631162880)
+        region7 = bot.get_emoji(658435948211601422)
+        region8 = bot.get_emoji(658435948589088787)
+        region9 = bot.get_emoji(658435948610191366)
+        region10 = bot.get_emoji(658435948983353377)
         platform1 = bot.get_emoji(658426530715926528)
         platform2 = bot.get_emoji(658426530715926528)
         platform3 = bot.get_emoji(658426530715926528)
@@ -70,10 +70,12 @@ class LookingFG(Cog):
         gamemodeemoji = {"ones": gamemode1, "twos": gamemode2, "threes": gamemode3, "other": gamemodeo}
         ranks = (rank1, rank2, rank3, rank4, rank5, rank6, rank7)
         rankemoji = {"bronze": rank1, "silver": rank2, "gold": rank3, "platinum": rank4, "diamond": rank5, "champion": rank6, "grandchampion": rank7}
+        regions = (region1, region2, region3, region4, region5, region6, region7, region8, region9, region10)
+        regionemoji = {"usw": region1, "use": region2, "sam": region3, "saf": region4, "oce": region5, "me": region6, "jpn": region7, "eu": region8, "asm": region9, "asc": region10}
         try:
             game = await author.send(
                 "You have a maximum of 2 minutes to answer each question, "
-                "Please specify what gamemode you are playing. eg: 3's"
+                "Please specify what gamemode you are playing."
             )
         except discord.Forbidden:
             return await ctx.send("I can't seem to be able to DM you. Do you have DM's closed?")
@@ -99,7 +101,7 @@ class LookingFG(Cog):
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
-        rank = await author.send("What rank are you in this gamemode? e.g: Champion")
+        rank = await author.send("What rank are you in this gamemode?")
         try:
             task = start_adding_reactions(rank, ranks[:7], ctx.bot.loop)
             (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(ranks, rank, ctx.author))
@@ -122,9 +124,32 @@ class LookingFG(Cog):
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
-        await author.send("What servers are you playing on? e.g: EU, USE")
+        region = await author.send("What servers are you playing on?")
         try:
-            server = await bot.wait_for("message", timeout=120, check=check)
+            task = start_adding_reactions(region, regions[:10], ctx.bot.loop)
+            (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(regions, region, ctx.author))
+            reacts = {v: k for k, v in regionemoji.items()}
+            react = reacts[r.emoji]
+            if react == "usw":
+                rank = "US-West"
+            elif react == "use":
+                rank = "US-East"
+            elif react == "sam":
+                rank = "South America"
+            elif react == "saf":
+                rank = "South African"
+            elif react == "oce":
+                rank = "Oceana"
+            elif react == "me":
+                rank = "Middle East"
+            elif react == "jpn":
+                rank = "Japan"
+            elif react == "eu":
+                rank = "Europe"
+            elif react == "asm":
+                rank = "Asia Mainlane"
+            elif react == "asc":
+                rank = "Asia East"
         except asyncio.TimeoutError:
             return await ctx.send("You took too long. Try again.")
 
