@@ -50,7 +50,7 @@ class LookingFG(Cog):
 
         try:
             task = start_adding_reactions(game, expected[:4], ctx.bot.loop)
-            gamemode = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(expected, game, ctx.author))
+            (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(expected, game, ctx.author))
             reacts = {v: k for k, v in emoji.items()}
             react = reacts[r.emoji]
             if react == "prev":
