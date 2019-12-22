@@ -216,6 +216,8 @@ class LookingFG(Cog):
                 await author.send(
                     "Your LFG request has been made!"
                 )
+                await asyncio.sleep(10)
+                await embed.delete()
         except discord.Forbidden:
             await author.send("That didn't work for some reason")
 
