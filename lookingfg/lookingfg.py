@@ -71,8 +71,8 @@ class LookingFG(Cog):
         playeremoji = {"1": "1️⃣", "2": "2️⃣", "3": "3️⃣", "4": "4️⃣", "5": "5️⃣", "6": "6️⃣", "7": "7️⃣"}
         try:
             game = await author.send(
-                "**You have a maximum of 2 minutes to answer each question, **"
-                "**Please specify what gamemode you are playing.**"
+                "**You have a maximum of 2 minutes to answer each question, "
+                "Please specify what gamemode you are playing.**"
             )
         except discord.Forbidden:
             return await ctx.send("I can't seem to be able to DM you. Do you have DM's closed?")
