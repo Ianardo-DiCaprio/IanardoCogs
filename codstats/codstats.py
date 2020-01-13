@@ -1151,44 +1151,41 @@ class CODSTATS(commands.Cog):
             ) as request:
                 data = await request.json()
         
-        try:
-            username = data["data"]["username"]
-            level = round(data["data"]["level"])
-            userlvl = f"{username} - Level: {level}"
-            #SMG Stats
-            embed = discord.Embed(title=userlvl + " - SMG Stats", color=0x8C05D2)
-            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
-            embed.set_footer(text="React to change pages for more stats!")
-            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa7"]["properties"]["kills"] != "N/A":
-                mp7 = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa7"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa7"]["properties"]["headShots"])
-                embed.add_field(name="**MP7 Stats**", value=f"**Kills:** {mp7} \n **Headshots:** {headshots}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_augolf"]["properties"]["kills"] != "N/A":
-                aug = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_augolf"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_augolf"]["properties"]["headShots"])
-                embed.add_field(name="**AUG Stats**", value=f"**Kills:** {aug} \n **Headshots:** {headshots}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_papa90"]["properties"]["kills"] != "N/A":
-                p90 = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_papa90"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_papa90"]["properties"]["headShots"])
-                embed.add_field(name="**P90 Stats**", value=f"**Kills:** {p90} \n **Headshots:** {headshots}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa5"]["properties"]["kills"] != "N/A":
-                mp5 = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa5"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa5"]["properties"]["headShots"])
-                embed.add_field(name="**MP5 Stats**", value=f"**Kills:** {mp5} \n **Headshots:** {headshots}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_beta"]["properties"]["kills"] != "N/A":
-                bizon = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_beta"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_beta"]["properties"]["headShots"])
-                embed.add_field(name="**PP19 Bizon Stats**", value=f"**Kills:** {bizon} \n **Headshots:** {headshots}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_uzulu"]["properties"]["kills"] != "N/A":
-                uzi = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_uzulu"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_uzulu"]["properties"]["headShots"])
-                embed.add_field(name="**Uzi Stats**", value=f"**Kills:** {uzi} \n **Headshots:** {headshots}", inline=True)
-            embeds.append(embed)
-            await menu(
-                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
-            )
-        except:
-            await ctx.send("Either the platform or username is incorrect, please make sure to use pc, psn or xbox for the platform and make sure you spelt your name correctly.")
+        username = data["data"]["username"]
+        level = round(data["data"]["level"])
+        userlvl = f"{username} - Level: {level}"
+        #SMG Stats
+        embed = discord.Embed(title=userlvl + " - SMG Stats", color=0x8C05D2)
+        embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+        embed.set_footer(text="React to change pages for more stats!")
+        if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa7"]["properties"]["kills"] != "N/A":
+            mp7 = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa7"]["properties"]["kills"])
+            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa7"]["properties"]["headShots"])
+            embed.add_field(name="**MP7 Stats**", value=f"**Kills:** {mp7} \n **Headshots:** {headshots}", inline=True)
+        if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_augolf"]["properties"]["kills"] != "N/A":
+            aug = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_augolf"]["properties"]["kills"])
+            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_augolf"]["properties"]["headShots"])
+            embed.add_field(name="**AUG Stats**", value=f"**Kills:** {aug} \n **Headshots:** {headshots}", inline=True)
+        if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_papa90"]["properties"]["kills"] != "N/A":
+            p90 = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_papa90"]["properties"]["kills"])
+            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_papa90"]["properties"]["headShots"])
+            embed.add_field(name="**P90 Stats**", value=f"**Kills:** {p90} \n **Headshots:** {headshots}", inline=True)
+        if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa5"]["properties"]["kills"] != "N/A":
+            mp5 = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa5"]["properties"]["kills"])
+            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_mpapa5"]["properties"]["headShots"])
+            embed.add_field(name="**MP5 Stats**", value=f"**Kills:** {mp5} \n **Headshots:** {headshots}", inline=True)
+        if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_beta"]["properties"]["kills"] != "N/A":
+            bizon = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_beta"]["properties"]["kills"])
+            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_beta"]["properties"]["headShots"])
+            embed.add_field(name="**PP19 Bizon Stats**", value=f"**Kills:** {bizon} \n **Headshots:** {headshots}", inline=True)
+        if data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_uzulu"]["properties"]["kills"] != "N/A":
+            uzi = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_uzulu"]["properties"]["kills"])
+            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_smg"]["iw8_sm_uzulu"]["properties"]["headShots"])
+            embed.add_field(name="**Uzi Stats**", value=f"**Kills:** {uzi} \n **Headshots:** {headshots}", inline=True)
+        embeds.append(embed)
+        await menu(
+            ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
+        )
 
     @commands.command()
     async def codsniper(self, ctx, platform: Optional[str] = "", *, username: Optional[str] = ""):
