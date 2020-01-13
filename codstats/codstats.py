@@ -1222,7 +1222,7 @@ class CODSTATS(commands.Cog):
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["headshots"])
                 embed.add_field(name="**AX-50 Stats**", value=f"**Kills:** {ax} \n **headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"] != "N/A":
-               drag = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"])
+                drag = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_delta"]["properties"]["headshots"])
                 embed.add_field(name="**Dragunov Stats**", value=f"**Kills:** {drag} \n **headshots:** {headshots}", inline=True)
             embeds.append(embed)
