@@ -374,26 +374,26 @@ class CODSTATS(commands.Cog):
                 ax = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["headshots"])
                 embed.add_field(name="**AX-50 Stats**", value=f"**Kills:** {ax} \n **headshots:** {headshots}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_delta"]["properties"]["kills"] != "N/A":
-                drag = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_delta"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_delta"]["properties"]["headshots"])
+            if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"] != "N/A":
+                drag = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["headshots"])
                 embed.add_field(name="**Dragunov Stats**", value=f"**Kills:** {drag} \n **headshots:** {headshots}", inline=True)
             embeds.append(embed)
             #Marksman Rifle Stats
             embed = discord.Embed(title=userlvl + " - Marksman Rifle Stats", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             embed.set_footer(text="React to change pages for more stats!")
-            if data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_kilo98"]["properties"]["kills"] != "N/A":
-                kar = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_kilo98"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_kilo98"]["properties"]["headshots"])
+            if data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["kills"] != "N/A":
+                kar = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["headshots"])
                 embed.add_field(name="**Kar98K Stats**", value=f"**Kills:** {kar} \n **headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["kills"] != "N/A":
                 carbine = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["headshots"])
                 embed.add_field(name="**MK2 Carbine Stats**", value=f"**Kills:** {carbine} \n **headshots:** {headshots}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["kills"] != "N/A":
-                ebr = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["headshots"])
+            if data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["kills"] != "N/A":
+                ebr = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["headshots"])
                 embed.add_field(name="**EBR-14 Stats**", value=f"**Kills:** {ebr} \n **headshots:** {headshots}", inline=True)
             embeds.append(embed)
             #Melee Stats
@@ -1224,7 +1224,7 @@ class CODSTATS(commands.Cog):
             embed.add_field(name="**AX-50 Stats**", value=f"**Kills:** {ax} \n **headshots:** {headshots}", inline=True)
         if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"] != "N/A":
             drag = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["headshots"])
+            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_delta"]["properties"]["headshots"])
             embed.add_field(name="**Dragunov Stats**", value=f"**Kills:** {drag} \n **headshots:** {headshots}", inline=True)
         embeds.append(embed)
         await menu(
@@ -1257,17 +1257,17 @@ class CODSTATS(commands.Cog):
             embed = discord.Embed(title=userlvl + " - Marksman Rifle Stats", color=0x8C05D2)
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             embed.set_footer(text="React to change pages for more stats!")
-            if data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_kilo98"]["properties"]["kills"] != "N/A":
-                kar = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_kilo98"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_kilo98"]["properties"]["headshots"])
+            if data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["kills"] != "N/A":
+                kar = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["headshots"])
                 embed.add_field(name="**Kar98K Stats**", value=f"**Kills:** {kar} \n **headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["kills"] != "N/A":
                 carbine = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_sbeta"]["properties"]["headshots"])
                 embed.add_field(name="**MK2 Carbine Stats**", value=f"**Kills:** {carbine} \n **headshots:** {headshots}", inline=True)
-            if data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["kills"] != "N/A":
-                ebr = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["kills"])
-                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_mike14"]["properties"]["headshots"])
+            if data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["kills"] != "N/A":
+                ebr = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["headshots"])
                 embed.add_field(name="**EBR-14 Stats**", value=f"**Kills:** {ebr} \n **headshots:** {headshots}", inline=True)
             embeds.append(embed)
             await menu(
