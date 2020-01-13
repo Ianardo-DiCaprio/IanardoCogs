@@ -963,7 +963,7 @@ class CODSTATS(commands.Cog):
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["headshots"])
                 embed.add_field(name="**SA87 Stats**", value=f"**Kills:** {sa87} \n **headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["kills"] != "N/A":
-               mg34 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["kills"])
+                mg34 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["headshots"])
                 embed.add_field(name="**MG34 Stats**", value=f"**Kills:** {mg34} \n **headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["kills"] != "N/A":
@@ -971,7 +971,7 @@ class CODSTATS(commands.Cog):
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["headshots"])
                 embed.add_field(name="**PKM Stats**", value=f"**Kills:** {pkm} \n **headshots:** {headshots}", inline=True)
             if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf36"]["properties"]["kills"] != "N/A":
-               holger = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf36"]["properties"]["kills"])
+                holger = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf36"]["properties"]["kills"])
                 headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf36"]["properties"]["headshots"])
                 embed.add_field(name="**Holger-26 Stats**", value=f"**Kills:** {holger} \n **headshots:** {headshots}", inline=True)
             embeds.append(embed)
