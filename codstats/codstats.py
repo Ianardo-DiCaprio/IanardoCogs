@@ -608,7 +608,7 @@ class CODSTATS(commands.Cog):
             embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
             embed.set_footer(text="React to change pages for more stats!")
             try:
-                if data["data"]["weekly"]["all"]["properties"]["medalXp"] != "N/A":
+                if data["data"]["weekly"]["all"]["properties"]["medalXp"]:
                     kills = round(data["data"]["weekly"]["all"]["properties"]["kills"])
                     embed.add_field(name="**Kills**", value=f"**{kills}**", inline=True)
                     deaths = round(data["data"]["weekly"]["all"]["properties"]["deaths"])
@@ -946,38 +946,40 @@ class CODSTATS(commands.Cog):
                 f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
             ) as request:
                 data = await request.json()
-        
-        username = data["data"]["username"]
-        level = round(data["data"]["level"])
-        userlvl = f"{username} - Level: {level}"
-        #LMG Stats
-        embed = discord.Embed(title=userlvl + " - LMG Stats", color=0x8C05D2)
-        embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
-        embed.set_footer(text="React to change pages for more stats!")
-        if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["kills"] != "N/A":
-            m91 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["headshots"])
-            embed.add_field(name="**M91 Stats**", value=f"**Kills:** {m91} \n **headshots:** {headshots}", inline=True)
-        if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["kills"] != "N/A":
-            sa87 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["headshots"])
-            embed.add_field(name="**SA87 Stats**", value=f"**Kills:** {sa87} \n **headshots:** {headshots}", inline=True)
-        if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["kills"] != "N/A":
-            mg34 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["headshots"])
-            embed.add_field(name="**MG34 Stats**", value=f"**Kills:** {mg34} \n **headshots:** {headshots}", inline=True)
-        if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["kills"] != "N/A":
-            pkm = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["headshots"])
-            embed.add_field(name="**PKM Stats**", value=f"**Kills:** {pkm} \n **headshots:** {headshots}", inline=True)
-        if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf36"]["properties"]["kills"] != "N/A":
-            holger = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf36"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf36"]["properties"]["headshots"])
-            embed.add_field(name="**Holger-26 Stats**", value=f"**Kills:** {holger} \n **headshots:** {headshots}", inline=True)
-        embeds.append(embed)
-        await menu(
-            ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
-        )
+        try:
+            username = data["data"]["username"]
+            level = round(data["data"]["level"])
+            userlvl = f"{username} - Level: {level}"
+            #LMG Stats
+            embed = discord.Embed(title=userlvl + " - LMG Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["kills"] != "N/A":
+                m91 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_kilo121"]["properties"]["headshots"])
+                embed.add_field(name="**M91 Stats**", value=f"**Kills:** {m91} \n **headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["kills"] != "N/A":
+                sa87 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_lima86"]["properties"]["headshots"])
+                embed.add_field(name="**SA87 Stats**", value=f"**Kills:** {sa87} \n **headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["kills"] != "N/A":
+               mg34 = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf34"]["properties"]["headshots"])
+                embed.add_field(name="**MG34 Stats**", value=f"**Kills:** {mg34} \n **headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["kills"] != "N/A":
+                pkm = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_pkilo"]["properties"]["headshots"])
+                embed.add_field(name="**PKM Stats**", value=f"**Kills:** {pkm} \n **headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf36"]["properties"]["kills"] != "N/A":
+               holger = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf36"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_lmg"]["iw8_lm_mgolf36"]["properties"]["headshots"])
+                embed.add_field(name="**Holger-26 Stats**", value=f"**Kills:** {holger} \n **headshots:** {headshots}", inline=True)
+            embeds.append(embed)
+            await menu(
+                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
+            )
+        except:
+            await ctx.send("Either the platform or username is incorrect, please make sure to use pc, psn or xbox for the platform and make sure you spelt your name correctly.")
 
     @commands.command()
     async def codlaunch(self, ctx, platform: Optional[str] = "", *, username: Optional[str] = ""):
@@ -1203,31 +1205,32 @@ class CODSTATS(commands.Cog):
                 f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
             ) as request:
                 data = await request.json()
-
-        username = data["data"]["username"]
-        level = round(data["data"]["level"])
-        userlvl = f"{username} - Level: {level}"
-        #Sniper Rifle Stats
-        embed = discord.Embed(title=userlvl + " - Sniper Rifle Stats", color=0x8C05D2)
-        embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
-        embed.set_footer(text="React to change pages for more stats!")
-        if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_hdromeo"]["properties"]["kills"] != "N/A":
-            hdr = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_hdromeo"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_hdromeo"]["properties"]["headshots"])
-            embed.add_field(name="**HDR Stats**", value=f"**Kills:** {hdr} \n **headshots:** {headshots}", inline=True)
-        if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["kills"] != "N/A":
-            ax = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["headshots"])
-            embed.add_field(name="**AX-50 Stats**", value=f"**Kills:** {ax} \n **headshots:** {headshots}", inline=True)
-        if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"] != "N/A":
-            drag = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_delta"]["properties"]["headshots"])
-            embed.add_field(name="**Dragunov Stats**", value=f"**Kills:** {drag} \n **headshots:** {headshots}", inline=True)
-        embeds.append(embed)
-        await menu(
-            ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
-        )
-
+            try:
+            username = data["data"]["username"]
+            level = round(data["data"]["level"])
+            userlvl = f"{username} - Level: {level}"
+            #Sniper Rifle Stats
+            embed = discord.Embed(title=userlvl + " - Sniper Rifle Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_hdromeo"]["properties"]["kills"] != "N/A":
+                hdr = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_hdromeo"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_hdromeo"]["properties"]["headshots"])
+                embed.add_field(name="**HDR Stats**", value=f"**Kills:** {hdr} \n **headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["kills"] != "N/A":
+                ax = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["headshots"])
+                embed.add_field(name="**AX-50 Stats**", value=f"**Kills:** {ax} \n **headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"] != "N/A":
+               drag = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_delta"]["properties"]["headshots"])
+                embed.add_field(name="**Dragunov Stats**", value=f"**Kills:** {drag} \n **headshots:** {headshots}", inline=True)
+            embeds.append(embed)
+            await menu(
+                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
+            )
+        except:
+            await ctx.send("Either the platform or username is incorrect, please make sure to use pc, psn or xbox for the platform and make sure you spelt your name correctly.")
     @commands.command()
     async def codmarksman(self, ctx, platform: Optional[str] = "", *, username: Optional[str] = ""):
         """Command to get your COD: MW marksman rifle stats
@@ -1245,31 +1248,33 @@ class CODSTATS(commands.Cog):
                 f"https://my.callofduty.com/api/papi-client/stats/cod/v1/title/mw/platform/{platform}/gamer/{username}/profile/type/mp"
             ) as request:
                 data = await request.json()
-        
-        username = data["data"]["username"]
-        level = round(data["data"]["level"])
-        userlvl = f"{username} - Level: {level}"
-       #Marksman Rifle Stats
-        embed = discord.Embed(title=userlvl + " - Marksman Rifle Stats", color=0x8C05D2)
-        embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
-        embed.set_footer(text="React to change pages for more stats!")
-        if data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["kills"] != "N/A":
-            kar = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["headshots"])
-            embed.add_field(name="**Kar98K Stats**", value=f"**Kills:** {kar} \n **headshots:** {headshots}", inline=True)
-        if data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_sbeta"]["properties"]["kills"] != "N/A":
-            carbine = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_sbeta"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_sbeta"]["properties"]["headshots"])
-            embed.add_field(name="**MK2 Carbine Stats**", value=f"**Kills:** {carbine} \n **headshots:** {headshots}", inline=True)
-        if data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["kills"] != "N/A":
-            ebr = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["headshots"])
-            embed.add_field(name="**EBR-14 Stats**", value=f"**Kills:** {ebr} \n **headshots:** {headshots}", inline=True)
-        embeds.append(embed)
-        await menu(
-            ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
-        )
 
+        try:
+            username = data["data"]["username"]
+            level = round(data["data"]["level"])
+            userlvl = f"{username} - Level: {level}"
+           #Marksman Rifle Stats
+            embed = discord.Embed(title=userlvl + " - Marksman Rifle Stats", color=0x8C05D2)
+            embed.set_thumbnail(url="https://i.pinimg.com/originals/cb/ea/43/cbea438a032192c7aa8210e596e4c065.png")
+            embed.set_footer(text="React to change pages for more stats!")
+            if data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["kills"] != "N/A":
+                kar = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_kilo98"]["properties"]["headshots"])
+                embed.add_field(name="**Kar98K Stats**", value=f"**Kills:** {kar} \n **headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_sbeta"]["properties"]["kills"] != "N/A":
+                carbine = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_sbeta"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_sbeta"]["properties"]["headshots"])
+                embed.add_field(name="**MK2 Carbine Stats**", value=f"**Kills:** {carbine} \n **headshots:** {headshots}", inline=True)
+            if data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["kills"] != "N/A":
+                ebr = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["kills"])
+                headshots = round(data["data"]["lifetime"]["itemData"]["weapon_marksman"]["iw8_sn_mike14"]["properties"]["headshots"])
+                embed.add_field(name="**EBR-14 Stats**", value=f"**Kills:** {ebr} \n **headshots:** {headshots}", inline=True)
+            embeds.append(embed)
+            await menu(
+                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
+            )
+        except:
+            await ctx.send("Either the platform or username is incorrect, please make sure to use pc, psn or xbox for the platform and make sure you spelt your name correctly.")
 
     @commands.command()
     async def codmelee(self, ctx, platform: Optional[str] = "", *, username: Optional[str] = ""):
