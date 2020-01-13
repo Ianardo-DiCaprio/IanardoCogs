@@ -1222,9 +1222,9 @@ class CODSTATS(commands.Cog):
             ax = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["kills"])
             headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_alpha50"]["properties"]["headshots"])
             embed.add_field(name="**AX-50 Stats**", value=f"**Kills:** {ax} \n **headshots:** {headshots}", inline=True)
-        if data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_delta"]["properties"]["kills"] != "N/A":
-            drag = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_delta"]["properties"]["kills"])
-            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_dmr"]["iw8_sn_delta"]["properties"]["headshots"])
+        if data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"] != "N/A":
+            drag = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["kills"])
+            headshots = round(data["data"]["lifetime"]["itemData"]["weapon_sniper"]["iw8_sn_delta"]["properties"]["headshots"])
             embed.add_field(name="**Dragunov Stats**", value=f"**Kills:** {drag} \n **headshots:** {headshots}", inline=True)
         embeds.append(embed)
         await menu(
