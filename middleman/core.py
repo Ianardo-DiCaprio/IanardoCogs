@@ -20,7 +20,7 @@ class MiddleManCore:
 
         self.middleman_info_format = '\n\n**[{datetime}]** [{author}]\n{information}'
 
-    async def create_middleman(self, context, membername):
+    async def create_middleman(self, context):
         guild = context.guild
         author = context.author
 
