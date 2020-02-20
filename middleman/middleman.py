@@ -1,6 +1,8 @@
 from redbot.core import commands
 from .core import MiddleManCore
 
+import discord
+
 BaseCog = getattr(commands, "Cog", object)
 
 class MiddleMan(BaseCog):
