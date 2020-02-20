@@ -34,8 +34,7 @@ class MiddleManCore:
         if category_channel and category_channel in [category.id for category in guild.categories]:
             n1 = 10**10
             n2 = n1 * 10 - 1
-            middleman_id = int(random.randint(n1, n2))
-            middleman_channel = await guild.create_text_channel('{}-{}'.format(author.display_name, middleman_id),
+            middleman_channel = await guild.create_text_channel('{}-{}'.format(author.display_name, membername.display_name),
                                                              category=self.bot.get_channel(category_channel))
 
             await middleman_channel.set_permissions(author, read_messages=True, send_messages=True)
