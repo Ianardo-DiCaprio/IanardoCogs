@@ -37,11 +37,14 @@ class MiddleMan(BaseCog):
         await self.core.update_middleman(context, status)
 
     @middleman.command(name='close')
-    async def middleman_close(self, context):
+    async def middleman_close(self, context, membername: discord.Member = None):
         '''
         Close a middleman
         '''
-        await self.core.close_middleman(context)
+        if not membername:
+            await context.send("Please mention the not author trader to close the ticket.")
+            return
+        await self.core.close_middleman(context, membername)
 
     @middleman.group(name='set')
     @commands.has_permissions(administrator=True)
