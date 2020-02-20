@@ -1,8 +1,6 @@
 from redbot.core import commands
 from .core import MiddleManCore
 
-import discord
-
 BaseCog = getattr(commands, "Cog", object)
 
 class MiddleMan(BaseCog):
@@ -25,7 +23,7 @@ class MiddleMan(BaseCog):
             await context.send("Please mention a user you want to trade with")
             return
         if context.invoked_subcommand is None:
-            message = await self.core.create_middleman(context)
+            message = await self.core.create_middleman(context, membername)
             if message:
                 await context.send(message)
 
