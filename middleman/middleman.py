@@ -13,13 +13,13 @@ class MiddleMan(BaseCog):
     @commands.group(name='middleman')
     async def middleman(self, context):
         '''
-        middleman!
+        Middleman trades!
         '''
 
     @middleman.command(name='new')
     async def middleman_new(self, context, membername: discord.Member = None):
         '''
-        Create a new middleman
+        Create a new middleman channel.
         '''
         if not membername:
             await context.send("Please mention a user you want to trade with")
@@ -32,14 +32,14 @@ class MiddleMan(BaseCog):
     @middleman.command(name='update')
     async def middleman_update(self, context, *, status: str):
         '''
-        Update the status of a middleman
+        Update the status of a middleman trade.
         '''
         await self.core.update_middleman(context, status)
 
     @middleman.command(name='close')
     async def middleman_close(self, context, membername: discord.Member = None):
         '''
-        Close a middleman
+        Close a middleman channel.
         '''
         if not membername:
             await context.send("Please mention the user that is mentioned in the channel topic. Eg: [middleman close @user")
@@ -56,7 +56,7 @@ class MiddleMan(BaseCog):
     @middleman_set.command(name='purge')
     async def middleman_set_purge(self, context):
         '''
-        Delete all closed middleman
+        Delete all closed middleman channels.
         '''
         message = await self.core.purge_middleman(context)
         await context.send(message)
@@ -65,7 +65,7 @@ class MiddleMan(BaseCog):
     @commands.has_permissions(administrator=True)
     async def middleman_set_message(self, context, *, message: str):
         '''
-        Set the default message when a new middleman has been created (markdown safe)
+        Set the default message when a new middleman channel has been created (markdown safe)
         '''
         message = await self.core.set_default_message_middleman_channel(context, message)
         await context.send(message)
