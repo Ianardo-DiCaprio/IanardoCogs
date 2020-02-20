@@ -50,7 +50,7 @@ class MiddleManCore:
 
             if default_message_middleman_channel:
                 await middleman_channel.send(default_message_middleman_channel.format(member=author,
-                                                                                channel=ticket_channel,
+                                                                                channel=middleman_channel,
                                                                                 origin=context.channel,
                                                                                 middleman_role=middleman_role))
 
