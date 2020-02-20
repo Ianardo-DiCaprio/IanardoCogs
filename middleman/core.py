@@ -81,7 +81,7 @@ class MiddleManCore:
                                 information=status)
                                )
 
-    async def close_middleman(self, context):
+    async def close_middleman(self, context, membername):
         try:
             await context.message.delete()
         except discord.Forbidden:
