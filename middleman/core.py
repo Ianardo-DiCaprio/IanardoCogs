@@ -18,7 +18,7 @@ class MiddleManCore:
         }
         self.config.register_guild(**default_guild)
 
-        self.middleman_info_format = '\n\n**[{datetime}]**[membername][{author}]\n{information}'
+        self.middleman_info_format = '\n\n**[{datetime}]**[{membername}][{author}]\n{information}'
 
     async def create_middleman(self, context, membername):
         guild = context.guild
