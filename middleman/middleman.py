@@ -15,10 +15,13 @@ class MiddleMan(BaseCog):
         '''
 
     @middleman.command(name='new')
-    async def middleman_new(self, context):
+    async def middleman_new(self, context, membername: discord.Member = None):
         '''
         Create a new middleman
         '''
+        if not membername:
+            await context.send("Please mention a user you want to trade with")
+            return
         if context.invoked_subcommand is None:
             message = await self.core.create_middleman(context)
             if message:

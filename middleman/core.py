@@ -39,6 +39,7 @@ class MiddleManCore:
                                                              category=self.bot.get_channel(category_channel))
 
             await middleman_channel.set_permissions(author, read_messages=True, send_messages=True)
+            await middleman_channel.set_permissions(membername, read_messages=True, send_messages=True)
             await middleman_channel.set_permissions(guild.me, read_messages=True, send_messages=True, manage_channels=True)
 
             await middleman_channel.edit(topic=self.middleman_info_format.format(middleman=middleman_id,
@@ -101,6 +102,7 @@ class MiddleManCore:
             closed_category = self.bot.get_channel(closed_category)
 
             await channel.set_permissions(member, read_messages=True, send_messages=False)
+            await channel.set_permissions(membername, read_messages=True, send_messages=False)
             await channel.edit(category=closed_category,
                                topic=channel.topic+self.middleman_info_format.format(
                                     middleman=middleman_id,
