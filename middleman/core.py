@@ -18,7 +18,7 @@ class MiddleManCore:
         }
         self.config.register_guild(**default_guild)
 
-        self.middleman_info_format = '\n\n**[{datetime}]** [{author}]\n{information}'
+        self.middleman_info_format = '\n\n**[{datetime}]**[membername][{author}]\n{information}'
 
     async def create_middleman(self, context, membername):
         guild = context.guild
@@ -34,7 +34,8 @@ class MiddleManCore:
         if category_channel and category_channel in [category.id for category in guild.categories]:
             n1 = 10**10
             n2 = n1 * 10 - 1
-            middleman_channel = await guild.create_text_channel('{}-{}'.format(author.display_name, membername.display_name),
+            middleman_id = int(random.randint(n1, n2))
+            middleman_channel = await guild.create_text_channel('{}-{}'.format(author.display_name, middleman_id),
                                                              category=self.bot.get_channel(category_channel))
 
             await middleman_channel.set_permissions(author, read_messages=True, send_messages=True)
@@ -43,6 +44,7 @@ class MiddleManCore:
 
             await middleman_channel.edit(topic=self.middleman_info_format.format(middleman=middleman_id,
                                       datetime=datetime.utcnow().strftime('%d/%m/%Y %H:%M:%S'),
+                                      membername=membername.id,
                                       author=author.display_name,
                                       information='Middleman opened'))
 
