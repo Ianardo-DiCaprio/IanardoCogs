@@ -41,10 +41,10 @@ class MiddleManCore:
             await middleman_channel.set_permissions(author, read_messages=True, send_messages=True)
             await middleman_channel.set_permissions(membername, read_messages=True, send_messages=True)
             await middleman_channel.set_permissions(guild.me, read_messages=True, send_messages=True, manage_channels=True)
-            membernamedone == "<@" + membername.id + ">"
+
             await middleman_channel.edit(topic=self.middleman_info_format.format(middleman=middleman_id,
                                       datetime=datetime.utcnow().strftime('%d/%m/%Y %H:%M:%S'),
-                                      membername=membernamedone,
+                                      membername="<@" + membername.id + ">",
                                       author=author.display_name,
                                       information='Middleman opened'))
 
