@@ -58,7 +58,7 @@ class MiddleManCore:
                     session.update({middleman_channel.id: author.id})
 
         else:
-            return 'Naughty! You need to run the setup first.'
+            return 'You need to run the setup first.'
 
     async def update_middleman(self, context, status):
         try:
@@ -122,7 +122,7 @@ class MiddleManCore:
             for channel in closed_channels:
                 await channel.delete()
 
-            return 'All closed middleman removed!'
+            return 'All closed middleman channels removed!'
         except discord.Forbidden:
             return 'I need permissions to manage channels.'
 
@@ -153,6 +153,6 @@ class MiddleManCore:
             await self.config.guild(guild).closed_category.set(closed_category_channel.id)
             await self.config.guild(guild).middleman_role.set(middleman_role.id)
 
-            return ':tada: Fabulous! You\'re all done! Now add the `Middleman` role to anyone who you deem good enough to handle middleman. And if you care, you can change the name of the role and category if you _really_ want to.'
+            return 'You\'re all done! Now add the `Middleman` role to anyone who you deem good enough to handle trades.'
         except discord.Forbidden:
             return 'That didn\'t go well... I need permissions to manage channels and manage roles. :rolling_eyes:'
