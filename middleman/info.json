@@ -1,0 +1,8 @@
+{
+  "author" : "Ianardo DiCaprio",
+  "bot_version" : [3, 2, 0],
+  "description" : "A middleman system that works with channels",
+  "short" : "A middleman system that works with channels",
+  "tags" : ["middleman"],
+  "install_msg" : "Coolio"
+}
