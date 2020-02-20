@@ -42,7 +42,7 @@ class MiddleMan(BaseCog):
         Close a middleman
         '''
         if not membername:
-            await context.send("Please mention the not author trader to close the ticket. (the second user in the channel name)")
+            await context.send("Please mention the user that is mentioned in the channel topic. Eg: [middleman close @user")
             return
         await self.core.close_middleman(context, membername)
 
