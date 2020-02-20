@@ -44,7 +44,7 @@ class MiddleManCore:
 
             await middleman_channel.edit(topic=self.middleman_info_format.format(middleman=middleman_id,
                                       datetime=datetime.utcnow().strftime('%d/%m/%Y %H:%M:%S'),
-                                      membername="<@" + membername.id + ">",
+                                      membername="<@" + str(membername.id) + ">",
                                       author=author.display_name,
                                       information='Middleman opened'))
 
