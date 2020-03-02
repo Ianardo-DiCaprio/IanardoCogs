@@ -47,7 +47,7 @@ class SixMans(commands.Cog):
         self.queue.put(player)
 
         await ctx.send("{} added to queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
-        if self.queue_full():
+        if await self.queue_full():
             await ctx.send("Queue is now full! Type [captains or [random to create a game.")
 
     @commands.command(pass_context=True, name="dequeue", aliases=["dq"], description="Remove yourself from the queue")
@@ -73,8 +73,8 @@ class SixMans(commands.Cog):
             await ctx.send("{} is not in queue.".format(player.display_name))
 
     async def queue_full(self):
-        if 2 >= 4:
-            return
+        team_size = await self.config.guild(ctx.guild).team_size()
+        return self.queue.qsize() >= team_size
 
     def check_vote_command(self, message):
         if not message.content.startswith("{prefix}vote".format(prefix=self.bot.command_prefix)):
