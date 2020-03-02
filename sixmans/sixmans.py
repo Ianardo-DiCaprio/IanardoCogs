@@ -28,10 +28,10 @@ class SixMans(commands.Cog):
         if players is None:
             await ctx.send("Please define between 4 or 6 players.")
         if players == "4":
-            await self.config.team_size.set(players)
+            await self.config.guild(ctx.guild).team_size.set(players)
             await ctx.send("6mans has been set to 4 players")
-        if players == "6":
-            await self.config.team_size.set(players)
+        if players == "6:
+            await self.config.guild(ctx.guild).team_size.set(players)
             await ctx.send("6mans has been set to 6 players")
 
     @commands.command(pass_context=True, name="sixqueue", aliases=["q"], description="Add yourself to the queue")
