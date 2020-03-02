@@ -44,7 +44,7 @@ class SixMans(commands.Cog):
             await ctx.send("{} is already in a game.".format(player.display_name))
             return
 
-        await self.queue.put(player)
+        self.queue.put(player)
 
         await ctx.send("{} added to queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
         if await self.queue_full(ctx):
