@@ -9,9 +9,7 @@ from redbot.core import commands
 
 team_size = 6
 
-Cog: Any = getattr(commands, "Cog", object)
-
-class SixMans(Cog):
+class SixMans(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.queue = PlayerQueue()
