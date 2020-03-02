@@ -23,7 +23,7 @@ class SixMans(commands.Cog):
         self.config.register_guild(**default_guild)
 
     @commands.command()
-    async def smset(self, ctx, players=None):
+    async def smset(self, ctx, players=int(None)):
         """Command to set between 4 or 6 man"""
         if players is None:
             await ctx.send("Please define between 4 or 6 players.")
