@@ -37,8 +37,7 @@ class SixMans(commands.Cog):
 
         await ctx.send("{} added to queue. ({:d}/{:d})".format(player.display_name, self.queue.qsize(), team_size))
         if self.queue_full():
-            await ctx.send("Queue is now full! Type {prefix}captains or {prefix}random to create a game.".format(
-                prefix=self.bot.command_prefix))
+            await ctx.send("Queue is now full! Type [captains or [random to create a game.")
 
     @commands.command(pass_context=True, name="dequeue", aliases=["dq"], description="Remove yourself from the queue")
     async def dq(self, ctx):
@@ -241,7 +240,7 @@ class SixMans(commands.Cog):
         self.busy = True
         self.create_game()
 
-        orange = random.sample(self.game.players, 3)
+        orange = random.sample(self.game.players, 1)
         for player in orange:
             self.game.add_to_orange(player)
 
