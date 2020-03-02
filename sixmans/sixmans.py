@@ -71,7 +71,6 @@ class SixMans(commands.Cog):
             await ctx.send("{} is not in queue.".format(player.display_name))
 
     def queue_full(self):
-        team_size = await self.config.guild(ctx.guild).team_size()
         return self.queue.qsize() >= team_size
 
     def check_vote_command(self, message):
