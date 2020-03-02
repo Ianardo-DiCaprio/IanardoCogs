@@ -351,7 +351,7 @@ class SixMans(commands.Cog):
 
     @commands.command(name="blue", aliases=["blue"], description="Start a game by randomly assigning teams")
     async def blue(self, ctx):
-        for player in self.game.blue
+        for player in self.game.blue:
         await ctx.send("{}".format(player.mention))
 
 class Game:
