@@ -20,6 +20,13 @@ class SixMans(commands.Cog):
             "team_size": 6,
         }
 
+        default_user = {
+            "wins": 0,
+            "losses": 0,
+            "winloss": 0,
+        }
+
+        self.conf.register_user(**default_user)
         self.config.register_guild(**default_guild)
 
     @commands.command()
@@ -349,10 +356,16 @@ class SixMans(commands.Cog):
         players = [self.queue.get() for _ in range(team_size)]
         self.game = Game(players)
 
-    @commands.command(name="blueteam", description="Start a game by randomly assigning teams")
-    async def blueteam(self, ctx):
+    @commands.command(name="bluewin", description="Start a game by randomly assigning teams")
+    async def bluewin(self, ctx):
         for player in self.game.blue:
-            await ctx.send("{}".format(player.mention))
+            wins = await self.conf.user(user).win()
+            losses = await self.conf.user(user).loss()
+            new_win = wins + 1
+            winloss = new_win // losses
+            await self.conf.user(ctx.author).wins.set(new_win)
+            await self.conf.user(ctx.author).winloss.set(winloss)
+            await ctx.send("{} now has {wins} and a win/loss of {winloss]".format(player.mention, wins=new_win, winloss=winloss))
 
 class Game:
     def __init__(self, players):
