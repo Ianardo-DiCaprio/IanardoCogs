@@ -151,8 +151,8 @@ class SixMans(commands.Cog):
             return False
         return True
 
-    @commands.command(description="Start a game by randomly choosing captains")
-    async def captains(self, ctx):
+    @commands.command(name="captains", aliases=["c"], description="Start a game by randomly choosing captains")
+    async def c(self, ctx):
         if not self.queue_full():
             await ctx.send("Queue is not full.")
             return
@@ -229,8 +229,8 @@ class SixMans(commands.Cog):
                 "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
             return picks
 
-    @commands.command(description="Start a game by randomly assigning teams")
-    async def random(self, ctx):
+    @commands.command(name="random", aliases=["r"], description="Start a game by randomly assigning teams")
+    async def r(self, ctx):
         if not self.queue_full():
             await ctx.send("Queue is not full.")
             return
