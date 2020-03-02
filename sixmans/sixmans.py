@@ -93,7 +93,7 @@ class SixMans(commands.Cog):
             await ctx.send("Bot is busy. Please wait until picking is done.")
             return
         self.busy = True
-        self.create_game()
+        await self.create_game()
 
         await ctx.send(
             "Captain voting initiated. Use [vote [user] to vote for a captain (cannot be yourself).")
@@ -174,7 +174,7 @@ class SixMans(commands.Cog):
             await ctx.send("Bot is busy. Please wait until picking is done.")
             return
         self.busy = True
-        self.create_game()
+        await self.create_game()
 
         await self.do_picks()
 
@@ -250,8 +250,8 @@ class SixMans(commands.Cog):
             await ctx.send("Bot is busy. Please wait until picking is done.")
             return
         self.busy = True
-        self.create_game()
-        orange = random.sample(await self.game.players, 3)
+        await self.create_game()
+        orange = random.sample(self.game.players, 3)
         for player in orange:
             self.game.add_to_orange(player)
 
