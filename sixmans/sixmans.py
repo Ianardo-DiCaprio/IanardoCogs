@@ -17,7 +17,7 @@ class SixMans(commands.Cog):
         self.config = Config.get_conf(self, identifier=346832465834, force_registration=True)
 
         default_guild = {
-            "team_size": 6,
+            "team_size": "6",
         }
 
         self.config.register_guild(**default_guild)
@@ -27,10 +27,10 @@ class SixMans(commands.Cog):
         """Command to set between 4 or 6 man"""
         if players is None:
             await ctx.send("Please define between 4 or 6 players.")
-        if players == 4:
+        if players == "4":
             await self.config.team_size.set(players)
             await ctx.send("6mans has been set to 4 players")
-        if players == 6:
+        if players == "6":
             await self.config.team_size.set(players)
             await ctx.send("6mans has been set to 6 players")
 
