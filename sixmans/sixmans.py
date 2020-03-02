@@ -364,6 +364,8 @@ class SixMans(commands.Cog):
             losses = await self.config.user(user).losses()
             new_win = wins + 1
             winloss = new_win // losses
+            if losses == 0:
+                winloss == 100
             await self.config.user(user).wins.set(new_win)
             await self.config.user(user).winloss.set(winloss)
             await ctx.send("{} now has {wins} and a win/loss of {winloss]".format(player.mention, wins=new_win, winloss=winloss))
