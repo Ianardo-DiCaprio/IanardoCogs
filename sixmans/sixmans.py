@@ -68,20 +68,28 @@ class SixMans(commands.Cog):
 
         if player in self.queue:
             await self.queue.remove(player)
-            await ctx.send(
-                "{} removed from queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
+            removed = (
+                "**{}** removed from queue. **({}/{})**".format(player.display_name, self.queue.qsize(), team_size))
+            embed = discord.Embed(title="6Mans", description=removed, color=0x8C05D2)
+            await ctx.send(embed=embed)
         else:
-            await ctx.send("{} is not in queue.".format(player.display_name))
+            notq = ("**{}** is not in queue.".format(player.display_name))
+            embed = discord.Embed(title="6Mans", description=notq, color=0x8C05D2)
+            await ctx.send(embed=embed)
 
     @commands.command(description="Remove someone else from the queue")
     async def smkick(self, ctx,  player: discord.Member):
         team_size = await self.config.guild(ctx.guild).team_size()
         if player in self.queue:
             self.queue.remove(player)
-            await ctx.send(
-                "{} removed from queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
+            kicked = (
+                "**{}** removed from queue. **({}/{})**".format(player.display_name, self.queue.qsize(), team_size))
+            embed = discord.Embed(title="6Mans", description=kicked, color=0x8C05D2)
+            await ctx.send(embed=embed)
         else:
-            await ctx.send("{} is not in queue.".format(player.display_name))
+            notq = ("{} is not in queue.".format(player.display_name))
+            embed = discord.Embed(title="6Mans", description=notq, color=0x8C05D2)
+            await ctx.send(embed=embed)
 
     async def queue_full(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
@@ -98,17 +106,24 @@ class SixMans(commands.Cog):
     async def voting(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
         if not await self.queue_full():
-            await ctx.send("Queue is not full.")
+            queuefull = ("Queue is not full.")
+            embed = discord.Embed(title="6Mans", description=queuefull, color=0x8C05D2)
+            await ctx.send(embed=embed)
             return
         if self.busy:
-            await ctx.send("Bot is busy. Please wait until picking is done.")
+            botbusy = ("Bot is busy. Please wait until picking is done.")
+            embed = discord.Embed(title="6Mans", description=botbusy, color=0x8C05D2)
+            await ctx.send(embed=embed)
             return
         self.busy = True
         await self.create_game(ctx)
 
-        await ctx.send(
-            "Captain voting initiated. Use [vote [user] to vote for a captain (cannot be yourself).")
-        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        captainvote = ("Captain voting initiated. Use [vote [user] to vote for a captain (cannot be yourself).")
+        embed = discord.Embed(title="6Mans", description=captainvote, color=0x8C05D2)
+        await ctx.send(embed=embed)
+        available = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        embed = discord.Embed(title="6Mans", description=available, color=0x8C05D2)
+        await ctx.send(embed=embed)
 
         votes = {}
         timeout = 90
@@ -122,14 +137,22 @@ class SixMans(commands.Cog):
 
             vote = msg.mentions[0]
             if vote == msg.author:
-                await ctx.send("Cannot vote for yourself.")
+                selfvote = ("Cannot vote for yourself.")
+                embed = discord.Embed(title="6Mans", description=selfvote, color=0x8C05D2)
+                await ctx.send(embed=embed)
             elif vote in self.game.players:
                 votes[msg.author] = msg.mentions[0]
-                await ctx.send("Vote added for {}.".format(vote.display_name))
+                voted = ("Vote added for {}.".format(vote.display_name))
+                embed = discord.Embed(title="6Mans", description=voted, color=0x8C05D2)
+                await ctx.send(embed=embed)
             else:
-                await ctx.send("{} not available to pick.".format(vote.display_name))
+                notavailable = ("{} not available to pick.".format(vote.display_name))
+                embed = discord.Embed(title="6Mans", description=notavailable, color=0x8C05D2)
+                await ctx.send(embed=embed)
         if len(votes) < team_size:
-            await ctx.send("Timed out.")
+            timed = ("Timed out.")
+            embed = discord.Embed(title="6Mans", description=timed, color=0x8C05D2)
+            await ctx.send(embed=embed)
             msg = ""
             for player in self.game.players:
                 if player not in votes:
@@ -138,7 +161,8 @@ class SixMans(commands.Cog):
                         vote = random.choice(tuple(self.game.players))
                     votes[player] = vote
                     msg += "Random vote added for {} from {}.\n".format(vote.display_name, player.display_name)
-            await ctx.send(msg)
+            embed = discord.Embed(title="6Mans", description=msg, color=0x8C05D2)
+            await ctx.send(embed=embed)
 
         vote_nums = {}
         for vote in votes.values():
@@ -149,12 +173,16 @@ class SixMans(commands.Cog):
             self.game.captains = top_votes
             secondary_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[1][1]]
             if len(secondary_votes) > 1:
-                await ctx.send("{}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
+                tied = ("{}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
+                embed = discord.Embed(title="6Mans", description=tied, color=0x8C05D2)
+                await ctx.send(embed=embed)
                 random.shuffle(secondary_votes)
             self.game.captains.append(secondary_votes[0])
         else:
             if len(top_votes) > 2:
-                await ctx.send("{}-way tie for captains. Shuffling picks...".format(len(top_votes)))
+                tieda ("{}-way tie for captains. Shuffling picks...".format(len(top_votes)))
+                embed = discord.Embed(title="6Mans", description=tieda, color=0x8C05D2)
+                await ctx.send(embed=embed)
             random.shuffle(top_votes)
             self.game.captains = top_votes[:2]
 
@@ -179,10 +207,14 @@ class SixMans(commands.Cog):
     @commands.command(name="captains", aliases=["c"], description="Start a game by randomly choosing captains")
     async def c(self, ctx):
         if not await self.queue_full():
-            await ctx.send("Queue is not full.")
+            queuenot = ("Queue is not full.")
+            embed = discord.Embed(title="6Mans", description=queuenot, color=0x8C05D2)
+            await ctx.send(embed=embed)
             return
         if self.busy:
-            await ctx.send("Bot is busy. Please wait until picking is done.")
+            busy = ("Bot is busy. Please wait until picking is done.")
+            embed = discord.Embed(title="6Mans", description=busy, color=0x8C05D2)
+            await ctx.send(embed=embed)
             return
         self.busy = True
         await self.create_game(ctx)
@@ -192,25 +224,35 @@ class SixMans(commands.Cog):
         self.busy = False
 
     async def do_picks(self, ctx):
-        await ctx.send("Captains: {} and {}".format(*[captain.mention for captain in self.game.captains]))
+        captains = ("Captains: {} and {}".format(*[captain.mention for captain in self.game.captains]))
+        embed = discord.Embed(title="6Mans", description=captains, color=0x8C05D2)
+        await ctx.send(embed=embed)
         orange_captain = self.game.captains[0]
         self.game.add_to_orange(orange_captain)
         blue_captain = self.game.captains[1]
         self.game.add_to_blue(blue_captain)
 
         # Orange Pick
-        await ctx.send(
+       pick = (
             "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.mention ))
-        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        embed = discord.Embed(title="6Mans", description=pick, color=0x8C05D2)
+        await ctx.send(embed=embed)
+        available = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        embed = discord.Embed(title="6Mans", description=available, color=0x8C05D2)
+        await ctx.send(embed=embed)
         orange_pick = None
         while not orange_pick:
             orange_pick = await self.pick_orange(orange_captain)
         self.game.add_to_orange(orange_pick)
 
         # Blue Picks
-        await ctx.send(
+        bpick = (
             "{mention} Use [pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.mention))
-        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        embed = discord.Embed(title="6Mans", description=bpick, color=0x8C05D2)
+        await ctx.send(embed=embed)
+        bavailable = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        embed = discord.Embed(title="6Mans", description=bavailable, color=0x8C05D2)
+        await ctx.send(embed=embed)
         blue_picks = None
         while not blue_picks:
             blue_picks = await self.pick_blue(blue_captain)
@@ -220,7 +262,9 @@ class SixMans(commands.Cog):
         # Orange Player
         last_player = next(iter(self.game.players))
         self.game.add_to_orange(last_player)
-        await ctx.send("{} added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
+        added = ("{} added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
+        embed = discord.Embed(title="6Mans", description=added, color=0x8C05D2)
+        await ctx.send(embed=embed)
         await self.display_teams()
 
     async def pick_orange(self, ctx, captain):
@@ -228,12 +272,18 @@ class SixMans(commands.Cog):
         if msg:
             pick = msg.mentions[0]
             if pick not in self.game.players:
-                await ctx.send("{} not available to pick.".format(pick.display_name))
+                notavailable = ("{} not available to pick.".format(pick.display_name))
+                embed = discord.Embed(title="6Mans", description=notavailable, color=0x8C05D2)
+                await ctx.send(embed=embed)
                 return None
-            await ctx.send("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+            picked = ("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+            embed = discord.Embed(title="6Mans", description=picked, color=0x8C05D2)
+            await ctx.send(embed=embed)
         else:
             pick = random.choice(tuple(self.game.players))
-            await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+            timed = ("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+            embed = discord.Embed(title="6Mans", description=timed, color=0x8C05D2)
+            await ctx.send(embed=embed)
         return pick
 
     async def pick_blue(self, ctx, captain):
@@ -242,23 +292,33 @@ class SixMans(commands.Cog):
             picks = msg.mentions
             for pick in picks:
                 if pick not in self.game.players:
-                    await ctx.send("{} not available to pick.".format(pick.display_name))
+                    notavailable = ("{} not available to pick.".format(pick.display_name))
+                    embed = discord.Embed(title="6Mans", description=notavailable, color=0x8C05D2)
+                    await ctx.send(embed=embed)
                     return None
-            await ctx.send("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+            picked = ("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+            embed = discord.Embed(title="6Mans", description=picked, color=0x8C05D2)
+            await ctx.send(embed=embed)
             return picks
         else:
             picks = random.sample(self.game.players, 2)
-            await ctx.send(
+            timed = (
                 "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+            embed = discord.Embed(title="6Mans", description=timed, color=0x8C05D2)
+            await ctx.send(embed=embed)
             return picks
 
     @commands.command(name="random", aliases=["r"], description="Start a game by randomly assigning teams")
     async def r(self, ctx):
         if not await self.queue_full(ctx):
-            await ctx.send("Queue is not full.")
+            notfull = ("Queue is not full.")
+            embed = discord.Embed(title="6Mans", description=notfull, color=0x8C05D2)
+            await ctx.send(embed=embed)
             return
         if self.busy:
-            await ctx.send("Bot is busy. Please wait until picking is done.")
+            busy = ("Bot is busy. Please wait until picking is done.")
+            embed = discord.Embed(title="6Mans", description=busy, color=0x8C05D2)
+            await ctx.send(embed=embed)
             return
         self.busy = True
         await self.create_game(ctx)
@@ -277,8 +337,12 @@ class SixMans(commands.Cog):
         self.busy = False
 
     async def display_teams(self, ctx):
-        await ctx.send("🔶 ORANGE 🔶: {}".format(", ".join([player.display_name for player in self.game.orange])))
-        await ctx.send("🔷 BLUE 🔷: {}".format(", ".join([player.display_name for player in self.game.blue])))
+        embed = discord.Embed(title="6Mans", color=0x8C05D2)
+        oranget = ("🔶 ORANGE 🔶: {}".format(", ".join([player.display_name for player in self.game.orange])))
+        bluet = ("🔷 BLUE 🔷: {}".format(", ".join([player.display_name for player in self.game.blue])))
+        embed.add_field(name="Orange Team:", value=oranget, inline=False)
+        embed.add_field(name="Blue Team:", value=bluet, inline=False)
+        await ctx.send(embed=embed)
 
     async def create_game(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
