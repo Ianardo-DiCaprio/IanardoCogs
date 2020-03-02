@@ -359,12 +359,13 @@ class SixMans(commands.Cog):
     @commands.command(name="bluewin", description="Start a game by randomly assigning teams")
     async def bluewin(self, ctx):
         for player in self.game.blue:
+            user = player
             wins = await self.config.user(user).win()
             losses = await self.config.user(user).loss()
             new_win = wins + 1
             winloss = new_win // losses
-            await self.config.user(ctx.author).wins.set(new_win)
-            await self.config.user(ctx.author).winloss.set(winloss)
+            await self.config.user(user).wins.set(new_win)
+            await self.config.user(user).winloss.set(winloss)
             await ctx.send("{} now has {wins} and a win/loss of {winloss]".format(player.mention, wins=new_win, winloss=winloss))
 
 class Game:
