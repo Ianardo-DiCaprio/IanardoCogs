@@ -27,10 +27,10 @@ class SixMans(commands.Cog):
         """Command to set between 4 or 6 man"""
         if players is None:
             await ctx.send("Please define between 4 or 6 players.")
-        if players == "4":
+        if players == 4:
             await self.config.guild(ctx.guild).team_size.set(players)
             await ctx.send("6mans has been set to 4 players")
-        if players == "6:
+        if players == 6:
             await self.config.guild(ctx.guild).team_size.set(players)
             await ctx.send("6mans has been set to 6 players")
 
