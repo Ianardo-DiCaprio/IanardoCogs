@@ -42,7 +42,7 @@ class SixMans(commands.Cog):
 
         if player in self.queue:
             alreadyq = ("{} is already in queue.".format(player.display_name))
-            embed = discord.Embed(title=title, description=alreadyq, color=0x8C05D2)
+            embed = discord.Embed(title="Already Queued", description=alreadyq, color=0x8C05D2)
             await ctx.send(embed)
             return
         if self.busy and player in self.game:
