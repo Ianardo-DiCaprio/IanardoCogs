@@ -46,7 +46,7 @@ class SixMans(commands.Cog):
 
         self.queue.put(player)
 
-        await ctx.send("{} added to queue. ({}/{})".format(player.display_name, self.q.qsize(), team_size))
+        await ctx.send("{} added to queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
         if self.queue_full():
             await ctx.send("Queue is now full! Type [captains or [random to create a game.")
 
@@ -58,23 +58,23 @@ class SixMans(commands.Cog):
         if player in self.queue:
             self.queue.remove(player)
             await ctx.send(
-                "{} removed from queue. ({}/{})".format(player.display_name, self.q.qsize(), team_size))
+                "{} removed from queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
         else:
             await ctx.send("{} is not in queue.".format(player.display_name))
 
     @commands.command(description="Remove someone else from the queue")
-    async def sixkick(self, ctx,  player: discord.Member):
+    async def smkick(self, ctx,  player: discord.Member):
         team_size = await self.config.guild(ctx.guild).team_size()
         if player in self.queue:
             self.queue.remove(player)
             await ctx.send(
-                "{} removed from queue. ({}/{})".format(player.display_name, self.q.qsize(), team_size))
+                "{} removed from queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
         else:
             await ctx.send("{} is not in queue.".format(player.display_name))
 
     async def queue_full(self):
         team_size = await self.config.guild(ctx.guild).team_size()
-        return self.q.qsize() >= team_size
+        return self.queue.qsize() >= team_size
 
     def check_vote_command(self, message):
         if not message.content.startswith("{prefix}vote".format(prefix=self.bot.command_prefix)):
