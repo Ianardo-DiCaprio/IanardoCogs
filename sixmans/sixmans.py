@@ -360,8 +360,8 @@ class SixMans(commands.Cog):
     async def bluewin(self, ctx):
         for player in self.game.blue:
             user = player
-            wins = await self.config.user(user).win()
-            losses = await self.config.user(user).loss()
+            wins = await self.config.user(user).wins()
+            losses = await self.config.user(user).losses()
             new_win = wins + 1
             winloss = new_win // losses
             await self.config.user(user).wins.set(new_win)
