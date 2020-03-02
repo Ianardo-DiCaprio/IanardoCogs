@@ -41,17 +41,19 @@ class SixMans(commands.Cog):
         team_size = await self.config.guild(ctx.guild).team_size()
 
         if player in self.queue:
-            await ctx.send("{} is already in queue.".format(player.display_name))
+            alreadyq = ("{} is already in queue.".format(player.display_name))
+            embed = discord.Embed(title=title, description=alreadyq, color=0x8C05D2)
+            await ctx.send(embed)
             return
         if self.busy and player in self.game:
-            await ctx.send("{} is already in a game.".format(player.display_name))
+            alreadyg = ("{} is already in a game.".format(player.display_name))
             return
 
         self.queue.put(player)
 
-        await ctx.send("{} added to queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
+        added = ("{} added to queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
         if await self.queue_full(ctx):
-            await ctx.send("Queue is now full! Type [captains or [random to create a game.")
+            queuefull = ("Queue is now full! Type [captains or [random to create a game.")
 
     @commands.command(pass_context=True, name="dequeue", aliases=["dq"], description="Remove yourself from the queue")
     async def dq(self, ctx):
