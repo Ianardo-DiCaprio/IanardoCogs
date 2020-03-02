@@ -254,8 +254,9 @@ class SixMans(commands.Cog):
             return
         self.busy = True
         self.create_game()
-
-        orange = random.sample(self.game.players, 3)
+        team_size = await self.config.guild(ctx.guild).team_size()
+        team_sizes = team_size/2
+        orange = random.sample(self.game.players, team_sizes)
         for player in orange:
             self.game.add_to_orange(player)
 
