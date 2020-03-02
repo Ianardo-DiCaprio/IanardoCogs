@@ -267,7 +267,7 @@ class SixMans(commands.Cog):
         await ctx.send("🔶 ORANGE 🔶: {}".format(", ".join([player.display_name for player in self.game.orange])))
         await ctx.send("🔷 BLUE 🔷: {}".format(", ".join([player.display_name for player in self.game.blue])))
 
-    async def create_game(self):
+    async def create_game(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
         players = [self.queue.get() for _ in range(team_size)]
         self.game = Game(players)
