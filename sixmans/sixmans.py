@@ -5,7 +5,7 @@ import time
 from queue import Queue
 
 import discord
-from redbot.core import commands, Config
+from redbot.core import commands
 
 
 class SixMans(commands.Cog):
@@ -14,14 +14,10 @@ class SixMans(commands.Cog):
         self.queue = PlayerQueue()
         self.game = None
         self.busy = False
-        self.config = Config.get_conf(self, identifier=346832423865834, force_registration=True)
 
         default_guild = {
             "team_size": 6,
         }
-
-        self.config.register_guild(**default_guild)
-
     @commands.command()
     async def smset(self, ctx, players=None):
         """Command to set between 4 or 6 man"""
@@ -74,7 +70,7 @@ class SixMans(commands.Cog):
         else:
             await ctx.send("{} is not in queue.".format(player.display_name))
 
-    def queue_full(self):
+    async def queue_full(self):
         team_size = await self.config.guild(ctx.guild).team_size()
         return self.queue.qsize() >= team_size
 
@@ -273,10 +269,10 @@ class SixMans(commands.Cog):
         await ctx.send("🔶 ORANGE 🔶: {}".format(", ".join([player.display_name for player in self.game.orange])))
         await ctx.send("🔷 BLUE 🔷: {}".format(", ".join([player.display_name for player in self.game.blue])))
 
-    def create_game(self):
+    async def create_game(self):
+        team_size = await self.config.guild(ctx.guild).team_size()
         players = [self.queue.get() for _ in range(team_size)]
         self.game = Game(players)
-
 
 class Game:
     def __init__(self, players):
