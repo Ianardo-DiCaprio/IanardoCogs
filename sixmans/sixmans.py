@@ -349,6 +349,11 @@ class SixMans(commands.Cog):
         players = [self.queue.get() for _ in range(team_size)]
         self.game = Game(players)
 
+    @commands.command(name="blue", aliases=["blue"], description="Start a game by randomly assigning teams")
+    async def blue(self, ctx):
+        for player in self.game.blue
+        await ctx.send("{}".format(player.mention))
+
 class Game:
     def __init__(self, players):
         self.players = set(players)
