@@ -86,7 +86,7 @@ class SixMans(commands.Cog):
     @commands.command(description="Start a game by voting for captains")
     async def voting(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
-        if not self.queue_full():
+        if not await self.queue_full():
             await ctx.send("Queue is not full.")
             return
         if self.busy:
@@ -167,7 +167,7 @@ class SixMans(commands.Cog):
 
     @commands.command(name="captains", aliases=["c"], description="Start a game by randomly choosing captains")
     async def c(self, ctx):
-        if not self.queue_full():
+        if not await self.queue_full():
             await ctx.send("Queue is not full.")
             return
         if self.busy:
@@ -243,7 +243,7 @@ class SixMans(commands.Cog):
 
     @commands.command(name="random", aliases=["r"], description="Start a game by randomly assigning teams")
     async def r(self, ctx):
-        if not self.queue_full(ctx):
+        if not await self.queue_full(ctx):
             await ctx.send("Queue is not full.")
             return
         if self.busy:
