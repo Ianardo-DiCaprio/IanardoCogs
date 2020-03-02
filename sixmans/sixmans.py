@@ -369,7 +369,9 @@ class SixMans(commands.Cog):
                  winloss = new_win // losses
             await self.config.user(user).wins.set(new_win)
             await self.config.user(user).winloss.set(winloss)
-            await ctx.send("{} now has {wins} and a win/loss of {winloss}%".format(player.mention, wins=new_win, winloss=winloss))
+            report = ("{} now has {wins} win/s and a win/loss of {winloss}%".format(player.mention, wins=new_win, winloss=winloss))
+            embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
+            await ctx.send(embed=embed)
 
 class Game:
     def __init__(self, players):
