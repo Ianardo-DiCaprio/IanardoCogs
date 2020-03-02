@@ -48,7 +48,7 @@ class SixMans(commands.Cog):
 
         self.queue.put(player)
 
-        await ctx.send("{} added to queue. ({:d}/{:d})".format(player.display_name, self.queue.qsize(), team_size))
+        await ctx.send("{} added to queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
         if self.queue_full():
             await ctx.send("Queue is now full! Type [captains or [random to create a game.")
 
@@ -60,7 +60,7 @@ class SixMans(commands.Cog):
         if player in self.queue:
             self.queue.remove(player)
             await ctx.send(
-                "{} removed from queue. ({:d}/{:d})".format(player.display_name, self.queue.qsize(), team_size))
+                "{} removed from queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
         else:
             await ctx.send("{} is not in queue.".format(player.display_name))
 
@@ -70,7 +70,7 @@ class SixMans(commands.Cog):
         if player in self.queue:
             self.queue.remove(player)
             await ctx.send(
-                "{} removed from queue. ({:d}/{:d})".format(player.display_name, self.queue.qsize(), team_size))
+                "{} removed from queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
         else:
             await ctx.send("{} is not in queue.".format(player.display_name))
 
