@@ -41,19 +41,25 @@ class SixMans(commands.Cog):
         team_size = await self.config.guild(ctx.guild).team_size()
 
         if player in self.queue:
-            alreadyq = ("{} is already in queue.".format(player.display_name))
-            embed = discord.Embed(title="Already Queued", description=alreadyq, color=0x8C05D2)
+            alreadyq = ("**{}** is already in the queue.".format(player.display_name))
+            embed = discord.Embed(title="6Mans", description=alreadyq, color=0x8C05D2)
             await ctx.send(embed=embed)
             return
         if self.busy and player in self.game:
-            alreadyg = ("{} is already in a game.".format(player.display_name))
+            alreadyg = ("**{}** is already in a game.".format(player.display_name))
+            embed = discord.Embed(title="6Mans", description=alreadyg, color=0x8C05D2)
+            await ctx.send(embed=embed)
             return
 
         self.queue.put(player)
 
-        added = ("{} added to queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
+        added = ("**{}** added to queue. **({}/{})**".format(player.display_name, self.queue.qsize(), team_size))
+        embed = discord.Embed(title="6Mans", description=added, color=0x8C05D2)
+        await ctx.send(embed=embed)
         if await self.queue_full(ctx):
             queuefull = ("Queue is now full! Type [captains or [random to create a game.")
+            embed = discord.Embed(title="6Mans", description=queuefull, color=0x8C05D2)
+            await ctx.send(embed=embed)
 
     @commands.command(pass_context=True, name="dequeue", aliases=["dq"], description="Remove yourself from the queue")
     async def dq(self, ctx):
