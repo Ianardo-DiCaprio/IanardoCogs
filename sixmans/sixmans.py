@@ -14,7 +14,7 @@ class SixMans(commands.Cog):
         self.queue = PlayerQueue()
         self.game = None
         self.busy = False
-        self.conf = Config.get_conf(self, identifier=699114201327)
+        self.config = Config.get_conf(self, identifier=346832423865834, force_registration=True)
 
         default_guild = {
             "team_size": 6,
