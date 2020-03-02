@@ -246,7 +246,7 @@ class SixMans(commands.Cog):
 
     @commands.command(name="random", aliases=["r"], description="Start a game by randomly assigning teams")
     async def r(self, ctx):
-        if not self.queue_full():
+        if not self.queue_full(ctx):
             await ctx.send("Queue is not full.")
             return
         if self.busy:
