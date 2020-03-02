@@ -373,9 +373,6 @@ class SixMans(commands.Cog):
             embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
             await ctx.send(embed=embed)
 
-    @commands.command(name="leaderboard", description="Start a game by randomly assigning teams")
-    async def leaderboard(self, ctx):
-
 class Game:
     def __init__(self, players):
         self.players = set(players)
