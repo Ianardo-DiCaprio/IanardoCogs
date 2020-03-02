@@ -252,7 +252,7 @@ class SixMans(commands.Cog):
 
         self.busy = False
 
-    async def display_teams(self):
+    async def display_teams(self, ctx):
         await ctx.send("🔶 ORANGE 🔶: {}".format(", ".join([player.display_name for player in self.game.orange])))
         await ctx.send("🔷 BLUE 🔷: {}".format(", ".join([player.display_name for player in self.game.blue])))
 
