@@ -233,7 +233,7 @@ class SixMans(commands.Cog):
         self.game.add_to_blue(blue_captain)
 
         # Orange Pick
-       pick = (
+        pick = (
             "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.mention ))
         embed = discord.Embed(title="6Mans", description=pick, color=0x8C05D2)
         await ctx.send(embed=embed)
