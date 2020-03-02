@@ -248,7 +248,7 @@ class SixMans(commands.Cog):
         for player in blue:
             self.game.add_to_blue(player)
 
-        await self.display_teams()
+        await self.display_teams(ctx)
 
         self.busy = False
 
