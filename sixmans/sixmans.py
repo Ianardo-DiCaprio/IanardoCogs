@@ -27,17 +27,17 @@ class SixMans(commands.Cog):
         player = ctx.message.author
 
         if player in self.queue:
-            await self.bot.say("{} is already in queue.".format(player.display_name))
+            await ctx.send("{} is already in queue.".format(player.display_name))
             return
         if self.busy and player in self.game:
-            await self.bot.say("{} is already in a game.".format(player.display_name))
+            await ctx.send("{} is already in a game.".format(player.display_name))
             return
 
         self.queue.put(player)
 
-        await self.bot.say("{} added to queue. ({:d}/{:d})".format(player.display_name, self.queue.qsize(), team_size))
+        await ctx.send("{} added to queue. ({:d}/{:d})".format(player.display_name, self.queue.qsize(), team_size))
         if self.queue_full():
-            self.bot.say("Queue is now full! Type {prefix}captains or {prefix}random to create a game.".format(
+            await ctx.send("Queue is now full! Type {prefix}captains or {prefix}random to create a game.".format(
                 prefix=self.bot.command_prefix))
 
     @commands.command(pass_context=True, name="dequeue", aliases=["dq"], description="Remove yourself from the queue")
@@ -46,19 +46,19 @@ class SixMans(commands.Cog):
 
         if player in self.queue:
             self.queue.remove(player)
-            await self.bot.say(
+            await ctx.send(
                 "{} removed from queue. ({:d}/{:d})".format(player.display_name, self.queue.qsize(), team_size))
         else:
-            await self.bot.say("{} is not in queue.".format(player.display_name))
+            await ctx.send("{} is not in queue.".format(player.display_name))
 
     @commands.command(description="Remove someone else from the queue")
     async def sixkick(self, player: discord.Member):
         if player in self.queue:
             self.queue.remove(player)
-            await self.bot.say(
+            await ctx.send(
                 "{} removed from queue. ({:d}/{:d})".format(player.display_name, self.queue.qsize(), team_size))
         else:
-            await self.bot.say("{} is not in queue.".format(player.display_name))
+            await ctx.send("{} is not in queue.".format(player.display_name))
 
     def queue_full(self):
         return self.queue.qsize() >= team_size
@@ -73,18 +73,18 @@ class SixMans(commands.Cog):
     @commands.command(description="Start a game by voting for captains")
     async def voting(self):
         if not self.queue_full():
-            await self.bot.say("Queue is not full.")
+            await ctx.send("Queue is not full.")
             return
         if self.busy:
-            await self.bot.say("Bot is busy. Please wait until picking is done.")
+            await ctx.send("Bot is busy. Please wait until picking is done.")
             return
         self.busy = True
         self.create_game()
 
-        await self.bot.say(
+        await ctx.send(
             "Captain voting initiated. Use {prefix}vote [user] to vote for a captain (cannot be yourself).".format(
                 prefix=self.bot.command_prefix))
-        await self.bot.say("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
 
         votes = {}
         timeout = 90
@@ -98,14 +98,14 @@ class SixMans(commands.Cog):
 
             vote = msg.mentions[0]
             if vote == msg.author:
-                await self.bot.say("Cannot vote for yourself.")
+                await ctx.send("Cannot vote for yourself.")
             elif vote in self.game.players:
                 votes[msg.author] = msg.mentions[0]
-                await self.bot.say("Vote added for {}.".format(vote.display_name))
+                await ctx.send("Vote added for {}.".format(vote.display_name))
             else:
-                await self.bot.say("{} not available to pick.".format(vote.display_name))
+                await ctx.send("{} not available to pick.".format(vote.display_name))
         if len(votes) < team_size:
-            await self.bot.say("Timed out.")
+            await ctx.send("Timed out.")
             msg = ""
             for player in self.game.players:
                 if player not in votes:
@@ -114,7 +114,7 @@ class SixMans(commands.Cog):
                         vote = random.choice(tuple(self.game.players))
                     votes[player] = vote
                     msg += "Random vote added for {} from {}.\n".format(vote.display_name, player.display_name)
-            await self.bot.say(msg)
+            await ctx.send(msg)
 
         vote_nums = {}
         for vote in votes.values():
@@ -125,12 +125,12 @@ class SixMans(commands.Cog):
             self.game.captains = top_votes
             secondary_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[1][1]]
             if len(secondary_votes) > 1:
-                await self.bot.say("{:d}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
+                await ctx.send("{:d}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
                 random.shuffle(secondary_votes)
             self.game.captains.append(secondary_votes[0])
         else:
             if len(top_votes) > 2:
-                await self.bot.say("{:d}-way tie for captains. Shuffling picks...".format(len(top_votes)))
+                await ctx.send("{:d}-way tie for captains. Shuffling picks...".format(len(top_votes)))
             random.shuffle(top_votes)
             self.game.captains = top_votes[:2]
 
@@ -155,10 +155,10 @@ class SixMans(commands.Cog):
     @commands.command(description="Start a game by randomly choosing captains")
     async def captains(self):
         if not self.queue_full():
-            await self.bot.say("Queue is not full.")
+            await ctx.send("Queue is not full.")
             return
         if self.busy:
-            await self.bot.say("Bot is busy. Please wait until picking is done.")
+            await ctx.send("Bot is busy. Please wait until picking is done.")
             return
         self.busy = True
         self.create_game()
@@ -168,27 +168,27 @@ class SixMans(commands.Cog):
         self.busy = False
 
     async def do_picks(self):
-        await self.bot.say("Captains: {} and {}".format(*[captain.mention for captain in self.game.captains]))
+        await ctx.send("Captains: {} and {}".format(*[captain.mention for captain in self.game.captains]))
         orange_captain = self.game.captains[0]
         self.game.add_to_orange(orange_captain)
         blue_captain = self.game.captains[1]
         self.game.add_to_blue(blue_captain)
 
         # Orange Pick
-        await self.bot.say(
+        await ctx.send(
             "{mention} Use {prefix}pick [user] to pick 1 player.".format(mention=orange_captain.mention,
                                                                          prefix=self.bot.command_prefix))
-        await self.bot.say("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         orange_pick = None
         while not orange_pick:
             orange_pick = await self.pick_orange(orange_captain)
         self.game.add_to_orange(orange_pick)
 
         # Blue Picks
-        await self.bot.say(
+        await ctx.send(
             "{mention} Use {prefix}pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.mention,
                                                                                    prefix=self.bot.command_prefix))
-        await self.bot.say("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         blue_picks = None
         while not blue_picks:
             blue_picks = await self.pick_blue(blue_captain)
@@ -198,7 +198,7 @@ class SixMans(commands.Cog):
         # Orange Player
         last_player = next(iter(self.game.players))
         self.game.add_to_orange(last_player)
-        await self.bot.say("{} added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
+        await ctx.send("{} added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
         await self.display_teams()
 
     async def pick_orange(self, captain):
@@ -206,12 +206,12 @@ class SixMans(commands.Cog):
         if msg:
             pick = msg.mentions[0]
             if pick not in self.game.players:
-                await self.bot.say("{} not available to pick.".format(pick.display_name))
+                await ctx.send("{} not available to pick.".format(pick.display_name))
                 return None
-            await self.bot.say("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+            await ctx.send("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
         else:
             pick = random.choice(tuple(self.game.players))
-            await self.bot.say("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+            await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
         return pick
 
     async def pick_blue(self, captain):
@@ -220,23 +220,23 @@ class SixMans(commands.Cog):
             picks = msg.mentions
             for pick in picks:
                 if pick not in self.game.players:
-                    await self.bot.say("{} not available to pick.".format(pick.display_name))
+                    await ctx.send("{} not available to pick.".format(pick.display_name))
                     return None
-            await self.bot.say("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+            await ctx.send("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
             return picks
         else:
             picks = random.sample(self.game.players, 2)
-            await self.bot.say(
+            await ctx.send(
                 "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
             return picks
 
     @commands.command(description="Start a game by randomly assigning teams")
     async def random(self):
         if not self.queue_full():
-            await self.bot.say("Queue is not full.")
+            await ctx.send("Queue is not full.")
             return
         if self.busy:
-            await self.bot.say("Bot is busy. Please wait until picking is done.")
+            await ctx.send("Bot is busy. Please wait until picking is done.")
             return
         self.busy = True
         self.create_game()
@@ -254,8 +254,8 @@ class SixMans(commands.Cog):
         self.busy = False
 
     async def display_teams(self):
-        await self.bot.say("🔶 ORANGE 🔶: {}".format(", ".join([player.display_name for player in self.game.orange])))
-        await self.bot.say("🔷 BLUE 🔷: {}".format(", ".join([player.display_name for player in self.game.blue])))
+        await ctx.send("🔶 ORANGE 🔶: {}".format(", ".join([player.display_name for player in self.game.orange])))
+        await ctx.send("🔷 BLUE 🔷: {}".format(", ".join([player.display_name for player in self.game.blue])))
 
     def create_game(self):
         players = [self.queue.get() for _ in range(team_size)]
