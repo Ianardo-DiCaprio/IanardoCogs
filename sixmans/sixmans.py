@@ -73,7 +73,7 @@ class SixMans(commands.Cog):
             await ctx.send("{} is not in queue.".format(player.display_name))
 
     async def queue_full(self):
-        if 2 >= 4
+        if 2 >= 4:
             return
 
     def check_vote_command(self, message):
