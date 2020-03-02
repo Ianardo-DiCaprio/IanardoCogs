@@ -33,7 +33,7 @@ class SixMans(commands.Cog):
     @commands.command(pass_context=True, name="sixqueue", aliases=["q"], description="Add yourself to the queue")
     async def q(self, ctx):
         player = ctx.message.author
-        team_size = await self.config.team_size()
+        team_size = await self.config.guild(ctx.guild).team_size()
 
         if player in self.queue:
             await ctx.send("{} is already in queue.".format(player.display_name))
@@ -51,7 +51,7 @@ class SixMans(commands.Cog):
     @commands.command(pass_context=True, name="dequeue", aliases=["dq"], description="Remove yourself from the queue")
     async def dq(self, ctx):
         player = ctx.message.author
-        team_size = await self.config.team_size()
+        team_size = await self.config.guild(ctx.guild).team_size()
 
         if player in self.queue:
             self.queue.remove(player)
@@ -62,7 +62,7 @@ class SixMans(commands.Cog):
 
     @commands.command(description="Remove someone else from the queue")
     async def sixkick(self, ctx,  player: discord.Member):
-        team_size = await self.config.team_size()
+        team_size = await self.config.guild(ctx.guild).team_size()
         if player in self.queue:
             self.queue.remove(player)
             await ctx.send(
@@ -71,7 +71,7 @@ class SixMans(commands.Cog):
             await ctx.send("{} is not in queue.".format(player.display_name))
 
     def queue_full(self):
-        team_size = await self.config.team_size()
+        team_size = await self.config.guild(ctx.guild).team_size()
         return self.queue.qsize() >= team_size
 
     def check_vote_command(self, message):
@@ -83,7 +83,7 @@ class SixMans(commands.Cog):
 
     @commands.command(description="Start a game by voting for captains")
     async def voting(self, ctx):
-        team_size = await self.config.team_size()
+        team_size = await self.config.guild(ctx.guild).team_size()
         if not self.queue_full():
             await ctx.send("Queue is not full.")
             return
@@ -270,7 +270,7 @@ class SixMans(commands.Cog):
         await ctx.send("🔷 BLUE 🔷: {}".format(", ".join([player.display_name for player in self.game.blue])))
 
     def create_game(self):
-        team_size = await self.config.team_size()
+        team_size = await self.config.guild(ctx.guild).team_size()
         players = [self.queue.get() for _ in range(team_size)]
         self.game = Game(players)
 
