@@ -7,7 +7,7 @@ from queue import Queue
 import discord
 from redbot.core import commands
 
-team_size = 6
+team_size = 2
 
 class SixMans(commands.Cog):
     def __init__(self, bot):
