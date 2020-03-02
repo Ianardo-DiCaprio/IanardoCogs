@@ -22,7 +22,7 @@ class SixMans(commands.Cog):
     #         self.queue.put(member)
     #     self.queue.put(ctx.message.author)
 
-    @commands.command(pass_context=True, name="queue", aliases=["q"], description="Add yourself to the queue")
+    @commands.command(pass_context=True, name="sixqueue", aliases=["q"], description="Add yourself to the queue")
     async def q(self, ctx):
         player = ctx.message.author
 
@@ -52,7 +52,7 @@ class SixMans(commands.Cog):
             await self.bot.say("{} is not in queue.".format(player.display_name))
 
     @commands.command(description="Remove someone else from the queue")
-    async def kick(self, player: discord.Member):
+    async def sixkick(self, player: discord.Member):
         if player in self.queue:
             self.queue.remove(player)
             await self.bot.say(
