@@ -368,7 +368,7 @@ class SixMans(commands.Cog):
                 winloss == 100
             await self.config.user(user).wins.set(new_win)
             await self.config.user(user).winloss.set(winloss)
-            await ctx.send("{} now has {wins} and a win/loss of {winloss]".format(player.mention, wins=new_win, winloss=winloss))
+            await ctx.send("{} now has {wins} and a win/loss of {winloss}%".format(player.mention, wins=new_win, winloss=winloss))
 
 class Game:
     def __init__(self, players):
