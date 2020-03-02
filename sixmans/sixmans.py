@@ -7,7 +7,6 @@ from queue import Queue
 import discord
 from redbot.core import commands
 
-team_size = 2
 
 class SixMans(commands.Cog):
     def __init__(self, bot):
@@ -16,11 +15,20 @@ class SixMans(commands.Cog):
         self.game = None
         self.busy = False
 
-    # @commands.command(pass_context=True)
-    # async def queue_all(self, ctx, *members: discord.Member):
-    #     for member in members:
-    #         self.queue.put(member)
-    #     self.queue.put(ctx.message.author)
+        default_guild = {
+            "team_size": 6,
+        }
+    @commands.command()
+    async def smset(self, ctx, players=None):
+        """Command to set between 4 or 6 man"""
+        if players is None:
+            await ctx.send("Please define between 4 or 6 players.")
+        if players == 4:
+            await self.config.team_size.set(players)
+            await ctx.send("6mans has been set to 4 players")
+        if players == 6:
+            await self.config.team_size.set(players)
+            await ctx.send("6mans has been set to 6 players")
 
     @commands.command(pass_context=True, name="sixqueue", aliases=["q"], description="Add yourself to the queue")
     async def q(self, ctx):
@@ -240,7 +248,7 @@ class SixMans(commands.Cog):
         self.busy = True
         self.create_game()
 
-        orange = random.sample(self.game.players, 1)
+        orange = random.sample(self.game.players, 3)
         for player in orange:
             self.game.add_to_orange(player)
 
