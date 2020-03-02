@@ -44,7 +44,7 @@ class SixMans(commands.Cog):
             await ctx.send("{} is already in a game.".format(player.display_name))
             return
 
-        self.queue.put(player)
+        await self.queue.put(player)
 
         await ctx.send("{} added to queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
         if await self.queue_full(ctx):
@@ -56,7 +56,7 @@ class SixMans(commands.Cog):
         team_size = await self.config.guild(ctx.guild).team_size()
 
         if player in self.queue:
-            self.queue.remove(player)
+            await self.queue.remove(player)
             await ctx.send(
                 "{} removed from queue. ({}/{})".format(player.display_name, self.queue.qsize(), team_size))
         else:
@@ -77,7 +77,7 @@ class SixMans(commands.Cog):
         return self.queue.qsize() >= team_size
 
     def check_vote_command(self, message):
-        if not message.content.startswith("{prefix}vote".format(prefix=self.bot.command_prefix)):
+        if not message.content.startswith("[vote"):
             return False
         if not len(message.mentions) == 1:
             return False
@@ -96,8 +96,7 @@ class SixMans(commands.Cog):
         self.create_game()
 
         await ctx.send(
-            "Captain voting initiated. Use {prefix}vote [user] to vote for a captain (cannot be yourself).".format(
-                prefix=self.bot.command_prefix))
+            "Captain voting initiated. Use [vote [user] to vote for a captain (cannot be yourself).")
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
 
         votes = {}
@@ -139,12 +138,12 @@ class SixMans(commands.Cog):
             self.game.captains = top_votes
             secondary_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[1][1]]
             if len(secondary_votes) > 1:
-                await ctx.send("{:d}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
+                await ctx.send("{}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
                 random.shuffle(secondary_votes)
             self.game.captains.append(secondary_votes[0])
         else:
             if len(top_votes) > 2:
-                await ctx.send("{:d}-way tie for captains. Shuffling picks...".format(len(top_votes)))
+                await ctx.send("{}-way tie for captains. Shuffling picks...".format(len(top_votes)))
             random.shuffle(top_votes)
             self.game.captains = top_votes[:2]
 
@@ -153,14 +152,14 @@ class SixMans(commands.Cog):
         self.busy = False
 
     def check_orange_first_pick_command(self, message):
-        if not message.content.startswith("{prefix}pick".format(prefix=self.bot.command_prefix)):
+        if not message.content.startswith("[pick"):
             return False
         if not len(message.mentions) == 1:
             return False
         return True
 
     def check_blue_picks_command(self, message):
-        if not message.content.startswith("{prefix}pick".format(prefix=self.bot.command_prefix)):
+        if not message.content.startswith("[pick"):
             return False
         if not len(message.mentions) == 2:
             return False
@@ -190,8 +189,7 @@ class SixMans(commands.Cog):
 
         # Orange Pick
         await ctx.send(
-            "{mention} Use {prefix}pick [user] to pick 1 player.".format(mention=orange_captain.mention,
-                                                                         prefix=self.bot.command_prefix))
+            "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.mention ))
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         orange_pick = None
         while not orange_pick:
@@ -200,8 +198,7 @@ class SixMans(commands.Cog):
 
         # Blue Picks
         await ctx.send(
-            "{mention} Use {prefix}pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.mention,
-                                                                                   prefix=self.bot.command_prefix))
+            "{mention} Use [pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.mention))
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         blue_picks = None
         while not blue_picks:
