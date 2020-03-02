@@ -23,17 +23,15 @@ class SixMans(commands.Cog):
         self.config.register_guild(**default_guild)
 
     @commands.command()
-    async def smset(self, ctx, players=None):
+    async def smset(self, ctx, players=6):
         """Command to set between 4 or 6 man"""
-        if not players:
-            await ctx.send("Please select between 2 for or 6 players")
-        elif players == 2:
+        if players == 2:
             await self.config.guild(ctx.guild).team_size.set(players)
             await ctx.send("6mans has been set to 2 players")
-        elif players == 4:
+        if players == 4:
             await self.config.guild(ctx.guild).team_size.set(players)
             await ctx.send("6mans has been set to 4 players")
-        elif players == 6:
+        if players == 6:
             await self.config.guild(ctx.guild).team_size.set(players)
             await ctx.send("6mans has been set to 6 players")
 
