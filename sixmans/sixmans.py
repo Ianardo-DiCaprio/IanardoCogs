@@ -364,7 +364,7 @@ class SixMans(commands.Cog):
             losses = await self.config.user(user).losses()
             new_win = wins + 1            
             if losses == 0:
-                winloss == 100
+                winloss = 100
             else:
                  winloss = new_win // losses
             await self.config.user(user).wins.set(new_win)
