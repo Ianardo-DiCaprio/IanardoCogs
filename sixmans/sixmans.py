@@ -5,7 +5,7 @@ import time
 from queue import Queue
 
 import discord
-from redbot.core import commands
+from redbot.core import commands, Config
 
 
 class SixMans(commands.Cog):
@@ -14,10 +14,14 @@ class SixMans(commands.Cog):
         self.queue = PlayerQueue()
         self.game = None
         self.busy = False
+        self.conf = Config.get_conf(self, identifier=699114201327)
 
         default_guild = {
             "team_size": 6,
         }
+
+        self.config.register_guild(**default_guild)
+
     @commands.command()
     async def smset(self, ctx, players=None):
         """Command to set between 4 or 6 man"""
