@@ -74,7 +74,9 @@ class SixMans(commands.Cog):
 
     async def queue_full(self):
         if self.queue.qsize() >= 6000:
-            return 
+            return
+        else:
+            pass
 
     def check_vote_command(self, message):
         if not message.content.startswith("{prefix}vote".format(prefix=self.bot.command_prefix)):
