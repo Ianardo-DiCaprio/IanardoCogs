@@ -72,7 +72,7 @@ class SixMans(commands.Cog):
         else:
             await ctx.send("{} is not in queue.".format(player.display_name))
 
-    async def queue_full(self):
+    async def queue_full(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
         return self.queue.qsize() >= team_size
 
