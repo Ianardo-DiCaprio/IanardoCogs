@@ -226,7 +226,7 @@ class SixMans(commands.Cog):
         self.busy = True
         await self.create_game(ctx)
 
-        await self.do_picks()
+        await self.do_picks(ctx)
 
         self.busy = False
 
