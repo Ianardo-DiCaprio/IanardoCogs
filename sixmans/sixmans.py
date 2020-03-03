@@ -443,6 +443,11 @@ class SixMans(commands.Cog):
             if ctx.author.id not in blue:
                 await ctx.send("You can't report this game as you are not in it.")
 
+    @commands.command(name="smtop", description="Start a game by randomly assigning teams")
+    async def smtop(self, ctx):
+        embed = discord.Embed(title="6Mans Leaderboard", description="No leaderboards yet, fuck off!", color=0x8C05D2)
+        await ctx.send(embed=embed)
+
 class Game:
     def __init__(self, players):
         self.players = set(players)
