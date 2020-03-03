@@ -379,6 +379,8 @@ class SixMans(commands.Cog):
         except:
             await ctx.send("That code doesn't exist")
             return
+        orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
+        blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
         if orange == "Fin":
             await ctx.send("This game has already been reported.")
             return
