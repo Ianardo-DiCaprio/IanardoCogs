@@ -430,6 +430,8 @@ class SixMans(commands.Cog):
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
                     await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
+        if ctx.author.id not in orange or blue:
+            await ctx.send("You can't report this game as you are not in it.")
 
 class Game:
     def __init__(self, players):
