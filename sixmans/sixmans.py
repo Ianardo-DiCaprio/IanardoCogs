@@ -447,7 +447,8 @@ class SixMans(commands.Cog):
     async def smtop(self, ctx):
         users = []
         for user in ctx.guild.members:
-            if await self.config.user(user).losses != None:
+            wins = await self.config.user(user).wins()
+            if wins:
                 users.append(user.display_name)
                 await ctx.send(users)
         embed = discord.Embed(title="6Mans Leaderboard", description="No leaderboards yet, fuck off!", color=0x8C05D2)
