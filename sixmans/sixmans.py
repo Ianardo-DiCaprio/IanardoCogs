@@ -368,7 +368,7 @@ class SixMans(commands.Cog):
         self.game = Game(players)
 
     @commands.command(name="smr", description="Start a game by randomly assigning teams")
-    async def smr(self, ctx, code: int, winorloss: str = None):
+    async def smr(self, ctx, code: int, winorloss: str):
         if winorloss != "win" or "loss":
             await ctx.send("Please use either win or loss")
             return
