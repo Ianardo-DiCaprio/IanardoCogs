@@ -370,9 +370,8 @@ class SixMans(commands.Cog):
     @commands.command(name="smr", description="Start a game by randomly assigning teams")
     async def smr(self, ctx, code: int, winorloss: str = None):
         if winorloss != "win" or "loss":
+            await ctx.send("Please use either win or loss")
             return
-        else:
-            pass
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
         blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
         if orange == "Fin":
