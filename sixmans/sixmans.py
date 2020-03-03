@@ -97,7 +97,7 @@ class SixMans(commands.Cog):
             embed = discord.Embed(title="6Mans", description=kicked, color=0x8C05D2)
             await ctx.send(embed=embed)
         else:
-            notq = ("{} is not in queue.".format(player.display_name))
+            notq = ("**{}** is not in queue.".format(player.display_name))
             embed = discord.Embed(title="6Mans", description=notq, color=0x8C05D2)
             await ctx.send(embed=embed)
 
@@ -131,7 +131,7 @@ class SixMans(commands.Cog):
         captainvote = ("Captain voting initiated. Use [vote [user] to vote for a captain (cannot be yourself).")
         embed = discord.Embed(title="6Mans", description=captainvote, color=0x8C05D2)
         await ctx.send(embed=embed)
-        available = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        available = ("Available: **{}**".format(", ".join([player.display_name for player in self.game.players])))
         embed = discord.Embed(title="6Mans", description=available, color=0x8C05D2)
         await ctx.send(embed=embed)
 
@@ -152,11 +152,11 @@ class SixMans(commands.Cog):
                 await ctx.send(embed=embed)
             elif vote in self.game.players:
                 votes[msg.author] = msg.mentions[0]
-                voted = ("Vote added for {}.".format(vote.display_name))
+                voted = ("Vote added for **{}.**".format(vote.display_name))
                 embed = discord.Embed(title="6Mans", description=voted, color=0x8C05D2)
                 await ctx.send(embed=embed)
             else:
-                notavailable = ("{} not available to pick.".format(vote.display_name))
+                notavailable = ("**{}** not available to pick.".format(vote.display_name))
                 embed = discord.Embed(title="6Mans", description=notavailable, color=0x8C05D2)
                 await ctx.send(embed=embed)
         if len(votes) < team_size:
@@ -170,7 +170,7 @@ class SixMans(commands.Cog):
                     while vote == player:
                         vote = random.choice(tuple(self.game.players))
                     votes[player] = vote
-                    msg += "Random vote added for {} from {}.\n".format(vote.display_name, player.display_name)
+                    msg += "Random vote added for **{}** from **{}**.\n".format(vote.display_name, player.display_name)
             embed = discord.Embed(title="6Mans", description=msg, color=0x8C05D2)
             await ctx.send(embed=embed)
 
@@ -234,7 +234,7 @@ class SixMans(commands.Cog):
         self.busy = False
 
     async def do_picks(self, ctx):
-        captains = ("Captains: {} and {}".format(*[captain.mention for captain in self.game.captains]))
+        captains = ("Captains: **{}** and **{}**".format(*[captain.mention for captain in self.game.captains]))
         embed = discord.Embed(title="6Mans", description=captains, color=0x8C05D2)
         await ctx.send(embed=embed)
         orange_captain = self.game.captains[0]
@@ -247,7 +247,7 @@ class SixMans(commands.Cog):
             "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.mention ))
         embed = discord.Embed(title="6Mans", description=pick, color=0x8C05D2)
         await ctx.send(embed=embed)
-        available = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        available = ("Available: **{}**".format(", ".join([player.display_name for player in self.game.players])))
         embed = discord.Embed(title="6Mans", description=available, color=0x8C05D2)
         await ctx.send(embed=embed)
         orange_pick = None
@@ -272,7 +272,7 @@ class SixMans(commands.Cog):
         # Orange Player
         last_player = next(iter(self.game.players))
         self.game.add_to_orange(last_player)
-        added = ("{} added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
+        added = ("**{}** added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
         embed = discord.Embed(title="6Mans", description=added, color=0x8C05D2)
         await ctx.send(embed=embed)
         await self.display_teams()
@@ -286,12 +286,12 @@ class SixMans(commands.Cog):
                 embed = discord.Embed(title="6Mans", description=notavailable, color=0x8C05D2)
                 await ctx.send(embed=embed)
                 return None
-            picked = ("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+            picked = ("Picked **{}** for 🔶 ORANGE 🔶 team.".format(pick.mention))
             embed = discord.Embed(title="6Mans", description=picked, color=0x8C05D2)
             await ctx.send(embed=embed)
         else:
             pick = random.choice(tuple(self.game.players))
-            timed = ("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+            timed = ("Timed out. Randomly picked **{}** for 🔶 ORANGE 🔶 team.".format(pick.mention))
             embed = discord.Embed(title="6Mans", description=timed, color=0x8C05D2)
             await ctx.send(embed=embed)
         return pick
@@ -302,18 +302,18 @@ class SixMans(commands.Cog):
             picks = msg.mentions
             for pick in picks:
                 if pick not in self.game.players:
-                    notavailable = ("{} not available to pick.".format(pick.display_name))
+                    notavailable = ("**{}** not available to pick.".format(pick.display_name))
                     embed = discord.Embed(title="6Mans", description=notavailable, color=0x8C05D2)
                     await ctx.send(embed=embed)
                     return None
-            picked = ("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+            picked = ("Picked **{}** and **{}** for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
             embed = discord.Embed(title="6Mans", description=picked, color=0x8C05D2)
             await ctx.send(embed=embed)
             return picks
         else:
             picks = random.sample(self.game.players, 2)
             timed = (
-                "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+                "Timed out. Randomly picked **{}** and **{}** for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
             embed = discord.Embed(title="6Mans", description=timed, color=0x8C05D2)
             await ctx.send(embed=embed)
             return picks
@@ -348,12 +348,12 @@ class SixMans(commands.Cog):
 
     async def display_teams(self, ctx):
         embed = discord.Embed(title="6Mans", color=0x8C05D2)
-        orange = ("🔶 ORANGE 🔶: {}".format(", ".join([player.display_name for player in self.game.orange])))
-        blue = ("🔷 BLUE 🔷: {}".format(", ".join([player.display_name for player in self.game.blue])))
+        orange = ("🔶 ORANGE 🔶: **{}**".format(", ".join([player.display_name for player in self.game.orange])))
+        blue = ("🔷 BLUE 🔷: **{}**".format(", ".join([player.display_name for player in self.game.blue])))
         next_game_number = await self.config.guild(ctx.guild).latest_game_number() + 1
-        embed.add_field(name="Orange Team:", value=orange, inline=False)
-        embed.add_field(name="Blue Team:", value=blue, inline=False)
-        embed.add_field(name="Game Code:", value=next_game_number, inline=False)
+        embed.add_field(name="**Orange Team:**", value=orange, inline=False)
+        embed.add_field(name="**Blue Team:**", value=blue, inline=False)
+        embed.add_field(name="**Game Code:**", value=next_game_number, inline=False)
         await ctx.send(embed=embed)
 
         async with self.config.guild(ctx.guild).latest_game_number.get_lock():
@@ -388,7 +388,7 @@ class SixMans(commands.Cog):
                         winloss = round(new_win / new * 100, 2)
                     await self.config.user(user).wins.set(new_win)
                     await self.config.user(user).winloss.set(winloss)
-                    report = ("{} now has {wins} win/s. {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=new_win, losses=losses, winloss=winloss))
+                    report = ("**{}** now has **{wins} win/s**. **{losses} loss/es** and a win/loss of **{winloss}%**".format(user.mention, wins=new_win, losses=losses, winloss=winloss))
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
                     await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
@@ -398,7 +398,7 @@ class SixMans(commands.Cog):
                     winloss = round(wins / new * 100, 2)
                     await self.config.user(user).losses.set(new_loss)
                     await self.config.user(user).winloss.set(winloss)
-                    report = ("{} now has {wins} win/s, {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
+                    report = ("**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
                     await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
@@ -416,7 +416,7 @@ class SixMans(commands.Cog):
                         winloss = round(new_win / new * 100, 2)
                     await self.config.user(user).wins.set(new_win)
                     await self.config.user(user).winloss.set(winloss)
-                    report = ("{} now has {wins} win/s. {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=new_win, losses=losses, winloss=winloss))
+                    report = ("**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(user.mention, wins=new_win, losses=losses, winloss=winloss))
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
                     await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
@@ -426,7 +426,7 @@ class SixMans(commands.Cog):
                     winloss = round(wins / new * 100, 2)
                     await self.config.user(user).losses.set(new_loss)
                     await self.config.user(user).winloss.set(winloss)
-                    report = ("{} now has {wins} win/s, {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
+                    report = ("**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
                     await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
