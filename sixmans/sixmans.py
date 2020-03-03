@@ -361,30 +361,36 @@ class SixMans(commands.Cog):
             await self.config.custom("GAMES", ctx.guild.id, next_game_number).blue.set([player.id for player in self.game.blue])
             await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set([player.id for player in self.game.orange])
             await self.config.guild(ctx.guild).latest_game_number.set(next_game_number)
-            test = await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange()
-            await ctx.send(test)
 
     async def create_game(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
         players = [self.queue.get() for _ in range(team_size)]
         self.game = Game(players)
 
-    @commands.command(name="bluewin", description="Start a game by randomly assigning teams")
-    async def bluewin(self, ctx):
-        for player in self.game.blue:
-            user = player
-            wins = await self.config.user(user).wins()
-            losses = await self.config.user(user).losses()
-            new_win = wins + 1            
-            if losses == 0:
-                winloss = 100
-            else:
-                 winloss = new_win // losses
-            await self.config.user(user).wins.set(new_win)
-            await self.config.user(user).winloss.set(winloss)
-            report = ("{} now has {wins} win/s and a win/loss of {winloss}%".format(player.mention, wins=new_win, winloss=winloss))
-            embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
-            await ctx.send(embed=embed)
+    @commands.command(name="smr", description="Start a game by randomly assigning teams")
+    async def smr(self, ctx, code, winorloss):
+        if winorloss != "win" or "loss"
+            await ctx.send("Please enter either win or loss")
+        orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
+        blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
+        for users in orange:
+            if ctx.author.id in users:
+                if winorloss == "win"
+                    orangeteam == "win"
+            if orangeteam == "win"
+                for user in orange:
+                    wins = await self.config.user(user).wins()
+                    losses = await self.config.user(user).losses()
+                    new_win = wins + 1            
+                    if losses == 0:
+                        winloss = 100
+                    else:
+                        winloss = new_win // losses
+                    await self.config.user(user).wins.set(new_win)
+                    await self.config.user(user).winloss.set(winloss)
+                    report = ("{} now has {wins} win/s and a win/loss of {winloss}%".format(user.mention, wins=new_win, winloss=winloss))
+                    embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
+                    await ctx.send(embed=embed)
 
 class Game:
     def __init__(self, players):
