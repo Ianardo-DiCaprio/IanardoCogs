@@ -382,7 +382,7 @@ class SixMans(commands.Cog):
                         winloss = 100
                     else:
                         new = losses + new_win
-                        winloss = new_win / new * 100
+                        winloss = round(new_win / new * 100, 2)
                     await self.config.user(user).wins.set(new_win)
                     await self.config.user(user).winloss.set(winloss)
                     report = ("{} now has {wins} win/s. {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=new_win, losses=losses, winloss=winloss))
@@ -391,7 +391,7 @@ class SixMans(commands.Cog):
                 else:
                     new_loss = losses + 1     
                     new = wins + new_loss       
-                    winloss = wins / new * 100
+                    winloss = round(wins / new * 100, 2)
                     await self.config.user(user).losses.set(new_loss)
                     await self.config.user(user).winloss.set(winloss)
                     report = ("{} now has {wins} win/s, {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
