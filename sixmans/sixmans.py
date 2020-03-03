@@ -448,8 +448,8 @@ class SixMans(commands.Cog):
         users = []
         for user in ctx.guild.members:
             if await self.config.user(user).losses != None:
-            users.append(user.display_name)
-            await ctx.send(users)
+                users.append(user.display_name)
+                await ctx.send(users)
         embed = discord.Embed(title="6Mans Leaderboard", description="No leaderboards yet, fuck off!", color=0x8C05D2)
         await ctx.send(embed=embed)
 
