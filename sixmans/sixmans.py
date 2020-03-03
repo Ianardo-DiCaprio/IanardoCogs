@@ -381,15 +381,17 @@ class SixMans(commands.Cog):
                     if losses == 0:
                         winloss = 100
                     else:
-                        winloss = new_win // losses
+                        new = losses + new_win
+                        winloss = new_win / new
                     await self.config.user(user).wins.set(new_win)
                     await self.config.user(user).winloss.set(winloss)
                     report = ("{} now has {wins} win/s. {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=new_win, losses=losses, winloss=winloss))
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
                 else:
-                    new_loss = losses + 1            
-                    winloss = wins // new_loss
+                    new_loss = losses + 1     
+                    new = wins + new_loss       
+                    winloss = wins / new
                     await self.config.user(user).losses.set(new_loss)
                     await self.config.user(user).winloss.set(winloss)
                     report = ("{} now has {wins} win/s, {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
