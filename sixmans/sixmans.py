@@ -391,7 +391,7 @@ class SixMans(commands.Cog):
                     report = ("{} now has {wins} win/s. {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=new_win, losses=losses, winloss=winloss))
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
-                    await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set("Fin")
+                    await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
                 else:
                     new_loss = losses + 1     
                     new = wins + new_loss       
@@ -401,7 +401,7 @@ class SixMans(commands.Cog):
                     report = ("{} now has {wins} win/s, {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
-                    await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set("Fin")
+                    await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
         for users in blue:
             user = ctx.guild.get_member(users)
             if ctx.author.id in blue:
@@ -419,7 +419,7 @@ class SixMans(commands.Cog):
                     report = ("{} now has {wins} win/s. {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=new_win, losses=losses, winloss=winloss))
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
-                    await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set("Fin")
+                    await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
                 else:
                     new_loss = losses + 1     
                     new = wins + new_loss       
@@ -429,7 +429,7 @@ class SixMans(commands.Cog):
                     report = ("{} now has {wins} win/s, {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
-                    await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set("Fin")
+                    await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
 
 class Game:
     def __init__(self, players):
