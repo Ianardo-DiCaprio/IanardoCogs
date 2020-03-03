@@ -361,7 +361,7 @@ class SixMans(commands.Cog):
             for player in self.game.blue:
                 await self.config.custom("GAMES", ctx.guild.id, next_game_number).blue.set(player.id)
             for player in self.game.orange:
-                await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set(dict(player.id))
+                await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set(list(player.id))
                 await self.config.guild(ctx.guild).latest_game_number.set(next_game_number)
                 test = await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange()
                 await ctx.send(test)
