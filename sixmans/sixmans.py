@@ -451,12 +451,8 @@ class SixMans(commands.Cog):
         msg = ""
         guild = ctx.guild
         users = await self.config.all_users()
-        for userinfo in users.items():
-            wins = userinfo(int["wins"])
-            user_id = userinfo["user_id"]
-            losses = userinfo(int["losses"])
-            losses = userinfo(int["winloss"])
-            msg += f"<@{user_id}> Wins:{wins} Losses:{losses} Win/Loss:{winloss}%\n"
+        for user in users.items():
+            msg += f"{user}>\n"
         for msg in pagify(msg):
             embed = discord.Embed(title="**6Mans Leaderboard**", color=0x404040)
             embed.description = msg
