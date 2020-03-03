@@ -359,7 +359,7 @@ class SixMans(commands.Cog):
             await self.config.custom("GAMES", ctx.guild.id, next_game_number).blue.set("Test")
             await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set("test")
             await self.config.guild(ctx.guild).latest_game_number.set(next_game_number)
-            test = await ctx.send self.config.custom("GAMES", ctx.guild.id, next_game_number).orange()
+            test = await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange()
             await ctx.send(test)
 
     async def create_game(self, ctx):
