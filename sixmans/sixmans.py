@@ -371,6 +371,8 @@ class SixMans(commands.Cog):
     async def smr(self, ctx, code: int, winorloss: str = None):
         if winorloss != "win" or "loss":
             return
+        else:
+            pass
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
         blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
         if orange == "Fin":
