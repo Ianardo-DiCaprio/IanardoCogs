@@ -26,8 +26,8 @@ class SixMans(commands.Cog):
             "losses": 0,
             "winloss": 0,
         }
-        self.config.init_custom("GAMES", 3)
-        self.config.register_custom("GAMES")
+        self.config.init_custom("GAMES", 2)
+        self.config.register_custom("GAMES", blue=None, orange=None)
 
         self.config.register_user(**default_user)
         self.config.register_guild(**default_guild)
@@ -356,10 +356,10 @@ class SixMans(commands.Cog):
 
         async with self.config.guild(ctx.guild).latest_game_number.get_lock():
             next_game_number = await self.config.guild(ctx.guild).latest_game_number() + 1
-            await self.config.custom("GAMES", ctx.guild.id, next_game_number, "blue").set(for player in self.game.blue)
-            await self.config.custom("GAMES", ctx.guild.id, next_game_number, "orange").set(for player in self.game.orange)
+            await self.config.custom("GAMES", ctx.guild.id, next_game_number).blue.set("Test")
+            await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set("test")
             await self.config.guild(ctx.guild).latest_game_number.set(next_game_number)
-            test = await self.config.custom("GAMES", ctx.guild.id, next_game_number, orange)()
+            test = await ctx.send self.config.custom("GAMES", ctx.guild.id, next_game_number).orange()
             await ctx.send(test)
 
     async def create_game(self, ctx):
