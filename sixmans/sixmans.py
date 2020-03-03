@@ -371,6 +371,9 @@ class SixMans(commands.Cog):
     async def smr(self, ctx, code, winorloss):
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
         blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
+        if orange == "Fin":
+            await ctx.send("This game has already been reported.")
+            return
         for users in orange:
             user = ctx.guild.get_member(users)
             if ctx.author.id in orange:
@@ -397,6 +400,7 @@ class SixMans(commands.Cog):
                     report = ("{} now has {wins} win/s, {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
+                    await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set("Fin")
         for users in blue:
             user = ctx.guild.get_member(users)
             if ctx.author.id in blue:
@@ -423,6 +427,7 @@ class SixMans(commands.Cog):
                     report = ("{} now has {wins} win/s, {losses} losses and a win/loss of {winloss}%".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
                     embed = discord.Embed(title="6Mans", description=report, color=0x8C05D2)
                     await ctx.send(embed=embed)
+                    await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set("Fin")
 
 class Game:
     def __init__(self, players):
