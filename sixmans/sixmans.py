@@ -450,8 +450,8 @@ class SixMans(commands.Cog):
             wins = await self.config.user(user).wins()
             if wins:
                 users.append(user.display_name)
-                sorted_list = users.sort()
-                await ctx.send(sorted_list)
+                users.sort()
+                await ctx.send(users)
         embed = discord.Embed(title="6Mans Leaderboard", description="No leaderboards yet, fuck off!", color=0x8C05D2)
         await ctx.send(embed=embed)
 
