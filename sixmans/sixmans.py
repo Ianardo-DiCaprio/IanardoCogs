@@ -374,11 +374,9 @@ class SixMans(commands.Cog):
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
         blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
         for users in orange:
-            if ctx.author.id in users:
+            user = ctx.guild.get_member(users)
+            if ctx.author.id in orange:
                 if winorloss == "win":
-                    orangeteam == "win"
-            if orangeteam == "win":
-                for user in orange:
                     wins = await self.config.user(user).wins()
                     losses = await self.config.user(user).losses()
                     new_win = wins + 1            
