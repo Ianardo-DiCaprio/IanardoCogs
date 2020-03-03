@@ -348,16 +348,16 @@ class SixMans(commands.Cog):
 
     async def display_teams(self, ctx):
         embed = discord.Embed(title="6Mans", color=0x8C05D2)
-        oranget = ("🔶 ORANGE 🔶: {}".format(", ".join([player.display_name for player in self.game.orange])))
-        bluet = ("🔷 BLUE 🔷: {}".format(", ".join([player.display_name for player in self.game.blue])))
-        embed.add_field(name="Orange Team:", value=oranget, inline=False)
-        embed.add_field(name="Blue Team:", value=bluet, inline=False)
+        orange = ("🔶 ORANGE 🔶: {}".format(", ".join([player.display_name for player in self.game.orange])))
+        blue = ("🔷 BLUE 🔷: {}".format(", ".join([player.display_name for player in self.game.blue])))
+        embed.add_field(name="Orange Team:", value=orange, inline=False)
+        embed.add_field(name="Blue Team:", value=blue, inline=False)
         await ctx.send(embed=embed)
 
         async with self.config.guild(ctx.guild).latest_game_number.get_lock():
             next_game_number = await self.config.guild(ctx.guild).latest_game_number() + 1
             await self.config.custom("GAMES", ctx.guild.id, next_game_number).blue.set("Test")
-            await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set("test")
+            await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange.set(self.orange.player)
             await self.config.guild(ctx.guild).latest_game_number.set(next_game_number)
             test = await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange()
             await ctx.send(test)
