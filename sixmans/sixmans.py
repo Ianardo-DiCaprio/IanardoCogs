@@ -18,6 +18,7 @@ class SixMans(commands.Cog):
 
         default_guild = {
             "team_size": 6,
+            "latest_game_number": 0,
         }
 
         default_user = {
@@ -25,6 +26,8 @@ class SixMans(commands.Cog):
             "losses": 0,
             "winloss": 0,
         }
+        self.config.init_custom("GAMES", 2)
+        self.config.register_custom("GAMES", ...)
 
         self.config.register_user(**default_user)
         self.config.register_guild(**default_guild)
@@ -350,6 +353,14 @@ class SixMans(commands.Cog):
         embed.add_field(name="Orange Team:", value=oranget, inline=False)
         embed.add_field(name="Blue Team:", value=bluet, inline=False)
         await ctx.send(embed=embed)
+
+    async with self.config.guild(ctx.guild).latest_game_number.get_lock():
+        next_game_number = await self.config.guild(ctx.guild).latest_game_number() + 1
+        await self.config.custom("GAMES", ctx.guild.id, next_game_number).set.blue(player in self.game.blue)
+        await self.config.custom("GAMES", ctx.guild.id, next_game_number).set.orange(player in self.game.orange)
+        await self.config.guild(ctx.guild).latest_game_number.set(next_game_number)
+        test = await self.config.custom("GAMES", ctx.guild.id, next_game_number).orange()
+        await ctx.send(test)
 
     async def create_game(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
