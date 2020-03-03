@@ -446,7 +446,7 @@ class SixMans(commands.Cog):
     @commands.command(name="smtop", description="Start a game by randomly assigning teams")
     async def smtop(self, ctx):
         users = []
-        for user in guild.members:
+        for user in ctx.guild.members:
             users.append(user.display_name)
             await ctx.send(users)
         embed = discord.Embed(title="6Mans Leaderboard", description="No leaderboards yet, fuck off!", color=0x8C05D2)
