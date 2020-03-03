@@ -373,10 +373,9 @@ class SixMans(commands.Cog):
             if winorloss != "loss":
                 await ctx.send("Please use either win or loss")
                 return
-        try:
-            orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
-            blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
-        except:
+        orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
+        blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
+        if blue == None:
             await ctx.send("That code doesn't exist")
             return
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
