@@ -6,6 +6,8 @@ from queue import Queue
 
 import discord
 from redbot.core import commands, Config
+from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
+from redbot.core.utils.chat_formatting import pagify
 
 
 class SixMans(commands.Cog):
@@ -445,15 +447,17 @@ class SixMans(commands.Cog):
 
     @commands.command(name="smtop", description="Start a game by randomly assigning teams")
     async def smtop(self, ctx):
-        users = []
-        for user in ctx.guild.members:
-            wins = await self.config.user(user).wins()
-            if wins:
-                users.append((user.display_name, wins))
-                sorted_list = sorted(users, reverse=True)
-        await ctx.send(sorted_list)
-        embed = discord.Embed(title="6Mans Leaderboard", description="No leaderboards yet, fuck off!", color=0x8C05D2)
-        await ctx.send(embed=embed)
+        embeds = []
+        msg = ""
+        guild = ctx.guild
+        users = await self.config.all_users()
+        for user_id, wins, losses, winloss in users.items():
+            msg += f"<@{user_id}> Wins:{wins} Losses:{losses} Win/Loss:{winloss}%\n"
+        for msg in pagify(msg):
+            embed = discord.Embed(title="**6Mans Leaderboard**", color=0x404040)
+            embed.description = msg
+            embeds.append(embed)
+        await menu(ctx, embeds, DEFAULT_CONTROLS)
 
 class Game:
     def __init__(self, players):
