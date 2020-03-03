@@ -213,7 +213,7 @@ class SixMans(commands.Cog):
 
     @commands.command(name="captains", aliases=["c"], description="Start a game by randomly choosing captains")
     async def c(self, ctx):
-        if not await self.queue_full():
+        if not await self.queue_full(ctx):
             queuenot = ("Queue is not full.")
             embed = discord.Embed(title="6Mans", description=queuenot, color=0x8C05D2)
             await ctx.send(embed=embed)
