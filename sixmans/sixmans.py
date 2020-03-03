@@ -27,7 +27,7 @@ class SixMans(commands.Cog):
             "winloss": 0,
         }
         self.config.init_custom("GAMES", 2)
-        self.config.register_custom("GAMES", ...)
+        self.config.register_custom("GAMES")
 
         self.config.register_user(**default_user)
         self.config.register_guild(**default_guild)
