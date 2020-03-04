@@ -350,8 +350,8 @@ class SixMans(commands.Cog):
 
     async def display_teams(self, ctx):
         embed = discord.Embed(title="VOID ESPORTS™ 6Mans", color=0x00FFFF)
-        orange = ("🔶 ORANGE 🔶: **{}**".format(", ".join([player.display_name for player in self.game.orange])))
         blue = ("🔷 BLUE 🔷: **{}**".format(", ".join([player.display_name for player in self.game.blue])))
+        orange = ("🔶 ORANGE 🔶: **{}**".format(", ".join([player.display_name for player in self.game.orange])))
         next_game_number = await self.config.guild(ctx.guild).latest_game_number() + 1
         embed.add_field(name="**Orange Team:**", value=orange, inline=False)
         embed.add_field(name="**Blue Team:**", value=blue, inline=False)
