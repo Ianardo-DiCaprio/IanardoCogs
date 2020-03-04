@@ -118,7 +118,6 @@ class SixMans(commands.Cog):
     async def smclear(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
         players = self.queue.get()
-        self.queue.remove()
         cleared = (
             "**{}** cleared the queue.".format(ctx.author.display_name))
         embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=cleared, color=0x00FFFF)
