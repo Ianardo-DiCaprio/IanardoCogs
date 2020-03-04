@@ -356,6 +356,7 @@ class SixMans(commands.Cog):
         embed.add_field(name="**Blue Team:**", value=blue, inline=False)
         embed.add_field(name="**Orange Team:**", value=orange, inline=False)
         embed.add_field(name="**Game Code:**", value=next_game_number, inline=False)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
 
         async with self.config.guild(ctx.guild).latest_game_number.get_lock():
@@ -460,6 +461,7 @@ class SixMans(commands.Cog):
         for msg in pagify(msg):
             embed = discord.Embed(title="**VOID ESPORTS™ 6Mans Leaderboard**", color=0x00FFFF)
             embed.description = box(msg)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
 
