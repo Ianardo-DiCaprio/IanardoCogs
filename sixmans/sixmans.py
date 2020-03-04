@@ -233,7 +233,7 @@ class SixMans(commands.Cog):
             return False
         return True
 
-    @commands.command(aliases=["v"])
+    @commands.command(aliases=["cap"])
     async def captains(self, ctx):
         """Command to start a game by randomly chosen captains"""
         team_size = await self.config.guild(ctx.guild).team_size()
