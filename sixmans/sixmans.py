@@ -262,9 +262,9 @@ class SixMans(commands.Cog):
         embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=captains, color=0x00FFFF)
         await ctx.send(embed=embed)
         orange_captain = self.game.captains[0]
-        self.game.add_to_orange(orange_captain)
+        await self.game.add_to_orange(orange_captain)
         blue_captain = self.game.captains[1]
-        self.game.add_to_blue(blue_captain)
+        await self.game.add_to_blue(blue_captain)
 
         # Orange Pick
         pick = (
@@ -276,7 +276,7 @@ class SixMans(commands.Cog):
         await ctx.send(embed=embed)
         orange_pick = None
         while not orange_pick:
-            orange_pick = await self.pick_orange(captain)
+            orange_pick = await self.pick_orange(orange_captain)
         self.game.add_to_orange(orange_pick)
 
         # Blue Picks
@@ -289,7 +289,7 @@ class SixMans(commands.Cog):
         await ctx.send(embed=embed)
         blue_picks = None
         while not blue_picks:
-            blue_picks = await self.pick_blue(captain)
+            blue_picks = await self.pick_blue(blue_captain)
         for blue_pick in blue_picks:
             self.game.add_to_blue(blue_pick)
 
