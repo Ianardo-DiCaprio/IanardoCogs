@@ -158,7 +158,7 @@ class SixMans(commands.Cog):
         timeout = 90
         end_time = time.time() + timeout
         while len(votes) < team_size and time.time() < end_time:
-            msg = await self.bot.wait_for_message(timeout=1, check=self.check_vote_command)
+            msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_vote_command)
             if not msg:
                 continue
             if msg.author not in self.game.players:
@@ -233,60 +233,47 @@ class SixMans(commands.Cog):
             return False
         return True
 
-    @commands.command(aliases=["c"])
+    @commands.command(description="Start a game by randomly choosing captains")
     async def captains(self, ctx):
-        """Command to start a game by randomly choosing captains"""
         team_size = await self.config.guild(ctx.guild).team_size()
         if team_size == 2:
             await ctx.send("There is only 2 players, you can't vote for captains")
             return
-        if not await self.queue_full(ctx):
-            queuenot = ("Queue is not full.")
-            embed = discord.Embed(title="6Mans", description=queuenot, color=0x00FFFF)
-            await ctx.send(embed=embed)
+        if not self.queue_full():
+            await ctx.send("Queue is not full.")
             return
         if self.busy:
-            busy = ("Bot is busy. Please wait until picking is done.")
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=busy, color=0x00FFFF)
-            await ctx.send(embed=embed)
+            await ctx.send("Bot is busy. Please wait until picking is done.")
             return
         self.busy = True
-        await self.create_game(ctx)
+        await self.create_game()
 
-        await self.do_picks(ctx)
+        await self.do_picks()
 
         self.busy = False
 
-    async def do_picks(self, ctx):
-        caps = ("Captains: **{}** and **{}**".format(*[captain.mention for captain in self.game.captains]))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=caps, color=0x00FFFF)
-        await ctx.send(embed=embed)
+    async def do_picks(self):
+        await ctx.send("Captains: {} and {}".format(*[captain.mention for captain in self.game.captains]))
         orange_captain = self.game.captains[0]
         self.game.add_to_orange(orange_captain)
         blue_captain = self.game.captains[1]
         self.game.add_to_blue(blue_captain)
 
         # Orange Pick
-        pick = (
-            "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.mention))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=pick, color=0x00FFFF)
-        await ctx.send(embed=embed)
-        available = ("Available: **{}**".format(", ".join([player.display_name for player in self.game.players])))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=available, color=0x00FFFF)
-        await ctx.send(embed=embed)
+        await ctx.send(
+            "{mention} Use {prefix}pick [user] to pick 1 player.".format(mention=orange_captain.mention,
+                                                                         prefix=self.bot.command_prefix))
+        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         orange_pick = None
         while not orange_pick:
             orange_pick = await self.pick_orange(orange_captain)
         self.game.add_to_orange(orange_pick)
 
         # Blue Picks
-        bpick = (
-            "{mention} Use [pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.mention))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=bpick, color=0x00FFFF)
-        await ctx.send(embed=embed)
-        bavailable = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=bavailable, color=0x00FFFF)
-        await ctx.send(embed=embed)
+        await ctx.send(
+            "{mention} Use {prefix}pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.mention,
+                                                                                   prefix=self.bot.command_prefix))
+        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         blue_picks = None
         while not blue_picks:
             blue_picks = await self.pick_blue(blue_captain)
@@ -296,50 +283,36 @@ class SixMans(commands.Cog):
         # Orange Player
         last_player = next(iter(self.game.players))
         self.game.add_to_orange(last_player)
-        added = ("**{}** added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=added, color=0x00FFFF)
-        await ctx.send(embed=embed)
+        await ctx.send("{} added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
         await self.display_teams()
 
-    async def pick_orange(self, ctx, captain):
+    async def pick_orange(self, captain):
         msg = await ctx.bot.wait_for("message", timeout=60, author=captain, check=self.check_orange_first_pick_command)
         if msg:
             pick = msg.mentions[0]
             if pick not in self.game.players:
-                notavailable = ("{} not available to pick.".format(pick.display_name))
-                embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notavailable, color=0x00FFFF)
-                await ctx.send(embed=embed)
+                await ctx.send("{} not available to pick.".format(pick.display_name))
                 return None
-            picked = ("Picked **{}** for 🔶 ORANGE 🔶 team.".format(pick.mention))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=picked, color=0x00FFFF)
-            await ctx.send(embed=embed)
+            await ctx.send("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
         else:
             pick = random.choice(tuple(self.game.players))
-            timed = ("Timed out. Randomly picked **{}** for 🔶 ORANGE 🔶 team.".format(pick.mention))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=timed, color=0x00FFFF)
-            await ctx.send(embed=embed)
+            await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
         return pick
 
-    async def pick_blue(self, ctx, captain):
-        msg = await ctx.bot.wait_for("message", timeout=90, author=captain, check=self.check_blue_picks_command)
+    async def pick_blue(self, captain):
+        msg = await ctx.bot.wait_for("message", timeout=60, author=captain, check=self.check_blue_picks_command)
         if msg:
             picks = msg.mentions
             for pick in picks:
                 if pick not in self.game.players:
-                    notavailable = ("**{}** not available to pick.".format(pick.display_name))
-                    embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notavailable, color=0x00FFFF)
-                    await ctx.send(embed=embed)
+                    await ctx.send("{} not available to pick.".format(pick.display_name))
                     return None
-            picked = ("Picked **{}** and **{}** for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=picked, color=0x00FFFF)
-            await ctx.send(embed=embed)
+            await ctx.send("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
             return picks
         else:
             picks = random.sample(self.game.players, 2)
-            timed = (
-                "Timed out. Randomly picked **{}** and **{}** for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=timed, color=0x00FFFF)
-            await ctx.send(embed=embed)
+            await ctx.send(
+                "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
             return picks
 
     @commands.command(aliases=["r"])
