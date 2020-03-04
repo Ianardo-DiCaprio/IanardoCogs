@@ -449,17 +449,15 @@ class SixMans(commands.Cog):
     async def smtop(self, ctx):
         embeds = []
         msg = ""
-        guild = ctx.guild
         users = await self.config.all_users()
-        for user, items in users.items():
+        for user, items in sorted(users.items(), key=lambda item: item[1]):
             wins = items['wins']
             losses = items['losses']
             winloss = items['winloss']
             user = ctx.guild.get_member(user)
-            msg += f"{user.display_name}:       Wins: {wins}      Losses: {losses}      Win/Loss: {winloss}%\n"
-            msg.sort(key=wins, reverse=True)
+            msg += f"{user.display_name}:       Wins: {wins}       Losses: {losses}       Win/Loss: {winloss}%\n"
         for msg in pagify(msg):
-            embed = discord.Embed(title="**6Mans Leaderboard**", color=0x404040)
+            embed = discord.Embed(title="**6Mans Leaderboard**")
             embed.description = msg
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
