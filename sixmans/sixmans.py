@@ -246,7 +246,7 @@ class SixMans(commands.Cog):
             await ctx.send("Bot is busy. Please wait until picking is done.")
             return
         self.busy = True
-        await self.create_game()
+        await self.create_game(ctx)
 
         await self.do_picks()
 
