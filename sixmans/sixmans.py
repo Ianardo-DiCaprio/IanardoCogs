@@ -451,7 +451,7 @@ class SixMans(commands.Cog):
         msg = ""
         users = await self.config.all_users()
         users = sorted(users, key=lambda wins: wins[2])
-        for user, items in users.items():
+        for user, items in sorted(users.items(), key=lamba a: a['wins']):
             wins = items['wins']
             losses = items['losses']
             winloss = items['winloss']
