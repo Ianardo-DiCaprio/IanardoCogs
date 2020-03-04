@@ -266,8 +266,7 @@ class SixMans(commands.Cog):
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         orange_pick = None
         while not orange_pick:
-            captain = orange_captain
-            orange_pick = await self.pick_orange(captain)
+            orange_pick = await self.pick_orange(orange_captain)
         self.game.add_to_orange(orange_pick)
 
         # Blue Picks
@@ -276,8 +275,7 @@ class SixMans(commands.Cog):
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         blue_picks = None
         while not blue_picks:
-            captain = blue_captain
-            blue_picks = await self.pick_blue(captain)
+            blue_picks = await self.pick_blue(blue_captain)
         for blue_pick in blue_picks:
             self.game.add_to_blue(blue_pick)
 
@@ -287,8 +285,8 @@ class SixMans(commands.Cog):
         await ctx.send("{} added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
         await self.display_teams()
 
-    async def pick_orange(self, ctx, captain):
-        msg = await ctx.bot.wait_for("message", timeout=60, author=captain, check=self.check_orange_first_pick_command)
+    async def pick_orange(self, ctx, orange_captain):
+        msg = await ctx.bot.wait_for("message", timeout=60, author=orange_captain, check=self.check_orange_first_pick_command)
         if msg:
             pick = msg.mentions[0]
             if pick not in self.game.players:
@@ -300,8 +298,8 @@ class SixMans(commands.Cog):
             await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
         return pick
 
-    async def pick_blue(self, ctx, captain):
-        msg = await ctx.bot.wait_for("message", timeout=60, author=captain, check=self.check_blue_picks_command)
+    async def pick_blue(self, ctx, blue_captain):
+        msg = await ctx.bot.wait_for("message", timeout=60, author=blue_captain, check=self.check_blue_picks_command)
         if msg:
             picks = msg.mentions
             for pick in picks:
