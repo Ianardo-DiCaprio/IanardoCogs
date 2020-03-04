@@ -192,7 +192,7 @@ class SixMans(commands.Cog):
             self.game.captains.append(secondary_votes[0])
         else:
             if len(top_votes) > 2:
-                tieda ("{}-way tie for captains. Shuffling picks...".format(len(top_votes)))
+                tieda = ("{}-way tie for captains. Shuffling picks...".format(len(top_votes)))
                 embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tieda, color=0x00FFFF)
                 await ctx.send(embed=embed)
             random.shuffle(top_votes)
@@ -246,7 +246,7 @@ class SixMans(commands.Cog):
 
         # Orange Pick
         pick = (
-            "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.mention ))
+            "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.mention))
         embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=pick, color=0x00FFFF)
         await ctx.send(embed=embed)
         available = ("Available: **{}**".format(", ".join([player.display_name for player in self.game.players])))
@@ -378,7 +378,7 @@ class SixMans(commands.Cog):
                 return
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
         blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
-        if blue == None:
+        if blue is None:
             await ctx.send("That code doesn't exist")
             return
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
@@ -392,7 +392,7 @@ class SixMans(commands.Cog):
                 wins = await self.config.user(user).wins()
                 losses = await self.config.user(user).losses()
                 if winorloss == "win":
-                    new_win = wins + 1            
+                    new_win = wins + 1
                     if losses == 0:
                         winloss = 100
                     else:
@@ -405,8 +405,8 @@ class SixMans(commands.Cog):
                     await ctx.send(embed=embed)
                     await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
                 else:
-                    new_loss = losses + 1     
-                    new = wins + new_loss       
+                    new_loss = losses + 1
+                    new = wins + new_loss
                     winloss = round(wins / new * 100, 2)
                     await self.config.user(user).losses.set(new_loss)
                     await self.config.user(user).winloss.set(winloss)
@@ -420,7 +420,7 @@ class SixMans(commands.Cog):
                 wins = await self.config.user(user).wins()
                 losses = await self.config.user(user).losses()
                 if winorloss == "win":
-                    new_win = wins + 1            
+                    new_win = wins + 1
                     if losses == 0:
                         winloss = 100
                     else:
@@ -433,8 +433,8 @@ class SixMans(commands.Cog):
                     await ctx.send(embed=embed)
                     await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
                 else:
-                    new_loss = losses + 1     
-                    new = wins + new_loss       
+                    new_loss = losses + 1
+                    new = wins + new_loss
                     winloss = round(wins / new * 100, 2)
                     await self.config.user(user).losses.set(new_loss)
                     await self.config.user(user).winloss.set(winloss)
@@ -457,13 +457,14 @@ class SixMans(commands.Cog):
             losses = users[user]['losses']
             winloss = users[user]['winloss']
             user = ctx.guild.get_member(user)
-            msg += (f"{user.display_name}:".ljust(12,' ')) + (f" Wins: {wins}".ljust(13,' ')) + (f"Losses: {losses}".ljust(13,' ')) + f"Win/Loss: {winloss}%\n"
+            msg += (f"{user.display_name}:".ljust(12, ' ')) + (f" Wins: {wins}".ljust(13, ' ')) + (f"Losses: {losses}".ljust(13, ' ')) + f"Win/Loss: {winloss}%\n"
         for msg in pagify(msg):
             embed = discord.Embed(color=0x00FFFF)
             embed.description = box(msg)
             embed.set_author(name="VOID ESPORTS™ 6Mans Leaderboard", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
+
 
 class Game:
     def __init__(self, players):
