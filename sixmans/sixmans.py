@@ -353,8 +353,8 @@ class SixMans(commands.Cog):
         blue = ("🔷 BLUE 🔷: **{}**".format(", ".join([player.display_name for player in self.game.blue])))
         orange = ("🔶 ORANGE 🔶: **{}**".format(", ".join([player.display_name for player in self.game.orange])))
         next_game_number = await self.config.guild(ctx.guild).latest_game_number() + 1
-        embed.add_field(name="**Orange Team:**", value=orange, inline=False)
         embed.add_field(name="**Blue Team:**", value=blue, inline=False)
+        embed.add_field(name="**Orange Team:**", value=orange, inline=False)
         embed.add_field(name="**Game Code:**", value=next_game_number, inline=False)
         await ctx.send(embed=embed)
 
