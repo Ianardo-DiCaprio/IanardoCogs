@@ -276,7 +276,7 @@ class SixMans(commands.Cog):
         await ctx.send(embed=embed)
         orange_pick = None
         while not orange_pick:
-            orange_pick = await self.pick_orange(orange_captain)
+            orange_pick = await self.pick_orange(captain)
         self.game.add_to_orange(orange_pick)
 
         # Blue Picks
@@ -289,7 +289,7 @@ class SixMans(commands.Cog):
         await ctx.send(embed=embed)
         blue_picks = None
         while not blue_picks:
-            blue_picks = await self.pick_blue(blue_captain)
+            blue_picks = await self.pick_blue(captain)
         for blue_pick in blue_picks:
             self.game.add_to_blue(blue_pick)
 
