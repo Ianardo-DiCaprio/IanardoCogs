@@ -117,7 +117,7 @@ class SixMans(commands.Cog):
     @commands.command(description="Start a game by voting for captains")
     async def voting(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
-        if not await self.queue_full():
+        if not await self.queue_full(ctx):
             queuefull = ("Queue is not full.")
             embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=queuefull, color=0x00FFFF)
             await ctx.send(embed=embed)
