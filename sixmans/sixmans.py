@@ -116,17 +116,13 @@ class SixMans(commands.Cog):
 
     @commands.command(description="Remove someone else from the queue")
     async def smclear(self, ctx):
-        team_size = await self.config.guild(ctx.guild).team_size()
-        for player in self.queue:
-            self.queue.remove(player)
-            cleared = (
-                "**{}** cleared the queue.".format(ctx.author.display_name))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=cleared, color=0x00FFFF)
-            await ctx.send(embed=embed)
-        else:
-            notq = ("I fucked up the command")
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notq, color=0x00FFFF)
-            await ctx.send(embed=embed)
+        queue = self.queue_get:
+        for item in queue:
+            self.queue.remove(queue)
+        cleared = (
+            "**{}** cleared the queue.".format(ctx.author.display_name))
+        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=cleared, color=0x00FFFF)
+        await ctx.send(embed=embed)
 
     @commands.command(name="voting", aliases=["v"],description="Start a game by voting for captains")
     async def v(self, ctx):
