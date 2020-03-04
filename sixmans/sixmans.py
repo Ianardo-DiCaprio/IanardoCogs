@@ -455,7 +455,8 @@ class SixMans(commands.Cog):
             wins = items['wins']
             losses = items['losses']
             winloss = items['winloss']
-            msg += (f"<@{user}>")[:21] + f"      Wins: {wins}      Losses: {losses}      Win/Loss: {winloss}%\n"
+            user = ctx.guild.get_member(user)
+            msg += (f"{user.display_name}")[:15] + f"      Wins: {wins}      Losses: {losses}      Win/Loss: {winloss}%\n"
         for msg in pagify(msg):
             embed = discord.Embed(title="**6Mans Leaderboard**", color=0x404040)
             embed.description = msg
