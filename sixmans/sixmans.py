@@ -116,9 +116,8 @@ class SixMans(commands.Cog):
 
     @commands.command(description="Remove someone else from the queue")
     async def smclear(self, ctx):
-        queue = self.queue._get
-        for item in queue:
-            self.queue.remove(queue)
+        for player in self.queue.get():
+            self.queue.remove(player)
         cleared = (
             "**{}** cleared the queue.".format(ctx.author.display_name))
         embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=cleared, color=0x00FFFF)
