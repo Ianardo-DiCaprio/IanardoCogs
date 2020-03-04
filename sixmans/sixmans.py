@@ -450,7 +450,7 @@ class SixMans(commands.Cog):
         embeds = []
         msg = ""
         users = await self.config.all_users()
-        for user, items in sorted(users.items(), key=lambda item: item[1]):
+        for user, items in sorted(users.items(), key=lambda item: item[5]):
             wins = items['wins']
             losses = items['losses']
             winloss = items['winloss']
