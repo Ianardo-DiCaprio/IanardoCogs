@@ -266,6 +266,7 @@ class SixMans(commands.Cog):
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         orange_pick = None
         while not orange_pick:
+            orange_captain = self.game.captains[0]
             orange_pick = await self.pick_orange(orange_captain)
         self.game.add_to_orange(orange_pick)
 
@@ -275,6 +276,7 @@ class SixMans(commands.Cog):
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         blue_picks = None
         while not blue_picks:
+            blue_captain = self.game.captains[1]
             blue_picks = await self.pick_blue(blue_captain)
         for blue_pick in blue_picks:
             self.game.add_to_blue(blue_pick)
