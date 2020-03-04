@@ -114,9 +114,12 @@ class SixMans(commands.Cog):
             return False
         return True
 
-    @commands.command(description="Start a game by voting for captains")
-    async def voting(self, ctx):
+    @commands.command(name="voting", aliases=["v"],description="Start a game by voting for captains")
+    async def v(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
+        if team_size = 2:
+            await ctx.send("There is only 2 players, you can't vote for captains")
+            return
         if not await self.queue_full(ctx):
             queuefull = ("Queue is not full.")
             embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=queuefull, color=0x00FFFF)
@@ -218,6 +221,10 @@ class SixMans(commands.Cog):
 
     @commands.command(name="captains", aliases=["c"], description="Start a game by randomly choosing captains")
     async def c(self, ctx):
+        team_size = await self.config.guild(ctx.guild).team_size()
+        if team_size = 2:
+            await ctx.send("There is only 2 players, you can't vote for captains")
+            return
         if not await self.queue_full(ctx):
             queuenot = ("Queue is not full.")
             embed = discord.Embed(title="6Mans", description=queuenot, color=0x00FFFF)
