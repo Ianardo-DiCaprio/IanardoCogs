@@ -258,13 +258,13 @@ class SixMans(commands.Cog):
         self.busy = False
 
     async def do_picks(self, ctx):
-        captains = ("Captains: **{}** and **{}**".format(*[captain.mention for captain in self.game.captains]))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=captains, color=0x00FFFF)
+        caps = ("Captains: **{}** and **{}**".format(*[captain.mention for captain in self.game.captains]))
+        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=caps, color=0x00FFFF)
         await ctx.send(embed=embed)
         orange_captain = self.game.captains[0]
-        await self.game.add_to_orange(orange_captain)
+        self.game.add_to_orange(orange_captain)
         blue_captain = self.game.captains[1]
-        await self.game.add_to_blue(blue_captain)
+        self.game.add_to_blue(blue_captain)
 
         # Orange Pick
         pick = (
