@@ -7,7 +7,7 @@ from queue import Queue
 import discord
 from redbot.core import commands, Config
 from redbot.core.utils.menus import menu, DEFAULT_CONTROLS
-from redbot.core.utils.chat_formatting import pagify
+from redbot.core.utils.chat_formatting import pagify, box
 
 
 class SixMans(commands.Cog):
@@ -459,7 +459,7 @@ class SixMans(commands.Cog):
             msg += f"{user.display_name}:       Wins: {wins}       Losses: {losses}       Win/Loss: {winloss}%\n"
         for msg in pagify(msg):
             embed = discord.Embed(title="**6Mans Leaderboard**")
-            embed.description = msg
+            embed.description = box(msg)
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
 
