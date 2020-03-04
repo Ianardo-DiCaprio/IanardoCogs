@@ -117,7 +117,7 @@ class SixMans(commands.Cog):
     @commands.command(name="voting", aliases=["v"],description="Start a game by voting for captains")
     async def v(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
-        if team_size = 2:
+        if team_size == 2:
             await ctx.send("There is only 2 players, you can't vote for captains")
             return
         if not await self.queue_full(ctx):
