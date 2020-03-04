@@ -452,9 +452,9 @@ class SixMans(commands.Cog):
         users = await self.config.all_users()
         test = sorted(users, key=lambda a: users[a]['wins'], reverse=True)
         for user in test:
-            wins = user['wins']
-            losses = user['losses']
-            winloss = user['winloss']
+            wins = users[user]['wins']
+            losses = users[user]['losses']
+            winloss = users[user]['winloss']
             user = ctx.guild.get_member(user)
             msg += f"{user.display_name}:       Wins: {wins}       Losses: {losses}       Win/Loss: {winloss}%\n"
         for msg in pagify(msg):
