@@ -458,7 +458,7 @@ class SixMans(commands.Cog):
             user = ctx.guild.get_member(user)
             msg += (f"{user.display_name}:".ljust(12,' ')) + (f" Wins: {wins}".ljust(13,' ')) + (f"Losses: {losses}".ljust(13,' ')) + f"Win/Loss: {winloss}%\n"
         for msg in pagify(msg):
-            embed = discord.Embed(title="**6Mans Leaderboard**")
+            embed = discord.Embed(title="**VOID Esports 6Mans Leaderboard**", color=0x00FFFF)
             embed.description = box(msg)
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
