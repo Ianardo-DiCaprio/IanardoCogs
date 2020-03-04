@@ -47,8 +47,9 @@ class SixMans(commands.Cog):
             await self.config.guild(ctx.guild).team_size.set(players)
             await ctx.send("6mans has been set to 6 players")
 
-    @commands.command(pass_context=True, name="sixqueue", aliases=["q"], description="Add yourself to the queue")
-    async def q(self, ctx):
+    @commands.command(pass_context=True, aliases=["q"])
+    async def smqueue(self, ctx):
+        """Command to join the queue"""
         player = ctx.message.author
         team_size = await self.config.guild(ctx.guild).team_size()
 
@@ -69,12 +70,13 @@ class SixMans(commands.Cog):
         embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=added, color=0x00FFFF)
         await ctx.send(embed=embed)
         if await self.queue_full(ctx):
-            queuefull = ("Queue is now full! Type [captains or [random to create a game.")
+            queuefull = ("Queue is now full! Type `[v`,  `[c` or `[r` to create a game.")
             embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=queuefull, color=0x00FFFF)
             await ctx.send(embed=embed)
 
-    @commands.command(pass_context=True, name="dequeue", aliases=["dq"], description="Remove yourself from the queue")
-    async def dq(self, ctx):
+    @commands.command(pass_context=True, aliases=["dq"])
+    async def dequeue(self, ctx):
+        """Command to leave the queue"""
         player = ctx.message.author
         team_size = await self.config.guild(ctx.guild).team_size()
 
@@ -89,8 +91,9 @@ class SixMans(commands.Cog):
             embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notq, color=0x00FFFF)
             await ctx.send(embed=embed)
 
-    @commands.command(description="Remove someone else from the queue")
+    @commands.command()
     async def smkick(self, ctx,  player: discord.Member):
+        """Command to kick someone from the queue"""
         team_size = await self.config.guild(ctx.guild).team_size()
         if player in self.queue:
             self.queue.remove(player)
@@ -114,8 +117,9 @@ class SixMans(commands.Cog):
             return False
         return True
 
-    @commands.command(description="Remove someone else from the queue")
+    @commands.command()
     async def smclear(self, ctx):
+        """Command to clear the queue"""
         team_size = await self.config.guild(ctx.guild).team_size()
         players = self.queue.get()
         cleared = (
@@ -123,8 +127,9 @@ class SixMans(commands.Cog):
         embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=cleared, color=0x00FFFF)
         await ctx.send(embed=embed)
 
-    @commands.command(name="voting", aliases=["v"],description="Start a game by voting for captains")
-    async def v(self, ctx):
+    @commands.command(aliases=["v"])
+    async def voting(self, ctx):
+        """Command to start a game by voting for captains"""
         team_size = await self.config.guild(ctx.guild).team_size()
         if team_size == 2:
             await ctx.send("There is only 2 players, you can't vote for captains")
@@ -228,8 +233,9 @@ class SixMans(commands.Cog):
             return False
         return True
 
-    @commands.command(name="captains", aliases=["c"], description="Start a game by randomly choosing captains")
-    async def c(self, ctx):
+    @commands.command(aliases=["c"])
+    async def captains(self, ctx):
+        """Command to start a game by randomly choosing captains"""
         team_size = await self.config.guild(ctx.guild).team_size()
         if team_size == 2:
             await ctx.send("There is only 2 players, you can't vote for captains")
@@ -336,8 +342,9 @@ class SixMans(commands.Cog):
             await ctx.send(embed=embed)
             return picks
 
-    @commands.command(name="random", aliases=["r"], description="Start a game by randomly assigning teams")
-    async def r(self, ctx):
+    @commands.command(aliases=["r"])
+    async def random(self, ctx):
+        """Command to start a game by randomly assigning teams"""
         if not await self.queue_full(ctx):
             notfull = ("Queue is not full.")
             embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notfull, color=0x00FFFF)
@@ -386,8 +393,9 @@ class SixMans(commands.Cog):
         players = [self.queue.get() for _ in range(team_size)]
         self.game = Game(players)
 
-    @commands.command(name="smr", description="Start a game by randomly assigning teams")
-    async def smr(self, ctx, code: int, winorloss):
+    @commands.command(aliases=["smr"])
+    async def smreport(self, ctx, code: int, winorloss):
+        """Command to report game results."""
         if winorloss != "win":
             if winorloss != "loss":
                 await ctx.send("Please use either win or loss")
@@ -462,8 +470,9 @@ class SixMans(commands.Cog):
             if ctx.author.id not in blue:
                 await ctx.send("You can't report this game as you are not in it.")
 
-    @commands.command(name="smtop", description="Start a game by randomly assigning teams")
+    @commands.command()
     async def smtop(self, ctx):
+        """Command to show the 6Mans leaderboard."""
         embeds = []
         msg = ""
         users = await self.config.all_users()
