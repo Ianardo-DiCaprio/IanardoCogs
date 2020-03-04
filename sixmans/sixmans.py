@@ -450,15 +450,16 @@ class SixMans(commands.Cog):
         embeds = []
         msg = ""
         users = await self.config.all_users()
-        for user, items in sorted(users.items(), key=lambda item: item[2]):
+        for user, items in users.items():
             wins = items['wins']
             losses = items['losses']
             winloss = items['winloss']
             user = ctx.guild.get_member(user)
             msg += f"{user.display_name}:       Wins: {wins}       Losses: {losses}       Win/Loss: {winloss}%\n"
-        for msg in pagify(msg):
+            sorted = sorted(msg, key=lambda b: int(items['wins'][b])
+        for sorted in pagify(sorted):
             embed = discord.Embed(title="**6Mans Leaderboard**")
-            embed.description = msg
+            embed.description = sorted
             embeds.append(embed)
         await menu(ctx, embeds, DEFAULT_CONTROLS)
 
