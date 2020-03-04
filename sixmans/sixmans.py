@@ -116,7 +116,7 @@ class SixMans(commands.Cog):
 
     @commands.command(description="Remove someone else from the queue")
     async def smclear(self, ctx):
-        queue = self.queue_get
+        queue = self.queue._get
         for item in queue:
             self.queue.remove(queue)
         cleared = (
