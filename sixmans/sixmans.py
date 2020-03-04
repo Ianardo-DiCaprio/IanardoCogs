@@ -233,8 +233,9 @@ class SixMans(commands.Cog):
             return False
         return True
 
-    @commands.command(description="Start a game by randomly choosing captains")
+    @commands.command(aliases=["v"])
     async def captains(self, ctx):
+        """Command to start a game by randomly chosen captains"""
         team_size = await self.config.guild(ctx.guild).team_size()
         if team_size == 2:
             await ctx.send("There is only 2 players, you can't vote for captains")
@@ -261,22 +262,22 @@ class SixMans(commands.Cog):
 
         # Orange Pick
         await ctx.send(
-            "{mention} Use {prefix}pick [user] to pick 1 player.".format(mention=orange_captain.mention,
-                                                                         prefix=self.bot.command_prefix))
+            "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.mention))
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         orange_pick = None
         while not orange_pick:
-            orange_pick = await self.pick_orange(orange_captain)
+            captain = orange_captain
+            orange_pick = await self.pick_orange(captain)
         self.game.add_to_orange(orange_pick)
 
         # Blue Picks
         await ctx.send(
-            "{mention} Use {prefix}pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.mention,
-                                                                                   prefix=self.bot.command_prefix))
+            "{mention} Use [pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.mention))
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         blue_picks = None
         while not blue_picks:
-            blue_picks = await self.pick_blue(blue_captain)
+            captain = blue_captain
+            blue_picks = await self.pick_blue(captain)
         for blue_pick in blue_picks:
             self.game.add_to_blue(blue_pick)
 
