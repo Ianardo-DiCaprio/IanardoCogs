@@ -239,7 +239,7 @@ class SixMans(commands.Cog):
         if team_size == 2:
             await ctx.send("There is only 2 players, you can't vote for captains")
             return
-        if not self.queue_full():
+        if not self.queue_full(ctx):
             await ctx.send("Queue is not full.")
             return
         if self.busy:
