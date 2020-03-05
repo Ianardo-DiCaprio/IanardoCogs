@@ -128,8 +128,7 @@ class SixMans(commands.Cog):
     @commands.command()
     async def smclear(self, ctx):
         """Command to clear the queue"""
-        players = self.queue.pop()
-        for player in players:
+        for player in self.queue:
             self.queue.remove(player)
         cleared = (
             "**{}** cleared the queue.".format(ctx.author.display_name))
