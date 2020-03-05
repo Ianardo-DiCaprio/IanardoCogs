@@ -302,7 +302,7 @@ class SixMans(commands.Cog):
         first = (
             "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.display_name))
         embed = discord.Embed(description=first, color=0x00FFFF)
-            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         available = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         embed = discord.Embed(description=available, color=0x00FFFF)
@@ -317,7 +317,7 @@ class SixMans(commands.Cog):
         secpick = (
             "{mention} Use [pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.display_name))
         embed = discord.Embed(description=secpick, color=0x00FFFF)
-            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         availabletwo = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         embed = discord.Embed(description=availabletwo, color=0x00FFFF)
