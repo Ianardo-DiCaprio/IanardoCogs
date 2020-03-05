@@ -158,69 +158,66 @@ class SixMans(commands.Cog):
         timeout = 90
         end_time = time.time() + timeout
         while len(votes) < team_size and time.time() < end_time:
-            try:
-                msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_vote_command)
-                if not msg:
-                    continue
-                if msg.author not in self.game.players:
-                    return
+            msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_vote_command)
+            if not msg:
+                continue
+            if msg.author not in self.game.players:
+                return
 
-                vote = msg.mentions[0]
-                if vote == msg.author:
-                    selfvote = ("Cannot vote for yourself.")
-                    embed = discord.Embed(title="6Mans", description=selfvote, color=0x00FFFF)
-                    await ctx.send(embed=embed)
-                elif vote in self.game.players:
-                    votes[msg.author] = msg.mentions[0]
-                    voted = ("Vote added for **{}.**".format(vote.display_name))
-                    embed = discord.Embed(title="6Mans", description=voted, color=0x00FFFF)
-                    await ctx.send(embed=embed)
-                else:
-                    notavailable = ("**{}** not available to pick.".format(vote.display_name))
-                    embed = discord.Embed(title="6Mans", description=notavailable, color=0x00FFFF)
-                    await ctx.send(embed=embed)
-                if len(votes) < team_size:
-                    timed = ("Timed out.")
-                    embed = discord.Embed(title="6Mans", description=timed, color=0x00FFFF)
-                    await ctx.send(embed=embed)
-                    msg = ""
-                    for player in self.game.players:
-                        if player not in votes:
-                            vote = player
-                            while vote == player:
-                                vote = random.choice(tuple(self.game.players))
-                            votes[player] = vote
-                            msg += "Random vote added for **{}** from **{}**.\n".format(vote.display_name, player.display_name)
-                    embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=msg, color=0x00FFFF)
-                    await ctx.send(embed=embed)
+            vote = msg.mentions[0]
+            if vote == msg.author:
+                selfvote = ("Cannot vote for yourself.")
+                embed = discord.Embed(title="6Mans", description=selfvote, color=0x00FFFF)
+                await ctx.send(embed=embed)
+            elif vote in self.game.players:
+                votes[msg.author] = msg.mentions[0]
+                voted = ("Vote added for **{}.**".format(vote.display_name))
+                embed = discord.Embed(title="6Mans", description=voted, color=0x00FFFF)
+                await ctx.send(embed=embed)
+            else:
+                notavailable = ("**{}** not available to pick.".format(vote.display_name))
+                embed = discord.Embed(title="6Mans", description=notavailable, color=0x00FFFF)
+                await ctx.send(embed=embed)
+        if len(votes) < team_size:
+            timed = ("Timed out.")
+            embed = discord.Embed(title="6Mans", description=timed, color=0x00FFFF)
+            await ctx.send(embed=embed)
+            msg = ""
+            for player in self.game.players:
+                if player not in votes:
+                    vote = player
+                    while vote == player:
+                        vote = random.choice(tuple(self.game.players))
+                    votes[player] = vote
+                    msg += "Random vote added for **{}** from **{}**.\n".format(vote.display_name, player.display_name)
+            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=msg, color=0x00FFFF)
+            await ctx.send(embed=embed)
 
-                vote_nums = {}
-                for vote in votes.values():
-                    vote_nums[vote] = vote_nums.get(vote, 0) + 1
-                sorted_vote_nums = sorted(vote_nums.items(), key=operator.itemgetter(1), reverse=True)
-                top_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[0][1]]
-                if len(top_votes) < 2:
-                    self.game.captains = top_votes
-                    secondary_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[1][1]]
-                    if len(secondary_votes) > 1:
-                        tied = ("{}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
-                        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tied, color=0x00FFFF)
-                        await ctx.send(embed=embed)
-                        random.shuffle(secondary_votes)
-                    self.game.captains.append(secondary_votes[0])
-                else:
-                    if len(top_votes) > 2:
-                        tieda = ("{}-way tie for captains. Shuffling picks...".format(len(top_votes)))
-                        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tieda, color=0x00FFFF)
-                        await ctx.send(embed=embed)
-                    random.shuffle(top_votes)
-                    self.game.captains = top_votes[:2]
+        vote_nums = {}
+        for vote in votes.values():
+            vote_nums[vote] = vote_nums.get(vote, 0) + 1
+        sorted_vote_nums = sorted(vote_nums.items(), key=operator.itemgetter(1), reverse=True)
+        top_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[0][1]]
+        if len(top_votes) < 2:
+            self.game.captains = top_votes
+            secondary_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[1][1]]
+            if len(secondary_votes) > 1:
+                tied = ("{}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
+                embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tied, color=0x00FFFF)
+                await ctx.send(embed=embed)
+                random.shuffle(secondary_votes)
+            self.game.captains.append(secondary_votes[0])
+        else:
+            if len(top_votes) > 2:
+                tieda = ("{}-way tie for captains. Shuffling picks...".format(len(top_votes)))
+                embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tieda, color=0x00FFFF)
+                await ctx.send(embed=embed)
+            random.shuffle(top_votes)
+            self.game.captains = top_votes[:2]
 
-                await self.do_picks(ctx)
+        await self.do_picks()
 
-                self.busy = False
-            except:
-                 await ctx.send("something went wrong")
+        self.busy = False
 
     def check_orange_first_pick_command(self, message):
         if message.author != self.game.captains[0]:
