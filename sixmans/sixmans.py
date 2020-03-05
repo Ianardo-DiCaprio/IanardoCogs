@@ -298,8 +298,11 @@ class SixMans(commands.Cog):
         blue_picks = None
         while not blue_picks:
             blue_picks = await self.pick_blue(ctx, blue_captain)
-        for blue_pick in blue_picks:
-            self.game.add_to_blue(blue_pick)
+        if team_size == 6:
+            for blue_pick in blue_picks:
+                self.game.add_to_blue(blue_pick)
+        else:
+            self.game.add_to_blue(blue_picks)
 
         # Orange Player
         last_player = next(iter(self.game.players))
