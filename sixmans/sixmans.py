@@ -345,7 +345,7 @@ class SixMans(commands.Cog):
             if team_size == 4:
                 picks = random.sample(self.game.players, 1)
                 await ctx.send(
-                    "Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(*[picks.display_name]))
+                    "Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(*[pick.display_name for pick in picks]))
                 return picks
 
     async def pick_blue(self, ctx, blue_captain):
@@ -379,7 +379,7 @@ class SixMans(commands.Cog):
             if team_size == 4:
                 picks = random.sample(self.game.players, 1)
                 await ctx.send(
-                    "Timed out. Randomly picked {} for 🔷 BLUE 🔷 team.".format(*[picks.display_name]))
+                    "Timed out. Randomly picked {} for 🔷 BLUE 🔷 team.".format(*[picks.display_name for pick in picks]))
                 return picks
 
     @commands.command(aliases=["r"])
