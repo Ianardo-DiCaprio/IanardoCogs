@@ -218,7 +218,7 @@ class SixMans(commands.Cog):
             random.shuffle(top_votes)
             self.game.captains = top_votes[:2]
 
-        await self.do_picks()
+        await self.do_picks(ctx)
 
         self.busy = False
 
