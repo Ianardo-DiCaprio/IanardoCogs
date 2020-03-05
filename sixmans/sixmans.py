@@ -128,7 +128,7 @@ class SixMans(commands.Cog):
     @commands.command()
     async def smclear(self, ctx):
         """Command to clear the queue"""
-        self.queue.clear()
+        self.queue.get(False)
         cleared = (
             "**{}** cleared the queue.".format(ctx.author.display_name))
         embed = discord.Embed(description=cleared, color=0x00FFFF)
@@ -637,3 +637,5 @@ class PlayerQueue(Queue):
     def __contains__(self, item):
         with self.mutex:
             return item in self.queue
+
+    def clear(self):
