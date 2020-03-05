@@ -288,16 +288,8 @@ class SixMans(commands.Cog):
         await self.display_teams()
 
     async def pick_orange(self, ctx, orange_captain):
-        msg = await ctx.bot.wait_for("message", timeout=60, author=orange_captain, check=self.check_orange_first_pick_command)
-        if msg:
-            pick = msg.mentions[0]
-            if pick not in self.game.players:
-                await ctx.send("{} not available to pick.".format(pick.display_name))
-                return None
-            await ctx.send("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
-        else:
-            pick = random.choice(tuple(self.game.players))
-            await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+        pick = random.choice(tuple(self.game.players))
+        await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
         return pick
 
     async def pick_blue(self, ctx, blue_captain):
