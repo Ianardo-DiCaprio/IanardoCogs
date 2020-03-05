@@ -128,9 +128,7 @@ class SixMans(commands.Cog):
     @commands.command()
     async def smclear(self, ctx):
         """Command to clear the queue"""
-        team_size = await self.config.guild(ctx.guild).team_size()
-        players = [self.queue.get() for _ in range(team_size)]
-        self.game = Game(players)
+        self.queue.task_done()
         cleared = (
             "**{}** cleared the queue.".format(ctx.author.display_name))
         embed = discord.Embed(description=cleared, color=0x00FFFF)
