@@ -128,7 +128,9 @@ class SixMans(commands.Cog):
     @commands.command()
     async def smclear(self, ctx):
         """Command to clear the queue"""
-        self.queue.clear
+        q = Queue.Queue()
+        with q.mutex:
+            q.queue.clear()
         cleared = (
             "**{}** cleared the queue.".format(ctx.author.display_name))
         embed = discord.Embed(description=cleared, color=0x00FFFF)
@@ -637,14 +639,4 @@ class PlayerQueue(Queue):
     def __contains__(self, item):
         with self.mutex:
             return item in self.queue
-   
-    def clear(self):
-        with self.mutex:
-            unfinished = self.unfinished_tasks - len(self.queue)
-            if unfinished <= 0:
-                if unfinished < 0:
-                    raise ValueError('task_done() called too many times')
-        self.all_tasks_done.notify_all()
-        self.unfinished_tasks = unfinished
-        self.queue.clear()
-        self.not_full.notify_all()
+
