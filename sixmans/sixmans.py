@@ -300,8 +300,8 @@ class SixMans(commands.Cog):
         if team_size == 4:
             await ctx.send(
                 "{mention} Use [pick [user1] to pick 1 player.".format(mention=blue_captain.display_name))
-        if team_size == 5:
-        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        if team_size == 6:
+            await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         blue_picks = None
         while not blue_picks:
             blue_picks = await self.pick_blue(ctx, blue_captain)
