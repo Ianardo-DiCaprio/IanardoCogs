@@ -320,7 +320,7 @@ class SixMans(commands.Cog):
                     await ctx.send("{} not available to pick.".format(pick.display_name))
                     return None
                 await ctx.send("Picked {}  for 🔶 ORANGE 🔶 team.".format(*[pick.mention]))
-                return picks
+                return pick
             if team_size == 6:
                 picks = msg.mentions
                 for pick in picks:
@@ -354,7 +354,7 @@ class SixMans(commands.Cog):
                     await ctx.send("{} not available to pick.".format(pick.display_name))
                     return None
                 await ctx.send("Picked {}  for 🔷 BLUE 🔷 team.".format(*[pick.mention]))
-                return picks
+                return pick
             if team_size == 6:
                 picks = msg.mentions
                 for pick in picks:
