@@ -206,7 +206,7 @@ class SixMans(commands.Cog):
                         tied = ("{}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
                         embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tied, color=0x00FFFF)
                         await ctx.send(embed=embed)
-                       random.shuffle(secondary_votes)
+                        random.shuffle(secondary_votes)
                     self.game.captains.append(secondary_votes[0])
                 else:
                     if len(top_votes) > 2:
