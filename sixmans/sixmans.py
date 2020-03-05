@@ -318,9 +318,9 @@ class SixMans(commands.Cog):
         team_size = await self.config.guild(ctx.guild).team_size()
         try:
             if team_size == 4:
-                msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_orange_picksa_command)
+                msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_orange_picksa_command)
             else:
-                msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_orange_picks_command)
+                msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_orange_picks_command)
             if team_size == 4:
                 pick = msg.mentions[0]
                 if pick not in self.game.players:
@@ -353,9 +353,9 @@ class SixMans(commands.Cog):
         team_size = await self.config.guild(ctx.guild).team_size()
         try:
             if team_size == 4:
-                msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_blue_picksa_command)
+                msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_blue_picksa_command)
             else:
-                msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_blue_picks_command)
+                msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_blue_picks_command)
             if team_size == 4:
                 pick = msg.mentions[0]
                 if pick not in self.game.players:
