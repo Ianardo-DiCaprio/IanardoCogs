@@ -219,6 +219,8 @@ class SixMans(commands.Cog):
                 await self.do_picks()
 
                 self.busy = False
+            except:
+                 await ctx.send("something went wrong")
 
     def check_orange_first_pick_command(self, message):
         if message.author != self.game.captains[0]:
