@@ -128,7 +128,6 @@ class SixMans(commands.Cog):
     @commands.command()
     async def smclear(self, ctx):
         """Command to clear the queue"""
-        team_size = await self.config.guild(ctx.guild).team_size()
         players = self.queue.get()
         cleared = (
             "**{}** cleared the queue.".format(ctx.author.display_name))
@@ -292,7 +291,7 @@ class SixMans(commands.Cog):
         team_size = await self.config.guild(ctx.guild).team_size()
         captainchose = ("Captains: {} and {}".format(*[captain.display_name for captain in self.game.captains]))
         embed = discord.Embed(description=captainchose, color=0x00FFFF)
-            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         orange_captain = self.game.captains[0]
         self.game.add_to_orange(orange_captain)
