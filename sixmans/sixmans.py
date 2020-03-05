@@ -277,7 +277,7 @@ class SixMans(commands.Cog):
 
     async def do_picks(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
-        await ctx.send("Captains: {} and {}".format(*[captain.mention for captain in self.game.captains]))
+        await ctx.send("Captains: {} and {}".format(*[captain.display_name for captain in self.game.captains]))
         orange_captain = self.game.captains[0]
         self.game.add_to_orange(orange_captain)
         blue_captain = self.game.captains[1]
@@ -285,7 +285,7 @@ class SixMans(commands.Cog):
 
         # Orange Pick
         await ctx.send(
-            "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.mention))
+            "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.display_name))
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         orange_pick = None
         while not orange_pick:
@@ -294,7 +294,7 @@ class SixMans(commands.Cog):
 
         # Blue Picks
         await ctx.send(
-            "{mention} Use [pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.mention))
+            "{mention} Use [pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.display_name))
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         blue_picks = None
         while not blue_picks:
@@ -308,7 +308,7 @@ class SixMans(commands.Cog):
         # Orange Player
         last_player = next(iter(self.game.players))
         self.game.add_to_orange(last_player)
-        await ctx.send("{} added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
+        await ctx.send("{} added to 🔶 ORANGE 🔶 team.".format(last_player.display_name))
         await self.display_teams()
 
     async def pick_orange(self, ctx, orange_captain):
@@ -323,7 +323,7 @@ class SixMans(commands.Cog):
                 if pick not in self.game.players:
                     await ctx.send("{} not available to pick.".format(pick.display_name))
                     return None
-                await ctx.send("Picked {}  for 🔶 ORANGE 🔶 team.".format(*[pick.mention]))
+                await ctx.send("Picked {}  for 🔶 ORANGE 🔶 team.".format(*[pick.display_name]))
                 return pick
             if team_size == 6:
                 picks = msg.mentions
@@ -331,18 +331,18 @@ class SixMans(commands.Cog):
                     if pick not in self.game.players:
                         await ctx.send("{} not available to pick.".format(pick.display_name))
                         return None
-                await ctx.send("Picked {} and {} for 🔶 ORANGE 🔶 team.".format(*[pick.mention for pick in picks]))
+                await ctx.send("Picked {} and {} for 🔶 ORANGE 🔶 team.".format(*[pick.display_name for pick in picks]))
                 return picks
         else:
             if team_size == 6:
                 picks = random.sample(self.game.players, 2)
                 await ctx.send(
-                    "Timed out. Randomly picked {} and {} for 🔶 ORANGE 🔶 team.".format(*[pick.mention for pick in picks]))
+                    "Timed out. Randomly picked {} and {} for 🔶 ORANGE 🔶 team.".format(*[pick.display_name for pick in picks]))
                 return picks
             if team_size == 4:
                 picks = random.sample(self.game.players, 1)
                 await ctx.send(
-                    "Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(*[picks.mention]))
+                    "Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(*[picks.display_name]))
                 return picks
 
     async def pick_blue(self, ctx, blue_captain):
@@ -357,7 +357,7 @@ class SixMans(commands.Cog):
                 if pick not in self.game.players:
                     await ctx.send("{} not available to pick.".format(pick.display_name))
                     return None
-                await ctx.send("Picked {}  for 🔷 BLUE 🔷 team.".format(*[pick.mention]))
+                await ctx.send("Picked {}  for 🔷 BLUE 🔷 team.".format(*[pick.display_name]))
                 return pick
             if team_size == 6:
                 picks = msg.mentions
@@ -365,18 +365,18 @@ class SixMans(commands.Cog):
                     if pick not in self.game.players:
                         await ctx.send("{} not available to pick.".format(pick.display_name))
                         return None
-                await ctx.send("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+                await ctx.send("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
                 return picks
         else:
             if team_size == 6:
                 picks = random.sample(self.game.players, 2)
                 await ctx.send(
-                    "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+                    "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
                 return picks
             if team_size == 4:
                 picks = random.sample(self.game.players, 1)
                 await ctx.send(
-                    "Timed out. Randomly picked {} for 🔷 BLUE 🔷 team.".format(*[picks.mention]))
+                    "Timed out. Randomly picked {} for 🔷 BLUE 🔷 team.".format(*[picks.display_name]))
                 return picks
 
     @commands.command(aliases=["r"])
