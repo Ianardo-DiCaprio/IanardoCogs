@@ -219,8 +219,8 @@ class SixMans(commands.Cog):
 
         self.busy = False
 
-    def check_orange_first_pick_command(self, message, orange_captain):
-        if message.author != orange_captain:
+    def check_orange_first_pick_command(self, message):
+        if message.author != self.game.captains[0]:
             return False
         if not message.content.startswith("[pick"):
             return False
@@ -228,8 +228,8 @@ class SixMans(commands.Cog):
             return False
         return True
 
-    def check_blue_picks_command(self, message, blue__captain):
-        if message.author != blue_captain:
+    def check_blue_picks_command(self, message):
+        if message.author != self.game.captains[1]:
             return False
         if not message.content.startswith("[pick"):
             return False
