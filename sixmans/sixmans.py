@@ -306,7 +306,6 @@ class SixMans(commands.Cog):
             self.game.add_to_blue(blue_picks)
 
         # Orange Player
-        await ctx.send("{} added to 🔶 ORANGE 🔶 team.".format(last_player.display_name))
         await self.display_teams()
 
     async def pick_orange(self, ctx, orange_captain):
