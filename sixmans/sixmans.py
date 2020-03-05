@@ -55,23 +55,27 @@ class SixMans(commands.Cog):
 
         if player in self.queue:
             alreadyq = ("**{}** is already in the queue.".format(player.display_name))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=alreadyq, color=0x00FFFF)
+            embed = discord.Embed(description=alreadyq, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
             return
         if self.busy and player in self.game:
             alreadyg = ("**{}** is already in a game.".format(player.display_name))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=alreadyg, color=0x00FFFF)
+            embed = discord.Embed(escription=alreadyg, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
             return
 
         self.queue.put(player)
 
         added = ("**{}** added to queue. **({}/{})**".format(player.display_name, self.queue.qsize(), team_size))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=added, color=0x00FFFF)
+        embed = discord.Embed(description=added, color=0x00FFFF)
+        embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         if await self.queue_full(ctx):
             queuefull = ("Queue is now full! Type `[v`,  `[c` or `[r` to create a game.")
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=queuefull, color=0x00FFFF)
+            embed = discord.Embed(description=queuefull, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
 
     @commands.command(pass_context=True, aliases=["dq"])
@@ -84,11 +88,13 @@ class SixMans(commands.Cog):
             await self.queue.remove(player)
             removed = (
                 "**{}** removed from queue. **({}/{})**".format(player.display_name, self.queue.qsize(), team_size))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=removed, color=0x00FFFF)
+            embed = discord.Embed(description=removed, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
         else:
             notq = ("**{}** is not in queue.".format(player.display_name))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notq, color=0x00FFFF)
+            embed = discord.Embed(description=notq, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
 
     @commands.command()
@@ -99,11 +105,13 @@ class SixMans(commands.Cog):
             self.queue.remove(player)
             kicked = (
                 "**{}** removed from queue. **({}/{})**".format(player.display_name, self.queue.qsize(), team_size))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=kicked, color=0x00FFFF)
+            embed = discord.Embed(description=kicked, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
         else:
             notq = ("**{}** is not in queue.".format(player.display_name))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notq, color=0x00FFFF)
+            embed = discord.Embed(description=notq, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
 
     async def queue_full(self, ctx):
@@ -124,7 +132,8 @@ class SixMans(commands.Cog):
         players = self.queue.get()
         cleared = (
             "**{}** cleared the queue.".format(ctx.author.display_name))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=cleared, color=0x00FFFF)
+        embed = discord.Embed(description=cleared, color=0x00FFFF)
+        embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
 
     @commands.command(aliases=["v"])
@@ -136,22 +145,26 @@ class SixMans(commands.Cog):
             return
         if not await self.queue_full(ctx):
             queuefull = ("Queue is not full.")
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=queuefull, color=0x00FFFF)
+            embed = discord.Embed(description=queuefull, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
             return
         if self.busy:
             botbusy = ("Bot is busy. Please wait until picking is done.")
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=botbusy, color=0x00FFFF)
+            embed = discord.Embed(description=botbusy, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
             return
         self.busy = True
         await self.create_game(ctx)
 
         captainvote = ("Captain voting initiated. Use [vote [user] to vote for a captain (cannot be yourself).")
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=captainvote, color=0x00FFFF)
+        embed = discord.Embed(description=captainvote, color=0x00FFFF)
+        embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         available = ("Available: **{}**".format(", ".join([player.display_name for player in self.game.players])))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=available, color=0x00FFFF)
+        embed = discord.Embed(description=available, color=0x00FFFF)
+        embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
 
         try:
@@ -168,16 +181,19 @@ class SixMans(commands.Cog):
                 vote = msg.mentions[0]
                 if vote == msg.author:
                     selfvote = ("Cannot vote for yourself.")
-                    embed = discord.Embed(title="6Mans", description=selfvote, color=0x00FFFF)
+                    embed = discord.Embed(description=selfvote, color=0x00FFFF)
+                    embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                     await ctx.send(embed=embed)
                 elif vote in self.game.players:
                     votes[msg.author] = msg.mentions[0]
                     voted = ("Vote added for **{}.**".format(vote.display_name))
-                    embed = discord.Embed(title="6Mans", description=voted, color=0x00FFFF)
+                    embed = discord.Embed(description=voted, color=0x00FFFF)
+                    embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                     await ctx.send(embed=embed)
                 else:
                     notavailable = ("**{}** not available to pick.".format(vote.display_name))
-                    embed = discord.Embed(title="6Mans", description=notavailable, color=0x00FFFF)
+                    embed = discord.Embed(description=notavailable, color=0x00FFFF)
+                    embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                     await ctx.send(embed=embed)
         except:
             timed = ("Timed out.")
@@ -192,7 +208,8 @@ class SixMans(commands.Cog):
                         vote = random.choice(tuple(self.game.players))
                     votes[player] = vote
                     msg += "Random vote added for **{}** from **{}**.\n".format(vote.display_name, player.display_name)
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=msg, color=0x00FFFF)
+            embed = discord.Embed(description=msg, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
 
         vote_nums = {}
@@ -205,14 +222,16 @@ class SixMans(commands.Cog):
             secondary_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[1][1]]
             if len(secondary_votes) > 1:
                 tied = ("{}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
-                embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tied, color=0x00FFFF)
+                embed = discord.Embed(description=tied, color=0x00FFFF)
+                embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                 await ctx.send(embed=embed)
                 random.shuffle(secondary_votes)
             self.game.captains.append(secondary_votes[0])
         else:
             if len(top_votes) > 2:
                 tieda = ("{}-way tie for captains. Shuffling picks...".format(len(top_votes)))
-                embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tieda, color=0x00FFFF)
+                embed = discord.Embed(description=tieda, color=0x00FFFF)
+                embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                 await ctx.send(embed=embed)
             random.shuffle(top_votes)
             self.game.captains = top_votes[:2]
@@ -246,20 +265,20 @@ class SixMans(commands.Cog):
         team_size = await self.config.guild(ctx.guild).team_size()
         if team_size != 6:
             sixplayers = ("Captains can only be chosen for 6 players.")
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=sixplayers, color=0x00FFFF)
-            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+            embed = discord.Embed(description=sixplayers, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
             return
         if not self.queue_full(ctx):
             notfull = ("Queue is not full.")
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notfull, color=0x00FFFF)
-            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+            embed = discord.Embed(description=notfull, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
             return
         if self.busy:
             botbusy = ("Bot is busy. Please wait until picking is done.")
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=botbusy, color=0x00FFFF)
-            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+            embed = discord.Embed(description=botbusy, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
             return
         self.busy = True
@@ -272,8 +291,8 @@ class SixMans(commands.Cog):
     async def do_picks(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
         captainchose = ("Captains: {} and {}".format(*[captain.display_name for captain in self.game.captains]))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=captainchose, color=0x00FFFF)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        embed = discord.Embed(description=captainchose, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         orange_captain = self.game.captains[0]
         self.game.add_to_orange(orange_captain)
@@ -283,12 +302,12 @@ class SixMans(commands.Cog):
         # Orange Pick
         first = (
             "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.display_name))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=first, color=0x00FFFF)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        embed = discord.Embed(description=first, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         available = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=available, color=0x00FFFF)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        embed = discord.Embed(description=available, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         orange_pick = None
         while not orange_pick:
@@ -298,12 +317,12 @@ class SixMans(commands.Cog):
         # Blue Picks
         secpick = (
             "{mention} Use [pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.display_name))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=secpick, color=0x00FFFF)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        embed = discord.Embed(description=secpick, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         availabletwo = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=availabletwo, color=0x00FFFF)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        embed = discord.Embed(description=availabletwo, color=0x00FFFF)
+        embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         blue_picks = None
         while not blue_picks:
@@ -315,8 +334,8 @@ class SixMans(commands.Cog):
         last_player = next(iter(self.game.players))
         self.game.add_to_orange(last_player)
         oradded = ("{} added to 🔶 ORANGE 🔶 team.".format(last_player.display_name))
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=oradded, color=0x00FFFF)
-        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        embed = discord.Embed(description=oradded, color=0x00FFFF)
+        embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         await self.display_teams(ctx)
 
@@ -327,20 +346,20 @@ class SixMans(commands.Cog):
                 pick = msg.mentions[0]
                 if pick not in self.game.players:
                     notav = ("{} not available to pick.".format(pick.display_name))
-                    embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notav, color=0x00FFFF)
-                    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+                    embed = discord.Embed(description=notav, color=0x00FFFF)
+                    embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                     await ctx.send(embed=embed)
                     return None
                 orpick = ("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.display_name))
-                embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=orpick, color=0x00FFFF)
-                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+                embed = discord.Embed(description=orpick, color=0x00FFFF)
+                embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                 await ctx.send(embed=embed)
                 return pick
         except:
             pick = random.choice(tuple(self.game.players))
             timedout = ("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.display_name))
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=timedout, color=0x00FFFF)
-            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+            embed = discord.Embed(description=timedout, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
             return pick
 
@@ -376,12 +395,14 @@ class SixMans(commands.Cog):
         """Command to start a game by randomly assigning teams"""
         if not await self.queue_full(ctx):
             notfull = ("Queue is not full.")
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notfull, color=0x00FFFF)
+            embed = discord.Embed(description=notfull, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
             return
         if self.busy:
             busy = ("Bot is busy. Please wait until picking is done.")
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=busy, color=0x00FFFF)
+            embed = discord.Embed(description=busy, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
             return
         self.busy = True
@@ -454,7 +475,8 @@ class SixMans(commands.Cog):
                     await self.config.user(user).wins.set(new_win)
                     await self.config.user(user).winloss.set(winloss)
                     report = ("**{}** now has **{wins} win/s**. **{losses} loss/es** and a win/loss of **{winloss}%**".format(user.mention, wins=new_win, losses=losses, winloss=winloss))
-                    embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=report, color=0x00FFFF)
+                    embed = discord.Embed(description=report, color=0x00FFFF)
+                    embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                     await ctx.send(embed=embed)
                     await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
                 else:
@@ -464,7 +486,8 @@ class SixMans(commands.Cog):
                     await self.config.user(user).losses.set(new_loss)
                     await self.config.user(user).winloss.set(winloss)
                     report = ("**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
-                    embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=report, color=0x00FFFF)
+                    embed = discord.Embed(description=report, color=0x00FFFF)
+                    embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                     await ctx.send(embed=embed)
                     await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
         for users in blue:
@@ -482,7 +505,8 @@ class SixMans(commands.Cog):
                     await self.config.user(user).wins.set(new_win)
                     await self.config.user(user).winloss.set(winloss)
                     report = ("**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(user.mention, wins=new_win, losses=losses, winloss=winloss))
-                    embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=report, color=0x00FFFF)
+                    embed = discord.Embed(description=report, color=0x00FFFF)
+                    embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                     await ctx.send(embed=embed)
                     await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
                 else:
@@ -492,7 +516,8 @@ class SixMans(commands.Cog):
                     await self.config.user(user).losses.set(new_loss)
                     await self.config.user(user).winloss.set(winloss)
                     report = ("**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(user.mention, wins=wins, losses=new_loss, winloss=winloss))
-                    embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=report, color=0x00FFFF)
+                    embed = discord.Embed(description=report, color=0x00FFFF)
+                    embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                     await ctx.send(embed=embed)
                     await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
         if ctx.author.id not in orange:
