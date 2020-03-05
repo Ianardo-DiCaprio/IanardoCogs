@@ -158,11 +158,12 @@ class SixMans(commands.Cog):
         timeout = 90
         end_time = time.time() + timeout
         while len(votes) < team_size and time.time() < end_time:
-            msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_vote_command)
-            if not msg:
-                continue
-            if msg.author not in self.game.players:
-                return
+            try:
+                msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_vote_command)
+                if not msg:
+                    continue
+                if msg.author not in self.game.players:
+                    return
 
             vote = msg.mentions[0]
             if vote == msg.author:
@@ -243,13 +244,22 @@ class SixMans(commands.Cog):
         """Command to start a game by randomly chosen captains"""
         team_size = await self.config.guild(ctx.guild).team_size()
         if team_size != 6:
-            await ctx.send("Captains can only be chosen for 6 players.")
+            sixplayers = ("Captains can only be chosen for 6 players.")
+            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=sixplayers, color=0x00FFFF)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+            await ctx.send(embed=embed)
             return
         if not self.queue_full(ctx):
-            await ctx.send("Queue is not full.")
+            notfull = ("Queue is not full.")
+            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notfull, color=0x00FFFF)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+            await ctx.send(embed=embed)
             return
         if self.busy:
-            await ctx.send("Bot is busy. Please wait until picking is done.")
+            botbusy = ("Bot is busy. Please wait until picking is done.")
+            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=botbusy, color=0x00FFFF)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+            await ctx.send(embed=embed)
             return
         self.busy = True
         await self.create_game(ctx)
@@ -260,25 +270,40 @@ class SixMans(commands.Cog):
 
     async def do_picks(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
-        await ctx.send("Captains: {} and {}".format(*[captain.display_name for captain in self.game.captains]))
+        captainchose = ("Captains: {} and {}".format(*[captain.display_name for captain in self.game.captains]))
+        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=captainchose, color=0x00FFFF)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        await ctx.send(embed=embed)
         orange_captain = self.game.captains[0]
         self.game.add_to_orange(orange_captain)
         blue_captain = self.game.captains[1]
         self.game.add_to_blue(blue_captain)
 
         # Orange Pick
-        await ctx.send(
+        first = (
             "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.display_name))
-        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=first, color=0x00FFFF)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        await ctx.send(embed=embed)
+        available = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=available, color=0x00FFFF)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        await ctx.send(embed=embed)
         orange_pick = None
         while not orange_pick:
             orange_pick = await self.pick_orange(ctx, orange_captain)
         self.game.add_to_orange(orange_pick)
 
         # Blue Picks
-        await ctx.send(
+        secpick = (
             "{mention} Use [pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.display_name))
-        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=secpick, color=0x00FFFF)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        await ctx.send(embed=embed)
+        availabletwo = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=availabletwo, color=0x00FFFF)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        await ctx.send(embed=embed)
         blue_picks = None
         while not blue_picks:
             blue_picks = await self.pick_blue(ctx, blue_captain)
@@ -288,40 +313,61 @@ class SixMans(commands.Cog):
         # Orange Player
         last_player = next(iter(self.game.players))
         self.game.add_to_orange(last_player)
-        await ctx.send("{} added to 🔶 ORANGE 🔶 team.".format(last_player.display_name))
+        oradded = ("{} added to 🔶 ORANGE 🔶 team.".format(last_player.display_name))
+        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=oradded, color=0x00FFFF)
+        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        await ctx.send(embed=embed)
         await self.display_teams(ctx)
 
     async def pick_orange(self, ctx, captain):
         try:
-            msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_orange_first_pick_command)
+            msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_orange_first_pick_command)
             if msg:
                 pick = msg.mentions[0]
                 if pick not in self.game.players:
-                    await ctx.send("{} not available to pick.".format(pick.display_name))
+                    notav = ("{} not available to pick.".format(pick.display_name))
+                    embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notav, color=0x00FFFF)
+                    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+                    await ctx.send(embed=embed)
                     return None
-                await ctx.send("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.display_name))
+                orpick = ("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.display_name))
+                embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=orpick, color=0x00FFFF)
+                embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+                await ctx.send(embed=embed)
                 return pick
         except:
             pick = random.choice(tuple(self.game.players))
-            await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.display_name))
+            timedout = ("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.display_name))
+            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=timedout, color=0x00FFFF)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+            await ctx.send(embed=embed)
             return pick
 
 
     async def pick_blue(self, ctx, captain):
         try:
-            msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_blue_picks_command)
+            msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_blue_picks_command)
             if msg:
                 picks = msg.mentions
                 for pick in picks:
                     if pick not in self.game.players:
-                        await self.bot.say("{} not available to pick.".format(pick.display_name))
+                        notav = ("{} not available to pick.".format(pick.display_name))
+                        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=notav, color=0x00FFFF)
+                        embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+                        await ctx.send(embed=embed)
                         return None
-                    await ctx.send("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
+                    twopick = ("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
+                    embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=twopick, color=0x00FFFF)
+                    embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+                    await ctx.send(embed=embed)
                     return picks
         except:
             picks = random.sample(self.game.players, 2)
-            await ctx.send(
+            timed = (
                 "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
+            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=timed, color=0x00FFFF)
+            embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+            await ctx.send(embed=embed)
             return picks
 
     @commands.command(aliases=["r"])
