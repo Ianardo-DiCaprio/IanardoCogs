@@ -277,7 +277,7 @@ class SixMans(commands.Cog):
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         blue_picks = None
         while not blue_picks:
-            blue_picks = await self.pick_blue(blue_captain)
+            blue_picks = await self.pick_blue(ctx, blue_captain)
         for blue_pick in blue_picks:
             self.game.add_to_blue(blue_pick)
 
@@ -288,8 +288,16 @@ class SixMans(commands.Cog):
         await self.display_teams()
 
     async def pick_orange(self, ctx, orange_captain):
-        pick = random.choice(tuple(self.game.players))
-        await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+        msg = await ctx.bot.wait_for("message", timeout=60, author=orange_captain, check=self.check_orange_first_pick_command)
+        if msg:
+            pick = msg.mentions[0]
+            if pick not in self.game.players:
+                await ctx.send("{} not available to pick.".format(pick.display_name))
+                return None
+            await ctx.send("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+        else:
+            pick = random.choice(tuple(self.game.players))
+            await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
         return pick
 
     async def pick_blue(self, ctx, blue_captain):
