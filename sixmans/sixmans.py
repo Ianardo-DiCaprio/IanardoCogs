@@ -288,7 +288,7 @@ class SixMans(commands.Cog):
         # Orange Player
         last_player = next(iter(self.game.players))
         self.game.add_to_orange(last_player)
-        await ctx.say("{} added to 🔶 ORANGE 🔶 team.".format(last_player.display_name))
+        await ctx.send("{} added to 🔶 ORANGE 🔶 team.".format(last_player.display_name))
         await self.display_teams(ctx)
 
     async def pick_orange(self, ctx, captain):
