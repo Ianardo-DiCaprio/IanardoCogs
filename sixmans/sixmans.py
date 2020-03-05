@@ -169,7 +169,7 @@ class SixMans(commands.Cog):
                 if vote == msg.author:
                     selfvote = ("Cannot vote for yourself.")
                     embed = discord.Embed(title="6Mans", description=selfvote, color=0x00FFFF)
-                   await ctx.send(embed=embed)
+                    await ctx.send(embed=embed)
                 elif vote in self.game.players:
                     votes[msg.author] = msg.mentions[0]
                     voted = ("Vote added for **{}.**".format(vote.display_name))
