@@ -194,7 +194,7 @@ class SixMans(commands.Cog):
                 embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=msg, color=0x00FFFF)
                 await ctx.send(embed=embed)
         except:
-            await ctx.send("Something went wrong FUUUUCCKKKK")
+            continue
 
         vote_nums = {}
         for vote in votes.values():
