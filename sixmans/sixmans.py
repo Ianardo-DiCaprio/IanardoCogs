@@ -128,8 +128,7 @@ class SixMans(commands.Cog):
     @commands.command()
     async def smclear(self, ctx):
         """Command to clear the queue"""
-        q = self.queue()
-        q.queue.clear()
+        self.queue.clear()
         cleared = (
             "**{}** cleared the queue.".format(ctx.author.display_name))
         embed = discord.Embed(description=cleared, color=0x00FFFF)
