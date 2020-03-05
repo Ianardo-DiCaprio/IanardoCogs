@@ -306,7 +306,7 @@ class SixMans(commands.Cog):
             self.game.add_to_blue(blue_picks)
 
         # Orange Player
-        await self.display_teams()
+        await self.display_teams(ctx)
 
     async def pick_orange(self, ctx, orange_captain):
         team_size = await self.config.guild(ctx.guild).team_size()
