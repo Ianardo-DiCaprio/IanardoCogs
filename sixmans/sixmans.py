@@ -306,7 +306,7 @@ class SixMans(commands.Cog):
         await ctx.send(embed=embed)
         available = ("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         embed = discord.Embed(description=available, color=0x00FFFF)
-            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+        embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         orange_pick = None
         while not orange_pick:
