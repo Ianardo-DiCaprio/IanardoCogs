@@ -228,7 +228,9 @@ class SixMans(commands.Cog):
             return False
         return True
 
-    def check_blue_picks_command(self, message):
+    def check_blue_picks_command(self, message, blue__captain):
+        if message.author != blue_captain:
+            return False
         if not message.content.startswith("[pick"):
             return False
         if not len(message.mentions) == 2:
@@ -288,7 +290,7 @@ class SixMans(commands.Cog):
         await self.display_teams()
 
     async def pick_orange(self, ctx, orange_captain):
-        msg = await ctx.bot.wait_for("message", timeout=60, author=orange_captain, check=self.check_orange_first_pick_command)
+        msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_orange_first_pick_command)
         if msg:
             pick = msg.mentions[0]
             if pick not in self.game.players:
@@ -301,7 +303,7 @@ class SixMans(commands.Cog):
         return pick
 
     async def pick_blue(self, ctx, blue_captain):
-        msg = await ctx.bot.wait_for("message", timeout=60, author=blue_captain, check=self.check_blue_picks_command)
+        msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_blue_picks_command)
         if msg:
             picks = msg.mentions
             for pick in picks:
