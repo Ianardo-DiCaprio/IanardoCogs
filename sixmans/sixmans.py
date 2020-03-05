@@ -161,7 +161,7 @@ class SixMans(commands.Cog):
             while len(votes) < team_size and time.time() < end_time:
                 msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_vote_command)
                 if not msg:
-                continue
+                    continue
                 if msg.author not in self.game.players:
                     return
 
