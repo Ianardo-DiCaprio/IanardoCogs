@@ -288,7 +288,7 @@ class SixMans(commands.Cog):
         # Orange Player
         last_player = next(iter(self.game.players))
         self.game.add_to_orange(last_player)
-        await ctx.say("{} added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
+        await ctx.say("{} added to 🔶 ORANGE 🔶 team.".format(last_player.display_name))
         await self.display_teams(ctx)
 
     async def pick_orange(self, ctx, captain):
@@ -299,11 +299,11 @@ class SixMans(commands.Cog):
                 if pick not in self.game.players:
                     await ctx.send("{} not available to pick.".format(pick.display_name))
                     return None
-                await ctx.send("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+                await ctx.send("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.display_name))
                 return pick
         except:
             pick = random.choice(tuple(self.game.players))
-            await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+            await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.display_name))
             return pick
 
 
@@ -316,12 +316,12 @@ class SixMans(commands.Cog):
                     if pick not in self.game.players:
                         await self.bot.say("{} not available to pick.".format(pick.display_name))
                         return None
-                    await ctx.send("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+                    await ctx.send("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
                     return picks
         except:
             picks = random.sample(self.game.players, 2)
             await ctx.send(
-                "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+                "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
             return picks
 
     @commands.command(aliases=["r"])
