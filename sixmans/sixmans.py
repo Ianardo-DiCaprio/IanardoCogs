@@ -276,6 +276,7 @@ class SixMans(commands.Cog):
         self.busy = False
 
     async def do_picks(self, ctx):
+        team_size = await self.config.guild(ctx.guild).team_size()
         await ctx.send("Captains: {} and {}".format(*[captain.mention for captain in self.game.captains]))
         orange_captain = self.game.captains[0]
         self.game.add_to_orange(orange_captain)
