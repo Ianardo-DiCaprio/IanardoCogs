@@ -315,7 +315,7 @@ class SixMans(commands.Cog):
             msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_orange_picks_command)
         if msg:
             if team_size == 4:
-                picks = msg.mentions[1]
+                picks = msg.mentions[0]
                 if pick not in self.game.players:
                     await ctx.send("{} not available to pick.".format(pick.display_name))
                     return None
@@ -349,7 +349,7 @@ class SixMans(commands.Cog):
             msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_blue_picks_command)
         if msg:
             if team_size == 4:
-                picks = msg.mentions[1]
+                picks = msg.mentions[0]
                 if pick not in self.game.players:
                     await ctx.send("{} not available to pick.".format(pick.display_name))
                     return None
