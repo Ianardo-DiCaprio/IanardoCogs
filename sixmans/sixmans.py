@@ -255,12 +255,12 @@ class SixMans(commands.Cog):
             return False
         return True
 
-    @commands.command(aliases=["cap"])
+    @commands.command(aliases=["c"])
     async def captains(self, ctx):
         """Command to start a game by randomly chosen captains"""
         team_size = await self.config.guild(ctx.guild).team_size()
-        if team_size == 2:
-            await ctx.send("There is only 2 players, you can't vote for captains")
+        if team_size != 6:
+            await ctx.send("Captains can only be chosen for 6 players.")
             return
         if not self.queue_full(ctx):
             await ctx.send("Queue is not full.")
@@ -284,12 +284,8 @@ class SixMans(commands.Cog):
         self.game.add_to_blue(blue_captain)
 
         # Orange Pick
-        if team_size == 4:
-            await ctx.send(
-                "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.display_name))
-        if team_size == 6:
-            await ctx.send(
-                "{mention} Use [pick [user] [user] to pick 2 players.".format(mention=orange_captain.display_name))
+        await ctx.send(
+            "{mention} Use [pick [user] to pick 1 player.".format(mention=orange_captain.display_name))
         await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         orange_pick = None
         while not orange_pick:
@@ -297,90 +293,52 @@ class SixMans(commands.Cog):
         self.game.add_to_orange(orange_pick)
 
         # Blue Picks
-        if team_size == 4:
-            await ctx.send(
-                "{mention} Use [pick [user1] to pick 1 player.".format(mention=blue_captain.display_name))
-        if team_size == 6:
-            await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
+        await ctx.send(
+            "{mention} Use [pick [user1] [user2] to pick 2 players.".format(mention=blue_captain.display_name))
+        await ctx.send("Available: {}".format(", ".join([player.display_name for player in self.game.players])))
         blue_picks = None
         while not blue_picks:
             blue_picks = await self.pick_blue(ctx, blue_captain)
-        if team_size == 6:
-            for blue_pick in blue_picks:
-                self.game.add_to_blue(blue_pick)
-        else:
-            self.game.add_to_blue(blue_picks)
+        for blue_pick in blue_picks:
+            self.game.add_to_blue(blue_pick)
 
         # Orange Player
+        last_player = next(iter(self.game.players))
+        self.game.add_to_orange(last_player)
+        await ctx.say("{} added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
         await self.display_teams(ctx)
 
     async def pick_orange(self, ctx, orange_captain):
-        team_size = await self.config.guild(ctx.guild).team_size()
         try:
-            if team_size == 4:
-                msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_orange_picksa_command)
-            else:
-                msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_orange_picks_command)
-            if team_size == 4:
-                pick = msg.mentions[0]
+            msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_orange_picks_command)
+            picks = msg.mentions
+            for pick in picks:
                 if pick not in self.game.players:
                     await ctx.send("{} not available to pick.".format(pick.display_name))
                     return None
-                await ctx.send("Picked {}  for 🔶 ORANGE 🔶 team.".format(*[pick.display_name]))
+                await ctx.send("Picked {} and {}  for 🔶 ORANGE 🔶 team.".format(*[pick.display_name for pick in picks]))
                 return pick
-            if team_size == 6:
-                picks = msg.mentions
-                for pick in picks:
-                    if pick not in self.game.players:
-                        await ctx.send("{} not available to pick.".format(pick.display_name))
-                        return None
-                await ctx.send("Picked {} and {} for 🔶 ORANGE 🔶 team.".format(*[pick.display_name for pick in picks]))
-                return picks
         except:
-            if team_size == 6:
-                picks = random.sample(self.game.players, 2)
-                await ctx.send(
-                    "Timed out. Randomly picked {} and {} for 🔶 ORANGE 🔶 team.".format(*[pick.display_name for pick in picks]))
-                return picks
-            if team_size == 4:
-                pick = random.choices(self.game.players, k=1)
-                await ctx.send(
-                    "Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(*[pick.display_name]))
-                return pick
+            picks = random.sample(self.game.players, 2)
+            await ctx.send(
+                "Timed out. Randomly picked {} and {} for 🔶 ORANGE 🔶 team.".format(*[pick.display_name for pick in picks]))
+            return picks
 
     async def pick_blue(self, ctx, blue_captain):
-        team_size = await self.config.guild(ctx.guild).team_size()
         try:
-            if team_size == 4:
-                msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_blue_picksa_command)
-            else:
-                msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_blue_picks_command)
-            if team_size == 4:
-                pick = msg.mentions[0]
+            msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_blue_picks_command)
+            picks = msg.mentions
+            for pick in picks:
                 if pick not in self.game.players:
                     await ctx.send("{} not available to pick.".format(pick.display_name))
                     return None
-                await ctx.send("Picked {}  for 🔷 BLUE 🔷 team.".format(*[pick.display_name]))
+                await ctx.send("Picked {} and {}  for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
                 return pick
-            if team_size == 6:
-                picks = msg.mentions
-                for pick in picks:
-                    if pick not in self.game.players:
-                        await ctx.send("{} not available to pick.".format(pick.display_name))
-                        return None
-                await ctx.send("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
-                return picks
         except:
-            if team_size == 6:
-                picks = random.sample(self.game.players, 2)
-                await ctx.send(
-                    "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
-                return picks
-            if team_size == 4:
-                pick = random.choices(self.game.players, k=1)
-                await ctx.send(
-                    "Timed out. Randomly picked {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name]))
-                return pick
+            picks = random.sample(self.game.players, 2)
+            await ctx.send(
+                "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
+            return picks
 
     @commands.command(aliases=["r"])
     async def random(self, ctx):
