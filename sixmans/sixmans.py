@@ -179,20 +179,20 @@ class SixMans(commands.Cog):
                     notavailable = ("**{}** not available to pick.".format(vote.display_name))
                     embed = discord.Embed(title="6Mans", description=notavailable, color=0x00FFFF)
                     await ctx.send(embed=embed)
-        if len(votes) < team_size:
-            timed = ("Timed out.")
-            embed = discord.Embed(title="6Mans", description=timed, color=0x00FFFF)
-            await ctx.send(embed=embed)
-            msg = ""
-            for player in self.game.players:
-                if player not in votes:
-                    vote = player
-                    while vote == player:
-                        vote = random.choice(tuple(self.game.players))
-                    votes[player] = vote
-                    msg += "Random vote added for **{}** from **{}**.\n".format(vote.display_name, player.display_name)
-            embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=msg, color=0x00FFFF)
-            await ctx.send(embed=embed)
+            if len(votes) < team_size:
+                timed = ("Timed out.")
+                embed = discord.Embed(title="6Mans", description=timed, color=0x00FFFF)
+                await ctx.send(embed=embed)
+                msg = ""
+                for player in self.game.players:
+                    if player not in votes:
+                        vote = player
+                        while vote == player:
+                            vote = random.choice(tuple(self.game.players))
+                        votes[player] = vote
+                        msg += "Random vote added for **{}** from **{}**.\n".format(vote.display_name, player.display_name)
+                embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=msg, color=0x00FFFF)
+                await ctx.send(embed=embed)
 
         vote_nums = {}
         for vote in votes.values():
