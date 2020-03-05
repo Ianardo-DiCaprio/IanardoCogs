@@ -194,31 +194,31 @@ class SixMans(commands.Cog):
                     embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=msg, color=0x00FFFF)
                     await ctx.send(embed=embed)
 
-            vote_nums = {}
-            for vote in votes.values():
-                vote_nums[vote] = vote_nums.get(vote, 0) + 1
-            sorted_vote_nums = sorted(vote_nums.items(), key=operator.itemgetter(1), reverse=True)
-            top_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[0][1]]
-            if len(top_votes) < 2:
-                self.game.captains = top_votes
-                secondary_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[1][1]]
-                if len(secondary_votes) > 1:
-                    tied = ("{}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
-                    embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tied, color=0x00FFFF)
-                    await ctx.send(embed=embed)
-                    random.shuffle(secondary_votes)
-                self.game.captains.append(secondary_votes[0])
-            else:
-                if len(top_votes) > 2:
-                    tieda = ("{}-way tie for captains. Shuffling picks...".format(len(top_votes)))
-                    embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tieda, color=0x00FFFF)
-                    await ctx.send(embed=embed)
-                random.shuffle(top_votes)
-                self.game.captains = top_votes[:2]
+                vote_nums = {}
+                for vote in votes.values():
+                    vote_nums[vote] = vote_nums.get(vote, 0) + 1
+                sorted_vote_nums = sorted(vote_nums.items(), key=operator.itemgetter(1), reverse=True)
+                top_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[0][1]]
+                if len(top_votes) < 2:
+                    self.game.captains = top_votes
+                    secondary_votes = [key for key, value in sorted_vote_nums if value == sorted_vote_nums[1][1]]
+                   if len(secondary_votes) > 1:
+                        tied = ("{}-way tie for 2nd captain. Shuffling picks...".format(len(secondary_votes)))
+                        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tied, color=0x00FFFF)
+                        await ctx.send(embed=embed)
+                       random.shuffle(secondary_votes)
+                    self.game.captains.append(secondary_votes[0])
+                else:
+                    if len(top_votes) > 2:
+                        tieda = ("{}-way tie for captains. Shuffling picks...".format(len(top_votes)))
+                        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=tieda, color=0x00FFFF)
+                        await ctx.send(embed=embed)
+                    random.shuffle(top_votes)
+                    self.game.captains = top_votes[:2]
 
-            await self.do_picks()
+                await self.do_picks()
 
-            self.busy = False
+                self.busy = False
 
     def check_orange_first_pick_command(self, message):
         if message.author != self.game.captains[0]:
