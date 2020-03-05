@@ -219,16 +219,7 @@ class SixMans(commands.Cog):
 
         self.busy = False
 
-    def check_orange_picks_command(self, message):
-        if message.author != self.game.captains[0]:
-            return False
-        if not message.content.startswith("[pick"):
-            return False
-        if not len(message.mentions) == 2:
-            return False
-        return True
-        
-    def check_orange_picksa_command(self, message):
+    def check_orange_first_pick_command(self, message):
         if message.author != self.game.captains[0]:
             return False
         if not message.content.startswith("[pick"):
@@ -246,14 +237,6 @@ class SixMans(commands.Cog):
             return False
         return True
 
-    def check_blue_picksa_command(self, message):
-        if message.author != self.game.captains[1]:
-            return False
-        if not message.content.startswith("[pick"):
-            return False
-        if not len(message.mentions) == 1:
-            return False
-        return True
 
     @commands.command(aliases=["c"])
     async def captains(self, ctx):
@@ -308,36 +291,37 @@ class SixMans(commands.Cog):
         await ctx.say("{} added to 🔶 ORANGE 🔶 team.".format(last_player.mention))
         await self.display_teams(ctx)
 
-    async def pick_orange(self, ctx, orange_captain):
-        try:
-            msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_orange_picks_command)
-            picks = msg.mentions
-            for pick in picks:
-                if pick not in self.game.players:
-                    await ctx.send("{} not available to pick.".format(pick.display_name))
-                    return None
-                await ctx.send("Picked {} and {}  for 🔶 ORANGE 🔶 team.".format(*[pick.display_name for pick in picks]))
-                return pick
-        except:
-            picks = random.sample(self.game.players, 2)
-            await ctx.send(
-                "Timed out. Randomly picked {} and {} for 🔶 ORANGE 🔶 team.".format(*[pick.display_name for pick in picks]))
-            return picks
+    async def pick_orange(self, ctx, captain):
+    try:
+        msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_orange_first_pick_command)
+        if msg:
+            pick = msg.mentions[0]
+            if pick not in self.game.players:
+                await ctx.send("{} not available to pick.".format(pick.display_name))
+                return None
+            await ctx.send("Picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+            return pick
+    except:
+        pick = random.choice(tuple(self.game.players))
+        await ctx.send("Timed out. Randomly picked {} for 🔶 ORANGE 🔶 team.".format(pick.mention))
+        return pick
+
 
     async def pick_blue(self, ctx, blue_captain):
         try:
-            msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_blue_picks_command)
-            picks = msg.mentions
-            for pick in picks:
-                if pick not in self.game.players:
-                    await ctx.send("{} not available to pick.".format(pick.display_name))
-                    return None
-                await ctx.send("Picked {} and {}  for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
-                return pick
-        except:
+            msg = await self.bot.wait_for_message(timeout=90, author=captain, check=self.check_blue_picks_command)
+            if msg:
+                picks = msg.mentions
+                for pick in picks:
+                    if pick not in self.game.players:
+                        await self.bot.say("{} not available to pick.".format(pick.display_name))
+                        return None
+                    await self.bot.say("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+                    return picks
+        else:
             picks = random.sample(self.game.players, 2)
-            await ctx.send(
-                "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.display_name for pick in picks]))
+            await self.bot.say(
+                "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
             return picks
 
     @commands.command(aliases=["r"])
