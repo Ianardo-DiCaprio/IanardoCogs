@@ -140,8 +140,8 @@ class SixMans(commands.Cog):
     async def voting(self, ctx):
         """Command to start a game by voting for captains"""
         team_size = await self.config.guild(ctx.guild).team_size()
-        if team_size == 2:
-            await ctx.send("There is only 2 players, you can't vote for captains")
+        if team_size != 6:
+            await ctx.send("Voting is only allowed for 6 players.")
             return
         if not await self.queue_full(ctx):
             queuefull = ("Queue is not full.")
@@ -457,7 +457,7 @@ class SixMans(commands.Cog):
             return
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
         blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
-        if orange == "Fin":
+        if not orange:
             await ctx.send("This game has already been reported.")
             return
         for users in orange:
@@ -478,7 +478,7 @@ class SixMans(commands.Cog):
                     embed = discord.Embed(description=report, color=0x00FFFF)
                     embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                     await ctx.send(embed=embed)
-                    await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
+                    await self.config.custom("GAMES", ctx.guild.id, code).orange.clear()
                 else:
                     new_loss = losses + 1
                     new = wins + new_loss
@@ -489,7 +489,7 @@ class SixMans(commands.Cog):
                     embed = discord.Embed(description=report, color=0x00FFFF)
                     embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                     await ctx.send(embed=embed)
-                    await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
+                    await self.config.custom("GAMES", ctx.guild.id, code).orange.clear()
         for users in blue:
             user = ctx.guild.get_member(users)
             if ctx.author.id in blue:
@@ -519,7 +519,7 @@ class SixMans(commands.Cog):
                     embed = discord.Embed(description=report, color=0x00FFFF)
                     embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
                     await ctx.send(embed=embed)
-                    await self.config.custom("GAMES", ctx.guild.id, code).orange.set("Fin")
+                    await self.config.custom("GAMES", ctx.guild.id, code).blue.clear()
         if ctx.author.id not in orange:
             if ctx.author.id not in blue:
                 await ctx.send("You can't report this game as you are not in it.")
@@ -536,7 +536,7 @@ class SixMans(commands.Cog):
             losses = users[user]['losses']
             winloss = users[user]['winloss']
             user = ctx.guild.get_member(user)
-            msg += (f"{user.display_name}:".ljust(12, ' ')) + (f" Wins: {wins}".ljust(13, ' ')) + (f"Losses: {losses}".ljust(13, ' ')) + f"Win/Loss: {winloss}%\n"
+            msg += (f"{user.display_name}:".ljust(11, ' ')) + (f" Wins: {wins}".ljust(13, ' ')) + (f"Losses: {losses}".ljust(13, ' ')) + f"Win/Loss: {winloss}%\n"
         for msg in pagify(msg):
             embed = discord.Embed(color=0x00FFFF)
             embed.description = box(msg)
@@ -638,4 +638,3 @@ class PlayerQueue(Queue):
     def __contains__(self, item):
         with self.mutex:
             return item in self.queue
-
