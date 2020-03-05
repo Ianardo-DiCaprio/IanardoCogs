@@ -128,21 +128,7 @@ class SixMans(commands.Cog):
     @commands.command()
     async def smclear(self, ctx):
         """Command to clear the queue"""
-        if self.queue.empty() == False:
-            self.queue.get()
-        if self.queue.empty() == False:
-            self.queue.get()
-        if self.queue.empty() == False:
-            self.queue.get()
-        if self.queue.empty() == False:
-            self.queue.get()
-        if self.queue.empty() == False:
-            self.queue.get()
-        if self.queue.empty() == False:
-            self.queue.get()
-        if self.queue.empty() == False:
-            self.queue.get()
-        if self.queue.empty() == False:
+        while not self.queue.empty():
             self.queue.get()
         cleared = (
             "**{}** cleared the queue.".format(ctx.author.display_name))
