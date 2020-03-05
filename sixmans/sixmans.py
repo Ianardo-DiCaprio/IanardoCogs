@@ -180,7 +180,7 @@ class SixMans(commands.Cog):
                     embed = discord.Embed(title="6Mans", description=notavailable, color=0x00FFFF)
                     await ctx.send(embed=embed)
         except:
-            await ctx.send("FUUUUUCKKKKKK")
+            continue
         if len(votes) < team_size:
             timed = ("Timed out.")
             embed = discord.Embed(title="6Mans", description=timed, color=0x00FFFF)
