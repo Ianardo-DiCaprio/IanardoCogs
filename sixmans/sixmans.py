@@ -195,7 +195,7 @@ class SixMans(commands.Cog):
                 embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=msg, color=0x00FFFF)
                 await ctx.send(embed=embed)
         except:
-            continue
+            pass
         vote_nums = {}
         for vote in votes.values():
             vote_nums[vote] = vote_nums.get(vote, 0) + 1
