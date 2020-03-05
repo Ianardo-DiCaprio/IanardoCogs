@@ -154,10 +154,10 @@ class SixMans(commands.Cog):
         embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=available, color=0x00FFFF)
         await ctx.send(embed=embed)
 
-        votes = {}
-        timeout = 90
-        end_time = time.time() + timeout
         try:
+            votes = {}
+            timeout = 90
+            end_time = time.time() + timeout
             while len(votes) < team_size and time.time() < end_time:
                 msg = await ctx.bot.wait_for("message", timeout=60, check=self.check_vote_command)
                 if not msg:
@@ -169,7 +169,7 @@ class SixMans(commands.Cog):
                 if vote == msg.author:
                     selfvote = ("Cannot vote for yourself.")
                     embed = discord.Embed(title="6Mans", description=selfvote, color=0x00FFFF)
-                    await ctx.send(embed=embed)
+                   await ctx.send(embed=embed)
                 elif vote in self.game.players:
                     votes[msg.author] = msg.mentions[0]
                     voted = ("Vote added for **{}.**".format(vote.display_name))
@@ -194,7 +194,7 @@ class SixMans(commands.Cog):
                 embed = discord.Embed(title="VOID ESPORTS™ 6Mans", description=msg, color=0x00FFFF)
                 await ctx.send(embed=embed)
         except:
-            await ctx.send("Whoops")
+            await ctx.send("Something went wrong FUUUUCCKKKK")
 
         vote_nums = {}
         for vote in votes.values():
