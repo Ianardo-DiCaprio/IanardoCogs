@@ -219,7 +219,9 @@ class SixMans(commands.Cog):
 
         self.busy = False
 
-    def check_orange_first_pick_command(self, message):
+    def check_orange_first_pick_command(self, message, orange_captain):
+        if message.author != orange_captain:
+            return False
         if not message.content.startswith("[pick"):
             return False
         if not len(message.mentions) == 1:
