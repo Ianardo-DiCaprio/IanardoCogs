@@ -318,7 +318,7 @@ class SixMans(commands.Cog):
                         return None
                     await self.bot.say("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
                     return picks
-        else:
+        except:
             picks = random.sample(self.game.players, 2)
             await self.bot.say(
                 "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
