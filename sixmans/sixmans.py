@@ -307,20 +307,20 @@ class SixMans(commands.Cog):
             return pick
 
 
-    async def pick_blue(self, ctx, blue_captain):
+    async def pick_blue(self, ctx, captain):
         try:
-            msg = await self.bot.wait_for_message(timeout=90, author=captain, check=self.check_blue_picks_command)
+            msg = await ctx.bot.wait_for("message", timeout=10, check=self.check_blue_picks_command)
             if msg:
                 picks = msg.mentions
                 for pick in picks:
                     if pick not in self.game.players:
                         await self.bot.say("{} not available to pick.".format(pick.display_name))
                         return None
-                    await self.bot.say("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
+                    await ctx.send("Picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
                     return picks
         except:
             picks = random.sample(self.game.players, 2)
-            await self.bot.say(
+            await ctx.send(
                 "Timed out. Randomly picked {} and {} for 🔷 BLUE 🔷 team.".format(*[pick.mention for pick in picks]))
             return picks
 
