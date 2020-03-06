@@ -445,16 +445,10 @@ class SixMans(commands.Cog):
         createdblue = await ctx.guild.create_voice_channel(channelnameblue)
         channelnameorange = "Orange Team"
         createdorange = await ctx.guild.create_voice_channel(channelnameorange)
-        blueteam = player for player in self.game.blue
-        for member in blueteam:
-            current_voice = member.voice.channel if member.voice else None
-            if current_voice and ctx.guild.me.guild_permissions.move_members:
-                await member.move_to(createdblue)
-        orangeteam = player for player in self.game.orange
-        for member in orangeteam:
-            current_voice = member.voice.channel if member.voice else None
-            if current_voice and ctx.guild.me.guild_permissions.move_members:
-                await member.move_to(createdorange)
+        for member in self.game.blue():
+            await member.move_to(createdblue)
+        for member in self.game.orange():
+            await member.move_to(createdorange)
         self.game = Game(players)
 
     @commands.command(aliases=["smr"])
