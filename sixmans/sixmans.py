@@ -446,8 +446,16 @@ class SixMans(commands.Cog):
         self.game = Game(players)
 
     async def make_channel(self, ctx):
-        await ctx.send("{}test".format(", ".join([player.display_name for player in self.game.orange])))
-        await ctx.send("{}test".format(", ".join([player.display_name for player in self.game.blue])))
+        orangeteam = (player.id for player in self.game.orange)
+        blueteam = (player.id for player in self.game.blue)
+        channelnameblue = "Blue Team"
+        createdblue = await ctx.guild.create_voice_channel(channelnameblue)
+        channelnameorange = "Orange Team"
+        createdorange = await ctx.guild.create_voice_channel(channelnameorange)
+        for member in blueteam:
+            await member.move_to(createdblue)
+        for member in orangeteam:
+            await member.move_to(createdorange)
 
     @commands.command(aliases=["smr"])
     async def smreport(self, ctx, code: int, winorloss):
