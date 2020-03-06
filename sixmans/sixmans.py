@@ -76,7 +76,7 @@ class SixMans(commands.Cog):
         embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         if await self.queue_full(ctx):
-            for player in self.queue:
+            for player in self.queue.players:
                 if player.voice is None:
                     await ctx.send("The queue is full but not all players are in a VC. Please join a VC to start the game.")
                 else:
