@@ -77,7 +77,7 @@ class SixMans(commands.Cog):
         await ctx.send(embed=embed)
         if await self.queue_full(ctx):
             for player in self.queue:
-                if player.voice is None
+                if player.voice is None:
                     await ctx.send("The queue is full but not all players are in a VC. Please join a VC to start the game.")
                 else:
                     queuefull = ("Queue is now full! Type `[v` for voting, `[c` for random captains or `[r` for random teams.")
