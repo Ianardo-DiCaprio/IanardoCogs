@@ -76,10 +76,14 @@ class SixMans(commands.Cog):
         embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         if await self.queue_full(ctx):
-            queuefull = ("Queue is now full! Type `[v`,  `[c` or `[r` to create a game.")
-            embed = discord.Embed(description=queuefull, color=0x00FFFF)
-            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
-            await ctx.send(embed=embed)
+            for player in self.queue:
+                if player.voice is None
+                    await ctx.send("The queue is full but not all players are in a VC. Please join a VC to start the game.")
+                else:
+                    queuefull = ("Queue is now full! Type `[v` for voting, `[c` for random captains or `[r` for random teams.")
+                    embed = discord.Embed(description=queuefull, color=0x00FFFF)
+                    embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+                    await ctx.send(embed=embed)
 
     @commands.command(pass_context=True, aliases=["dq"])
     async def dequeue(self, ctx):
