@@ -448,8 +448,8 @@ class SixMans(commands.Cog):
         createdorange = await ctx.guild.create_voice_channel(channelnameorange)
         self.game = Game(players)
         await asyncio.sleep(2)
-        await ctx.send("🔷 BLUE 🔷: **{}**".format(player.id for player in self.game.blue]))
-        await ctx.send("🔶 ORANGE 🔶: **{}**".format(player.id for player in self.game.orange]))
+        await ctx.send("🔷 BLUE 🔷: **{}**".format(player.id for player in self.game.blue))
+        await ctx.send("🔶 ORANGE 🔶: **{}**".format(player.id for player in self.game.orange))
 
     @commands.command(aliases=["smr"])
     async def smreport(self, ctx, code: int, winorloss):
