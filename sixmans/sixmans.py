@@ -419,6 +419,7 @@ class SixMans(commands.Cog):
             self.game.add_to_blue(player)
 
         await self.display_teams(ctx)
+        await self.make_channel(ctx)
 
         self.busy = False
 
@@ -442,12 +443,9 @@ class SixMans(commands.Cog):
     async def create_game(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
         players = [self.queue.get() for _ in range(team_size)]
-        channelnameblue = "Blue Team"
-        createdblue = await ctx.guild.create_voice_channel(channelnameblue)
-        channelnameorange = "Orange Team"
-        createdorange = await ctx.guild.create_voice_channel(channelnameorange)
         self.game = Game(players)
-        await asyncio.sleep(2)
+
+    async def make_channel(self, ctx):
         await ctx.send("{}test".format(", ".join([player.display_name for player in self.game.orange])))
         await ctx.send("{}test".format(", ".join([player.display_name for player in self.game.blue])))
 
