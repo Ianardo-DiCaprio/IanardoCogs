@@ -453,7 +453,7 @@ class SixMans(commands.Cog):
         for player in self.game.orange:
             orangemember = ctx.guild.get_member(player.id for player in self.game.orange)
             for member in orangemember:
-                await orangemember.move_to(createdorange)
+                await member.move_to(createdorange)
 
     @commands.command(aliases=["smr"])
     async def smreport(self, ctx, code: int, winorloss):
