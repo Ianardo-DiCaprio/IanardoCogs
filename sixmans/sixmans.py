@@ -69,7 +69,6 @@ class SixMans(commands.Cog):
             await ctx.send(embed=embed)
             return
 
-        self.queue.put(player)
         if ctx.author.voice is None:
             novc = ("{}: Please join a VC to join the queue.".format(ctx.author.mention))
             embed = discord.Embed(description=novc, color=0x00FFFF)
@@ -77,6 +76,7 @@ class SixMans(commands.Cog):
             await ctx.send(embed=embed)
             return
         else:
+            self.queue.put(player)
             added = ("**{}** added to queue. **({}/{})**".format(player.display_name, self.queue.qsize(), team_size))
             embed = discord.Embed(description=added, color=0x00FFFF)
             embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
