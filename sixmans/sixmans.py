@@ -22,6 +22,8 @@ class SixMans(commands.Cog):
         default_guild = {
             "team_size": 6,
             "latest_game_number": 0,
+            "orange_team_channel": 685298673135124519,
+            "blue_team_channel": 685298672333881372,
         }
 
         default_user = {
@@ -448,10 +450,10 @@ class SixMans(commands.Cog):
     async def make_channel(self, ctx):
         orangeteam = (player.id for player in self.game.orange)
         blueteam = (player.id for player in self.game.blue)
-        channelnameblue = "Blue Team"
-        createdblue = await ctx.guild.create_voice_channel(channelnameblue)
-        channelnameorange = "Orange Team"
-        createdorange = await ctx.guild.create_voice_channel(channelnameorange)
+        orangechannel = await self.config.guild(ctx.guild).orange_team_channel()
+        bluechannel = await self.config.guild(ctx.guild).blue_team_channel()
+        createdblue = ctx.bot.get_channel(bluechannel)
+        createdorange = ctx.bot.get_channel(orangechannel)
         for player in blueteam:
             member = ctx.guild.get_member(player)
             await member.move_to(createdblue)
