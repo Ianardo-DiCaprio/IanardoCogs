@@ -446,10 +446,14 @@ class SixMans(commands.Cog):
         channelnameorange = "Orange Team"
         createdorange = await ctx.guild.create_voice_channel(channelnameorange)
         self.game = Game(players)
-        bluemember = ctx.guild.get_member(player.id for player in self.game.blue)
-        await bluemember.move_to(createdblue)
-        orangemember = ctx.guild.get_member(player.id for player in self.game.orange)
-        await orangemember.move_to(createdorange)
+        for player in self.game.blue:
+            bluemember = ctx.guild.get_member(player.id for player in self.game.blue)
+        for player in self.game.orange:
+            orangemember = ctx.guild.get_member(player.id for player in self.game.orange)
+        for member in bluemember:
+            await member.move_to(createdblue)
+        for member in orangemember:
+            await orangemember.move_to(createdorange)
         
         
         member = guild.get_member
