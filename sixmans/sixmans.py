@@ -441,6 +441,10 @@ class SixMans(commands.Cog):
     async def create_game(self, ctx):
         team_size = await self.config.guild(ctx.guild).team_size()
         players = [self.queue.get() for _ in range(team_size)]
+        channelnameblue = "Blue Team"
+        createdblue = await ctx.guild.create_voice_channel(channelnameblue)
+        channelnameorange = "Orange Team"
+        createdorange = await ctx.guild.create_voice_channel(channelnameorange)
         self.game = Game(players)
 
     @commands.command(aliases=["smr"])
