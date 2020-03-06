@@ -101,6 +101,7 @@ class SixMans(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
+    @commands.has_permissions(manage_guild=True)
     async def smkick(self, ctx,  player: discord.Member):
         """Command to kick someone from the queue"""
         team_size = await self.config.guild(ctx.guild).team_size()
@@ -129,6 +130,7 @@ class SixMans(commands.Cog):
         return True
 
     @commands.command()
+    @commands.has_permissions(manage_guild=True)
     async def smclear(self, ctx):
         """Command to clear the queue"""
         while not self.queue.empty():
@@ -240,6 +242,7 @@ class SixMans(commands.Cog):
             self.game.captains = top_votes[:2]
 
         await self.do_picks(ctx)
+        await self.make_channel(ctx)
 
         self.busy = False
 
@@ -341,6 +344,7 @@ class SixMans(commands.Cog):
         embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
         await self.display_teams(ctx)
+        await self.make_channel(ctx)
 
     async def pick_orange(self, ctx, captain):
         try:
@@ -456,10 +460,14 @@ class SixMans(commands.Cog):
         createdorange = ctx.bot.get_channel(orangechannel)
         for player in blueteam:
             member = ctx.guild.get_member(player)
-            await member.move_to(createdblue)
+            current_voice = member.voice.channel if member.voice else None
+            if current_voice and ctx.guild.me.guild_permissions.move_members:
+                await member.move_to(createdblue)
         for player in orangeteam:
             member = ctx.guild.get_member(player)
-            await member.move_to(createdorange)
+            current_voice = member.voice.channel if member.voice else None
+            if current_voice and ctx.guild.me.guild_permissions.move_members:
+                await member.move_to(createdorange)
 
     @commands.command(aliases=["smr"])
     async def smreport(self, ctx, code: int, winorloss):
@@ -468,6 +476,9 @@ class SixMans(commands.Cog):
             if winorloss != "loss":
                 await ctx.send("Please use either win or loss")
                 return
+        if not str(code).isnumeric():
+            await ctx.send("Please use the correct code.")
+            return
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
         blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
         if blue is None:
