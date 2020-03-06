@@ -449,7 +449,7 @@ class SixMans(commands.Cog):
         self.game = Game(players)
         await asyncio.sleep(2)
         await ctx.send(self.game.players.orange)
-        await ctx.send(self.game.players.blue))
+        await ctx.send(self.game.players.blue)
 
     @commands.command(aliases=["smr"])
     async def smreport(self, ctx, code: int, winorloss):
