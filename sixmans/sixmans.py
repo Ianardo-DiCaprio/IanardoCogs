@@ -448,12 +448,12 @@ class SixMans(commands.Cog):
         self.game = Game(players)
         for player in self.game.blue:
             bluemember = ctx.guild.get_member(player.id for player in self.game.blue)
+            for member in bluemember:
+                await member.move_to(createdblue)
         for player in self.game.orange:
             orangemember = ctx.guild.get_member(player.id for player in self.game.orange)
-        for member in bluemember:
-            await member.move_to(createdblue)
-        for member in orangemember:
-            await orangemember.move_to(createdorange)
+            for member in orangemember:
+                await orangemember.move_to(createdorange)
         
         
         member = guild.get_member
