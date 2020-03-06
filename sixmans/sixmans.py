@@ -70,20 +70,19 @@ class SixMans(commands.Cog):
             return
 
         self.queue.put(player)
-
-        added = ("**{}** added to queue. **({}/{})**".format(player.display_name, self.queue.qsize(), team_size))
-        embed = discord.Embed(description=added, color=0x00FFFF)
-        embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
-        await ctx.send(embed=embed)
-        if await self.queue_full(ctx):
-            for player in self.queue():
-                if player.voice is None:
-                    await ctx.send("The queue is full but not all players are in a VC. Please join a VC to start the game.")
-                else:
-                    queuefull = ("Queue is now full! Type `[v` for voting, `[c` for random captains or `[r` for random teams.")
-                    embed = discord.Embed(description=queuefull, color=0x00FFFF)
-                    embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
-                    await ctx.send(embed=embed)
+        if ctx.author.voice is None:
+            await ctx.send("Please join a VC to join the queue.")
+            return
+        else:
+            added = ("**{}** added to queue. **({}/{})**".format(player.display_name, self.queue.qsize(), team_size))
+            embed = discord.Embed(description=added, color=0x00FFFF)
+            embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+            await ctx.send(embed=embed)
+            if await self.queue_full(ctx):
+                queuefull = ("Queue is now full! Type `[v` for voting, `[c` for random captains or `[r` for random teams.")
+                embed = discord.Embed(description=queuefull, color=0x00FFFF)
+                embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
+                await ctx.send(embed=embed)
 
     @commands.command(pass_context=True, aliases=["dq"])
     async def dequeue(self, ctx):
@@ -165,7 +164,7 @@ class SixMans(commands.Cog):
             await ctx.send(embed=embed)
             return
         self.busy = True
-        await self.create_game(ctx)
+        await self.create_game(ctx) 
 
         captainvote = ("Captain voting initiated. Use [vote [user] to vote for a captain (cannot be yourself).")
         embed = discord.Embed(description=captainvote, color=0x00FFFF)
