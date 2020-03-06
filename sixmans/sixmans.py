@@ -742,9 +742,6 @@ class SixMans(commands.Cog):
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
-                    await self.config.custom(
-                        "GAMES", ctx.guild.id, code
-                    ).orange.clear()
                     for users in blue:
                         user = ctx.guild.get_member(users)
                         wins = await self.config.user(user).wins()
@@ -837,11 +834,6 @@ class SixMans(commands.Cog):
                         )
                         await ctx.send(embed=embed)
                         for users in orange:
-                            
-                        await self.config.custom(
-                                "GAMES", ctx.guild.id, code
-                        ).orange.set("Fin")
-                        for users in orange:
                             user = ctx.guild.get_member(users)
                             wins = await self.config.user(user).wins()
                             losses = await self.config.user(user).losses()
@@ -914,6 +906,8 @@ class SixMans(commands.Cog):
                     await ctx.send(
                         "You can't report this game as you are not in it."
                     )
+        await self.config.custom("GAMES", ctx.guild.id, code).orange.clear()
+        await self.config.custom("GAMES", ctx.guild.id, code).blue.clear()
 
     @commands.command()
     async def smtop(self, ctx):
