@@ -38,6 +38,7 @@ class SixMans(commands.Cog):
         self.config.register_guild(**default_guild)
 
     @commands.command()
+    @commands.has_permissions(manage_guild=True)
     async def smset(self, ctx, players=6):
         """Command to set between 2, 4 or 6 man"""
         if players == 2:
@@ -222,6 +223,7 @@ class SixMans(commands.Cog):
             embed = discord.Embed(description=msg, color=0x00FFFF)
             embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
             await ctx.send(embed=embed)
+            await ctx.send("{}".format(", ".join([player.mention for player in self.game.players])))
 
         vote_nums = {}
         for vote in votes.values():
@@ -349,6 +351,7 @@ class SixMans(commands.Cog):
         embed = discord.Embed(description=oradded, color=0x00FFFF)
         embed.set_author(name="VOID ESPORTS™ 6Mans", icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
+        await ctx.send("{}".format(", ".join([player.mention for player in self.game.players])))
         await self.display_teams(ctx)
         await self.make_channel(ctx)
 
@@ -445,6 +448,8 @@ class SixMans(commands.Cog):
         embed.add_field(name="**Game Code:**", value=next_game_number, inline=False)
         embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png")
         await ctx.send(embed=embed)
+        await ctx.send("{}".format(", ".join([player.mention for player in self.game.blue])))
+        await ctx.send("{}".format(", ".join([player.mention for player in self.game.orange])))
 
         async with self.config.guild(ctx.guild).latest_game_number.get_lock():
             next_game_number = await self.config.guild(ctx.guild).latest_game_number() + 1
@@ -571,7 +576,7 @@ class SixMans(commands.Cog):
             losses = users[user]['losses']
             winloss = users[user]['winloss']
             user = ctx.guild.get_member(user)
-            msg += (f"{user.display_name}".ljust(11, ' '))[:11] + (f":".ljust(3, ' ')) + (f" Wins: {wins}".ljust(13, ' ')) + (f"Losses: {losses}".ljust(13, ' ')) + f"Win/Loss: {winloss}%\n"
+            msg += (f"{user.display_name}")[:11] + (f":".ljust(3, ' ')) + (f" Wins: {wins}".ljust(13, ' ')) + (f"Losses: {losses}".ljust(13, ' ')) + f"Win/Loss: {winloss}%\n"
         for msg in pagify(msg):
             embed = discord.Embed(color=0x00FFFF)
             embed.description = box(msg)
