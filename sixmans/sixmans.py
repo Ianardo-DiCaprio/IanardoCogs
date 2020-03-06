@@ -95,7 +95,7 @@ class SixMans(commands.Cog):
         team_size = await self.config.guild(ctx.guild).team_size()
 
         if player in self.queue:
-            await self.queue.remove(player)
+            self.queue.remove(player)
             removed = (
                 "**{}** removed from queue. **({}/{})**".format(player.display_name, self.queue.qsize(), team_size))
             embed = discord.Embed(description=removed, color=0x00FFFF)
