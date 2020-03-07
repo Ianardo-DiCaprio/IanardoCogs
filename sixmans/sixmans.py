@@ -300,11 +300,6 @@ class SixMans(commands.Cog):
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
-            await ctx.send(
-                "{}".format(
-                    ", ".join([player.mention for player in self.game.players])
-                )
-            )
 
         vote_nums = {}
         for vote in votes.values():
@@ -641,16 +636,6 @@ class SixMans(commands.Cog):
             url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png"
         )
         await ctx.send(embed=embed)
-        await ctx.send(
-            "{}".format(
-                ", ".join([player.mention for player in self.game.blue])
-            )
-        )
-        await ctx.send(
-            "{}".format(
-                ", ".join([player.mention for player in self.game.orange])
-            )
-        )
 
         async with self.config.guild(ctx.guild).latest_game_number.get_lock():
             next_game_number = (
