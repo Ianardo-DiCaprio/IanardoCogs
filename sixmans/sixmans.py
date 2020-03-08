@@ -677,7 +677,7 @@ class SixMans(commands.Cog):
                 await member.move_to(createdorange)
 
     @commands.command(aliases=["smr"])
-    async def smreport(self, ctx, code: int, winorloss):
+    async def smreport(self, ctx, code: int, team):
         """Command to report game results."""
         if winorloss != "win":
             if winorloss != "loss":
@@ -688,20 +688,18 @@ class SixMans(commands.Cog):
             return
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
         blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
-        if blue is None:
-            await ctx.send("That code doesn't exist")
+        if not blue:
+            await ctx.send("This game has already been reported or the code doesn't exist.")
             return
-        orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
-        blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
         if not orange:
-            await ctx.send("This game has already been reported.")
+            await ctx.send("This game has already been reported or the code doesn't exist.")
             return
-        if ctx.author.id in orange:
-            for users in orange:
-                user = ctx.guild.get_member(users)
-                wins = await self.config.user(user).wins()
-                losses = await self.config.user(user).losses()
-                if winorloss == "win":
+        if ctx.author.id in orange or blue:
+            if team == "Orange"
+                for users in orange:
+                    user = ctx.guild.get_member(users)
+                    wins = await self.config.user(user).wins()
+                    losses = await self.config.user(user).losses()
                     new_win = wins + 1
                     if losses == 0:
                         winloss = 100
@@ -722,85 +720,16 @@ class SixMans(commands.Cog):
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
-                    for usersx in blue:
-                        user = ctx.guild.get_member(usersx)
-                        wins = await self.config.user(user).wins()
-                        losses = await self.config.user(user).losses()
-                        new_loss = losses + 1
-                        new = wins + new_loss
-                        winloss = round(wins / new * 100, 2)
-                        await self.config.user(user).losses.set(new_loss)
-                        await self.config.user(user).winloss.set(winloss)
-                        report = "**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(
-                            user.mention,
-                            wins=wins,
-                            losses=new_loss,
-                            winloss=winloss,
-                        )
-                        embed = discord.Embed(description=report, color=0x00FFFF)
-                        embed.set_author(
-                            name="VOID ESPORTS™ 6Mans",
-                            icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
-                        )
-                        await ctx.send(embed=embed)
-                else:
+                for users in blue:
+                    user = ctx.guild.get_member(users)
+                    wins = await self.config.user(user).wins()
+                    losses = await self.config.user(user).losses()
                     new_loss = losses + 1
                     new = wins + new_loss
                     winloss = round(wins / new * 100, 2)
                     await self.config.user(user).losses.set(new_loss)
                     await self.config.user(user).winloss.set(winloss)
-                    report = "**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(
-                        user.mention,
-                        wins=wins,
-                        losses=new_loss,
-                        winloss=winloss,
-                    )
-                    embed = discord.Embed(description=report, color=0x00FFFF)
-                    embed.set_author(
-                        name="VOID ESPORTS™ 6Mans",
-                        icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
-                    )
-                    await ctx.send(embed=embed)
-                    for usersx in blue:
-                        user = ctx.guild.get_member(usersx)
-                        wins = await self.config.user(user).wins()
-                        losses = await self.config.user(user).losses()
-                        new_win = wins + 1
-                        if losses == 0:
-                            winloss = 100
-                        else:
-                            new = losses + new_win
-                            winloss = round(new_win / new * 100, 2)
-                        await self.config.user(user).wins.set(new_win)
-                        await self.config.user(user).winloss.set(winloss)
-                        report = "**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(
-                            user.mention,
-                            wins=wins,
-                            losses=new_loss,
-                            winloss=winloss,
-                        )
-                        embed = discord.Embed(description=report, color=0x00FFFF)
-                        embed.set_author(
-                            name="VOID ESPORTS™ 6Mans",
-                            icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
-                        )
-                        await ctx.send(embed=embed)
-        if ctx.author.id in blue:
-            if winorloss == "win":
-                for users in blue:
-                    user = ctx.guild.get_member(users)
-                    wins = await self.config.user(user).wins()
-                    losses = await self.config.user(user).losses()
-                    if winorloss == "win":
-                        new_win = wins + 1
-                    if losses == 0:
-                        winloss = 100
-                    else:
-                        new = losses + new_win
-                        winloss = round(new_win / new * 100, 2)
-                    await self.config.user(user).wins.set(new_win)
-                    await self.config.user(user).winloss.set(winloss)
-                    report = "**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(
+                    report = "**{}** now has **{wins} win/s**. **{losses} loss/es** and a win/loss of **{winloss}%**".format(
                         user.mention,
                         wins=new_win,
                         losses=losses,
@@ -812,51 +741,10 @@ class SixMans(commands.Cog):
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
-                for usersx in orange:
-                    user = ctx.guild.get_member(usersx)
-                    wins = await self.config.user(user).wins()
-                    losses = await self.config.user(user).losses()
-                    new_loss = losses + 1
-                    new = wins + new_loss
-                    winloss = round(wins / new * 100, 2)
-                    await self.config.user(user).losses.set(new_loss)
-                    await self.config.user(user).winloss.set(winloss)
-                    report = "**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(
-                        user.mention,
-                        wins=wins,
-                        losses=new_loss,
-                        winloss=winloss,
-                    )
-                    embed = discord.Embed(description=report, color=0x00FFFF)
-                    embed.set_author(
-                        name="VOID ESPORTS™ 6Mans",
-                        icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
-                    )
-                    await ctx.send(embed=embed)
-            else:
+        
+            if team == "Blue"
                 for users in blue:
                     user = ctx.guild.get_member(users)
-                    wins = await self.config.user(user).wins()
-                    losses = await self.config.user(user).losses()
-                    new_loss = losses + 1
-                    new = wins + new_loss
-                    winloss = round(wins / new * 100, 2)
-                    await self.config.user(user).losses.set(new_loss)
-                    await self.config.user(user).winloss.set(winloss)
-                    report = "**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(
-                        user.mention,
-                        wins=wins,
-                        losses=new_loss,
-                        winloss=winloss,
-                    )
-                    embed = discord.Embed(description=report, color=0x00FFFF)
-                    embed.set_author(
-                        name="VOID ESPORTS™ 6Mans",
-                        icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
-                    )
-                    await ctx.send(embed=embed)
-                for usersx in orange:
-                    user = ctx.guild.get_member(usersx)
                     wins = await self.config.user(user).wins()
                     losses = await self.config.user(user).losses()
                     new_win = wins + 1
@@ -867,10 +755,10 @@ class SixMans(commands.Cog):
                         winloss = round(new_win / new * 100, 2)
                     await self.config.user(user).wins.set(new_win)
                     await self.config.user(user).winloss.set(winloss)
-                    report = "**{}** now has **{wins} win/s**, **{losses} loss/es** and a win/loss of **{winloss}%**".format(
+                    report = "**{}** now has **{wins} win/s**. **{losses} loss/es** and a win/loss of **{winloss}%**".format(
                         user.mention,
-                        wins=wins,
-                        losses=new_loss,
+                        wins=new_win,
+                        losses=losses,
                         winloss=winloss,
                     )
                     embed = discord.Embed(description=report, color=0x00FFFF)
@@ -879,6 +767,29 @@ class SixMans(commands.Cog):
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
+                for users in orange:
+                    user = ctx.guild.get_member(users)
+                    wins = await self.config.user(user).wins()
+                    losses = await self.config.user(user).losses()
+                    new_loss = losses + 1
+                    new = wins + new_loss
+                    winloss = round(wins / new * 100, 2)
+                    await self.config.user(user).losses.set(new_loss)
+                    await self.config.user(user).winloss.set(winloss)
+                    report = "**{}** now has **{wins} win/s**. **{losses} loss/es** and a win/loss of **{winloss}%**".format(
+                        user.mention,
+                        wins=new_win,
+                        losses=losses,
+                        winloss=winloss,
+                    )
+                    embed = discord.Embed(description=report, color=0x00FFFF)
+                    embed.set_author(
+                        name="VOID ESPORTS™ 6Mans",
+                        icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
+                    )
+                    await ctx.send(embed=embed)
+        else:
+            await ctx.send("You were not in this game so you cannot report it")
 
         await self.config.custom("GAMES", ctx.guild.id, code).orange.clear()
         await self.config.custom("GAMES", ctx.guild.id, code).blue.clear()
