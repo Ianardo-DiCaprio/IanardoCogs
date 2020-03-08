@@ -723,7 +723,7 @@ class SixMans(commands.Cog):
                     )
                     await ctx.send(embed=embed)
                     for usersx in blue:
-                    user = ctx.guild.get_member(usersx)
+                        user = ctx.guild.get_member(usersx)
                         wins = await self.config.user(user).wins()
                         losses = await self.config.user(user).losses()
                         new_loss = losses + 1
