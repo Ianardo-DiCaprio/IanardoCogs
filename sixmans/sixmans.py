@@ -722,8 +722,8 @@ class SixMans(commands.Cog):
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
-                    for users in blue:
-                        user = ctx.guild.get_member(users)
+                    for usersx in blue:
+                        user = ctx.guild.get_member(usersx)
                         wins = await self.config.user(user).wins()
                         losses = await self.config.user(user).losses()
                         new_loss = losses + 1
@@ -761,8 +761,8 @@ class SixMans(commands.Cog):
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
-                    for users in blue:
-                        user = ctx.guild.get_member(users)
+                    for usersx in blue:
+                        user = ctx.guild.get_member(usersx)
                         wins = await self.config.user(user).wins()
                         losses = await self.config.user(user).losses()
                         new_win = wins + 1
@@ -812,8 +812,8 @@ class SixMans(commands.Cog):
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
-                    for users in orange:
-                        user = ctx.guild.get_member(users)
+                    for usersx in orange:
+                        user = ctx.guild.get_member(usersx)
                         wins = await self.config.user(user).wins()
                         losses = await self.config.user(user).losses()
                         new_loss = losses + 1
@@ -855,8 +855,8 @@ class SixMans(commands.Cog):
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
-                    for users in orange:
-                        user = ctx.guild.get_member(users)
+                    for usersx in orange:
+                        user = ctx.guild.get_member(usersx)
                         wins = await self.config.user(user).wins()
                         losses = await self.config.user(user).losses()
                         new_win = wins + 1
