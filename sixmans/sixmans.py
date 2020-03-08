@@ -785,7 +785,7 @@ class SixMans(commands.Cog):
                             icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                         )
                         await ctx.send(embed=embed)
-        elif ctx.author.id in blue:
+        if ctx.author.id in blue:
             if winorloss == "win":
                 for users in blue:
                     user = ctx.guild.get_member(users)
@@ -879,12 +879,7 @@ class SixMans(commands.Cog):
                             icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                         )
                         await ctx.send(embed=embed)
-        else:
-            if ctx.author.id not in orange:
-                if ctx.author.id not in blue:
-                    await ctx.send(
-                        "You can't report this game as you are not in it."
-                    )
+
         await self.config.custom("GAMES", ctx.guild.id, code).orange.clear()
         await self.config.custom("GAMES", ctx.guild.id, code).blue.clear()
 
