@@ -727,8 +727,8 @@ class SixMans(commands.Cog):
                     await self.config.user(user).winloss.set(winloss)
                     report = "**{}** now has **{wins} win/s**. **{losses} loss/es** and a win/loss of **{winloss}%**".format(
                         user.mention,
-                        wins=new_win,
-                        losses=losses,
+                        wins=wins,
+                        losses=new_loss,
                         winloss=winloss,
                     )
                     embed = discord.Embed(description=report, color=0x00FFFF)
@@ -774,8 +774,8 @@ class SixMans(commands.Cog):
                     await self.config.user(user).winloss.set(winloss)
                     report = "**{}** now has **{wins} win/s**. **{losses} loss/es** and a win/loss of **{winloss}%**".format(
                         user.mention,
-                        wins=new_win,
-                        losses=losses,
+                        wins=wins,
+                        losses=new_loss,
                         winloss=winloss,
                     )
                     embed = discord.Embed(description=report, color=0x00FFFF)
