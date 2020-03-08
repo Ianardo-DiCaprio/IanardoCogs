@@ -684,7 +684,7 @@ class SixMans(commands.Cog):
             return
         if team:
              team = team.capitalize()
-        if team != "Blue:"
+        if team != "Blue":
             if team != "Orange":
                 await ctx.send("Please use `Blue` or `Orange` for the team.")
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
