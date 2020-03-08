@@ -682,6 +682,11 @@ class SixMans(commands.Cog):
         if not str(code).isnumeric():
             await ctx.send("Please use the correct code.")
             return
+        if team:
+             team = team.capitalize()
+        if team != "Blue:"
+            if team != "Orange":
+                await ctx.send("Please use `Blue` or `Orange` for the team.")
         orange = await self.config.custom("GAMES", ctx.guild.id, code).orange()
         blue = await self.config.custom("GAMES", ctx.guild.id, code).blue()
         if not blue:
