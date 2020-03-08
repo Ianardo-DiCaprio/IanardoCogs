@@ -695,7 +695,7 @@ class SixMans(commands.Cog):
             await ctx.send("This game has already been reported or the code doesn't exist.")
             return
         if ctx.author.id in orange or blue:
-            if team == "Orange"
+            if team == "Orange":
                 for users in orange:
                     user = ctx.guild.get_member(users)
                     wins = await self.config.user(user).wins()
@@ -742,7 +742,7 @@ class SixMans(commands.Cog):
                     )
                     await ctx.send(embed=embed)
         
-            if team == "Blue"
+            if team == "Blue":
                 for users in blue:
                     user = ctx.guild.get_member(users)
                     wins = await self.config.user(user).wins()
