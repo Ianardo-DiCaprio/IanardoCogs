@@ -679,10 +679,6 @@ class SixMans(commands.Cog):
     @commands.command(aliases=["smr"])
     async def smreport(self, ctx, code: int, team):
         """Command to report game results."""
-        if winorloss != "win":
-            if winorloss != "loss":
-                await ctx.send("Please use either win or loss")
-                return
         if not str(code).isnumeric():
             await ctx.send("Please use the correct code.")
             return
