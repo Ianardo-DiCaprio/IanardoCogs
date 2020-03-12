@@ -636,8 +636,10 @@ class SixMans(commands.Cog):
             url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png"
         )
         await ctx.send(embed=embed)
-        test = player.mention for player in self.game.blue + player.mention for player in self.game.orange
-        await ctx.send(test)
+        test = (player.mention for player in self.game.blue)
+        test2 = (player.mention for player in self.game.orange)
+        test3 = test + test2
+        await ctx.send(test3)
 
         async with self.config.guild(ctx.guild).latest_game_number.get_lock():
             next_game_number = (
