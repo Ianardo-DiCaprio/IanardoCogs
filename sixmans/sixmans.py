@@ -217,7 +217,7 @@ class SixMans(commands.Cog):
         self.busy = True
         await self.create_game(ctx)
 
-        captainvote = "Captain voting initiated. Use [vote [user] to vote for a captain (cannot be yourself)."
+        captainvote = "Captain voting initiated. Use `[vote @user` to vote for a captain (cannot be yourself)."
         embed = discord.Embed(description=captainvote, color=0x00FFFF)
         embed.set_author(
             name="VOID ESPORTS™ 6Mans",
@@ -425,7 +425,7 @@ class SixMans(commands.Cog):
         self.game.add_to_blue(blue_captain)
 
         # Orange Pick
-        await ctx.send(captain.mention for captain in self.game.captains[0])
+        await ctx.send(orange_captain.mention)
         first = "{mention} Use `[pick @user` to pick 1 player.".format(
             mention=orange_captain.display_name
         )
@@ -450,7 +450,7 @@ class SixMans(commands.Cog):
         self.game.add_to_orange(orange_pick)
 
         # Blue Picks
-        await ctx.send(captain.mention for captain in self.game.captains[1])
+        await ctx.send(blue_captain.mention)
         secpick = "{mention} Use `[pick @user1 @user2` to pick 2 players.".format(
             mention=blue_captain.display_name
         )
