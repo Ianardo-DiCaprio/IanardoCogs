@@ -233,6 +233,8 @@ class SixMans(commands.Cog):
             icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
         )
         await ctx.send(embed=embed)
+        await ctx.send("Available: **{}**".format(
+            ", ".join([player.mention for player in self.game.players]))))
 
         try:
             votes = {}
@@ -423,7 +425,7 @@ class SixMans(commands.Cog):
         self.game.add_to_blue(blue_captain)
 
         # Orange Pick
-        first = "{mention} Use [pick [user] to pick 1 player.".format(
+        first = "{mention} Use `[pick @user` to pick 1 player.".format(
             mention=orange_captain.display_name
         )
         embed = discord.Embed(description=first, color=0x00FFFF)
@@ -447,7 +449,7 @@ class SixMans(commands.Cog):
         self.game.add_to_orange(orange_pick)
 
         # Blue Picks
-        secpick = "{mention} Use [pick [user1] [user2] to pick 2 players.".format(
+        secpick = "{mention} Use `[pick @user1 @user2` to pick 2 players.".format(
             mention=blue_captain.display_name
         )
         embed = discord.Embed(description=secpick, color=0x00FFFF)
