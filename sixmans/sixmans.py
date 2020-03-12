@@ -639,7 +639,9 @@ class SixMans(commands.Cog):
         test = ([player.mention for player in self.game.blue])
         test2 = ([player.mention for player in self.game.orange])
         test3 = test + test2
-        await ctx.send(test3)
+        test4 = (test3.strip('['))
+        test5 = (test4.strip(']'))
+        await ctx.send(test5)
 
         async with self.config.guild(ctx.guild).latest_game_number.get_lock():
             next_game_number = (
