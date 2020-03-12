@@ -234,7 +234,7 @@ class SixMans(commands.Cog):
         )
         await ctx.send(embed=embed)
         await ctx.send("Available: **{}**".format(
-            ", ".join([player.mention for player in self.game.players]))))
+            ", ".join([player.mention for player in self.game.players])))
 
         try:
             votes = {}
