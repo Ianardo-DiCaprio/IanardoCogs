@@ -814,14 +814,17 @@ class SixMans(commands.Cog):
             wins = users[user]["wins"]
             losses = users[user]["losses"]
             winloss = users[user]["winloss"]
-            user = ctx.guild.get_member(user)
-            msg += (
-                f"{user.display_name}".ljust(11, " ")[:11]
-                + (f":".ljust(3, " "))
-                + (f" Wins: {wins}".ljust(13, " "))
-                + (f"Losses: {losses}".ljust(13, " "))
-                + f"Win/Loss: {winloss}%\n"
-            )
+            try:
+                user = ctx.guild.get_member(user)
+                msg += (
+                    f"{user.display_name}".ljust(11, " ")[:11]
+                    + (f":".ljust(3, " "))
+                    + (f" Wins: {wins}".ljust(13, " "))
+                    + (f"Losses: {losses}".ljust(13, " "))
+                    + f"Win/Loss: {winloss}%\n"
+                )
+            except:
+                return
         for msg in pagify(msg):
             embed = discord.Embed(color=0x00FFFF)
             embed.description = box(msg)
