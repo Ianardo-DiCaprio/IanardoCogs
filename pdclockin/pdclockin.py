@@ -83,4 +83,4 @@ class PDClockin(Cog):
             name = ctx.author.display_name
         tz = timezone('EST')
         time = datetime.now(tz)
-        msg = await channel.send("{name} clocked into PD at {time}")
+        msg = await channel.send("{name} clocked into PD at {time}".format(name=name, time=time))
