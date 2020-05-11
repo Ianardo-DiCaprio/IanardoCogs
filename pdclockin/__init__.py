@@ -1,6 +1,6 @@
-from .imdb import IMDB
+from .pdclockin import PDClockin
 
 
 async def setup(bot):
-    cog = IMDB(bot)
+    cog = PDClockin(bot)
     bot.add_cog(cog)
