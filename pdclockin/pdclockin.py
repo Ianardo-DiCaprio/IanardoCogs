@@ -58,10 +58,10 @@ class PDClockin(Cog):
     async def channel(self, ctx, channel: discord.TextChannel = None):
         """Set the channel clockins get sent to."""
         if channel is None:
-            await self.config.PDclock_channel.set(channel)
+            await self.config.guild(ctx.guild).PDclock_channel.set(channel)
             await ctx.send("PD clock-in's has been disabled")
         else:
-            await self.config.PDclock_channel.set(channel.id)
+            await self.config.guild(ctx.guild).PDclock_channel.set(channel.id)
             await ctx.send(
                 ("The PD clock-in's channel has been set to {channel.mention}").format(
                     channel=channel
