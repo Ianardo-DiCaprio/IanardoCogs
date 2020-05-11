@@ -28,7 +28,9 @@ class PDClockin(Cog):
         default_user = {
             "message": None,
             "messageid": None,
-            "count": 0
+            "admessageid": None,
+            "count": 0,
+            "weekcount": 0
         }
         default_guild = {
             "PDclock_channel": None,
@@ -61,7 +63,7 @@ class PDClockin(Cog):
     @_pdclock.command()
     @commands.guild_only()
     async def adchannel(self, ctx, channel: discord.TextChannel = None):
-        """Set the channel clockins get sent to."""
+        """Set the channel admin clockins get sent to"""
         if channel is None:
             await self.config.guild(ctx.guild).adPDclock_channel.set(channel)
             await ctx.send("PD clock-in's has been disabled")
@@ -72,6 +74,14 @@ class PDClockin(Cog):
                     channel=channel
                 )
             )
+
+    @_pdclock.command()
+    @commands.guild_only()
+    async def resetweek(self, ctx, count=0):
+        """Reset weekly clock-in's"""
+        for player in ctx.guild.members:
+            await self.config.user(player).weekcount.set(count)
+        await ctx.send("This weeks clock-in amounts have been reset")
 
     @commands.command()
     async def pdclockin(self, ctx: commands.Context):
@@ -94,7 +104,14 @@ class PDClockin(Cog):
         authormention = ctx.author.display_name
         count = await self.config.user(ctx.author).count()
         newcount = count + 1
-        admsg = await adchannel.send(f"**Discord name:** {authormention}\n**Clocked in times:** {newcount}\n")
+        if count == 0:
+            admsg = await adchannel.send(f"**Discord name:** {authormention}\n**Clocked in times:** {newcount}")
+            await self.config.user(ctx.author).admessageid.set(admsg.id)
+        else:
+            adminmessage_id = await self.config.user(ctx.author).admessageid()
+            admessageid = await adchannel.fetch_message(adminmessage_id)
+            admsg = f"**Discord name:** {authormention}\n**Clocked in times:** {newcount}"
+            await admessageid.edit(content=admsg)
         msg = await channel.send(f"**Discord name:** {authormention}\n**Clocked in:** {time}\n")
         await self.config.user(ctx.author).message.set(msg.content)
         await self.config.user(ctx.author).messageid.set(msg.id)
