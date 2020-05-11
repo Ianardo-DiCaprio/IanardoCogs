@@ -81,5 +81,5 @@ class PDClockin(Cog):
         if not name:
             name = ctx.author.display_name
         now = datetime.now()
-        time = now.strftime("%H:%M:%S")
-        msg = await channel.send(f"**Name:** {name}/n **Clocked in:** {time} /n".format(name=name, time=time))
+        time = now.strftime("%H-4:%M")
+        msg = await channel.send(f"**Name:** {name} /n **Clocked in:** {time} /n".format(name=name, time=time))
