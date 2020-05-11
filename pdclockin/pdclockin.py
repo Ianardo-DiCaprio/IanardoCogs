@@ -104,6 +104,7 @@ class PDClockin(Cog):
         authormention = ctx.author.display_name
         count = await self.config.user(ctx.author).count()
         newcount = count + 1
+        await self.config.user(ctx.author).count.set(newcount)
         if count == 0:
             admsg = await adchannel.send(f"**Discord name:** {authormention}\n**Clocked in times:** {newcount}")
             await self.config.user(ctx.author).admessageid.set(admsg.id)
@@ -112,6 +113,7 @@ class PDClockin(Cog):
             admessageid = await adchannel.fetch_message(adminmessage_id)
             admsg = f"**Discord name:** {authormention}\n**Clocked in times:** {newcount}"
             await admessageid.edit(content=admsg)
+        await self.config.user(ctx.author).count.set(newcount)
         msg = await channel.send(f"**Discord name:** {authormention}\n**Clocked in:** {time}\n")
         await self.config.user(ctx.author).message.set(msg.content)
         await self.config.user(ctx.author).messageid.set(msg.id)
