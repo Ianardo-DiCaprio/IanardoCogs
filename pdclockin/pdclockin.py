@@ -77,7 +77,7 @@ class PDClockin(Cog):
         if not channel_id:
             await ctx.send("The channel has not been set up to use this feature.")
         else:
-            channel = guild.get_channel(channel_id)
+            channel = ctx.guild.get_channel(channel_id)
         name = await self.config.user(ctx.author).name()
         if not name:
             name = ctx.author.display_name
