@@ -66,8 +66,6 @@ class PDClockin(Cog):
             await ctx.send("The channel has not been set up to use this feature.")
         else:
             channel = ctx.guild.get_channel(channel_id)
-        if not name:
-            name = ctx.author.display_name
         tz = timezone('EST5EDT')
         now = datetime.now(tz)
         time = now.strftime("%H:%M")
