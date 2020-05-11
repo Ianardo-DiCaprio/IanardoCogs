@@ -27,7 +27,8 @@ class PDClockin(Cog):
 
         default_user = {
             "name": None, 
-            "message": None
+            "message": None,
+            "messageID": None
         }
         default_guild = {
             "PDclock_channel": None
@@ -84,4 +85,23 @@ class PDClockin(Cog):
         tz = timezone('EST5EDT')
         now = datetime.now(tz)
         time = now.strftime("%H:%M")
-        msg = await channel.send(f"**Name:** {name} \n **Clocked in:** {time} \n".format(name=name, time=time))
+        msg = await channel.send(f"**Name:** {name}\n**Clocked in:** {time}\n".format(name=name, time=time))
+        await self.config.user(ctx.author).message.set(msg.content)
+        await self.config.user(ctx.author).messageid.set(msg.id)
+
+    @commands.command()
+    async def pdclockout(self, ctx: commands.Context):
+        """
+        clock out of PD
+        """
+        message = await self.config.user(ctx.author).message()
+        message_id = await self.config.user(ctx.author).messageid()
+        channel = await self.config.guild(ctx.guild).PDclock_channel()
+        tz = timezone('EST5EDT')
+        now = datetime.now(tz)
+        time = now.strftime("%H:%M")
+        new_message = message + f"\n **Clocked out: {time}".format(time=time)
+        messagid = await client.get_message(channel, message_id)
+        await messageid.edit(content=new_message)
+        await self.config.user(ctx.author).message.set()
+        await self.config.user(ctx.author).messageid.set()
