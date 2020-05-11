@@ -42,18 +42,6 @@ class PDClockin(Cog):
         """
         PD clock-in commands
         """
-
-    @_pdclock.command()
-    @commands.guild_only()
-    async def name(self, ctx: commands.Context, *,  name=None):
-        """set your IC name for PD clock-in's."""
-        if name:
-            await self.config.user(ctx.author).name.set(name)
-            await ctx.send("Your PD name has been set.")
-        else:
-            await self.config.user(ctx.author).name.set(name)
-            await ctx.send("Your PD name has been removed.")
-
     @_pdclock.command()
     @commands.guild_only()
     async def channel(self, ctx, channel: discord.TextChannel = None):
@@ -79,14 +67,13 @@ class PDClockin(Cog):
             await ctx.send("The channel has not been set up to use this feature.")
         else:
             channel = ctx.guild.get_channel(channel_id)
-        name = await self.config.user(ctx.author).name()
         if not name:
             name = ctx.author.display_name
         tz = timezone('EST5EDT')
         now = datetime.now(tz)
         time = now.strftime("%H:%M")
         authormention = ctx.author.mention
-        msg = await channel.send(f"**Discord name:**{authormention}\n**Name:** {name}\n**Clocked in:** {time}\n")
+        msg = await channel.send(f"**Discord name:** {authormention}\n**Clocked in:** {time}\n")
         await self.config.user(ctx.author).message.set(msg.content)
         await self.config.user(ctx.author).messageid.set(msg.id)
 
