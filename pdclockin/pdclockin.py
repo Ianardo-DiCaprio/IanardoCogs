@@ -42,10 +42,10 @@ class PDClockin(Cog):
     async def name(self, ctx: commands.Context, name=None):
         """set your IC name for PD clock-in's."""
         if name:
-            await self.conf.user(ctx.author).name.set(name)
+            await self.config.user(ctx.author).name.set(name)
             await ctx.send("Your PD name has been set.")
         else:
-            await self.conf.user(ctx.author).name.set(name)
+            await self.config.user(ctx.author).name.set(name)
             await ctx.send("Your PD name has been removed.")
 
     @_pdclock.command()
@@ -68,12 +68,12 @@ class PDClockin(Cog):
         """
         clock into PD
         """
-        channel_id = await self.conf.guild(ctx.guild).PDclock_channel()
+        channel_id = await self.config.guild(ctx.guild).PDclock_channel()
         if not channel_id:
             await ctx.send("The channel has not been set up to use this feature.")
         else:
             channel = guild.get_channel(channel_id)
-        name = await self.conf.user(ctx.author).name()
+        name = await self.config.user(ctx.author).name()
         if not name:
             name = ctx.author.display_name
         tz = timezone('EST')
