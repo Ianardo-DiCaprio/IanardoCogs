@@ -27,10 +27,12 @@ class PDClockin(Cog):
 
         default_user = {
             "message": None,
-            "messageid": None
+            "messageid": None,
+            "count": 0
         }
         default_guild = {
-            "PDclock_channel": None
+            "PDclock_channel": None,
+            "adPDclock_channel": None
         }
 
         self.config.register_guild(**default_guild)
@@ -56,20 +58,43 @@ class PDClockin(Cog):
                 )
             )
 
+    @_pdclock.command()
+    @commands.guild_only()
+    async def adchannel(self, ctx, channel: discord.TextChannel = None):
+        """Set the channel clockins get sent to."""
+        if channel is None:
+            await self.config.guild(ctx.guild).adPDclock_channel.set(channel)
+            await ctx.send("PD clock-in's has been disabled")
+        else:
+            await self.config.guild(ctx.guild).adPDclock_channel.set(channel.id)
+            await ctx.send(
+                ("The PD clock-in's admin channel has been set to {channel.mention}").format(
+                    channel=channel
+                )
+            )
+
     @commands.command()
     async def pdclockin(self, ctx: commands.Context):
         """
         clock into PD
         """
         channel_id = await self.config.guild(ctx.guild).PDclock_channel()
+        adchannel_id = await self.config.guild(ctx.guild).adPDclock_channel()
         if not channel_id:
             await ctx.send("The channel has not been set up to use this feature.")
         else:
             channel = ctx.guild.get_channel(channel_id)
+        if not adchannel_id:
+            await ctx.send("The channel has not been set up to use this feature.")
+        else:
+            adchannel = ctx.guild.get_channel(adchannel_id)
         tz = timezone('EST5EDT')
         now = datetime.now(tz)
         time = now.strftime("%H:%M")
         authormention = ctx.author.display_name
+        count = await self.config.user(ctx.author).count()
+        newcount = count + 1
+        admsg = await adchannel.send(f"**Discord name:** {authormention}\n**Clocked in times:** {newcount}\n")
         msg = await channel.send(f"**Discord name:** {authormention}\n**Clocked in:** {time}\n")
         await self.config.user(ctx.author).message.set(msg.content)
         await self.config.user(ctx.author).messageid.set(msg.id)
