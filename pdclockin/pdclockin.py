@@ -105,16 +105,18 @@ class PDClockin(Cog):
         count = await self.config.user(ctx.author).count()
         weekcount = await self.config.user(ctx.author).weekcount()
         newcount = count + 1
+        newweekcount = weekcount + 1
         await self.config.user(ctx.author).count.set(newcount)
         if count == 0:
-            admsg = await adchannel.send(f"**Discord name:** {authormention}\n**Clocked in times:** {newcount}\n**Clock-in's this week:** {weekcount}")
+            admsg = await adchannel.send(f"**Discord name:** {authormention}\n**Clocked in times:** {newcount}\n**Clock-in's this week:** {newweekcount}")
             await self.config.user(ctx.author).admessageid.set(admsg.id)
         else:
             adminmessage_id = await self.config.user(ctx.author).admessageid()
             admessageid = await adchannel.fetch_message(adminmessage_id)
-            admsg = f"**Discord name:** {authormention}\n**Clocked in times:** {newcount}\n**Clock-in's this week:** {weekcount}"
+            admsg = f"**Discord name:** {authormention}\n**Clocked in times:** {newcount}\n**Clock-in's this week:** {newweekcount}"
             await admessageid.edit(content=admsg)
         await self.config.user(ctx.author).count.set(newcount)
+        await self.config.user(ctx.author).weekcount.set(newweekcount)
         msg = await channel.send(f"**Discord name:** {authormention}\n**Clocked in:** {time}\n")
         await self.config.user(ctx.author).message.set(msg.content)
         await self.config.user(ctx.author).messageid.set(msg.id)
