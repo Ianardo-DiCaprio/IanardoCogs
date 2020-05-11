@@ -44,7 +44,7 @@ class PDClockin(Cog):
 
     @_pdclock.command()
     @commands.guild_only()
-    async def name(self, ctx: commands.Context, name=None):
+    async def name(self, ctx: commands.Context, *,  name=None):
         """set your IC name for PD clock-in's."""
         if name:
             await self.config.user(ctx.author).name.set(name)
@@ -81,6 +81,8 @@ class PDClockin(Cog):
         name = await self.config.user(ctx.author).name()
         if not name:
             name = ctx.author.display_name
-        tz = timezone('EST')
-        time = datetime.now(tz)
-        msg = await channel.send("{name} clocked into PD at {time}".format(name=name, time=time))
+        eastern = timezone('US/Eastern')
+        fmt = '%Y-%m-%d %H:%M:%S %Z%z'
+        loc_dt = eastern.localize(datetime(2012, 10, 29, 6, 0, 0))
+        time = loc_dt.strftime(fmt)
+        msg = await channel.send("**Name:** {name}/n **Clocked in:** {time} /n".format(name=name, time=time))
