@@ -26,7 +26,6 @@ class PDClockin(Cog):
         self.config = Config.get_conf(self, 699114013, force_registration=True)
 
         default_user = {
-            "name": None, 
             "message": None,
             "messageid": None
         }
