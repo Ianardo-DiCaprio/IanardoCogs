@@ -28,7 +28,7 @@ class PDClockin(Cog):
         default_user = {
             "name": None, 
             "message": None,
-            "messageID": None
+            "messageid": None
         }
         default_guild = {
             "PDclock_channel": None
