@@ -81,7 +81,7 @@ class PDClockin(Cog):
         name = await self.config.user(ctx.author).name()
         if not name:
             name = ctx.author.display_name
-        tz = timezone('EET')
+        tz = timezone('EDT')
         now = datetime.now(tz)
         time = now.strftime("%H:%M")
         msg = await channel.send(f"**Name:** {name} /n **Clocked in:** {time} /n".format(name=name, time=time))
