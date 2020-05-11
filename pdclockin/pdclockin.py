@@ -66,7 +66,7 @@ class PDClockin(Cog):
                 )
             )
 
-    @commands.group()
+    @commands.command()
     async def pdclockin(self, ctx: commands.Context):
         """
         clock into PD
