@@ -84,4 +84,4 @@ class PDClockin(Cog):
         tz = timezone('EST5EDT')
         now = datetime.now(tz)
         time = now.strftime("%H:%M")
-        msg = await channel.send(f"**Name:** {name} /n **Clocked in:** {time} /n".format(name=name, time=time))
+        msg = await channel.send(f"**Name:** {name} \n **Clocked in:** {time} \n".format(name=name, time=time))
