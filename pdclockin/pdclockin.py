@@ -102,7 +102,7 @@ class PDClockin(Cog):
         now = datetime.now(tz)
         time = now.strftime("%H:%M")
         new_message = message + f"\n **Clocked out: {time}".format(time=time)
-        messagid = await channel.fetch_message(message_id)
+        messageid = await channel.fetch_message(message_id)
         await messageid.edit(content=new_message)
         await self.config.user(ctx.author).message.set()
         await self.config.user(ctx.author).messageid.set()
