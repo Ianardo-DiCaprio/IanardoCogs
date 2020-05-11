@@ -29,9 +29,11 @@ class PDClockin(Cog):
             "name": None, 
             "message": None
         }
-        default_global = {"PDclock_channel": None}
+        default_guild = {
+            "PDclock_channel": None
+        }
 
-        self.config.register_global(**default_global)
+        self.config.register_guid(**default_guild)
         self.config.register_user(**default_user)
 
     @commands.group(name="pdclock", autohelp=True)
