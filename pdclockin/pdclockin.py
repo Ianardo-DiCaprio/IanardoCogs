@@ -97,7 +97,7 @@ class PDClockin(Cog):
         message = await self.config.user(ctx.author).message()
         message_id = await self.config.user(ctx.author).messageid()
         channel_id = await self.config.guild(ctx.guild).PDclock_channel()
-        channel = guild.get_channel(channel_id)
+        channel = ctx.guild.get_channel(channel_id)
         tz = timezone('EST5EDT')
         now = datetime.now(tz)
         time = now.strftime("%H:%M")
