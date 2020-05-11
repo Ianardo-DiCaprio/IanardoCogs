@@ -33,7 +33,7 @@ class PDClockin(Cog):
             "PDclock_channel": None
         }
 
-        self.config.register_guid(**default_guild)
+        self.config.register_guild(**default_guild)
         self.config.register_user(**default_user)
 
     @commands.group(name="pdclock", autohelp=True)
