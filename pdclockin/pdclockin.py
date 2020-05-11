@@ -8,7 +8,7 @@ from redbot.core.bot import Red
 from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
 from redbot.core.utils.menus import start_adding_reactions
 from datetime import datetime
-import pytz
+from pytz import timezone
 
 Cog: Any = getattr(commands, "Cog", object)
 
@@ -81,6 +81,7 @@ class PDClockin(Cog):
         name = await self.config.user(ctx.author).name()
         if not name:
             name = ctx.author.display_name
-        now = datetime.now(pytz.EST)
+        tz = timezone('EST')
+        now = datetime.now(tz)
         time = now.strftime("%H:%M")
         msg = await channel.send(f"**Name:** {name} /n **Clocked in:** {time} /n".format(name=name, time=time))
