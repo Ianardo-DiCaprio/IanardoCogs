@@ -25,11 +25,14 @@ class PDClockin(Cog):
         self.bot = bot
         self.config = Config.get_conf(self, 699114013, force_registration=True)
 
-        default_user = {"name": None, "message": None}
+        default_user = {
+            "name": None, 
+            "message": None
+        }
         default_global = {"PDclock_channel": None}
 
         self.config.register_global(**default_global)
-        self.config.register_global(**default_user)
+        self.config.register_user(**default_user)
 
     @commands.group(name="pdclock", autohelp=True)
     async def _pdclock(self, ctx: commands.Context):
