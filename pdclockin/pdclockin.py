@@ -85,8 +85,8 @@ class PDClockin(Cog):
         tz = timezone('EST5EDT')
         now = datetime.now(tz)
         time = now.strftime("%H:%M")
-        author = ctx.author.mention
-        msg = await channel.send(f"**Discord name:**{discord}\n**Name:** {name}\n**Clocked in:** {time}\n".format(discord=author, name=name, time=time))
+        authormention = ctx.author.mention
+        msg = await channel.send(f"**Discord name:**{discordname}\n**Name:** {name}\n**Clocked in:** {time}\n".format(discordname=authormention, name=name, time=time))
         await self.config.user(ctx.author).message.set(msg.content)
         await self.config.user(ctx.author).messageid.set(msg.id)
 
