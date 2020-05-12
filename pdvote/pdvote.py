@@ -71,6 +71,6 @@ class PDVote(Cog):
     async def on_reaction_add(self, reaction, user):
         """on reactions"""
         if reaction.emoji == '👍':
-            await channel.send("yes")
+            await ctx.send("yes")
         if reaction.emoji == "👎":
-            await channel.send("no")
+            await ctx.send("no")
