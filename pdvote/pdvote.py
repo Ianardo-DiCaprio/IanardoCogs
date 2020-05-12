@@ -66,7 +66,8 @@ class PDVote(Cog):
     @commands.guild_only()
     async def vote(self, ctx, vote: str):
         """If your vote isn't `yes` or `no` I'm going to kill you!"""
-        votee = await self.config.guild(ctx.guild).votee()
+        votee_id = await self.config.guild(ctx.guild).votee()
+        votee = ctx.guild.get_member(votee_id)
         channel_id = await self.config.guild(ctx.guild).PDvote_channel()
         channel = ctx.guild.get_channel(channel_id)
         yes = await self.config.guild(ctx.guild).yes()
