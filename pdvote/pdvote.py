@@ -74,7 +74,7 @@ class PDVote(Cog):
         message = await channel.fetch_message(payload.message_id)
         user = await self.bot.fetch_user(payload.user_id)
         emoji = payload.emoji
-        if emoji == '👍':
+        if emoji.reaction == '👍':
             await channel.send("yes")
         if emoji.id == "709874094488682538":
             await channel.send("no")
