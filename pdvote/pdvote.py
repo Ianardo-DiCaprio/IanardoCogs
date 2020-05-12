@@ -86,3 +86,12 @@ class PDVote(Cog):
             pdmessage = await channel.fetch_message(pdmessage_id)
             msg = f"**{votee.mention}:**@  {yes} yes votes |  {no} no votes"
             await pdmessageid.edit(content=msg)
+
+    @commands.command()
+    @commands.guild_only()
+    async def resetvote(self, ctx, vote: str):
+        """If your vote isn't `yes` or `no` I'm going to kill you!"""
+        await self.config.guild(ctx.guild).votemessage.set(None)
+        await self.config.guild(ctx.guild).yes.set(0)
+        await self.config.guild(ctx.guild).no.set(0)
+        await self.config.guild(ctx.guild).PDmessage.set(None)
