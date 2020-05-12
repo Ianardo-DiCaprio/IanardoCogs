@@ -26,11 +26,9 @@ class PDVote(Cog):
         self.config = Config.get_conf(self, 699114013, force_registration=True)
 
         default_user = {"yes": 0, "no": 0, "PDmessage": None}
-        default_guild = {"votee": None}
-        default_global = {"PDvote_channel": None}
+        default_guild = {"votee": None, "PDvote_channel": None}
 
-        self.config.register_global(**default_global)
-        self.config.register_global(**default_user)
+        self.config.register_user(**default_user)
         self.config.register_guild(**default_guild)
 
     @commands.group(name="pdvotes", autohelp=True)
