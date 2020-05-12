@@ -70,5 +70,5 @@ class PDVote(Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, reaction, user):
         """on reactions"""
-        if reaction == "👍":
+        if reaction.emoji == "👍":
             await ctx.send("yes")
