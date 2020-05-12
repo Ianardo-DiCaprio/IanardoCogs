@@ -72,7 +72,6 @@ class PDVote(Cog):
         """on reactions"""
         channel_id = "704891050942267396"
         channel = self.bot.guild.get_channel(channel_id)
-            return
         if reaction.emoji == "👍":
             await channel.send("Yes")
         if reaction.emoji == "👎":
