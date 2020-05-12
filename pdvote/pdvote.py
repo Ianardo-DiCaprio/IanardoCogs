@@ -70,12 +70,12 @@ class PDVote(Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
         """on reactions"""
-        votemessage = await self.config.guild(payload.guild).PDmessage()
+        votemessage = await self.config.guild(payload.guild_id).PDmessage()
         if payload.channel_id != votemessage:
             return
         reactchannel = self.bot.get_channel(payload.channel_id)
         message = await reactchannel.fetch_message(payload.message_id)
-        channel_id = await self.config.guild(payload.guild).PDvote_channel()
+        channel_id = await self.config.guild(payload.guild_id).PDvote_channel()
         channel = self.bot.get_channel(channel_id)
         user = self.bot.get_user(payload.user_id)
         yes = await self.config.user(user).yes()
