@@ -71,9 +71,9 @@ class PDVote(Cog):
     async def on_raw_reaction_add(self, payload):
         """on reactions"""
         channel = self.bot.get_channel(payload.channel_id)
-        if payload.emoji == '👍':
+        if payload.emoji.name == '👍':
             await channel.send("Yes")
-        if payload.emoji == '👎':
+        if payload.emoji.name == '👎':
             await channel.send("No")
         else:
             await channel.send("FFS")
