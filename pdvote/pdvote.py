@@ -44,10 +44,10 @@ class PDVote(Cog):
     async def channel(self, ctx, channel: discord.TextChannel = None):
         """Set the channel votes get sent to."""
         if channel is None:
-            await self.config.PDvote_channel.set(channel)
+            await self.config.guild(ctx.guild).PDvote_channel.set(channel)
             await ctx.send("Votes has been disabled")
         else:
-            await self.config.PDvote_channel.set(channel.id)
+            await self.config.guild(ctx.guild).PDvote_channel.set(channel.id)
             await ctx.send(
                 ("The votes channel has been set to {channel.mention}").format(
                     channel=channel
@@ -72,6 +72,6 @@ class PDVote(Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, reaction, user):
         """on reactions"""
-        channel_id = await self.config.PDvote_channel()
+        channel_id = await self.config.guild(ctx.guild).PDvote_channel()
         channel = ctx.guild.get_channel(channel_id)
         await channel.send("test")
