@@ -25,8 +25,8 @@ class PDVote(Cog):
         self.bot = bot
         self.config = Config.get_conf(self, 699114013, force_registration=True)
 
-        default_user = {"yes": 0, "no": 0, "PDmessage": None}
-        default_guild = {"votee": None, "PDvote_channel": None}
+        default_user = {"yes": 0, "no": 0}
+        default_guild = {"votee": None, "PDvote_channel": None, "PDmessage": None}
 
         self.config.register_user(**default_user)
         self.config.register_guild(**default_guild)
@@ -61,14 +61,21 @@ class PDVote(Cog):
         embed = discord.Embed(description=description, color=0x00FFFF)
         embed.set_author(name="PD Promotions")
         vote = await ctx.send(embed=embed)
-        await self.config.PDmessage.set(vote.id)
+        await self.config.guild(ctx.guild).PDmessage.set(vote.id)
         emoji = "👍"
-        emoji2 = "❌"
+        emoji2 = "👎"
         await vote.add_reaction(emoji)
         await vote.add_reaction(emoji2)
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, reaction, user):
         """on reactions"""
+        message_id = await self.config.guild(ctx.guild).PDmessage()
+        if reaction.message.id != message_id:
+            return
         if reaction.emoji == "👍":
-            await ctx.send("yes")
+            await ctx.send("Yes")
+        if reaction.emoji == "👎":
+            await ctx.send("No")
+        else:
+            await ctx.send("FFS")
