@@ -68,7 +68,7 @@ class PDVote(Cog):
         await vote.add_reaction(emoji2)
 
     @commands.Cog.listener()
-    async def on_raw_reaction_add(self, reaction, user):
+    async def on_raw_reaction_add(self, ctx, reaction, user):
         """on reactions"""
         message_id = await self.config.guild(ctx.guild).PDmessage()
         if reaction.message.id != message_id:
