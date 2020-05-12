@@ -72,4 +72,4 @@ class PDVote(Cog):
         """on reactions"""
         channel_id = await self.config.guild(ctx.guild).PDvote_channel()
         channel = ctx.guild.get_channel(channel_id)
-        await channel.send("test")
+        await ctx.send("test")
