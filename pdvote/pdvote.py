@@ -86,7 +86,7 @@ class PDVote(Cog):
             pdmessage_id = await self.config.guild(ctx.guild).PDmessage()
             pdmessage = await channel.fetch_message(pdmessage_id)
             msg = f"**{votee.mention}:**@  {yes} yes votes |  {no} no votes"
-            await pdmessageid.edit(content=msg)
+            await pdmessage.edit(content=msg)
 
     @commands.command()
     @commands.guild_only()
