@@ -70,13 +70,21 @@ class PDVote(Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
         """on reactions"""
-        channel = self.bot.get_channel(payload.channel_id)
+        votemessage = await self.config.guild(ctx.guild).PDmessage()
+        if payload.channel_id != votemessage:
+            return
+        reactchannel = self.bot.get_channel(payload.channel_id)
+        message = await reactchannel.fetch_message(payload.message_id)
+        channel_id = await self.config.guild(ctx.guild).PDvote_channel()
+        channel = self.bot.get_channel(channel_id)
         user = self.bot.get_user(payload.user_id)
         yes = await self.config.user(user).yes()
         no = await self.config.user(user).no()
+        newyes = yes + 1
+        newno = no + 1
         if payload.emoji.name == '👍':
-            await channel.send(yes)
+            await channel.send(newyes)
+            await self.config.user(user).yes.set(newyes)
         if payload.emoji.name == '👎':
             await channel.send(no)
-        else:
-            await channel.send("FFS")
+            await self.config.user(user).yes.set(newno)
