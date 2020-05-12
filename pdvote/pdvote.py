@@ -62,7 +62,7 @@ class PDVote(Cog):
         embed.set_author(name="PD Promotions")
         vote = await ctx.send(embed=embed)
         await self.config.PDmessage.set(vote.id)
-        emoji = '👍'
+        emoji = "👍"
         emoji2 = "❌"
         await vote.add_reaction(emoji)
         await vote.add_reaction(emoji2)
@@ -70,4 +70,5 @@ class PDVote(Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, reaction, user):
         """on reactions"""
-        await ctx.send("yes")
+        if reaction == "👍":
+            await ctx.send("yes")
