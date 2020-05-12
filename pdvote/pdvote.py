@@ -67,8 +67,8 @@ class PDVote(Cog):
         await vote.add_reaction(emoji)
         await vote.add_reaction(emoji2)
 
-    @commands.Cog.listener()
-    async def on_raw_reaction_add(self, reaction, ctx):
+    @commands.Cog.listener(pass_context=True)
+    async def on_raw_reaction_add(self, reaction):
         """on reactions"""
         channel_id = "704891050942267396"
         channel = ctx.guild.get_channel(channel_id)
