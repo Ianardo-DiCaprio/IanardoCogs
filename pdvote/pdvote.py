@@ -89,7 +89,7 @@ class PDVote(Cog):
 
     @commands.command()
     @commands.guild_only()
-    async def resetvote(self, ctx, vote: str):
+    async def resetvote(self, ctx):
         """If your vote isn't `yes` or `no` I'm going to kill you!"""
         await self.config.guild(ctx.guild).votemessage.set(None)
         await self.config.guild(ctx.guild).yes.set(0)
