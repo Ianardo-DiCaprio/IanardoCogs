@@ -75,7 +75,8 @@ class PDVote(Cog):
             yes = yes + 1
         if vote == "no":
             no = no + 1
-        if message is None:
+        pdmessage_id = await self.config.guild(ctx.guild).pdmessage()
+        if pdmessage is None:
             pdmessage = await channel.send(f"**{votee.mention}:**@  {yes} yes votes |  {no} no votes")
             await self.config.guild(ctx.guild).pdmessage.set(pdmessage.id)
             await self.config.guild(ctx.guild).yes.set(yes)
