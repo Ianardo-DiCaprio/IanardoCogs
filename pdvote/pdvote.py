@@ -82,7 +82,7 @@ class PDVote(Cog):
             await self.config.guild(ctx.guild).yes.set(yes)
             await self.config.guild(ctx.guild).no.set(no)
         else:
-            pdmessage_id = await self.config.guild(ctx.guild).pdmessage()
+            pdmessage_id = await self.config.guild(ctx.guild).PDmessage()
             pdmessage = await channel.fetch_message(pdmessage_id)
             msg = f"**{votee.mention}:**@  {yes} yes votes |  {no} no votes"
             await pdmessageid.edit(content=msg)
