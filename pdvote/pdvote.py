@@ -72,17 +72,6 @@ class PDVote(Cog):
     @commands.Cog.listener()
     async def on_react(self, reaction, user):
         """on reactions"""
-        if reaction.message.id != await self.config.PDmessage():
-            return
-        votee = await self.config.guild(ctx.guild).votee()
         channel_id = await self.config.PDvote_channel()
         channel = ctx.guild.get_channel(channel_id)
-        yes = await self.config.user(votee).yes()
-        no = await self.config.user(votee).no()
-        if reaction.emoji == "✅":
-            newyes = yes + 1
-            await self.config.user(votee).yes.set(newyes)
-        if reaction.emoji == "❌":
-            newno = no + 1
-            await self.config.user(votee).no.set(newno)
-        votes = await channel.send(f"{votee.mention} has {newyes} yes votes and {newno} no votes")
+        votes = await channel.send(f"test")
