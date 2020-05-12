@@ -68,8 +68,11 @@ class PDVote(Cog):
         await vote.add_reaction(emoji2)
 
     @commands.Cog.listener()
-    async def on_raw_reaction_add(self, reaction, user):
+    async def on_raw_reaction_add(self, payload):
         """on reactions"""
-        channel_id = await self.config.guild(ctx.guild).PDvote_channel()
-        channel = ctx.guild.get_channel(channel_id)
-        await ctx.send("test")
+        channel = await self.bot.fetch_channel(payload.channel_id)
+        message = await channel.fetch_message(payload.message_id)
+        user = await self.bot.fetch_user(payload.user_id)
+        emoji = payload.emoji
+
+        await channel.send("Hello")
