@@ -1,6 +1,6 @@
-from .pdvote import PDvote
+from .pdvote import PDVote
 
 
 async def setup(bot):
-    cog = PDvote(bot)
+    cog = PDVote(bot)
     bot.add_cog(cog)
