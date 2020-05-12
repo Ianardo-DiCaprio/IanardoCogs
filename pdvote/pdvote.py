@@ -26,10 +26,8 @@ class PDVote(Cog):
         self.bot = bot
         self.config = Config.get_conf(self, 699114013, force_registration=True)
 
-        default_user = {"yes": 0, "no": 0}
-        default_guild = {"votee": None, "PDvote_channel": None, "PDmessage": None}
+        default_guild = {"votee": None, "PDvote_channel": None, "PDmessage": None, "votemessage": None, "yes": 0, "no": 0}
 
-        self.config.register_user(**default_user)
         self.config.register_guild(**default_guild)
 
     @commands.group(name="pdvotes", autohelp=True)
@@ -58,36 +56,32 @@ class PDVote(Cog):
     async def pdvote(self, ctx, user: discord.Member = None):
         """Set who is being voted on."""
         await self.config.guild(ctx.guild).votee.set(user.id)
-        description = f"{user.mention} is being voted on for a promotion, react below to cast your vote!"
+        description = f"{user.mention} is being voted on for a promotion, use `]vote yes` or `]vote no` below."
         embed = discord.Embed(description=description, color=0x00FFFF)
         embed.set_author(name="PD Promotions")
         vote = await ctx.send(embed=embed)
-        await self.config.guild(ctx.guild).PDmessage.set(vote.id)
-        emoji = "👍"
-        emoji2 = "👎"
-        await vote.add_reaction(emoji)
-        await vote.add_reaction(emoji2)
+        await self.config.guild(ctx.guild).votemessage.set(vote.id)
 
-    @commands.Cog.listener()
-    async def on_raw_reaction_add(self, payload):
-        """on reactions"""
-        guilds = payload.guild_id
-        guild = Config.guild_from_id(Config, guilds)
-        votemessage = await self.config.guild(guild).PDmessage()
-        if payload.message_id != votemessage:
-            return
-        reactchannel = self.bot.get_channel(payload.channel_id)
-        message = await reactchannel.fetch_message(payload.message_id)
+    @commands.command()
+    @commands.guild_only()
+    async def vote(self, ctx, vote: str):
+        """If your vote isn't `yes` or `no` I'm going to kill you!"""
+        votee = await self.config.guild(ctx.guild).votee()
         channel_id = await self.config.guild(ctx.guild).PDvote_channel()
-        channel = self.bot.get_channel(channel_id)
-        user = self.bot.get_user(payload.user_id)
-        yes = await self.config.user(user).yes()
-        no = await self.config.user(user).no()
-        newyes = yes + 1
-        newno = no + 1
-        if payload.emoji.name == '👍':
-            await channel.send(newyes)
-            await self.config.user(user).yes.set(newyes)
-        if payload.emoji.name == '👎':
-            await channel.send(no)
-            await self.config.user(user).yes.set(newno)
+        channel = ctx.guild.get_channel(channel_id)
+        yes = await self.config.guild(ctx.guild).yes()
+        no = await self.config.guild(ctx.guild).no()
+        if vote == "yes":
+            yes = yes + 1
+        if vote == "no":
+            no = no + 1
+        if message is None:
+            pdmessage = await channel.send(f"**{votee.mention}:**@  {yes} yes votes |  {no} no votes")
+            await self.config.guild(ctx.guild).pdmessage.set(pdmessage.id)
+            await self.config.guild(ctx.guild).yes.set(yes)
+            await self.config.guild(ctx.guild).no.set(no)
+        else:
+            pdmessage_id = await self.config.guild(ctx.guild).pdmessage()
+            pdmessage = await channel.fetch_message(pdmessage_id)
+            msg = f"**{votee.mention}:**@  {yes} yes votes |  {no} no votes"
+            await pdmessageid.edit(content=msg)
