@@ -68,7 +68,7 @@ class PDVote(Cog):
         await vote.add_reaction(emoji2)
 
     @commands.Cog.listener()
-    async def on_raw_reaction_add(self, reaction):
+    async def on_raw_reaction_add(self, ctx, reaction):
         """on reactions"""
         message_id = await self.config.guild(ctx.guild).PDmessage()
         channel_id = "704891050942267396"
@@ -80,4 +80,4 @@ class PDVote(Cog):
         if reaction.emoji == "👎":
             await channel.send("No")
         else:
-            await ctx.send("FFS")
+            await channel.send("FFS")
