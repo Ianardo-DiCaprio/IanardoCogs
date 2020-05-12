@@ -31,7 +31,7 @@ class PDVote(Cog):
 
         self.config.register_global(**default_global)
         self.config.register_global(**default_user)
-        self.config.register_global(**default_guild)
+        self.config.register_guild(**default_guild)
 
     @commands.group(name="pdvotes", autohelp=True)
     async def _pdvotes(self, ctx: commands.Context):
