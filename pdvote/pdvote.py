@@ -33,8 +33,8 @@ class PDVote(Cog):
         self.config.register_global(**default_user)
         self.config.register_global(**default_guild)
 
-    @commands.group(name="pdvote", autohelp=True)
-    async def _pdvote(self, ctx: commands.Context):
+    @commands.group(name="pdvotes", autohelp=True)
+    async def _pdvotes(self, ctx: commands.Context):
         """
         PD vote commands
         """
