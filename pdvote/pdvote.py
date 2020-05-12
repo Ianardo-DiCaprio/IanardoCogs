@@ -74,4 +74,7 @@ class PDVote(Cog):
         message = await channel.fetch_message(payload.message_id)
         user = await self.bot.fetch_user(payload.user_id)
         emoji = payload.emoji
-        await channel.send(emoji)
+        if emoji = :white_check_mark::
+            await channel.send("yes")
+        if emoji = :x::
+            await channel.send("no")
