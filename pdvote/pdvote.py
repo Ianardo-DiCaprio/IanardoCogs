@@ -1,0 +1,98 @@
+from typing import Any
+from datetime import datetime
+import asyncio
+import discord
+
+from redbot.core import Config, checks, commands
+from redbot.core.bot import Red
+from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
+from redbot.core.utils.menus import start_adding_reactions
+from datetime import datetime
+from pytz import timezone
+
+Cog: Any = getattr(commands, "Cog", object)
+
+
+class PDVote(Cog):
+    """
+    Simple LFG commands
+    """
+
+    __author__ = "Ianardo DiCaprio"
+    __version__ = "1.0.0"
+
+    def __init__(self, bot: Red):
+        self.bot = bot
+        self.config = Config.get_conf(self, 699114013, force_registration=True)
+
+        default_user = {"yes": 0, "no": 0, "PDmessage": None}
+        default_guild = {"votee": None}
+        default_global = {"PDvote_channel": None}
+
+        self.config.register_global(**default_global)
+        self.config.register_global(**default_user)
+        self.config.register_global(**default_guild)
+
+    @commands.group(name="pdvote", autohelp=True)
+    async def _pdvote(self, ctx: commands.Context):
+        """
+        PD vote commands
+        """
+
+    @_pdvotes.command()
+    @commands.guild_only()
+    async def channel(self, ctx, channel: discord.TextChannel = None):
+        """Set the channel votes get sent to."""
+        if channel is None:
+            await self.config.PDvote_channel.set(channel)
+            await ctx.send("Votes has been disabled")
+        else:
+            await self.config.PDvote_channel.set(channel.id)
+            await ctx.send(
+                ("The votes channel has been set to {channel.mention}").format(
+                    channel=channel
+                )
+            )
+
+    @commands.command()
+    @commands.guild_only()
+    async def pdvote(self, ctx, user: discord.Member = None):
+        """Set who is being voted on."""
+        await self.config.guild(ctx.guild).votee.set(user.id)
+        description = f"{user.mention} is being voted on for a promotion, react below to cast your vote!"
+        embed = discord.Embed(description=description, color=0x00FFFF)
+        embed.set_author(name="PD Promotions")
+        vote = await ctx.send(embed=embed)
+        await self.config.PDmessage.set(vote.id)
+        emoji = "✅"
+        emoji2 = "❌"
+        await vote.add_reaction(emoji)
+        await vote.add_reaction(emoji2)
+
+    @commands.Cog.listener()
+    async def on_react(self, reaction, user):
+        """on reactions"""
+        if reaction.message.id != await self.config.PDmessage():
+            return
+        if user == self.bot.user:
+            return
+        votee = await self.config.guild(ctx.guild).votee()
+        if user.id == votee:
+            emoji = "✅"
+            emoji2 = "❌"
+            try:
+                await reaction.message.remove_reaction(emoji, user)
+            except:
+                await reaction.message.remove_reaction(emoji2, user)
+            return
+        channel_id = await self.config.PDvote_channel()
+        channel = ctx.guild.get_channel(channel_id)
+        yes = await self.config.user(votee).yes()
+        no = await self.config.user(votee).no()
+        if reaction.emoji == "✅":
+            newyes = yes + 1
+            await self.config.user(votee).yes.set(newyes)
+        if reaction.emoji == "❌":
+            newno = no + 1
+            await self.config.user(votee).no.set(newno)
+        votes = await channel.send(f"{votee.mention} has {newyes} yes votes and {newno} no votes")
