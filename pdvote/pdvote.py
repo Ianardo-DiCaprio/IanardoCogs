@@ -63,7 +63,7 @@ class PDVote(Cog):
         vote = await ctx.send(embed=embed)
         await self.config.PDmessage.set(vote.id)
         emoji = "✅"
-        emoji2 = "❎"
+        emoji2 = "🗡"
         await vote.add_reaction(emoji)
         await vote.add_reaction(emoji2)
 
@@ -76,5 +76,5 @@ class PDVote(Cog):
         emoji = payload.emoji
         if payload.emoji == "✅":
             await channel.send("yes")
-        if payload.emoji == "❎":
+        if payload.emoji == "🗡":
             await channel.send("no")
