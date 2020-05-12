@@ -7,7 +7,7 @@ from redbot.core import Config, checks, commands
 from redbot.core.bot import Red
 from redbot.core.utils.predicates import MessagePredicate, ReactionPredicate
 from redbot.core.utils.menus import start_adding_reactions
-import redbot.core.config
+import redbot.core.config.Config
 from datetime import datetime
 from pytz import timezone
 
