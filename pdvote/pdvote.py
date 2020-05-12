@@ -72,7 +72,7 @@ class PDVote(Cog):
     async def on_raw_reaction_add(self, payload):
         """on reactions"""
         guild_id = payload.guild_id
-        guild = Config.guild_from_id(guild_id)
+        guild = Config.guild_from_id(self, guild_id)
         votemessage = await self.config.guild(guild).PDmessage()
         if payload.message_id != votemessage:
             return
