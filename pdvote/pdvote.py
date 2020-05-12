@@ -68,13 +68,9 @@ class PDVote(Cog):
         await vote.add_reaction(emoji2)
 
     @commands.Cog.listener()
-    async def on_raw_reaction_add(self, payload):
+    async def on_reaction_add(self, reaction, user):
         """on reactions"""
-        channel = await self.bot.fetch_channel(payload.channel_id)
-        message = await channel.fetch_message(payload.message_id)
-        user = await self.bot.fetch_user(payload.user_id)
-        emoji = payload.emoji
-        if emoji.reaction == '👍':
+        if reaction.emoji == '👍':
             await channel.send("yes")
-        if emoji.id == "709874094488682538":
+        if reaction.emoji == "👎":
             await channel.send("no")
