@@ -74,17 +74,7 @@ class PDVote(Cog):
         """on reactions"""
         if reaction.message.id != await self.config.PDmessage():
             return
-        if user == self.bot.user:
-            return
         votee = await self.config.guild(ctx.guild).votee()
-        if user.id == votee:
-            emoji = "✅"
-            emoji2 = "❌"
-            try:
-                await reaction.message.remove_reaction(emoji, user)
-            except:
-                await reaction.message.remove_reaction(emoji2, user)
-            return
         channel_id = await self.config.PDvote_channel()
         channel = ctx.guild.get_channel(channel_id)
         yes = await self.config.user(votee).yes()
