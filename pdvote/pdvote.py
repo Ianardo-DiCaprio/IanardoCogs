@@ -26,7 +26,7 @@ class PDVote(Cog):
         self.bot = bot
         self.config = Config.get_conf(self, 699114013, force_registration=True)
 
-        default_user = {"voted": 0}
+        default_user = {"voted": False}
         default_guild = {"votee": None, "PDvote_channel": None, "PDmessage": None, "votemessage": None, "yes": 0, "no": 0}
 
         self.config.register_guild(**default_guild)
@@ -81,7 +81,8 @@ class PDVote(Cog):
             await self.config.user(ctx.author).voted.set(1)
         pdmessage = await self.config.guild(ctx.guild).PDmessage()
         voted = await self.config.user(ctx.author).voted()
-        if voted == "1":
+        await self.config.user(ctx.author).voted.set(True)
+        if is voted:
             await ctx.send("You have already voted")
         else:
             if pdmessage is None:
@@ -94,7 +95,6 @@ class PDVote(Cog):
                 pdmessage = await channel.fetch_message(pdmessage_id)
                 msg = f"**{votee.mention}:** **Yes:** {yes} | **No:** {no}"
                 await pdmessage.edit(content=msg)
-            await self.config.user(ctx.author).voted.set(1)
 
     @commands.command()
     @commands.guild_only()
@@ -105,4 +105,4 @@ class PDVote(Cog):
         await self.config.guild(ctx.guild).no.set(0)
         await self.config.guild(ctx.guild).PDmessage.set(None)
         for user in ctx.guild.members:
-            await self.config.user(user).voted.set(0)
+            await self.config.user(user).voted.set(False)
