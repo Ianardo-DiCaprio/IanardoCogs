@@ -86,14 +86,14 @@ class PDVote(Cog):
             await ctx.send("You have already voted")
         else:
             if pdmessage is None:
-                pdmessage = await channel.send(f"**{votee.mention}:** **Yes:** {yes} | **No:** {no}")
+                pdmessage = await channel.send(f"**{votee.display_name}:** **Yes:** {yes} | **No:** {no}")
                 await self.config.guild(ctx.guild).PDmessage.set(pdmessage.id)
                 await self.config.guild(ctx.guild).yes.set(yes)
                 await self.config.guild(ctx.guild).no.set(no)
             else:
                 pdmessage_id = await self.config.guild(ctx.guild).PDmessage()
                 pdmessage = await channel.fetch_message(pdmessage_id)
-                msg = f"**{votee.mention}:** **Yes:** {yes} | **No:** {no}"
+                msg = f"**{votee.display_name}:** **Yes:** {yes} | **No:** {no}"
                 await pdmessage.edit(content=msg)
 
     @commands.command()
@@ -106,3 +106,4 @@ class PDVote(Cog):
         await self.config.guild(ctx.guild).PDmessage.set(None)
         for user in ctx.guild.members:
             await self.config.user(user).voted.set(False)
+        await ctx.send("Voting has been reset!")
