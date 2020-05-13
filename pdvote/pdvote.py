@@ -82,7 +82,7 @@ class PDVote(Cog):
         pdmessage = await self.config.guild(ctx.guild).PDmessage()
         voted = await self.config.user(ctx.author).voted()
         await self.config.user(ctx.author).voted.set(True)
-        if is voted:
+        if voted:
             await ctx.send("You have already voted")
         else:
             if pdmessage is None:
