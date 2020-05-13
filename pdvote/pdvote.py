@@ -82,19 +82,19 @@ class PDVote(Cog):
         pdmessage = await self.config.guild(ctx.guild).PDmessage()
         voted = await self.config.user(ctx.author).voted()
         if voted == "1":
-            await ctx.send("You have already voted.")
-            return
-        if pdmessage is None:
-            pdmessage = await channel.send(f"**{votee.mention}:**@  {yes} yes votes |  {no} no votes")
-            await self.config.guild(ctx.guild).PDmessage.set(pdmessage.id)
-            await self.config.guild(ctx.guild).yes.set(yes)
-            await self.config.guild(ctx.guild).no.set(no)
+            await ctx.send("You have already voted")
         else:
-            pdmessage_id = await self.config.guild(ctx.guild).PDmessage()
-            pdmessage = await channel.fetch_message(pdmessage_id)
-            msg = f"**{votee.mention}:** **Yes:** {yes} | **No:** {no}"
-            await pdmessage.edit(content=msg)
-        await self.config.user(ctx.author).voted.set(1)
+            if pdmessage is None:
+                pdmessage = await channel.send(f"**{votee.mention}:** **Yes:** {yes} | **No:** {no}")
+                await self.config.guild(ctx.guild).PDmessage.set(pdmessage.id)
+                await self.config.guild(ctx.guild).yes.set(yes)
+                await self.config.guild(ctx.guild).no.set(no)
+            else:
+                pdmessage_id = await self.config.guild(ctx.guild).PDmessage()
+                pdmessage = await channel.fetch_message(pdmessage_id)
+                msg = f"**{votee.mention}:** **Yes:** {yes} | **No:** {no}"
+                await pdmessage.edit(content=msg)
+            await self.config.user(ctx.author).voted.set(1)
 
     @commands.command()
     @commands.guild_only()
