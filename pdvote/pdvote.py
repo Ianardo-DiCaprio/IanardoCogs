@@ -26,9 +26,11 @@ class PDVote(Cog):
         self.bot = bot
         self.config = Config.get_conf(self, 699114013, force_registration=True)
 
+        default_user = {"voted": 0}
         default_guild = {"votee": None, "PDvote_channel": None, "PDmessage": None, "votemessage": None, "yes": 0, "no": 0}
 
         self.config.register_guild(**default_guild)
+        self.config.register_user(**default_user)
 
     @commands.group(name="pdvotes", autohelp=True)
     async def _pdvotes(self, ctx: commands.Context):
@@ -74,9 +76,15 @@ class PDVote(Cog):
         no = await self.config.guild(ctx.guild).no()
         if vote == "yes":
             yes = yes + 1
+            await self.config.user(ctx.author).voted.set(1)
         if vote == "no":
             no = no + 1
+            await self.config.user(ctx.author).voted.set(1)
         pdmessage = await self.config.guild(ctx.guild).PDmessage()
+        voted = await self.config.user(ctx.author).voted()
+        if voted == "1":
+            await ctx.send("You have already voted.")
+            return
         if pdmessage is None:
             pdmessage = await channel.send(f"**{votee.mention}:**@  {yes} yes votes |  {no} no votes")
             await self.config.guild(ctx.guild).PDmessage.set(pdmessage.id)
@@ -85,7 +93,7 @@ class PDVote(Cog):
         else:
             pdmessage_id = await self.config.guild(ctx.guild).PDmessage()
             pdmessage = await channel.fetch_message(pdmessage_id)
-            msg = f"**{votee.mention}:**@  {yes} yes votes |  {no} no votes"
+            msg = f"**{votee.mention}:** **Yes:** {yes} | **No:** {no}"
             await pdmessage.edit(content=msg)
 
     @commands.command()
@@ -96,3 +104,5 @@ class PDVote(Cog):
         await self.config.guild(ctx.guild).yes.set(0)
         await self.config.guild(ctx.guild).no.set(0)
         await self.config.guild(ctx.guild).PDmessage.set(None)
+        for user in ctx.guild.members:
+            await self.config.user(user).voted.set(0)
