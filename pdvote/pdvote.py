@@ -76,7 +76,6 @@ class PDVote(Cog):
         no = await self.config.guild(ctx.guild).no()
         if vote == "yes":
             yes = yes + 1
-            await self.config.user(ctx.author).voted.set(1)
         if vote == "no":
             no = no + 1
             await self.config.user(ctx.author).voted.set(1)
@@ -95,6 +94,7 @@ class PDVote(Cog):
             pdmessage = await channel.fetch_message(pdmessage_id)
             msg = f"**{votee.mention}:** **Yes:** {yes} | **No:** {no}"
             await pdmessage.edit(content=msg)
+        await self.config.user(ctx.author).voted.set(1)
 
     @commands.command()
     @commands.guild_only()
