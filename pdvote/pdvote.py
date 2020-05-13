@@ -70,6 +70,9 @@ class PDVote(Cog):
         """If your vote isn't `yes` or `no` I'm going to kill you!"""
         votee_id = await self.config.guild(ctx.guild).votee()
         votee = ctx.guild.get_member(votee_id)
+        if votee == ctx.author:
+            await ctx.send("You cannot vote for yourself!")
+            return
         channel_id = await self.config.guild(ctx.guild).PDvote_channel()
         channel = ctx.guild.get_channel(channel_id)
         yes = await self.config.guild(ctx.guild).yes()
