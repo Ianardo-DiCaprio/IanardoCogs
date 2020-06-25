@@ -52,7 +52,7 @@ class CheckLog(commands.Cog):
         """Please?"""
         channel = await self.config.guild(ctx.guild).channel()
         if message.channel.id == channel:
-	    replaced = message.replace("$", " ")
+            replaced = message.replace("$", " ")
             newmessage = [int(s) for s in replaced.split() if s.isdigit()]
             newermessage = str(newmessage).strip('[]')
             if int(newermessage) > 500000:
