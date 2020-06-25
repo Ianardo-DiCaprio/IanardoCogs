@@ -36,8 +36,8 @@ class CheckLog(commands.Cog):
     async def autolog_channel(self, ctx, *, role: discord.Role = None):
         """Change the role to which the bot mentions when specific values are exceeded."""
         if role:
-        await self.config.guild(ctx.guild).role.set(role.id)
-        await ctx.send(("The role has been set to <@{role.mention}>").format(channel=channel))
+            await self.config.guild(ctx.guild).role.set(role.id)
+            await ctx.send(("The role has been set to <@{role.mention}>").format(channel=channel))
 
     @commands.Cog.listener()
     async def on_message(ctx, message):
