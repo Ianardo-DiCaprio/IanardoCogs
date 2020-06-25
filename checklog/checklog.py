@@ -42,10 +42,14 @@ class CheckLog(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
         """Please?"""
+        channel = message.channel
         replaced = message.replace("$", " ")
+        await channel.send("Replaced")
         newmessage = [int(s) for s in replaced.split() if s.isdigit()]
+        await channel.send("newmessaged")
         newermessage = str(newmessage).strip('[]')
+        await channel.send("stripped")
         if int(newermessage) > 500000:
+            await channel.send("morethan")
             role = await self.config.guild(message.guild).role()
-            channel = message.channel
             await channel.send(f"<@{role}>")
