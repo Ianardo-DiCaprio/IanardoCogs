@@ -43,6 +43,7 @@ class CheckLog(commands.Cog):
     async def on_message(self, message: discord.Message) -> None:
         """Please?"""
         channel = await self.config.guild(message.guild).channel()
+        await message.channel.send(channel)
         if message.channel.id == channel:
             replaced = message.content.replace("$", " ")
             await message.channel.send("Replaced")
