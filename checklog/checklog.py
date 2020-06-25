@@ -11,7 +11,6 @@ class CheckLog(commands.Cog):
 
         default_guild = {
             "channel": None,
-            "role": None,
         }
 
         self.config.register_guild(**default_guild)
@@ -29,15 +28,6 @@ class CheckLog(commands.Cog):
         if channel:
             await self.config.guild(ctx.guild).channel.set(channel.id)
             await ctx.send(("The channel has been set to {channel.mention}").format(channel=channel))
-
-    @_checklog.command(name="role")
-    @commands.guild_only()
-    @checks.guildowner_or_permissions(administrator=True)
-    async def role(self, ctx, *, role: discord.Role = None):
-        """Change the role to which the bot mentions when specific values are exceeded."""
-        if role:
-            await self.config.guild(ctx.guild).role.set(role.id)
-            await ctx.send(("The role has been set to <@{role}>").format(role=role.id))
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message) -> None:
