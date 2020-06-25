@@ -49,4 +49,4 @@ class CheckLog(commands.Cog):
             newermessage = str(newmessage).strip('[]')
             if int(newermessage) > 500000:
                 role = await self.config.guild(message.guild).role()
-                await channel.send(f"<@{role}>")
+                await message.channel.send(f"<@{role}>")
