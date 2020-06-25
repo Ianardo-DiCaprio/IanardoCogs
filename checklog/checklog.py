@@ -40,13 +40,13 @@ class CheckLog(commands.Cog):
             await ctx.send(("The role has been set to <@{role}>").format(role=role.id))
 
     @commands.Cog.listener()
-    async def on_message(ctx, message):
+    async def on_message(self, message: discord.Message):
         """Please?"""
-        channel = await self.config.guild(ctx.guild).channel()
+        channel = await self.config.guild(message.guild).channel()
         if message.channel.id == channel:
             replaced = message.replace("$", " ")
             newmessage = [int(s) for s in replaced.split() if s.isdigit()]
             newermessage = str(newmessage).strip('[]')
             if int(newermessage) > 500000:
-                role = await self.config.guild(ctx.guild).role()
-                await ctx.send(f"<@{role}>")
+                role = await self.config.guild(message.guild).role()
+                await message.channel.send(f"<@{role}>")
