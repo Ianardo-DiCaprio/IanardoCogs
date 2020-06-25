@@ -1,6 +1,6 @@
 import asyncio
 import discord
-from redbot.core import commands, Config
+from redbot.core import commands, checks, Config
 
 class CheckLog(commands.Cog):
     def __init__(self, bot):
