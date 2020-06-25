@@ -45,12 +45,7 @@ class CheckLog(commands.Cog):
         channel = await self.config.guild(message.guild).channel()
         if message.channel.id == channel:
             replaced = message.content.replace("$", " ")
-            await message.channel.send("Replaced")
             newmessage = [int(s) for s in replaced.split() if s.isdigit()]
-            await message.channel.send("Split")
             newermessage = str(newmessage).strip('[]')
-            await message.channel.send("Stripped")
             if int(newermessage) > 500000:
-                await message.channel.send("More Than")
-                role = await self.config.guild(message.guild).role()
                 await message.channel.send("WOO")
