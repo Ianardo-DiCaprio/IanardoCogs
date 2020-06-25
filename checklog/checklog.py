@@ -40,9 +40,9 @@ class CheckLog(commands.Cog):
             await ctx.send(("The role has been set to <@{role}>").format(role=role.id))
 
     @commands.Cog.listener()
-    async def on_message(self, message):
+    async def on_message(self, message: discord.Message) -> None:
         """Please?"""
-        replaced = message.replace("$", " ")
+        replaced = message.content.replace("$", " ")
         await message.channel.send("Replaced")
         newmessage = [int(s) for s in replaced.split() if s.isdigit()]
         await message.channel.send("newmessaged")
