@@ -47,6 +47,5 @@ class CheckLog(commands.Cog):
             replaced = message.content.replace("$", " ")
             newmessage = [int(s) for s in replaced.split() if s.isdigit()]
             newermessage = str(newmessage).strip('[]')
-            if int(newermessage) > 1:
-                role = await self.config.guild(message.guild).role()
-                await message.channel.send(f"This works?")
+            if int(newermessage) > 500000:
+                await message.channel.send("<@689100532690059274>")
