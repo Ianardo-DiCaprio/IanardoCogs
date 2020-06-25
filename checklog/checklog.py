@@ -50,7 +50,7 @@ class CheckLog(commands.Cog):
     @commands.Cog.listener()
     async def on_message(ctx, message):
         """Please?"""
-	    channel = await self.config.guild(ctx.guild).channel()
+        channel = await self.config.guild(ctx.guild).channel()
         if message.channel.id = channel:
 	        replaced = message.replace("$", " ")
             newmessage = [int(s) for s in replaced.split() if s.isdigit()]
