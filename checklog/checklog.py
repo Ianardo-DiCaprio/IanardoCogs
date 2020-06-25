@@ -24,7 +24,7 @@ class CheckLog(commands.Cog):
     @_checklog.command(name="channel")
     @commands.guild_only()
     @checks.guildowner_or_permissions(administrator=True)
-    async def autolog_channel(self, ctx, *, channel: discord.TextChannel = None):
+    async def channel(self, ctx, *, channel: discord.TextChannel = None):
         """Change the channel to which the bot checks for specific values."""
         if channel:
             await self.config.guild(ctx.guild).channel.set(channel.id)
@@ -33,7 +33,7 @@ class CheckLog(commands.Cog):
     @_checklog.command(name="role")
     @commands.guild_only()
     @checks.guildowner_or_permissions(administrator=True)
-    async def autolog_channel(self, ctx, *, role: discord.Role = None):
+    async def role(self, ctx, *, role: discord.Role = None):
         """Change the role to which the bot mentions when specific values are exceeded."""
         if role:
             await self.config.guild(ctx.guild).role.set(role.id)
