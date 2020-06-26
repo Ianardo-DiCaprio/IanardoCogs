@@ -38,4 +38,4 @@ class CheckLog(commands.Cog):
             newmessage = [int(s) for s in replaced.split() if s.isdigit()]
             newermessage = str(newmessage).strip('[]')
             if int(newermessage) > 500000:
-                await message.channel.send("<@689100532690059274>")
+                await message.channel.send(f"<@&689100532690059274>")
