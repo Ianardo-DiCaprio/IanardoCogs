@@ -41,5 +41,5 @@ class CheckLog(commands.Cog):
                 await message.channel.send(f"<@&689100532690059274>")
             elif message.channel.id == channel:
                 msg = message.content
-                    if "AP pistol" in msg:
-                        await message.channel.send(f"<@&689100532690059274>")
+                if "AP pistol" in msg:
+                    await message.channel.send(f"<@&689100532690059274>")
