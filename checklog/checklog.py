@@ -40,6 +40,6 @@ class CheckLog(commands.Cog):
             if int(newermessage) > 500000:
                 await message.channel.send(f"<@&689100532690059274>")
         if message.channel.id == channel:
-            str = message.content
-            if "AP pistol" in str:
+            msg = message.content
+            if "AP pistol" in msg:
                 await message.channel.send(f"<@&689100532690059274>")
