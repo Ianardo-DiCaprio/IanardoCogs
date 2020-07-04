@@ -37,7 +37,9 @@ class CheckLog(commands.Cog):
             replaced = message.content.replace("$", " ")
             newmessage = [int(s) for s in replaced.split() if s.isdigit()]
             newermessage = str(newmessage).strip('[]')
-            if int(newermessage) > 500000:
-                await message.channel.send(f"<@&689100532690059274>")
-            elif "AP pistol" in message.content:
-                await message.channel.send(f"<@&689100532690059274>")
+            try:
+                if int(newermessage) > 500000:
+                    await message.channel.send(f"<@&689100532690059274>")
+            else:
+                if "AP pistol" in message.content:
+                    await message.channel.send(f"<@&689100532690059274>")
