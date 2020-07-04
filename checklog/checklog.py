@@ -39,5 +39,6 @@ class CheckLog(commands.Cog):
             newermessage = str(newmessage).strip('[]')
             if int(newermessage) > 500000:
                 await message.channel.send(f"<@&689100532690059274>")
-            elif "AP pistol" in message.content:
-                await message.channel.send(f"<@&689100532690059274>")
+            else:
+                if "AP pistol" in message.content:
+                    await message.channel.send(f"<@&689100532690059274>")
