@@ -39,12 +39,7 @@ class CheckLog(commands.Cog):
             newermessage = str(newmessage).strip('[]')
             if int(newermessage) > 500000:
                 await message.channel.send(f"<@&689100532690059274>")
-
-    @commands.Cog.listener()
-    async def on_message(self, message: discord.Message) -> None:
-        """Please?"""
-        channel = await self.config.guild(message.guild).channel()
-        if message.channel.id == channel:
-            msg = message.content
-            if "AP pistol" in msg:
-                await message.channel.send(f"<@&689100532690059274>")
+            elif message.channel.id == channel:
+                msg = message.content
+                    if "AP pistol" in msg:
+                        await message.channel.send(f"<@&689100532690059274>")
