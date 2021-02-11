@@ -246,7 +246,7 @@ class BasicSetup(BASECOG):
                         ")",
                         predicate2,
                     )
-                    await ctx.invoke(ctx.bot.get_command("filter add"), *words=filt)
+                    await ctx.invoke(ctx.bot.get_command("filter add"), *filt)
                     await asyncio.sleep(1)
         except asyncio.TimeoutError:
             pass
