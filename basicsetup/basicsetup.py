@@ -120,7 +120,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Bank")
             if cog:
-                if await self._get_response(ctx, question6, predicate) == "yes":
+                if await self._get_response(ctx, question6, predicate.lower()) == "yes":
                     name = await self._get_response(
                         ctx, "What would you like the bank to be called?", predicate2
                     )
@@ -180,7 +180,7 @@ class BasicSetup(BASECOG):
                         "Would you like users with default profile pics to be banned?",
                         predicate,
                     )
-                    if ans == "yes":
+                    if ans.lower()  == "yes":
                         await ctx.invoke(ctx.bot.get_command("dungeon profiletoggle`"))
                         await asyncio.sleep(1)
         except asyncio.TimeoutError:
@@ -201,7 +201,7 @@ class BasicSetup(BASECOG):
                         "Would you like to change the cooldown time for the payday command?",
                         predicate,
                     )
-                    if ans == "yes":
+                    if ans.lower()  == "yes":
                         await asyncio.sleep(1)
                         time = int(
                             await self._get_response(
@@ -220,7 +220,7 @@ class BasicSetup(BASECOG):
                             "accounts start with?",
                             predicate,
                         )
-                        if register == "yes":
+                        if register.lower()  == "yes":
                             await asyncio.sleep(1)
                             amount1 = await self._get_response(
                                 ctx,
@@ -276,7 +276,7 @@ class BasicSetup(BASECOG):
                     repeats = await self._get_response(
                         ctx, "Would you like to automatically delete repeated messages?", predicate
                     )
-                    if repeats == "yes":
+                    if repeats.lower()  == "yes":
                         await asyncio.sleep(1)
                         await ctx.invoke(ctx.bot.get_command("modset deleterepeats"))
                         await asyncio.sleep(1)
@@ -285,7 +285,7 @@ class BasicSetup(BASECOG):
                             "Would you like to automatically delete command messages?",
                             predicate,
                         )
-                        if delay == "yes":
+                        if delay.lower()  == "yes":
                             await asyncio.sleep(1)
                             delay1 = await self._get_response(
                                 ctx,
