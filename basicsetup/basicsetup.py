@@ -397,7 +397,7 @@ class BasicSetup(BASECOG):
                     role1 = await self._get_response(
                         ctx, "What role would you like admins to have?", predicate2
                     )
-                    await ctx.invoke(ctx.bot.get_command("set addadminrole"), *role1)
+                    await ctx.invoke(ctx.bot.get_command("set addadminrole"), role1)
                     await asyncio.sleep(1)
         except asyncio.TimeoutError:
             pass
