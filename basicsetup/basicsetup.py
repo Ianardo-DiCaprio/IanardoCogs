@@ -108,7 +108,8 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("BanCheck")
             if cog:
-                if await self._get_response(ctx, question5, predicate) == "yes":
+                quest = await self._get_response(ctx, question5, predicate)
+                if question.lower() == "yes":
                     channelmessage = await self._get_response(
                         ctx, "What channel would you like to be used as log?", predicate2
                     )
@@ -120,7 +121,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Bank")
             if cog:
-                if await self._get_response(ctx, question6, predicate.lower()) == "yes":
+                if await self._get_response(ctx, question6, predicate) == "yes":
                     name = await self._get_response(
                         ctx, "What would you like the bank to be called?", predicate2
                     )
