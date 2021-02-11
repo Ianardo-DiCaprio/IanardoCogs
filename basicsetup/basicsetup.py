@@ -22,7 +22,7 @@ class BasicSetup(BASECOG):
 
         await ctx.send(
             "**I will now ask you several questions which you need to answer. You"
-            "have 60 seconds to answer each question before the next question is asked.**"
+            " have 60 seconds to answer each question before the next question is asked.**"
         )
         await asyncio.sleep(1)
         await self.basic_setup(ctx)
