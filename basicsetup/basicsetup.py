@@ -63,7 +63,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("AntiMentionSpam")
             if cog:
-                if await self._get_response(ctx, question1, predicate) == "yes" or await self._get_response(ctx, question1, predicate) == "Yes":
+                if await self._get_response(ctx, question1, predicate) == "yes":
                     number = await self._get_response(
                         ctx,
                         "How many mentions from a single user in a single message "
@@ -94,7 +94,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Autorole")
             if cog:
-                if await self._get_response(ctx, question4, predicate) == "yes" or await self._get_response(ctx, question4, predicate) == "Yes":
+                if await self._get_response(ctx, question4, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("autorole toggle"))
                     await asyncio.sleep(1)
                     rolemessage = await self._get_response(
@@ -108,7 +108,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("BanCheck")
             if cog:
-                if await self._get_response(ctx, question5, predicate) == "yes" or await self._get_response(ctx, question5, predicate) == "Yes":
+                if await self._get_response(ctx, question5, predicate) == "yes":
                     channelmessage = await self._get_response(
                         ctx, "What channel would you like to be used as log?", predicate2
                     )
@@ -120,7 +120,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Bank")
             if cog:
-                if await self._get_response(ctx, question6, predicate) == 'yes' or await self._get_response(ctx, question6, predicate) == 'Yes':
+                if await self._get_response(ctx, question6, predicate) == True:
                     name = await self._get_response(
                         ctx, "What would you like the bank to be called?", predicate2
                     )
@@ -136,7 +136,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Grenzpolizei")
             if cog:
-                if await self._get_response(ctx, question7, predicate) == "yes" or await self._get_response(ctx, question7, predicate) == "Yes":
+                if await self._get_response(ctx, question7, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("gp autosetup"))
                     await asyncio.sleep(1)
         except asyncio.TimeoutError:
@@ -144,7 +144,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Casino")
             if cog:
-                if await self._get_response(ctx, question8, predicate) == "yes" or await self._get_response(ctx, question8, predicate) == "Yes":
+                if await self._get_response(ctx, question8, predicate) == "yes":
                     name = await self._get_response(
                         ctx, "What would you like the casino to be called?", predicate2
                     )
@@ -155,7 +155,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("CleverBot")
             if cog:
-                if await self._get_response(ctx, question9, predicate) == "yes" or await self._get_response(ctx, question9, predicate) == "Yes":
+                if await self._get_response(ctx, question9, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("cleverbotset toggle"))
                     await asyncio.sleep(1)
         except asyncio.TimeoutError:
@@ -163,7 +163,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Dungeon")
             if cog:
-                if await self._get_response(ctx, question10, predicate) == "yes" or await self._get_response(ctx, question10, predicate) == "Yes":
+                if await self._get_response(ctx, question10, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("dungeon toggle"))
                     await asyncio.sleep(0.5)
                     await ctx.invoke(ctx.bot.get_command("dungeon autoban"))
@@ -188,7 +188,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Economy")
             if cog:
-                if await self._get_response(ctx, question11, predicate) == "yes" or await self._get_response(ctx, question11, predicate) == "Yes":
+                if await self._get_response(ctx, question11, predicate) == "yes":
                     amount = await self._get_response(
                         ctx,
                         "How many credits should be given for using the payday command?",
@@ -236,7 +236,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Filter")
             if cog:
-                if await self._get_response(ctx, question12, predicate) == "yes" or await self._get_response(ctx, question12, predicate) == "Yes":
+                if await self._get_response(ctx, question12, predicate) == "yes":
                     filt = await self._get_response(
                         ctx,
                         "What words would you like to be added to the filter? "
@@ -253,7 +253,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("InfoChannel")
             if cog:
-                if await self._get_response(ctx, question13, predicate) == "yes" or await self._get_response(ctx, question13, predicate) == "Yes":
+                if await self._get_response(ctx, question13, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("infochannel"))
                     await asyncio.sleep(1)
         except asyncio.TimeoutError:
@@ -261,7 +261,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Leaver")
             if cog:
-                if await self._get_response(ctx, question14, predicate) == "yes" or await self._get_response(ctx, question14, predicate) == "Yes":
+                if await self._get_response(ctx, question14, predicate) == "yes":
                     await ctx.send(
                         "**Use `]leaverset channel` in the channel you wish to "
                         "recieve the messages**"
@@ -272,7 +272,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Mod")
             if cog:
-                if await self._get_response(ctx, question16, predicate) == "yes" or await self._get_response(ctx, question16, predicate) == "Yes":
+                if await self._get_response(ctx, question16, predicate) == "yes":
                     repeats = await self._get_response(
                         ctx, "Would you like to automatically delete repeated messages?", predicate
                     )
@@ -301,7 +301,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("ModLog")
             if cog:
-                if await self._get_response(ctx, question17, predicate) == "yes" or await self._get_response(ctx, question17, predicate) == "Yes":
+                if await self._get_response(ctx, question17, predicate) == "yes":
                     await asyncio.sleep(1)
                     channelmessage = await self._get_response(
                         ctx, "What channel would you like the logs to go to?", predicate2
@@ -314,7 +314,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Reports")
             if cog:
-                if await self._get_response(ctx, question18, predicate) == "yes" or await self._get_response(ctx, question18, predicate) == "Yes":
+                if await self._get_response(ctx, question18, predicate) == "yes":
                     await asyncio.sleep(1)
                     channelmessage = await self._get_response(
                         ctx, "What channel would you like the reports to go to?", predicate2
@@ -329,7 +329,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Starboard")
             if cog:
-                if await self._get_response(ctx, question19, predicate) == "yes" or await self._get_response(ctx, question19, predicate) == "Yes":
+                if await self._get_response(ctx, question19, predicate) == "yes":
                     await asyncio.sleep(1)
                     name = await self._get_response(
                         ctx, "What would you like the starboard to be called?", predicate2
@@ -348,7 +348,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Tickets")
             if cog:
-                if await self._get_response(ctx, question20, predicate) == "yes" or await self._get_response(ctx, question20, predicate) == "Yes":
+                if await self._get_response(ctx, question20, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("ticket set setup"))
                     await asyncio.sleep(1)
         except asyncio.TimeoutError:
@@ -356,7 +356,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Welcome")
             if cog:
-                if await self._get_response(ctx, question21, predicate) == "yes" or await self._get_response(ctx, question21, predicate) == "Yes":
+                if await self._get_response(ctx, question21, predicate) == "yes":
                     await ctx.invoke(ctx.bot.get_command("welcomeset leave toggle"))
                     await ctx.invoke(ctx.bot.get_command("welcomeset ban toggle"))
                     await ctx.invoke(ctx.bot.get_command("welcomeset unban toggle"))
@@ -373,7 +373,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Core")
             if cog:
-                if await self._get_response(ctx, question22, predicate) == "yes" or await self._get_response(ctx, question22, predicate) == "Yes":
+                if await self._get_response(ctx, question22, predicate) == "yes":
                     await asyncio.sleep(1)
                     rolemessage = await self._get_response(
                         ctx, "What role would you like mods to have?", predicate2
@@ -392,7 +392,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("ReactRoles")
             if cog:
-                if await self._get_response(ctx, question23, predicate) == "yes" or await self._get_response(ctx, question23, predicate) == "Yes":
+                if await self._get_response(ctx, question23, predicate) == "yes":
                     await ctx.send(
                         "Use `[p]reactroles add ` with the message ID, channel, emoji and role.\n"
                         "**Hint: To get the message ID, turn on developer mode in Discord's "
