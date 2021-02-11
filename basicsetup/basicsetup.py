@@ -228,7 +228,7 @@ class BasicSetup(BASECOG):
                                 predicate1,
                             )
                             await ctx.invoke(
-                                ctx.bot.get_command("economyset registeramount"), creds=amount1
+                                ctx.bot.get_command("economyset registeramount"), creds=int(amount1)
                             )
                             await asyncio.sleep(1)
         except asyncio.TimeoutError:
