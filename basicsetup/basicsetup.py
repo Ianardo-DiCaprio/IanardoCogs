@@ -108,7 +108,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("BanCheck")
             if cog:
-                if await self._get_response(ctx, question5, predicate)
+                if await self._get_response(ctx, question5, predicate) == "yes":
                     channelmessage = await self._get_response(
                         ctx, "What channel would you like to be used as log?", predicate2
                     )
