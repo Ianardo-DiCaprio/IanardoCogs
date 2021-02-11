@@ -194,7 +194,7 @@ class BasicSetup(BASECOG):
                         "How many credits should be given for using the payday command?",
                         predicate1,
                     )
-                    await ctx.invoke(ctx.bot.get_command("economyset paydayamount"), *amount)
+                    await ctx.invoke(ctx.bot.get_command("economyset paydayamount"), creds=int(amount))
                     await asyncio.sleep(1)
                     ans = await self._get_response(
                         ctx,
