@@ -240,8 +240,8 @@ class BasicSetup(BASECOG):
                     filt = await self._get_response(
                         ctx,
                         "What words would you like to be added to the filter? "
-                        "(seperate each word with a space, if it is a sentence "
-                        "or phrase put it insidel "
+                        "(separate each word with a space, if it is a sentence "
+                        "or phrase put it inside "
                         "quotes"
                         ")",
                         predicate2,
