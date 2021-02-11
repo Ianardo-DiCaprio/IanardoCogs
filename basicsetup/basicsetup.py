@@ -417,6 +417,5 @@ class BasicSetup(BASECOG):
         question = await ctx.send(question)
         resp = await ctx.bot.wait_for("message", timeout=60, check=predicate)
         await asyncio.sleep(2)
-        await resp.delete()
         await question.delete()
         return resp.content
