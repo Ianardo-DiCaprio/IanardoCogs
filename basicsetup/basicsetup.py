@@ -270,19 +270,6 @@ class BasicSetup(BASECOG):
         except asyncio.TimeoutError:
             pass
         try:
-            cog = self.bot.get_cog("Lyrics")
-            if cog:
-                if await self._get_response(ctx, question15, predicate) == "yes":
-                    await asyncio.sleep(1)
-                    channelmessage = await self._get_response(
-                        ctx, "What channel would you like the lyrics to go to?", predicate2
-                    )
-                    channel = await (TextChannelConverter()).convert(ctx, channelmessage)
-                    await ctx.invoke(ctx.bot.get_command("lyricset channel"), channel_name=channel)
-                    await asyncio.sleep(1)
-        except asyncio.TimeoutError:
-            pass
-        try:
             cog = self.bot.get_cog("Mod")
             if cog:
                 if await self._get_response(ctx, question16, predicate) == "yes":
