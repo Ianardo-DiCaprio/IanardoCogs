@@ -120,8 +120,7 @@ class BasicSetup(BASECOG):
         try:
             cog = self.bot.get_cog("Bank")
             if cog:
-                quest =  await self._get_response(ctx, question6, predicate):
-                if quest.lower() == "yes":
+                if (await self._get_response(ctx, question6, predicate)).lower() = "yes":
                     name = await self._get_response(
                         ctx, "What would you like the bank to be called?", predicate2
                     )
