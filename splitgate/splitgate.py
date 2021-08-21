@@ -63,7 +63,9 @@ class SPLITGATE(commands.Cog):
         try:
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
                 username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title=f"Splitgate Stats - {username}", color=0x8C05D2)
+            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 1**", color=0x8C05D2)
+            embed.set_thumbnail(url=data["data"]["segments"][0]["stats"]["rankLevel"]["metadata"]["imageUrl"])
+            embed.set_footer(text="React to change pages for more stats!")
             if data["data"]["segments"][0]["stats"]["firstBloods"]["value"] != "N/A":
                 firstBloods = data["data"]["segments"][0]["stats"]["firstBloods"]["value"]
                 embed.add_field(name="**First Bloods:**", value=firstBloods, inline=True)
