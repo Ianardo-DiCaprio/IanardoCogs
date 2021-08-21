@@ -53,12 +53,11 @@ class SPLITGATE(commands.Cog):
                 f"https://public-api.tracker.gg/v2/splitgate/standard/profile/psn/Kill_Switch_YT7",headers=headers
             ) as request:
                 data = await request.json()
-        try:
+        username = data["platformInfo"]["platformUserHandle"]
+        embed = discord.Embed(title="Username", color=0x8C05D2)
+        if data["platformInfo"]["platformUserHandle"] != "N/A":
             username = data["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title="Username", color=0x8C05D2)
-            if data["platformInfo"]["platformUserHandle"] != "N/A":
-                username = data["platformInfo"]["platformUserHandle"]
-                embed.add_field(name="**Username:**", value=username, inline=True)
-            embeds.append(embed)
-            await menu(
-                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180)
+            embed.add_field(name="**Username:**", value=username, inline=True)
+        embeds.append(embed)
+        await menu(
+            ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180)
