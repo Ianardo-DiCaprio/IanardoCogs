@@ -18,8 +18,12 @@ class SPLITGATE(commands.Cog):
             "platform": None,
             "username": None,
         }
+        default_global = {
+            "APIKey": None
+        }
 
         self.conf.register_user(**default_user)
+        self.config.register_global(**default_global)
 
     def cog_unload(self):
         self.bot.loop.create_task(self._session.close())
@@ -43,6 +47,17 @@ class SPLITGATE(commands.Cog):
         else:
             await self.conf.user(ctx.author).username.set(username)
             await ctx.send("Your username has been removed.")
+
+    @commands.command()
+    async def splitgatepset(self, ctx, api=None):
+        """Command to set Splitgate api"""
+        if api:
+            await self.config.report_channel.set(api)
+            await ctx.send("Your API has been set.")
+        else:
+            await self.conf.user(ctx.author).platform.set(api)
+            await ctx.send("Your API has been removed.")
+
     @commands.command()
     async def splitgatestats(self, ctx, platform: Optional[str] = "", *, username: Optional[str] = ""):
         """Command to get your Splitgate stats
@@ -54,7 +69,7 @@ class SPLITGATE(commands.Cog):
             username = await self.conf.user(user).username()
         username = username.replace(" ", "%20")
         platform = platform.replace("xbox", "xbl")
-        headers = {'TRN-Api-Key':'91b58a5a-5df3-4292-82f3-6262c829709d'}
+        headers = {"'TRN-Api-Key':" + await self.config.APIkey()}
         async with self._session.get(
                 f"https://public-api.tracker.gg/v2/splitgate/standard/profile/{platform}/{username}",headers=headers
             ) as request:
