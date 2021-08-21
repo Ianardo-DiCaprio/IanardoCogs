@@ -49,7 +49,7 @@ class SPLITGATE(commands.Cog):
             await ctx.send("Your username has been removed.")
 
     @commands.command()
-    async def splitgatepset(self, ctx, api=None):
+    async def splitgateapiset(self, ctx, api=None):
         """Command to set Splitgate api"""
         if api:
             await self.config.report_channel.set(api)
