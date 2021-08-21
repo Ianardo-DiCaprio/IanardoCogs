@@ -63,4 +63,3 @@ class SPLITGATE(commands.Cog):
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
-        
