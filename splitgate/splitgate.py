@@ -59,15 +59,18 @@ class SPLITGATE(commands.Cog):
                 f"https://public-api.tracker.gg/v2/splitgate/standard/profile/{platform}/{username}",headers=headers
             ) as request:
                 data = await request.json()
-        username = data["data"]["platformInfo"]["platformUserHandle"]
-        embed = discord.Embed(title="Splitgate Stats", color=0x8C05D2)
-        if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
+        try:
             username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed.add_field(name="**Username:**", value=username, inline=True)
-        if data["data"]["segments"][0]["stats"]["kills"]["value"] != "N/A":
-            kills = data["data"]["segments"][0]["stats"]["kills"]["value"]
-            embed.add_field(name="**kills:**", value=kills, inline=True)
-        embeds.append(embed)
-        await menu(
-            ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180)
+            embed = discord.Embed(title="Splitgate Stats", color=0x8C05D2)
+            if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
+                username = data["data"]["platformInfo"]["platformUserHandle"]
+                embed.add_field(name="**Username:**", value=username, inline=True)
+            if data["data"]["segments"][0]["stats"]["kills"]["value"] != "N/A":
+                kills = data["data"]["segments"][0]["stats"]["kills"]["value"]
+                embed.add_field(name="**kills:**", value=kills, inline=True)
+            embeds.append(embed)
+            await menu(
+                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180)
+        except:
+            await ctx.send("Either the platform or username is incorrect, please make sure to use pc, psn or xbox for the platform and make sure you spelt your name correctly.")
         
