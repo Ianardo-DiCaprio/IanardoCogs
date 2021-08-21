@@ -136,37 +136,34 @@ class SPLITGATE(commands.Cog):
                 enemyPortalsDestroyed = data["data"]["segments"][0]["stats"]["enemyPortalsDestroyed"]["value"]
                 embed.add_field(name="**Enemy Portals Destroyed**", value=enemyPortalsDestroyed, inline=True)
             embeds.append(embed)
-                
+
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
                 username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 3**", color=0x8C05D2)
-            if data["data"]["segments"][0]["stats"]["headshotAccuracy"]["displayValue"] != "N/A":
-                headshotAccuracy = data["data"]["segments"][0]["stats"]["headshotAccuracy"]["displayValue"]
-                embed.add_field(name="**Headshot Accuracy:**", value=headshotAccuracy, inline=True)
-            if data["data"]["segments"][0]["stats"]["shotsAccuracy"]["displayValue"] != "N/A":
-                shotsAccuracy = data["data"]["segments"][0]["stats"]["shotsAccuracy"]["displayValue"]
-                embed.add_field(name="**Accuracy:**", value=shotsAccuracy, inline=True)
-            if data["data"]["segments"][0]["stats"]["shotsFired"]["value"] != "N/A":
-                shotsFired = data["data"]["segments"][0]["stats"]["shotsFired"]["value"]
-                embed.add_field(name="**Shots Fired:**", value=shotsFired, inline=True)
-            if data["data"]["segments"][0]["stats"]["shotsLanded"]["vValue"] != "N/A":
-                shotsLanded = data["data"]["segments"][0]["stats"]["shotsLanded"]["value"]
-                embed.add_field(name="**Shots Landed:**", value=shotsLanded, inline=True)
-            if data["data"]["segments"][0]["stats"]["kd"]["value"] != "N/A":
-                kd = data["data"]["segments"][0]["stats"]["kd"]["value"]
-                embed.add_field(name="**K/D:**", value=kd, inline=True)
-            if data["data"]["segments"][0]["stats"]["kad"]["value"] != "N/A":
-                kad = data["data"]["segments"][0]["stats"]["kad"]["value"]
-                embed.add_field(name="**KA/D:**", value=kad, inline=True)
-            if data["data"]["segments"][0]["stats"]["killsPerMinute"]["value"] != "N/A":
-                killsPerMinute = data["data"]["segments"][0]["stats"]["killsPerMinute"]["value"]
-                embed.add_field(name="**Kills Per Minute:**", value=killsPerMinute, inline=True)
-            if data["data"]["segments"][0]["stats"]["killsPerMatch"]["value"] != "N/A":
-                killsPerMatch = data["data"]["segments"][0]["stats"]["killsPerMatch"]["value"]
-                embed.add_field(name="**Kills Per Match:**", value=killsPerMatch, inline=True)
-            if data["data"]["segments"][0]["stats"]["teabags"]["value"] != "N/A":
-                teabags = data["data"]["segments"][0]["stats"]["teabags"]["value"]
-                embed.add_field(name="**Teabags:**", value=teabags, inline=True)
+            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 4**", color=0x8C05D2)
+            if data["data"]["segments"][0]["stats"]["progressionXp"]["value"] != "N/A":
+                progressionXp = data["data"]["segments"][0]["stats"]["progressionXp"]["value"]
+                embed.add_field(name="**Total XP:**", value=progressionXp, inline=True)
+            if data["data"]["segments"][0]["stats"]["progressionXp"]["value"] != "N/A":
+                progressionXp = data["data"]["segments"][0]["stats"]["progressionXp"]["value"]
+                embed.add_field(name="**Total XP:**", value=progressionXp, inline=True)
+            if data["data"]["segments"][0]["stats"]["timePlayed"]["displayValue"] != "N/A":
+                timePlayed = data["data"]["segments"][0]["stats"]["timePlayed"]["displayValue"]
+                embed.add_field(name="**Time Played:**", value=timePlayed, inline=True)
+            if data["data"]["segments"][0]["stats"]["matchesPlayed"]["value"] != "N/A":
+                matchesPlayed = data["data"]["segments"][0]["stats"]["matchesPlayed"]["value"]
+                embed.add_field(name="**Matches Played:**", value=matchesPlayed, inline=True)
+            if data["data"]["segments"][0]["stats"]["damageDealt"]["value"] != "N/A":
+                damageDealt = data["data"]["segments"][0]["stats"]["damageDealt"]["value"]
+                embed.add_field(name="**Damage Dealt:**", value=damageDealt, inline=True)
+            if data["data"]["segments"][0]["stats"]["wins"]["value"] != "N/A":
+                wins = data["data"]["segments"][0]["stats"]["wins"]["value"]
+                embed.add_field(name="**Wins:**", value=wins, inline=True)
+            if data["data"]["segments"][0]["stats"]["losses"]["value"] != "N/A":
+                losses = data["data"]["segments"][0]["stats"]["losses"]["value"]
+                embed.add_field(name="**Losses:**", value=losses, inline=True)
+            if data["data"]["segments"][0]["stats"]["wlPercentage"]["value"] != "N/A":
+                wlPercentage = data["data"]["segments"][0]["stats"]["wlPercentage"]["value"]
+                embed.add_field(name="**Win/Loss Percent:**", value=f"{wlPercentage}%", inline=True)
             embeds.append(embed)
 
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
