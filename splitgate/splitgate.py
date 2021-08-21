@@ -61,5 +61,4 @@ class SPLITGATE(commands.Cog):
                 embed.add_field(name="**Username:**", value=username, inline=True)
             embeds.append(embed)
             await menu(
-                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
-            )
+                ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180)
