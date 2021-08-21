@@ -69,7 +69,7 @@ class SPLITGATE(commands.Cog):
             username = await self.conf.user(user).username()
         username = username.replace(" ", "%20")
         platform = platform.replace("xbox", "xbl")
-        headers = await self.conf.TRN-Api-Key()
+        headers = await self.conf.apikey()
         async with self._session.get(
                 f"https://public-api.tracker.gg/v2/splitgate/standard/profile/{platform}/{username}",headers=headers
             ) as request:
