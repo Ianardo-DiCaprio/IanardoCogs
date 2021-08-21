@@ -240,53 +240,6 @@ class SPLITGATE(commands.Cog):
                 medalKillstreak6 = data["data"]["segments"][0]["stats"]["medalKillstreak6"]["value"]
                 embed.add_field(name="**50 Killstreaks:**", value=medalKillstreak6, inline=True)
             embeds.append(embed)
-
-            if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
-                username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 7**", color=0x8C05D2)
-            if data["data"]["segments"][0]["stats"]["teabagsDenied"]["value"] != "N/A":
-                teabagsDenied = data["data"]["segments"][0]["stats"]["teabagsDenied"]["value"]
-                embed.add_field(name="**Teabags Denied:**", value=teabagsDenied, inline=True)
-            if data["data"]["segments"][0]["stats"]["oddballsPickedUp"]["value"] != "N/A":
-                oddballsPickedUp = data["data"]["segments"][0]["stats"]["oddballsPickedUp"]["value"]
-                embed.add_field(name="**Oddballs Picked Up:**", value=oddballsPickedUp, inline=True)
-            if data["data"]["segments"][0]["stats"]["oddballKills"]["value"] != "N/A":
-                oddballKills = data["data"]["segments"][0]["stats"]["oddballKills"]["value"]
-                embed.add_field(name="**Oddball Kills:**", value=oddballKills, inline=True)
-            if data["data"]["segments"][0]["stats"]["oddballCarrierKills"]["value"] != "N/A":
-                oddballCarrierKills = data["data"]["segments"][0]["stats"]["oddballCarrierKills"]["value"]
-                embed.add_field(name="**Oddball Carrier Kills:**", value=oddballCarrierKills, inline=True)
-            if data["data"]["segments"][0]["stats"]["killsOnHill"]["value"] != "N/A":
-                killsOnHill = data["data"]["segments"][0]["stats"]["killsOnHill"]["value"]
-                embed.add_field(name="**Kills On Hill:**", value=killsOnHill, inline=True)
-            if data["data"]["segments"][0]["stats"]["killsAsVIP"]["value"] != "N/A":
-                killsAsVIP = data["data"]["segments"][0]["stats"]["killsAsVIP"]["value"]
-                embed.add_field(name="**Kills As VIP:**", value=killsAsVIP, inline=True)
-            if data["data"]["segments"][0]["stats"]["hillsNeutralized"]["value"] != "N/A":
-                hillsNeutralized = data["data"]["segments"][0]["stats"]["hillsNeutralized"]["value"]
-                embed.add_field(name="**Hills Neutralized:**", value=hillsNeutralized, inline=True)
-            if data["data"]["segments"][0]["stats"]["hillsCaptured"]["value"] != "N/A":
-                hillsCaptured = data["data"]["segments"][0]["stats"]["hillsCaptured"]["value"]
-                embed.add_field(name="**Hills Captured:**", value=hillsCaptured, inline=True)
-            if data["data"]["segments"][0]["stats"]["highestConsecutiveKills"]["value"] != "N/A":
-                highestConsecutiveKills = data["data"]["segments"][0]["stats"]["highestConsecutiveKills"]["value"]
-                embed.add_field(name="**Highest Consecutive Kills:**", value=highestConsecutiveKills, inline=True)
-            if data["data"]["segments"][0]["stats"]["flagsReturned"]["value"] != "N/A":
-                flagsReturned = data["data"]["segments"][0]["stats"]["flagsReturned"]["value"]
-                embed.add_field(name="**Flags Returned:**", value=flagsReturned, inline=True)
-            if data["data"]["segments"][0]["stats"]["flagsPickedUp"]["value"] != "N/A":
-                flagsPickedUp = data["data"]["segments"][0]["stats"]["flagsPickedUp"]["value"]
-                embed.add_field(name="**Flags Picked Up:**", value=flagsPickedUp, inline=True)
-            if data["data"]["segments"][0]["stats"]["flagKills"]["value"] != "N/A":
-                flagKills = data["data"]["segments"][0]["stats"]["flagKills"]["value"]
-                embed.add_field(name="**Flag Kills:**", value=flagKills, inline=True)
-            if data["data"]["segments"][0]["stats"]["flagCarrierKills"]["value"] != "N/A":
-                flagCarrierKills = data["data"]["segments"][0]["stats"]["flagCarrierKills"]["value"]
-                embed.add_field(name="**Flag Carrier Kills:**", value=flagCarrierKills, inline=True)
-            if data["data"]["segments"][0]["stats"]["enemyKillsOnHill"]["value"] != "N/A":
-                enemyKillsOnHill = data["data"]["segments"][0]["stats"]["enemyKillsOnHill"]["value"]
-                embed.add_field(name="**Enemy Kills On Hill:**", value=enemyKillsOnHill, inline=True)
-            embeds.append(embed)
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180)
         except:
