@@ -99,8 +99,8 @@ class SPLITGATE(commands.Cog):
             losses = data["data"]["segments"][0]["stats"]["losses"]["value"]
             embed.add_field(name="**Losses:**", value=losses, inline=True)
         if data["data"]["segments"][0]["stats"]["wlPercentage"]["value"] != "N/A":
-            wlPercentage = data["data"]["segments"][0]["stats"]["wlPercentage"]["value"]
-            embed.add_field(name="**Win/Loss Percent:**", value=wlPercentage + "%", inline=True)
+            wlPercentage = data["data"]["segments"][0]["stats"]["wlPercentage"]["value"] + "%"
+            embed.add_field(name="**Win/Loss Percent:**", value=wlPercentage, inline=True)
         if data["data"]["segments"][0]["stats"]["timePlayed"]["displayValue"] != "N/A":
             timePlayed = data["data"]["segments"][0]["stats"]["timePlayed"]["displayValue"]
             embed.add_field(name="**Time Played:**", value=timePlayed, inline=True)
@@ -114,8 +114,8 @@ class SPLITGATE(commands.Cog):
             headshotKills = data["data"]["segments"][0]["stats"]["headshotKills"]["value"]
             embed.add_field(name="**Headshot Kills:**", value=headshotKills, inline=True)
         if data["data"]["segments"][0]["stats"]["headshotAccuracy"]["value"] != "N/A":
-            headshotAccuracy = data["data"]["segments"][0]["stats"]["headshotAccuracy"]["value"]
-            embed.add_field(name="**Headshot Accuracy:**", value=headshotAccuracy + "%", inline=True)
+            headshotAccuracy = data["data"]["segments"][0]["stats"]["headshotAccuracy"]["value"] + "%"
+            embed.add_field(name="**Headshot Accuracy:**", value=headshotAccuracy, inline=True)
         if data["data"]["segments"][0]["stats"]["shotsFired"]["value"] != "N/A":
             shotsFired = data["data"]["segments"][0]["stats"]["shotsFired"]["value"]
             embed.add_field(name="**Shots Fired:**", value=shotsFired, inline=True)
@@ -123,8 +123,8 @@ class SPLITGATE(commands.Cog):
             shotsLanded = data["data"]["segments"][0]["stats"]["shotsLanded"]["value"]
             embed.add_field(name="**Shots Landed:**", value=shotsLanded, inline=True)
         if data["data"]["segments"][0]["stats"]["shotsAccuracy"]["value"] != "N/A":
-            shotsAccuracy = data["data"]["segments"][0]["stats"]["shotsAccuracy"]["value"]
-            embed.add_field(name="**Shots Accuracy:**", value=shotsAccuracy + "%", inline=True)
+            shotsAccuracy = data["data"]["segments"][0]["stats"]["shotsAccuracy"]["value"] + "%"
+            embed.add_field(name="**Shots Accuracy:**", value=shotsAccuracy, inline=True)
         if data["data"]["segments"][0]["stats"]["kd"]["value"] != "N/A":
             kd = data["data"]["segments"][0]["stats"]["kd"]["value"]
             embed.add_field(name="**K/D:**", value=kd, inline=True)
