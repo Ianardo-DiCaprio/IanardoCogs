@@ -149,7 +149,7 @@ class SPLITGATE(commands.Cog):
             if data["data"]["segments"][0]["stats"]["shotsFired"]["value"] != "N/A":
                 shotsFired = data["data"]["segments"][0]["stats"]["shotsFired"]["value"]
                 embed.add_field(name="**Shots Fired:**", value=shotsFired, inline=True)
-            if data["data"]["segments"][0]["stats"]["shotsLanded"]["vValue"] != "N/A":
+            if data["data"]["segments"][0]["stats"]["shotsLanded"]["value"] != "N/A":
                 shotsLanded = data["data"]["segments"][0]["stats"]["shotsLanded"]["value"]
                 embed.add_field(name="**Shots Landed:**", value=shotsLanded, inline=True)
             if data["data"]["segments"][0]["stats"]["kd"]["value"] != "N/A":
