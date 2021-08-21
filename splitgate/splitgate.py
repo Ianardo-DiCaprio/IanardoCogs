@@ -44,18 +44,10 @@ class SPLITGATE(commands.Cog):
             await self.conf.user(ctx.author).username.set(username)
             await ctx.send("Your username has been removed.")
     @commands.command()
-    async def splitgatestats(self, ctx, platform: Optional[str] = "", *, username: Optional[str] = ""):
+    async def splitgatestats(self, ctx):
         """Command to get your Splitgate stats
         For platform use pc, xbox, psn"""
         embeds = []
-        if platform + username == "":
-            user = ctx.author
-            platform = await self.conf.user(user).platform()
-            username = await self.conf.user(user).username()
-        username = username.replace(" ", "%20")
-        username = username.replace("#", "%23")
-        platform = platform.replace("pc", "battle")
-        platform = platform.replace("xbox", "xbl")
         headers = {'TRN-Api-Key':'91b58a5a-5df3-4292-82f3-6262c829709d'}
         async with self._session.get(
                 f"https://public-api.tracker.gg/v2/splitgate/standard/profile/psn/Kill_Switch_YT7",headers=headers
@@ -63,7 +55,6 @@ class SPLITGATE(commands.Cog):
                 data = await request.json()
         try:
             username = data["platformInfo"]["platformUserHandle"]
-            #Career Stats
             embed = discord.Embed(title="Username", color=0x8C05D2)
             if data["platformInfo"]["platformUserHandle"] != "N/A":
                 username = data["platformInfo"]["platformUserHandle"]
@@ -72,6 +63,4 @@ class SPLITGATE(commands.Cog):
             await menu(
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180
             )
-        except:
-            await ctx.send("Either the platform or username is incorrect, please make sure to use pc, psn or xbox for the platform and make sure you spelt your name correctly. Or this is still broken")
         
