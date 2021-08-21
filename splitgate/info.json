@@ -1,0 +1,8 @@
+{
+    "author" : ["Ianardo DiCaprio"],
+    "install_msg" : "Thank you for installing my cog!",
+    "name" : "CodStats",
+    "short" : "Get stats for COD: MW",
+    "description" : "Get stats of players on COD: MW",
+    "tags" : ["COD", "Call of Duty", "MW", "Modern Warfare"]
+}
