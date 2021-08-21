@@ -138,6 +138,11 @@ class SPLITGATE(commands.Cog):
             if data["data"]["segments"][0]["stats"]["killsPerMatch"]["value"] != "N/A":
                 killsPerMatch = data["data"]["segments"][0]["stats"]["killsPerMatch"]["value"]
                 embed.add_field(name="**Kills Per Match:**", value=killsPerMatch, inline=True)
+            embeds.append(embed)
+
+            if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
+                username = data["data"]["platformInfo"]["platformUserHandle"]
+            embed = discord.Embed(title=f"Splitgate Stats - {username} - Page 2", color=0x8C05D2)
             if data["data"]["segments"][0]["stats"]["medalDoubleKills"]["value"] != "N/A":
                 medalDoubleKills = data["data"]["segments"][0]["stats"]["medalDoubleKills"]["value"]
                 embed.add_field(name="**Double Kills:**", value=medalDoubleKills, inline=True)
@@ -182,4 +187,3 @@ class SPLITGATE(commands.Cog):
                 ctx, pages=embeds, controls=DEFAULT_CONTROLS, message=None, page=0, timeout=180)
         except:
             await ctx.send("Either the platform or username is incorrect, please make sure to use pc, psn or xbox for the platform and make sure you spelt your name correctly.")
-        
