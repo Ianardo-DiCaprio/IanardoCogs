@@ -65,7 +65,7 @@ class SPLITGATE(commands.Cog):
             username = data["data"]["platformInfo"]["platformUserHandle"]
             embed.add_field(name="**Username:**", value=username, inline=True)
         if data["data"]["segments"][0]["stats"]["kills"]["value"] != "N/A":
-            kills = data["data"]["segments"]["stats"]["kills"]["value"]
+            kills = data["data"]["segments"][0]["stats"]["kills"]["value"]
             embed.add_field(name="**kills:**", value=kills, inline=True)
         embeds.append(embed)
         await menu(
