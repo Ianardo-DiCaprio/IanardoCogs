@@ -63,9 +63,9 @@ class SPLITGATE(commands.Cog):
         try:
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
                 username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 1**", color=0x8C05D2)
+            embed = discord.Embed(title=f"Splitgate Stats - {username}", color=0x8C05D2)
             embed.set_thumbnail(url=data["data"]["segments"][0]["stats"]["rankLevel"]["metadata"]["imageUrl"])
-            embed.set_footer(text="React to change pages for more stats!")
+            embed.set_footer(text="React to change pages for more stats! **Page 1 of 7**")
             if data["data"]["segments"][0]["stats"]["firstBloods"]["value"] != "N/A":
                 firstBloods = data["data"]["segments"][0]["stats"]["firstBloods"]["value"]
                 embed.add_field(name="**First Bloods:**", value=firstBloods, inline=True)
@@ -109,7 +109,9 @@ class SPLITGATE(commands.Cog):
 
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
                 username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 2**", color=0x8C05D2)
+            embed = discord.Embed(title=f"Splitgate Stats - {username}", color=0x8C05D2)
+            embed.set_thumbnail(url=data["data"]["segments"][0]["stats"]["rankLevel"]["metadata"]["imageUrl"])
+            embed.set_footer(text="React to change pages for more stats! **Page 2 of 7**")
             if data["data"]["segments"][0]["stats"]["rankLevel"]["metadata"]["rankName"] != "N/A":
                 rankLevel = data["data"]["segments"][0]["stats"]["rankLevel"]["metadata"]["rankName"]
                 embed.add_field(name="**Rank:**", value=rankLevel, inline=True)
@@ -141,7 +143,9 @@ class SPLITGATE(commands.Cog):
 
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
                 username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 3**", color=0x8C05D2)
+            embed = discord.Embed(title=f"Splitgate Stats - {username}", color=0x8C05D2)
+            embed.set_thumbnail(url=data["data"]["segments"][0]["stats"]["rankLevel"]["metadata"]["imageUrl"])
+            embed.set_footer(text="React to change pages for more stats! **Page 3 of 7**")
             if data["data"]["segments"][0]["stats"]["headshotAccuracy"]["displayValue"] != "N/A":
                 headshotAccuracy = data["data"]["segments"][0]["stats"]["headshotAccuracy"]["displayValue"]
                 embed.add_field(name="**Headshot Accuracy:**", value=headshotAccuracy, inline=True)
@@ -173,7 +177,9 @@ class SPLITGATE(commands.Cog):
 
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
                 username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 4**", color=0x8C05D2)
+            embed = discord.Embed(title=f"Splitgate Stats - {username}", color=0x8C05D2)
+            embed.set_thumbnail(url=data["data"]["segments"][0]["stats"]["rankLevel"]["metadata"]["imageUrl"])
+            embed.set_footer(text="React to change pages for more stats! **Page 4 of 7**")
             if data["data"]["segments"][0]["stats"]["progressionXp"]["value"] != "N/A":
                 progressionXp = data["data"]["segments"][0]["stats"]["progressionXp"]["value"]
                 embed.add_field(name="**Total XP:**", value=progressionXp, inline=True)
@@ -202,7 +208,9 @@ class SPLITGATE(commands.Cog):
 
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
                 username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 5**", color=0x8C05D2)
+            embed = discord.Embed(title=f"Splitgate Stats - {username}", color=0x8C05D2)
+            embed.set_thumbnail(url=data["data"]["segments"][0]["stats"]["rankLevel"]["metadata"]["imageUrl"])
+            embed.set_footer(text="React to change pages for more stats! **Page 5 of 7**")
             if data["data"]["segments"][0]["stats"]["medalDoubleKills"]["value"] != "N/A":
                 medalDoubleKills = data["data"]["segments"][0]["stats"]["medalDoubleKills"]["value"]
                 embed.add_field(name="**Double Kills:**", value=medalDoubleKills, inline=True)
@@ -222,7 +230,9 @@ class SPLITGATE(commands.Cog):
 
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
                 username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 6**", color=0x8C05D2)
+            embed = discord.Embed(title=f"Splitgate Stats - {username}", color=0x8C05D2)
+            embed.set_thumbnail(url=data["data"]["segments"][0]["stats"]["rankLevel"]["metadata"]["imageUrl"])
+            embed.set_footer(text="React to change pages for more stats! **Page 6 of 7**")
             if data["data"]["segments"][0]["stats"]["medalKillstreak1"]["value"] != "N/A":
                 medalKillstreak1 = data["data"]["segments"][0]["stats"]["medalKillstreak1"]["value"]
                 embed.add_field(name="**5 Killstreaks:**", value=medalKillstreak1, inline=True)
@@ -245,7 +255,9 @@ class SPLITGATE(commands.Cog):
 
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
                 username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 7**", color=0x8C05D2)
+            embed = discord.Embed(title=f"Splitgate Stats - {username}", color=0x8C05D2)
+            embed.set_thumbnail(url=data["data"]["segments"][0]["stats"]["rankLevel"]["metadata"]["imageUrl"])
+            embed.set_footer(text="React to change pages for more stats! **Page 7 of 7**")
             if data["data"]["segments"][0]["stats"]["teabagsDenied"]["value"] != "N/A":
                 teabagsDenied = data["data"]["segments"][0]["stats"]["teabagsDenied"]["value"]
                 embed.add_field(name="**Teabags Denied:**", value=teabagsDenied, inline=True)
