@@ -19,7 +19,7 @@ class SPLITGATE(commands.Cog):
             "username": None,
         }
         default_global = {
-            "TRN-Api-Key": None
+            "apikey": None
         }
 
         self.conf.register_user(**default_user)
@@ -52,10 +52,10 @@ class SPLITGATE(commands.Cog):
     async def splitgateapiset(self, ctx, api=None):
         """Command to set Splitgate api"""
         if api:
-            await self.conf.TRN-Api-Key.set(api)
+            await self.conf.apikey.set(api)
             await ctx.send("Your API has been set.")
         else:
-            await self.conf.TRN-Api-Key.set(api)
+            await self.conf.apikey.set(api)
             await ctx.send("Your API has been removed.")
 
     @commands.command()
