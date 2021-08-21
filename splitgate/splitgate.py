@@ -198,24 +198,28 @@ class SPLITGATE(commands.Cog):
                 embed.add_field(name="**Win/Loss Percent:**", value=f"{wlPercentage}%", inline=True)
             embeds.append(embed)
 
+
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
                 username = data["data"]["platformInfo"]["platformUserHandle"]
-            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 5**", color=0x8C05D2)
-            if data["data"]["segments"][0]["stats"]["medalDoubleKills"]["value"] != "N/A":
-                medalDoubleKills = data["data"]["segments"][0]["stats"]["medalDoubleKills"]["value"]
-                embed.add_field(name="**Double Kills:**", value=medalDoubleKills, inline=True)
-            if data["data"]["segments"][0]["stats"]["medalTripleKills"]["value"] != "N/A":
-                medalTripleKills = data["data"]["segments"][0]["stats"]["medalTripleKills"]["value"]
-                embed.add_field(name="**Triple Kills:**", value=medalTripleKills, inline=True)
-            if data["data"]["segments"][0]["stats"]["medalQuadKills"]["value"] != "N/A":
-                medalQuadKills = data["data"]["segments"][0]["stats"]["medalQuadKills"]["value"]
-                embed.add_field(name="**Quad Kills:**", value=medalQuadKills, inline=True)
-            if data["data"]["segments"][0]["stats"]["medalQuintKills"]["value"] != "N/A":
-                medalQuintKills = data["data"]["segments"][0]["stats"]["medalQuintKills"]["value"]
-                embed.add_field(name="**Quint Kills:**", value=medalQuintKills, inline=True)
-            if data["data"]["segments"][0]["stats"]["medalSexKills"]["value"] != "N/A":
-                medalSexKills = data["data"]["segments"][0]["stats"]["medalSexKills"]["value"]
-                embed.add_field(name="**Sex Kills:**", value=medalSexKills, inline=True)
+            embed = discord.Embed(title=f"Splitgate Stats - {username} - **Page 6**", color=0x8C05D2)
+            if data["data"]["segments"][0]["stats"]["medalKillstreak1"]["value"] != "N/A":
+                medalKillstreak1 = data["data"]["segments"][0]["stats"]["medalKillstreak1"]["value"]
+                embed.add_field(name="**5 Killstreaks:**", value=medalKillstreak1, inline=True)
+            if data["data"]["segments"][0]["stats"]["medalKillstreak2"]["value"] != "N/A":
+                medalKillstreak2 = data["data"]["segments"][0]["stats"]["medalKillstreak2"]["value"]
+                embed.add_field(name="**10 Killstreaks:**", value=medalKillstreak2, inline=True)
+            if data["data"]["segments"][0]["stats"]["medalKillstreak3"]["value"] != "N/A":
+                medalKillstreak3 = data["data"]["segments"][0]["stats"]["medalKillstreak3"]["value"]
+                embed.add_field(name="**15 Killstreaks:**", value=medalKillstreak3, inline=True)
+            if data["data"]["segments"][0]["stats"]["medalKillstreak4"]["value"] != "N/A":
+                medalKillstreak4 = data["data"]["segments"][0]["stats"]["medalKillstreak4"]["value"]
+                embed.add_field(name="**20 Killstreaks:**", value=medalKillstreak4, inline=True)
+            if data["data"]["segments"][0]["stats"]["medalKillstreak5"]["value"] != "N/A":
+                medalKillstreak5 = data["data"]["segments"][0]["stats"]["medalKillstreak5"]["value"]
+                embed.add_field(name="**25 Killstreaks:**", value=medalKillstreak5, inline=True)
+            if data["data"]["segments"][0]["stats"]["medalKillstreak6"]["value"] != "N/A":
+                medalKillstreak6 = data["data"]["segments"][0]["stats"]["medalKillstreak6"]["value"]
+                embed.add_field(name="**50 Killstreaks:**", value=medalKillstreak6, inline=True)
             embeds.append(embed)
 
             if data["data"]["platformInfo"]["platformUserHandle"] != "N/A":
