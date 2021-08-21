@@ -99,7 +99,7 @@ class SPLITGATE(commands.Cog):
             losses = data["data"]["segments"][0]["stats"]["losses"]["value"]
             embed.add_field(name="**Losses:**", value=losses, inline=True)
         if data["data"]["segments"][0]["stats"]["wlPercentage"]["value"] != "N/A":
-            wlPercentage = data["data"]["segments"][0]["stats"]["wlPercentage"]["value"] + "%"
+            wlPercentage = data["data"]["segments"][0]["stats"]["wlPercentage"]["value"]
             embed.add_field(name="**Win/Loss Percent:**", value=f"{wlPercentag}%", inline=True)
         if data["data"]["segments"][0]["stats"]["timePlayed"]["displayValue"] != "N/A":
             timePlayed = data["data"]["segments"][0]["stats"]["timePlayed"]["displayValue"]
