@@ -52,10 +52,10 @@ class SPLITGATE(commands.Cog):
     async def splitgateapiset(self, ctx, api=None):
         """Command to set Splitgate api"""
         if api:
-            await self.config.report_channel.set(api)
+            await self.conf.APIKey.set(api)
             await ctx.send("Your API has been set.")
         else:
-            await self.conf.user(ctx.author).platform.set(api)
+            await self.conf.APIKey.set(api)
             await ctx.send("Your API has been removed.")
 
     @commands.command()
