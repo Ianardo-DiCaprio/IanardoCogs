@@ -70,10 +70,8 @@ class SPLITGATE(commands.Cog):
         username = username.replace(" ", "%20")
         platform = platform.replace("xbox", "xbl")
         head = await self.conf.APIkey()
-        header = "'TRN-API-Key': '" + {head} + "'"
-        headers = {header}
         async with self._session.get(
-                f"https://public-api.tracker.gg/v2/splitgate/standard/profile/{platform}/{username}",headers=headers
+                f"https://public-api.tracker.gg/v2/splitgate/standard/profile/{platform}/{username}",headers=await self.conf.APIkey()
             ) as request:
                 data = await request.json()
         #Page 1
