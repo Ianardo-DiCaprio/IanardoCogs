@@ -41,7 +41,7 @@ class Rand(commands.Cog):
         """this command sends a message"""
         embed=discord.Embed(title="PORN", url="https://www.pornhub.com/", description="This is porn", color=0x079de9)
         embed.set_author(name="Porn", url="http://therattgang.com/wp-content/uploads/2019/05/horny-pussy-during-sex.jpg", icon_url="http://therattgang.com/wp-content/uploads/2019/05/horny-pussy-during-sex.jpg")
-        embed.set_thumbnail(url="http://therattgang.com/wp-content/uploads/2019/05/horny-pussy-during-sex.jpg%22)
+        embed.set_thumbnail(url="http://therattgang.com/wp-content/uploads/2019/05/horny-pussy-during-sex.jpg")
         embed.add_field(name="Category 1", value="https://www.pornhub.com/categories/teen", inline=False)
         embed.add_field(name="Category 2", value="https://www.pornhub.com/categories/lesbian", inline=True)
         embed.set_footer(text="Do you like porn?")
