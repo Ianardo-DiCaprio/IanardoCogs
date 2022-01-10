@@ -25,7 +25,7 @@ class Rand(commands.Cog):
     @commands.command(name="cum")
     async def cum(self, ctx: commands.Context):
         """this command sends a message"""
-        a = random.randint(1, 3)
+        a = random.randint(1, 4)
         if a == 1:
             message = "My cum is white and thick and shoots far."
         elif a == 2:
