@@ -12,9 +12,9 @@ class Rand(commands.Cog):
 
     @commands.command()
     @commands.cooldown(rate=1, per=3, type= commands.BucketType.user)
-    async def sendmessage(self, ctx: commands.Context, text: str = None):
+    async def sendmessage(self, ctx: commands.Context, text: str = ""):
         """this command sends a message"""
-        if not text:
+        if text == "":
             message = "There is nothing here"
         elif text == "help":
             message = "Help me stepbro."
