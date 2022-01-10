@@ -1,0 +1,8 @@
+{
+    "author" : ["Jarinator500"],
+    "install_msg" : "You installed my cog :O WOW",
+    "name" : "Simple test",
+    "short" : "Learning",
+    "description" : "A cog to learn",
+    "tags" : ["learning"]
+}
