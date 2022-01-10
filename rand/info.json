@@ -1,8 +1,0 @@
-{
-    "author" : ["Ianardo DiCaprio"],
-    "install_msg" : "Thank you for installing my cog!",
-    "name" : "Rand",
-    "short" : "Random commands.",
-    "description" : "A cog filled with simple random commands",
-    "tags" : ["random", "reaction"]
-}
