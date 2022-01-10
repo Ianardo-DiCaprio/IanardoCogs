@@ -16,7 +16,7 @@ class Rand(commands.Cog):
         """this command sends a message"""
         if not text:
             message = "There is nothing here"
-        if text == "help":
+        elif text == "help":
             message = "Help me stepbro."
         else:
             message = "Well that's not an option."
