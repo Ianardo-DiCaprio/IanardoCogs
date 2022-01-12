@@ -56,9 +56,6 @@ class Rand(commands.Cog):
         """Pause Spotify"""
         with SpotifyLocal() as s:
             pass
-
-        with SpotifyLocal() as s:
-            s.pause()
         
 
 
