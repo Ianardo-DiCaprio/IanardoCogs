@@ -2,6 +2,7 @@ import discord
 import asyncio
 import random
 from redbot.core import commands, checks
+from spotify_local import SpotifyLocal
 
 class Rand(commands.Cog):
     """
@@ -47,5 +48,15 @@ class Rand(commands.Cog):
         embed.add_field(name="Category 2", value="https://www.pornhub.com/categories/lesbian", inline=True)
         embed.set_footer(text="Do you like porn?")
         await ctx.send(embed=embed)
+
+    @commands.command(name="spause")
+    async def spause(self, ctx: commands.Context):
+        """Pause Spotify"""
+        with SpotifyLocal() as s:
+            pass
+
+        with SpotifyLocal() as s:
+        s.pause()
+        
 
 
