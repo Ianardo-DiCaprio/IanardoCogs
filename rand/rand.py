@@ -88,5 +88,6 @@ class Rand(commands.Cog):
                 ":cd: " + t.album.name
             ])
             embed.add_field(name=t.name, value=message, inline=False)
+            spotify.playback_start_tracks([t.id for t in tracks.items])
 
         await ctx.send(embed=embed)
