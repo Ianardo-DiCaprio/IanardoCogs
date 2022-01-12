@@ -72,4 +72,4 @@ class Rand(commands.Cog):
 
         album = spotify.album(album)
         for track in album.tracks.items:
-            await ctx.send(track.track_number, track.name)
+            await ctx.send(track.name)
