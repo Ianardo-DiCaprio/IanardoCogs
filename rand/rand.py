@@ -69,5 +69,6 @@ class Rand(commands.Cog):
         token = tk.prompt_for_user_token(*conf, scope=tk.scope.every)
 
         spotify = tk.Spotify(token)
-        kamikaze = '2gsNpSn7VvvJuSrIDfRoYy'
-        spotify.playback_start_tracks([kamikaze])
+        album = spotify.saved_albums(limit=1).items[0].album
+        album_uri = tk.to_uri('album', album.id)
+        spotify.playback_start_context(album_uri)
