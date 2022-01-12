@@ -65,14 +65,10 @@ class Rand(commands.Cog):
     @commands.command(name="salbum")
     async def salbum(self, ctx: commands.Context, query: str = None):
         """Pause Spotify"""
-        conf = ("b29fcfa2b667421db65441fe8012f041", "9054ad8cf8614809a630ff4d91d99d4f", "https://example.com/callback")
-        token = tk.prompt_for_user_token(*conf, scope=tk.scope.every)
-
         if query is None:
             await ctx.send("No search query specified")
             return
 
-        spotify = tk.Spotify(token)
         tracks, = await spotify.search(query, limit=5)
         embed = Embed(title="Track search results", color=0x1DB954)
         embed.set_thumbnail(url="https://i.imgur.com/890YSn2.png")
