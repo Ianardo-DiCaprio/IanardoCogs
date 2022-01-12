@@ -60,6 +60,6 @@ class Rand(commands.Cog):
         spotify.playback_start_tracks([t.id for t in tracks.items])
         tracks = spotify.current_user_top_tracks(limit=10)
         track in tracks.items:
-        await ctx.send(track.name)
+            await ctx.send(track.name)
 
 
