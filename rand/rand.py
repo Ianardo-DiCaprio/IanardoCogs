@@ -63,12 +63,11 @@ class Rand(commands.Cog):
             await ctx.send(track.name)
 
     @commands.command(name="salbum")
-    async def salbum(self, ctx: commands.Context, *, albumname: str = ""):
+    async def salbum(self, ctx: commands.Context):
         """Pause Spotify"""
         conf = ("b29fcfa2b667421db65441fe8012f041", "9054ad8cf8614809a630ff4d91d99d4f", "https://example.com/callback")
         token = tk.prompt_for_user_token(*conf, scope=tk.scope.every)
 
         spotify = tk.Spotify(token)
-
-        
-        spotify.playback_start_tracks([albumname])
+        kamikaze = '3HNnxK7NgLXbDoxRZxNWiR'
+        spotify.playback_start_tracks([kamikaze])
