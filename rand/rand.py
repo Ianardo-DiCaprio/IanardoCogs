@@ -69,5 +69,5 @@ class Rand(commands.Cog):
         token = tk.prompt_for_user_token(*conf, scope=tk.scope.every)
 
         spotify = tk.Spotify(token)
-        kamikaze = '3HNnxK7NgLXbDoxRZxNWiR'
+        kamikaze = '2gsNpSn7VvvJuSrIDfRoYy'
         spotify.playback_start_tracks([kamikaze])
