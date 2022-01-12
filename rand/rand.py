@@ -63,12 +63,29 @@ class Rand(commands.Cog):
             await ctx.send(track.name)
 
     @commands.command(name="salbum")
-    async def salbum(self, ctx: commands.Context):
+    async def salbum(self, ctx: commands.Context, query: str = None):
         """Pause Spotify"""
         conf = ("b29fcfa2b667421db65441fe8012f041", "9054ad8cf8614809a630ff4d91d99d4f", "https://example.com/callback")
         token = tk.prompt_for_user_token(*conf, scope=tk.scope.every)
 
-        spotify = tk.Spotify(token)
-        album = spotify.saved_albums(limit=1).items[0].album
-        album_uri = tk.to_uri('album', album.id)
-        spotify.playback_start_context(album_uri)
+        if query is None:
+            await ctx.send("No search query specified")
+            return
+
+        tracks, = await spotify.search(query, limit=5)
+        embed = Embed(title="Track search results", color=0x1DB954)
+        embed.set_thumbnail(url="https://i.imgur.com/890YSn2.png")
+        embed.set_footer(text="Requested by " + ctx.author.display_name)
+
+        for t in tracks.items:
+            artist = t.artists[0].name
+            url = t.external_urls["spotify"]
+
+            message = "\n".join([
+                "[Spotify](" + url + ")",
+                ":busts_in_silhouette: " + artist,
+                ":cd: " + t.album.name
+            ])
+            embed.add_field(name=t.name, value=message, inline=False)
+
+        await ctx.send(embed=embed)
