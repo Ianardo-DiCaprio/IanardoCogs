@@ -56,7 +56,7 @@ class Rand(commands.Cog):
             pass
 
         with SpotifyLocal() as s:
-        s.pause()
+            s.pause()
         
 
 
