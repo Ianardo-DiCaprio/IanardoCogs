@@ -71,6 +71,6 @@ class Rand(commands.Cog):
         spotify = tk.Spotify(token)
 
         album = spotify.album(album)
-        spotify.playback_start_tracks([t.id for t in album])
+        spotify.playback_start_tracks([album])
         for track in album.tracks.items:
             await ctx.send(track.name)
