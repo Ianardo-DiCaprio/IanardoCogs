@@ -52,7 +52,7 @@ class Rand(commands.Cog):
     @commands.command(name="spause")
     async def spause(self, ctx: commands.Context):
         """Pause Spotify"""
-        conf = (b29fcfa2b667421db65441fe8012f041, 9054ad8cf8614809a630ff4d91d99d4f, https://example.com/callback)
+        conf = ("b29fcfa2b667421db65441fe8012f041", "9054ad8cf8614809a630ff4d91d99d4f", "https://example.com/callback")
         token = tk.prompt_for_user_token(*conf, scope=tk.scope.every)
 
         spotify = tk.Spotify(token)
