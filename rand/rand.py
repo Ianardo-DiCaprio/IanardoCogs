@@ -11,6 +11,8 @@ class Rand(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+    with SpotifyLocal() as s:
+        pass
 
     @commands.command(name="isjarigay")
     @commands.cooldown(rate=1, per=3, type= commands.BucketType.user)
