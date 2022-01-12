@@ -69,7 +69,7 @@ class Rand(commands.Cog):
             await ctx.send("No search query specified")
             return
 
-        tracks, = await spotify.search(query, limit=5)
+        tracks = await spotify.search(query, limit=5)
         embed = Embed(title="Track search results", color=0x1DB954)
         embed.set_thumbnail(url="https://i.imgur.com/890YSn2.png")
         embed.set_footer(text="Requested by " + ctx.author.display_name)
