@@ -34,10 +34,10 @@ class LookingFG(Cog):
         """Make an LFG request."""
         author = ctx.author
         bot = self.bot
-        gamemode1 = bot.get_emoji(658426489636651051)
-        gamemode2 = bot.get_emoji(658426504186691598)
-        gamemode3 = bot.get_emoji(658426519437443093)
-        gamemodeo = bot.get_emoji(658426530715926528)
+        gamemode1 = bot.get_emoji(971907439408603186)
+        gamemode2 = bot.get_emoji(971907549668458566)
+        gamemode3 = bot.get_emoji(971907579863257099)
+        gamemodeo = bot.get_emoji(971907603049381889)
         rank1 = bot.get_emoji(658431823935832064)
         rank2 = bot.get_emoji(658431824342548510)
         rank3 = bot.get_emoji(658431823746957313)
