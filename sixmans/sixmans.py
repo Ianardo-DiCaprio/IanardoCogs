@@ -65,7 +65,7 @@ class SixMans(commands.Cog):
             )
             embed = discord.Embed(description=alreadyq, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS™ 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -76,7 +76,7 @@ class SixMans(commands.Cog):
             )
             embed = discord.Embed(escription=alreadyg, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS™ 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -88,7 +88,7 @@ class SixMans(commands.Cog):
             )
             embed = discord.Embed(description=novc, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS™ 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -100,7 +100,7 @@ class SixMans(commands.Cog):
             )
             embed = discord.Embed(description=added, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -108,7 +108,7 @@ class SixMans(commands.Cog):
                 queuefull = "Queue is now full! Type `[v` for voting, `[c` for random captains or `[r` for random teams."
                 embed = discord.Embed(description=queuefull, color=0x00FFFF)
                 embed.set_author(
-                    name="VOID ESPORTS™ 6Mans",
+                    name="PEAK LEVEL ESPORTS 6Mans",
                     icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                 )
                 await ctx.send(embed=embed)
@@ -126,7 +126,7 @@ class SixMans(commands.Cog):
             )
             embed = discord.Embed(description=removed, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -134,7 +134,7 @@ class SixMans(commands.Cog):
             notq = "**{}** is not in queue.".format(player.display_name)
             embed = discord.Embed(description=notq, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -151,7 +151,7 @@ class SixMans(commands.Cog):
             )
             embed = discord.Embed(description=kicked, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -159,7 +159,7 @@ class SixMans(commands.Cog):
             notq = "**{}** is not in queue.".format(player.display_name)
             embed = discord.Embed(description=notq, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -200,7 +200,7 @@ class SixMans(commands.Cog):
             queuefull = "Queue is not full."
             embed = discord.Embed(description=queuefull, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -209,7 +209,7 @@ class SixMans(commands.Cog):
             botbusy = "Bot is busy. Please wait until picking is done."
             embed = discord.Embed(description=botbusy, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -220,7 +220,7 @@ class SixMans(commands.Cog):
         captainvote = "Captain voting initiated. Use `[vote @user` to vote for a captain (cannot be yourself)."
         embed = discord.Embed(description=captainvote, color=0x00FFFF)
         embed.set_author(
-            name="VOID ESPORTS™ 6Mans",
+            name="PEAK LEVEL ESPORTS 6Mans",
             icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
         )
         await ctx.send(embed=embed)
@@ -229,7 +229,7 @@ class SixMans(commands.Cog):
         )
         embed = discord.Embed(description=available, color=0x00FFFF)
         embed.set_author(
-            name="VOID ESPORTS™ 6Mans",
+            name="PEAK LEVEL ESPORTS 6Mans",
             icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
         )
         await ctx.send(embed=embed)
@@ -254,7 +254,7 @@ class SixMans(commands.Cog):
                     selfvote = "Cannot vote for yourself."
                     embed = discord.Embed(description=selfvote, color=0x00FFFF)
                     embed.set_author(
-                        name="VOID ESPORTS™ 6Mans",
+                        name="PEAK LEVEL ESPORTS 6Mans",
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
@@ -263,7 +263,7 @@ class SixMans(commands.Cog):
                     voted = "Vote added for **{}.**".format(vote.display_name)
                     embed = discord.Embed(description=voted, color=0x00FFFF)
                     embed.set_author(
-                        name="VOID ESPORTS™ 6Mans",
+                        name="PEAK LEVEL ESPORTS 6Mans",
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
@@ -275,7 +275,7 @@ class SixMans(commands.Cog):
                         description=notavailable, color=0x00FFFF
                     )
                     embed.set_author(
-                        name="VOID ESPORTS™ 6Mans",
+                        name="PEAK LEVEL ESPORTS 6Mans",
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
@@ -298,7 +298,7 @@ class SixMans(commands.Cog):
                     )
             embed = discord.Embed(description=msg, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -327,7 +327,7 @@ class SixMans(commands.Cog):
                 )
                 embed = discord.Embed(description=tied, color=0x00FFFF)
                 embed.set_author(
-                    name="VOID ESPORTS™ 6Mans",
+                    name="PEAK LEVEL ESPORTS 6Mans",
                     icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                 )
                 await ctx.send(embed=embed)
@@ -340,7 +340,7 @@ class SixMans(commands.Cog):
                 )
                 embed = discord.Embed(description=tieda, color=0x00FFFF)
                 embed.set_author(
-                    name="VOID ESPORTS™ 6Mans",
+                    name="PEAK LEVEL ESPORTS 6Mans",
                     icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                 )
                 await ctx.send(embed=embed)
@@ -378,7 +378,7 @@ class SixMans(commands.Cog):
             sixplayers = "Captains can only be chosen for 6 players."
             embed = discord.Embed(description=sixplayers, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -387,7 +387,7 @@ class SixMans(commands.Cog):
             notfull = "Queue is not full."
             embed = discord.Embed(description=notfull, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -396,7 +396,7 @@ class SixMans(commands.Cog):
             botbusy = "Bot is busy. Please wait until picking is done."
             embed = discord.Embed(description=botbusy, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -415,7 +415,7 @@ class SixMans(commands.Cog):
         )
         embed = discord.Embed(description=captainchose, color=0x00FFFF)
         embed.set_author(
-            name="VOID ESPORTS™ 6Mans",
+            name="PEAK LEVEL ESPORTS 6Mans",
             icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
         )
         await ctx.send(embed=embed)
@@ -431,7 +431,7 @@ class SixMans(commands.Cog):
         )
         embed = discord.Embed(description=first, color=0x00FFFF)
         embed.set_author(
-            name="VOID ESPORTS™ 6Mans",
+            name="PEAK LEVEL ESPORTS 6Mans",
             icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
         )
         await ctx.send(embed=embed)
@@ -440,7 +440,7 @@ class SixMans(commands.Cog):
         )
         embed = discord.Embed(description=available, color=0x00FFFF)
         embed.set_author(
-            name="VOID ESPORTS™ 6Mans",
+            name="PEAK LEVEL ESPORTS 6Mans",
             icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
         )
         await ctx.send(embed=embed)
@@ -456,7 +456,7 @@ class SixMans(commands.Cog):
         )
         embed = discord.Embed(description=secpick, color=0x00FFFF)
         embed.set_author(
-            name="VOID ESPORTS™ 6Mans",
+            name="PEAK LEVEL ESPORTS 6Mans",
             icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
         )
         await ctx.send(embed=embed)
@@ -483,7 +483,7 @@ class SixMans(commands.Cog):
         )
         embed = discord.Embed(description=oradded, color=0x00FFFF)
         embed.set_author(
-            name="VOID ESPORTS™ 6Mans",
+            name="PEAK LEVEL ESPORTS 6Mans",
             icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
         )
         await ctx.send(embed=embed)
@@ -505,7 +505,7 @@ class SixMans(commands.Cog):
                     )
                     embed = discord.Embed(description=notav, color=0x00FFFF)
                     embed.set_author(
-                        name="VOID ESPORTS™ 6Mans",
+                        name="VPEAK LEVEL ESPORTS 6Mans",
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
@@ -515,7 +515,7 @@ class SixMans(commands.Cog):
                 )
                 embed = discord.Embed(description=orpick, color=0x00FFFF)
                 embed.set_author(
-                    name="VOID ESPORTS™ 6Mans",
+                    name="PEAK LEVEL ESPORTS 6Mans",
                     icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                 )
                 await ctx.send(embed=embed)
@@ -527,7 +527,7 @@ class SixMans(commands.Cog):
             )
             embed = discord.Embed(description=timedout, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -559,7 +559,7 @@ class SixMans(commands.Cog):
                         *[pick.display_name for pick in picks]
                     )
                     embed = discord.Embed(
-                        title="VOID ESPORTS™ 6Mans",
+                        title="PEAK LEVEL ESPORTS 6Mans",
                         description=twopick,
                         color=0x00FFFF,
                     )
@@ -574,7 +574,7 @@ class SixMans(commands.Cog):
                 *[pick.display_name for pick in picks]
             )
             embed = discord.Embed(
-                title="VOID ESPORTS™ 6Mans", description=timed, color=0x00FFFF
+                title="PEAK LEVEL ESPORTS 6Mans", description=timed, color=0x00FFFF
             )
             embed.set_thumbnail(
                 url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png"
@@ -598,7 +598,7 @@ class SixMans(commands.Cog):
             busy = "Bot is busy. Please wait until picking is done."
             embed = discord.Embed(description=busy, color=0x00FFFF)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans",
+                name="PEAK LEVEL ESPORTS 6Mans",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             await ctx.send(embed=embed)
@@ -621,7 +621,7 @@ class SixMans(commands.Cog):
         self.busy = False
 
     async def display_teams(self, ctx):
-        embed = discord.Embed(title="VOID ESPORTS™ 6Mans", color=0x00FFFF)
+        embed = discord.Embed(title="PEAK LEVEL ESPORTS 6Mans", color=0x00FFFF)
         blue = "🔷 BLUE 🔷: **{}**".format(
             ", ".join([player.display_name for player in self.game.blue])
         )
@@ -725,7 +725,7 @@ class SixMans(commands.Cog):
                     )
                     embed = discord.Embed(description=report, color=0x00FFFF)
                     embed.set_author(
-                        name="VOID ESPORTS™ 6Mans",
+                        name="PEAK LEVEL ESPORTS 6Mans",
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
@@ -746,7 +746,7 @@ class SixMans(commands.Cog):
                     )
                     embed = discord.Embed(description=report, color=0x00FFFF)
                     embed.set_author(
-                        name="VOID ESPORTS™ 6Mans",
+                        name="PEAK LEVEL ESPORTS 6Mans",
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
@@ -772,7 +772,7 @@ class SixMans(commands.Cog):
                     )
                     embed = discord.Embed(description=report, color=0x00FFFF)
                     embed.set_author(
-                        name="VOID ESPORTS™ 6Mans",
+                        name="PEAK LEVEL ESPORTS 6Mans",
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
@@ -793,7 +793,7 @@ class SixMans(commands.Cog):
                     )
                     embed = discord.Embed(description=report, color=0x00FFFF)
                     embed.set_author(
-                        name="VOID ESPORTS™ 6Mans",
+                        name="PEAK LEVEL ESPORTS 6Mans",
                         icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
                     )
                     await ctx.send(embed=embed)
@@ -829,7 +829,7 @@ class SixMans(commands.Cog):
             embed = discord.Embed(color=0x00FFFF)
             embed.description = box(msg)
             embed.set_author(
-                name="VOID ESPORTS™ 6Mans Leaderboard",
+                name="PEAK LEVEL ESPORTS 6Mans Leaderboard",
                 icon_url="https://cdn.discordapp.com/attachments/648743379252805663/684605565946953744/octopus-1.png",
             )
             embeds.append(embed)
