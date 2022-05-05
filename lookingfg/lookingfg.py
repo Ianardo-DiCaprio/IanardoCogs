@@ -79,7 +79,7 @@ class LookingFG(Cog):
 
         message = await ctx.send("Okay, {0}, I've sent you a DM.".format(author.mention))
         try:
-            task = start_adding_reactions(game, gamemodes[:4], ctx.bot.loop)
+            task = start_adding_reactions(game, gamemodes[:4])
             (r, u) = await bot.wait_for("reaction_add", timeout=120, check=ReactionPredicate.with_emojis(gamemodes, game, ctx.author))
             reacts = {v: k for k, v in gamemodeemoji.items()}
             react = reacts[r.emoji]
